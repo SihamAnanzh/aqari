@@ -2,10 +2,10 @@ import React ,{useState,useEffect} from 'react'
 import onClickOutside from 'react-onclickoutside';
 
 
-function Slider({imgs,setShowImg}) {
+function Slider({imgs,setShowImg ,setOverlay}) {
   const [index, setIndex] = useState(0)
   Slider.handleClickOutside = () => setShowImg(false)
-
+ 
   useEffect(() => {
     setIndex(0)
   }, [])

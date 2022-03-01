@@ -39,13 +39,14 @@ const Thumbnail = ({ arr, image, index }) => {
     )
   }
 
-const Slideshow = ({ imgs }) => {
+const Slideshow = ({ imgs,setOverlay }) => {
   const [index, setIndex] = useState(0)
   const [showImg, setShowImg]=useState(false)
   // Slideshow.handleClickOutside = () => setShowImg(false)
 
   useEffect(() => {
     setIndex(0)
+
   }, [])
 
   const next = () => {
@@ -78,7 +79,7 @@ const Slideshow = ({ imgs }) => {
       </div>
 
       {
-        showImg &&  <Slider imgs={imgs} setShowImg={setShowImg}/>
+        showImg &&  <Slider imgs={imgs} setShowImg={setShowImg}  setOverlay={setOverlay}/>
                 }
       </>
   )

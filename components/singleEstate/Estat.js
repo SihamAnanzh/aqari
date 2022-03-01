@@ -2,13 +2,14 @@ import React ,{useState} from 'react'
 import Slideshow from '../imgSlider/ImgSlider'
 import SimpleMap from '../map/Map'
 
-const Estat = ({withImg}) => {
+const Estat = ({withImg,setOverlay}) => {
   const [addToFav,setAddtoFav]=useState(false)
   return (
     <>
 
     <div className='estat-conianer'>
-      {withImg && <Slideshow
+      {withImg && <Slideshow 
+      setOverlay={setOverlay}
         imgs={[
          'assets/img/home.jpg',
          'assets/img/packge.jpg',

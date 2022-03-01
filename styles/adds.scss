@@ -32,13 +32,15 @@
     background-color: $main-color;
     color: #fff;
     position: absolute;
-    font-size: 14px;
+    font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
     left: -9px;
     top: -8px;
+    font-family: otfPlain;
+    font-family: normal;
 
 }
 .details{

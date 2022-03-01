@@ -13,11 +13,11 @@ export const SignInComponent = () => {
         <div className="inputs-group">
            <div className="sign-input mail">
                <h3>البريد الإلكتروني</h3>
-               <input type="text" className="sign-mail" placeholder='البريد الإلكتروني' />
+               <input type="text" className="sign-mail" placeholder='البريد الإلكتروني' tabIndex={1} autoFocus />
            </div>
            <div className="sign-input password">
                <h3>كلمة السر</h3>
-               <input type="text" className="sign-password" placeholder='كلمة السر' />
+               <input type={showPassword ?"text":"password"} className="sign-password" placeholder='كلمة السر' tabIndex={2} />
                <span className='passwrod-icon' onClick={()=>setShowPassword(!showPassword)}>
                <img src={`assets/img/${showPassword?"showPassword":"hidePassword"}.svg`}alt="" />
             </span>
@@ -43,8 +43,14 @@ export const SignInComponent = () => {
                 
                    </Link>
                  </div>
+
                  <span>
-                 <span className='remember-word' onClick={()=>setRememberMe(!rememberME)} >تذكرني</span>
+             
+                 <span className='remember-word' onClick={()=>setRememberMe(!rememberME)} >
+                 {/* <span style={{
+                     display:"block"
+                 }}></span> */}
+                     تذكرني</span>
                 <img  onClick={()=>setRememberMe(!rememberME)} src={`assets/img/${rememberME?'checked.svg':"unChecked.svg"}`} alt="" />
                  </span>
 

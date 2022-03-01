@@ -1,6 +1,6 @@
 .signin-contanier{
     width: 100%;
-    height: 900px;
+    height: 100%;
     background-color: $background-color;
     display: flex;
     justify-content: flex-start;
@@ -33,9 +33,9 @@
     background-color: $background-color;
     padding:10px 15px;
     margin-top: 5px;
-
+    font-size: 20px;
     border: 2px solid $main-color;
-      outline: none;
+    outline: none;
       border-radius: 10px;
     &::placeholder{
         font-size:20px ;
@@ -47,6 +47,10 @@
       
     }
 
+
+    input:focus{
+        border-color: $second-color;
+    }
     h3{
         color: #00416B;
         font-size: 28px;
@@ -75,7 +79,6 @@
 
         span{
             font-size: 20px;
-            padding-bottom: 20px;
  img{
      margin-right: 10px;
      margin-top: 10px;
@@ -95,7 +98,7 @@
     font-size: 28px;
     border-radius: 10px;
     margin-top: 40px;
-    margin-bottom: 20px;
+
     }
  
     .password{
@@ -176,7 +179,7 @@
 
 @media (max-width:1700px) {
     .signin-contanier{
-        height: 900px;
+        height: 100%;
     }
     .signin-contanier .sign {
    

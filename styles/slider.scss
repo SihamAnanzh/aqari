@@ -57,6 +57,7 @@
     margin-bottom: 10px;
     margin-top: -450px;
     cursor: pointer;
+
   }
   
 
@@ -92,25 +93,26 @@
 
 
 .slideshow-two{
-  position: absolute;
-  // top: 20%;
-  // left: 50%;
-  // transform: translate(-50%,-50%);
-  top: 536px;
-  left: 33vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  // top: 536px;
+  // left: 33vw;
 
   width: 715px;
   height: 714px;
   display: flex;
   justify-content: center;
   align-items: center;
-z-index: 3;
-
+  z-index: 3;  
   .currentImg{
   width: 715px;
   height: 714px;
   border-radius: 50px;
   }
+
+
 }
 
 .nextBtn{
@@ -144,11 +146,8 @@ cursor: pointer;
   }
 
   .slideshow-two{
-    position: absolute;
-    top: 436px;
-    left: 24.5vw;
+    position: fixed;
 
-    // transform: translate(-50%,-50%);
     width: 715px;
     height: 714px;
     display: flex;
@@ -163,3 +162,5 @@ cursor: pointer;
     }
   }
 }
+
+

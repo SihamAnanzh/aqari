@@ -1,3 +1,25 @@
+.overlay{
+        margin:0;
+        padding:0;
+        height:900%;
+        width: 100%;
+    &::after{
+        content: '';
+        position:absolute;
+        height:1950px;
+        width: 100vw;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background-color:rgba(0,0,0,0.4);
+        z-index: 1;
+        margin:0;
+        padding:0;
+      }
+}
+
+
 .estat-conianer{
     display: flex;
     justify-content: flex-start;
@@ -9,6 +31,7 @@
     margin-bottom: 50px;
 
 }
+
 
 .header-estat{
     display: flex;
@@ -193,4 +216,3 @@ border-radius: 20px;
 
  
 }
-

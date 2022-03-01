@@ -64,9 +64,9 @@ const Nav = ({logo,icon}) => {
             >دخول</a></Link>
 
             </li>
-            <li  className={`${route.asPath === "/sginUp" ?"activeNav":""}`}>
+            <li  className={`${route.asPath === "/signUp" ?"activeNav":""}`}>
             <Link href="/signUp" classNamem='main-nav-item'><a 
-                         className={`${route.asPath === "/sginUp" ?"active":""}`}
+                         className={`${route.asPath === "/signUp" ?"active":""}`}
                          >تسجيل</a></Link>
 
             </li>
