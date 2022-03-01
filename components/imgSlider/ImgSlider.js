@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from 'react'
 import Carousel from "react-elastic-carousel";
-import Item from './Item';
+// import Item from './Item';
 import Slider from './Slider';
 
   
@@ -13,7 +13,7 @@ const Thumbnail = ({ arr, image, index }) => {
               <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={5} >
       {
         arr.map((imgsrc, i) => (
-            <Item key={i} style={{
+            <div key={i} style={{
               height:"66px",
               backgroundColor:"#fff",
               margin:"0",
@@ -28,7 +28,7 @@ const Thumbnail = ({ arr, image, index }) => {
             className='thumbail-img'
       
           />
-       </Item>
+       </div>
         ))
       }
            </Carousel>
