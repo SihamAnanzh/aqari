@@ -3,7 +3,7 @@ import React from 'react'
 
 const Add = (props) => {
   return (
-    <Link href='/singleEstate'>
+    <Link href='/SingleEstate'>
     <div className='premuim-add regular'>
       <div className=' details-adds'>
         <div className='img-add'><img src='/assets/img/home.jpg' /></div>
