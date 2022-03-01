@@ -33,16 +33,18 @@
     background-color: $background-color;
     padding:10px 15px;
     margin-top: 5px;
-    font-size: 20px;
+    font-size: 28px;
     border: 2px solid $main-color;
+    color: $second-color;
     outline: none;
+  
       border-radius: 10px;
     &::placeholder{
         font-size:20px ;
         font-family: otfPlain;
         font-weight: normal;
 
-    }    color: #9F9F9F;
+    }  
 
       
     }
@@ -51,6 +53,8 @@
     input:focus{
         border-color: $second-color;
     }
+    input{
+color: #00416B;    }
     h3{
         color: #00416B;
         font-size: 28px;
