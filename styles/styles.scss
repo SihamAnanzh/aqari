@@ -1,0 +1,47 @@
+
+@import 'utils/variables';
+@import './slider.scss';
+@import './shared/nav.scss';
+@import './mainSection.scss';
+@import './adds.scss';
+@import './office.scss';
+@import './packge.scss';
+@import './shared/footer.scss';
+@import './searchResults.scss';
+@import './estate.scss';
+@import './sppiner.scss';
+@import './contactus.scss';
+@import './signIn.scss';
+@import './shared/dialog-box.scss';
+@font-face {
+    font-family:otfPlain;
+    src: url(../public/assets/Fonts/TheSansArabic-Bold.otf);
+    font-weight: 600;
+  }
+  
+  @font-face {
+    font-family: otfPlain;
+    src: url(../public/assets/Fonts/TheSansArabic-ExtraBold.otf);
+    font-weight: 900;
+  }
+  
+  @font-face {
+    font-family: otfPlain;
+    src: url(../public/assets/Fonts/TheSansArabic-Plain.otf);
+    font-weight: normal;
+  }
+
+
+*,::after,::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+direction: rtl;
+font-family: otfPlain !important;
+overflow-x: hidden;
+background-color: #fff;
+
+}

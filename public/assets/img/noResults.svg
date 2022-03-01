@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="125.004" height="125" viewBox="0 0 125.004 125">
+  <g id="Group_436" data-name="Group 436" transform="translate(-12.498 -12.5)">
+    <g id="Group_435" data-name="Group 435" transform="translate(12.498 12.5)">
+      <path id="Subtract" d="M55.827,105.468H0v-4.119a2.5,2.5,0,0,1,2.511-2.472H6.7V4.944A4.989,4.989,0,0,1,11.719,0H82.031a4.989,4.989,0,0,1,5.022,4.944V47.231a35.581,35.581,0,0,0-5.022-.356,35.157,35.157,0,0,0-26.206,58.592Z" fill="#737373"/>
+      <path id="Vector" d="M43.252,49.341a27.3,27.3,0,1,1,6.089-6.089L70.313,64.228l-6.085,6.085Z" transform="translate(54.691 54.687)" fill="#737373"/>
+    </g>
+  </g>
+</svg>

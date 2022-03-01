@@ -1,0 +1,44 @@
+.sppiner-container{
+width: 100vw;
+height: 100vh;
+padding: 0;
+margin-left: -20px;
+overflow: hidden;
+}
+
+.img-sppiner{
+position: absolute;
+top: 50%;
+left: 52%;
+transform: translate(-50%,-50%);
+height: 170px;
+width: 301px;
+}
+
+.spinners{
+    position: absolute;
+    top: 67%;
+    left: 52%;
+    transform: translate(-50%,-50%);
+    
+}
+
+
+@media (max-width:1600px) {
+  
+        .img-sppiner{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        height: 150px;
+        width: 280px;
+        }
+        
+        .spinners{
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+}

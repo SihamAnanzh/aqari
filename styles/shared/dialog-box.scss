@@ -1,0 +1,58 @@
+.box{
+    
+        width: 366px;
+        height: 290px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #fff;
+        font-size: 20px;
+        border-radius: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 1;
+
+      
+    .content-box p{
+        font-size: 20px;
+        color: #00416B;
+        text-align: center;
+        padding-bottom: 10px;
+        font-family: otfPlain;
+        font-weight: 600;
+        width: 272px;
+    }
+
+    .box-btns{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+  
+    .box-btn{
+        width: 154px;
+        height: 57px;
+        color: #fff;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $second-color;
+        border-radius: 10px;
+        margin-right: 8px;
+        margin-top: 10px;
+    }
+
+    .signUp-btn{
+        background-color:$main-color;
+       a{
+           text-decoration: none;
+           color: #fff;
+       }
+    }
+
+}

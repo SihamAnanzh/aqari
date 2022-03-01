@@ -1,0 +1,51 @@
+.footer{
+    width: 100vw;
+    height: 99px;  
+    color: #ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $main-color;
+    font-family: otfPalin;
+    font-size: 20px;
+    font-weight: normal;
+
+    h2{
+  
+        font-family: otfPlain;
+        font-weight: normal;
+    
+
+    }
+}
+ .adds-btn{
+width: 207px;
+height: 45px;
+background-color: $second-color;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+font-size: 20px;
+font-family: otfPlain;
+font-weight: normal;
+
+margin-top: 20px;
+color: #fff;
+}
+
+
+@media (max-width:1600px) {
+    .footer{
+        height: 56px;
+        padding-top: 0px;    
+        h2{
+            margin-top: 12px;
+            font-size: 20px;
+            font-family: otfPlain;
+            font-weight: normal;
+
+
+        }
+    }
+}

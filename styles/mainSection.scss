@@ -1,0 +1,244 @@
+.actions-contaier{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: otfPlain;
+
+}
+
+.actions{
+width: 986px;
+height:143px ;
+background-color: #F2F5F7;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+border-radius: 10px;
+margin-top: -73px;
+flex-wrap: wrap;
+
+}
+
+.action{
+    width: 274px;
+    height: 67px;
+    color: $main-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    background-color: $background-color;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: otfPlain;
+    font-weight: 600;
+}
+
+.actions.showBox{
+height: 273px;
+}
+.actions .acitveAction{
+    background-color: $second-color;
+    color: #ffff;
+}
+.serarch{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+ cursor: pointer;
+}
+
+
+.second{
+    margin-left: 10px;
+    width: 324px;
+    height: 62px;
+ }
+ .first{
+    margin-left: 31px;
+    padding-right: 38px;
+ }
+
+.btnSearch button{
+background-color: $second-color;
+width: 189px;
+height: 62px;
+font-size: 24px;
+outline: none;
+border: none;
+border-radius: 10px;
+color: #fff;
+margin-left: 53px;
+margin-right: 20px;
+font-family:otfPlain ;
+}
+.dropdwon-menu{
+    border: 2px solid $main-color;
+    border-radius: 10px;
+    padding: 10px;
+    width: 322px;
+    height: 62px;
+    position: relative;
+    z-index: 10;
+   ul{
+    border: 1px solid;
+    width: 326px;
+    background: $main-color;
+    color: #fff;
+    padding: 17px 0px;
+    position: absolute;
+    right: -3px;
+    border-radius: 10px;
+    top: 61px;
+
+   
+   }
+}
+
+.list-items.hidden{
+    display: none;
+}
+.dropdwon-menu li{
+    font-size: 20px;
+    font-family: otfPlain;
+    margin-top: 6px;
+    height: 34px;
+    padding-left: 5px;
+    padding-right: 14px
+}
+
+.dropdwon-menu li::after{
+    position: absolute;
+    content: "";
+    width: 14px;    /* display: flex; */
+    /* justify-content: flex-start; */
+    /* align-items: center; */
+    height: 14px;
+    right: 292px;
+    margin-top: 9px;
+    border: 1px solid #fff;
+
+
+}
+.dropdwon-menu li::before{
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    right: 296px;
+    margin-top: 10px;
+    background-color: #fff;
+    display: none;
+  
+}
+
+
+
+.dropdwon-menu li:hover,
+.dropdwon-menu li.selected{
+    font-size: 20px;
+
+    margin-top: 6px;
+    background-color: $second-color;
+
+}
+.dropdwon-menu li:hover::before,
+.dropdwon-menu li.selected::before{
+    
+   display: block;
+
+}
+.dropdwon-menu li:hover::after,
+.dropdwon-menu li.selected::after{
+    font-size: 20px;
+
+    margin-top: 6px;
+    padding: -1px;
+    
+}
+.placeholder{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: flex-start;
+    margin-top: 5px;
+    font-size: 20px;
+    color: #A5A5A5;
+    margin-right: 15px;
+}
+
+.serach-content{
+  
+    margin-left: 23px;
+    display: flex;
+    justify-content: flex-start;
+}
+.serarch-icon{
+    margin-left: 7px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.serarch-icon img{
+    
+    margin-top: 10px;
+
+}
+.bar-icon img{
+    
+    margin-top: -1px;
+    margin-right: 8px;
+    margin-left: -8px;
+
+}
+
+
+@media (max-width:1600px) {
+     .actions{
+         width: 888px;
+     }
+
+     .second {
+        margin-left: -25px;
+        width: 324px;
+        height: 62px;
+     }
+
+.dropdwon-menu {
+
+    padding: 10px;
+    width: 283px;
+
+}
+
+.dropdwon-menu ul {
+    border: 1px solid;
+    width: 286px;
+    background: #00416B;
+    color: #fff;
+    padding: 17px 0px;
+    position: absolute;
+    right: -3px;
+    border-radius: 10px;
+    top: 61px;
+}
+.dropdwon-menu li::after {
+    position: absolute;
+    content: "";
+    width: 14px;
+
+    height: 14px;
+    right: 252px;
+    margin-top: 9px;
+    border: 1px solid #fff;
+}
+.dropdwon-menu li::before {
+    
+    right: 256px;
+}
+
+.dropdwon-menu li {
+    font-size: 16px;
+ }
+}

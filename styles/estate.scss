@@ -1,0 +1,196 @@
+.estat-conianer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 80px;
+    height: 100%;
+    font-family: otfPlain;
+    margin-bottom: 50px;
+
+}
+
+.header-estat{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+.info-estate{
+display: flex;
+align-items: center;
+width: 880px;
+justify-content: space-between;
+margin-bottom: 15px;
+
+
+}
+
+.estat-address h3{
+    font-size: 28px;
+    font-family: otfPlain;
+    color: $main-color;
+    margin-bottom: 8px;
+}
+
+.estat-address h5{
+    font-size: 20px;
+    color: $main-color;
+    font-family: otfPlain;
+    img{
+    margin-right: 5px;
+    width: 15px;
+    height: 18px;
+
+    }
+}
+
+.disc-estate{
+    font-size: 20px;
+    color:#737373 ;
+    width: 913px;
+    font-family: otfPlain;
+    margin-bottom: 20px;
+
+}
+
+.content-estat{
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.first-line,.second-line{
+    display: flex;
+}
+
+.fav-estat{
+width: 27px;
+height: 25px;
+cursor: pointer;
+ img{
+    width: 25px;
+    height: 25px;
+}
+}
+
+.estat-deatils{
+    width: 211px;
+    height: 47px;
+    background-color:#E6ECEF ;
+    color: $main-color;
+    font-size: 24px;
+     border-radius: 10px;
+     padding: 5px 10px;
+     margin-right: 29px;
+     padding-left: 20px;
+     margin-bottom: 20px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     font-family: otfPlain;
+     font-weight: 600;
+    text-align: right;
+    .att{
+        font-size: 20px;
+        color: #737373;
+        position: relative;
+
+      &::after{
+          content: "|";
+          position: absolute;
+          left: -18px;
+    
+
+      }
+    }
+}
+
+.automated-number{
+
+ 
+width: 439px;
+height: 47px;
+margin: 5px auto;
+justify-content: space-evenly;
+text-align: center;
+.autom-value{
+margin-right: 80px; }
+
+
+
+}
+
+
+
+.estat-map{
+
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 30px;
+margin-bottom: 40px;
+border-radius: 10px;
+border:2px solid #737373 ;
+border-radius: 20px;
+}
+
+.estat-map >* div{
+    border-radius: 20px;
+    padding: 0;
+}
+
+.contact-estate{
+  
+    color: #fff;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+ 
+    .whatsApp {
+        width: 173px;
+        height: 41px;
+        background-color: $main-color;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: otfPlain;
+        font-size: 20px;
+        margin-left: 30px;
+
+        .whatsApp-icon img{
+            width: 21px;
+            height: 21px;
+            margin-left: 6px;
+            margin-top: 6px;
+          
+        }
+    }
+    .phone{
+        width: 173px;
+        height: 41px;
+  
+        background-color: $main-color;
+  
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: otfPlain;
+        font-size: 20px;
+        .address-phone img{
+            width: 15px;
+            height: 14px;
+            margin-left: 6px;
+            margin-top: 6px;
+        }
+        
+    }
+
+
+ 
+}
+

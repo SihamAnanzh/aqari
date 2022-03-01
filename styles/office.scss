@@ -1,0 +1,283 @@
+.offices{
+    background-color: #F1F4F6;
+    border-top: 1px solid $main-color;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    font-family: otfPlian;
+}
+
+.offices-heading{
+font-size: 28px;
+color: $second-color;
+font-family: otfPlain;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+flex-wrap: wrap;
+margin-top: 30px;
+padding: 20px 125px;
+}
+
+.offices-container{
+display: flex;
+justify-content: space-around;
+align-items: center;
+flex-wrap: wrap;
+margin-top: 30px;
+padding: 20px 100px;
+}
+
+.office{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 364px;
+    height: 140px;
+    background-color: #F2F5F7;
+    border: 1px solid #737373;
+    border-radius: 10px;
+    margin: 8px;
+    }
+
+
+.office-info-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #737373;
+    border-radius: 10px;
+    padding: 4px 3px;
+  flex-direction: column;
+    width: 364px;
+    height: 140px;
+
+    }
+
+.office-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 56px;
+
+}
+.office-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-right: 15px;
+}
+
+.office-name{
+    font-size: 20px;
+    color: $main-color;
+    width: 184px;
+    font-family: otfPlain;
+    font-weight: 600;
+
+}
+.office-social .office-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -45px;
+    margin-top: 5px;
+}
+
+.office-social .office-list li{
+    padding-left: 8px;
+}
+.office-img{
+    padding: 5px;
+}
+.office-img img{
+    width: 78px;
+   height: 78px;
+   border-radius: 10px;
+}
+
+.office-contact{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    padding-left: 19px;
+}
+
+.office-whatsapp,
+.office-phone{
+    width: 167px;
+    height: 29px;
+    background-color: #737373;
+    color: #fff;
+    display: flex;
+  justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.office-whatsapp img{
+    width: 20px;
+    height: 20px;
+}
+.office-phone img{
+   
+    width: 16px;
+    height: 15px;
+}
+.office-whatsapp .number,
+.office-phone .number{
+   margin-right: 5px;
+}
+
+.office-whatsapp .whatsapp-icon,
+.office-phone .phone-icon{
+margin: 2px;
+}
+
+
+//office deteils
+.headerOffice{
+width:100% ;
+height: 347px;
+background-color:$main-color ;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: right;
+      
+
+
+.single-office-img{
+    border-radius: 14px;
+
+    
+
+}
+
+.single-office-img img{
+    width: 284px;
+    height: 275px;
+    border: 2px solid #fff;
+
+    border-radius: 14px
+
+}
+
+.office-info{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    text-align: right;
+    margin-top: 30px;
+
+    h3{
+        
+    font-size: 28px;
+    font-size: 28px;
+    color: #fff;
+    font-family: otfPlain;
+    margin-bottom: 10px;
+    display: flex;
+    text-align: right;
+    margin-right: -98px;
+    padding-top: 39px;
+    padding-bottom: 17px;
+
+
+    }
+    ul{
+        text-align: right;
+    }
+
+    li{
+        margin-right: 10px;
+    }
+
+    .office-list{
+    display: flex;
+    margin-right: -99px;
+    text-align: right;
+    padding-bottom: 28px;
+    margin-right: -188px;
+
+    }
+
+    .office-contact{
+        padding-top: 33px;
+        padding-right: 18px;    }
+
+    .office-whatsapp,
+    .office-phone{
+        width: 187px;
+        height: 39px;
+        background-color: #EDAA43;
+        border-radius: 2px;
+
+        .number{
+            font-size: 24px;
+        }
+
+        .phone-icon img{
+            width: 16px;
+            height: 15px;
+        }
+    }
+    
+
+}
+
+
+
+.office-adds{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+}
+
+.office-add-title{
+    font-size: 28px;
+    color: #EDAA43;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -750px;
+    margin-top: 42px;
+}
+
+@media (max-width:1600px) {
+    .offices{
+        background-color: #F1F4F6;
+        border-top: 1px solid $main-color;
+        padding: 30px;
+        width: 100%;
+        height: 100%;
+        font-family: otfPlian;
+        cursor: pointer;
+    }
+    
+    .offices-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        padding: 1px;
+        margin: 14px 56px;
+    }
+
+    .offices-heading {
+        font-size: 25px;
+  
+        padding: 20px 70px;
+    }
+}

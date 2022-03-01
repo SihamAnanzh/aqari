@@ -1,0 +1,216 @@
+.signin-contanier{
+    width: 100%;
+    height: 900px;
+    background-color: $background-color;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 60px;
+    padding-right: 700px;
+    padding-left: 700px;
+    .sign{
+            align-self: flex-start;
+      
+        h2{
+            font-size: 28px;
+            color: $second-color;
+        }
+    
+    }
+
+
+    .inputs-group{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .sign-input input{
+    width: 540px;
+    height: 72px;
+    background-color: $background-color;
+    padding:10px 15px;
+    margin-top: 5px;
+
+    border: 2px solid $main-color;
+      outline: none;
+      border-radius: 10px;
+    &::placeholder{
+        font-size:20px ;
+        font-family: otfPlain;
+        font-weight: normal;
+
+    }    color: #9F9F9F;
+
+      
+    }
+
+    h3{
+        color: #00416B;
+        font-size: 28px;
+        padding-bottom: 5px;
+        font-family: otfPlain;
+     
+
+        margin-top: 28px;
+    }
+    
+
+    .forget-passwrod{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        width: 545px;
+        color: $second-color;
+
+        a{
+            color: $second-color;
+            text-decoration: none;
+            font-size: 20px;
+
+        }
+
+        span{
+            font-size: 20px;
+            padding-bottom: 20px;
+ img{
+     margin-right: 10px;
+     margin-top: 10px;
+ }
+        }
+    }
+
+
+    .sign-btn{
+    width: 540px;
+    height: 72px;
+    color: #fff;
+    background-color: $second-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    }
+ 
+    .password{
+        position: relative;
+        img{
+            position: absolute;
+            top: 98px;
+            right: 483px;
+        }
+    }
+        
+
+
+       .social-sign{
+           display: flex;
+           justify-content: center;
+           flex-direction: column;
+           align-items: center;
+            width: 445px;
+   p{
+       margin-top: 20px;
+       margin-bottom: 20px;
+       color: $second-color;
+   }
+
+           .social-icon{
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               width: 18px;
+              height: 19px;
+              margin-bottom: 20px;
+           }
+
+           li{
+               margin-right: 20px;
+               margin-left: 20px;
+               margin-top: 20px;
+               margin-bottom: 20px;
+
+              
+           }
+       }
+
+       .goSignUp{
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           justify-content: center;
+           align-content: space-between;
+           margin-top: 10px;
+           font-size: 20px;
+           color: $second-color;
+           width: 445px;
+           margin-bottom:40px;
+           text-decoration: none;
+
+
+           a{
+               font-size: 24px;
+               color: $main-color;
+               text-decoration: none;
+               font-family: otfPlain;
+               font-weight: normal;
+               margin-top: 8px;
+           }
+       }
+
+
+       .error-message{
+           font-size: 20px;
+           color: #FF4848;
+           display: block;
+           padding-top: 15px;
+       }
+}
+
+
+@media (max-width:1700px) {
+    .signin-contanier{
+        height: 900px;
+    }
+    .signin-contanier .sign {
+   
+        margin-right: -250px;
+          
+    }    
+
+    .signin-contanier h3{
+        font-size: 25px;
+    }
+ 
+    .signin-contanier .sign-input input,
+    .signin-contanier .forget-passwrod,
+    .signin-contanier .sign-btn{
+        width: 500px;
+    }
+    .signin-contanier .password img {
+        right: 455px;
+    }
+
+
+    .signin-contanier .goSignUp{
+        margin-bottom: 70px;
+    }
+
+    .signin-contanier .social-sign .social-icon{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    input::placeholder{
+        font-size:5px ;
+        font-family: otfPlain;
+        font-weight: normal;
+
+    } 
+}

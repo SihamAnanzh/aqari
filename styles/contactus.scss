@@ -1,0 +1,75 @@
+.contact-container{
+    width: 100%;
+    height: 100vh;
+    background-color: $background-color;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 60px;
+
+    .call-us{
+        font-size:28px ;
+        color: $second-color;
+        font-family: otfPlain;
+        padding-bottom: 10px;
+    }
+
+    .messega{
+        font-size: 20px;
+        color: #737373;
+    }
+
+    input{
+    width: 757px;
+    height: 72px;
+    border: 2px solid $main-color; 
+    border-radius: 10px;
+    outline: none;
+    background-color: $background-color;
+
+    }
+    input:focus{
+        outline: none;
+    }
+
+    input::placeholder{
+        font-size: 20px;
+        color: #9F9F9F;
+        padding: 10px 15px;
+        font-family: otfPlain;
+    }
+
+    h2{
+        font-size: 28px;
+        color: $main-color; 
+         font-family: otfPlain;
+         margin-bottom: 10px;
+
+    }
+
+    .contact-header{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-right: -282px;
+        margin-bottom: 27px;
+    }
+
+    .input-box{
+        margin-bottom: 30px;
+    }
+    .send-btn-contact{
+        width: 502px;
+        height: 86px;
+        font-size: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $second-color;
+        color: #fff;
+        border-radius: 10px;
+    }
+
+}
