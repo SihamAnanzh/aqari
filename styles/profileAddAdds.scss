@@ -1,0 +1,55 @@
+.addAdds-tab-container {
+width: 100vw;
+height: 100%;
+   display: flex;
+.addAdds-heading {
+    align-self: flex-start;
+    margin-right: -196px;
+    margin-top: -20px;
+    padding-bottom: 12px;
+    h3{
+        font-family: otfPlain;
+        font-size: 28px;
+        color: #EDAA43;
+        font-weight: 600;
+    }
+
+
+}
+.addAdds-group input{
+        width: 911px;
+        height: 72px;
+    }
+   textarea{
+    width: 911px;
+    height: 150px;
+    background-color: $background-color;
+    padding:15px 15px;
+    margin-top: 10px;
+    font-size: 28px;
+    border: 2px solid $main-color;
+    color: $main-color;
+    outline: none;
+    padding-right: 30px;
+      border-radius: 10px;
+   }
+   .map-adds{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    border:2px solid #737373 ;
+    border-radius: 20px;
+    z-index: 2;
+
+   }
+   .map-adds >* div{
+    border-radius: 20px;
+    padding: 0;
+    z-index: 1;
+    
+}
+}

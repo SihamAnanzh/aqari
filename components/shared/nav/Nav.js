@@ -14,18 +14,7 @@ const Nav = ({logo,icon}) => {
         setShowLang(false)
     }
 
-      
-
-    // useEffect(() => {
-
-    //     if (document) {
-    //         let li=document.querySelectorAll('.main-nav-items li')
-    //         let links=document.querySelectorAll('.main-nav-items li a')
-    //              setItems(li)
-    //              setLinka(links)
-    //     }
-    //   }, [])
-  
+ 
 
 
   return (
@@ -75,7 +64,7 @@ const Nav = ({logo,icon}) => {
         <div className='second-nav'>
             <ul className='second-nav-items'>
                 <li>
-                <Link href='/' className='second-nav-item'><a>الملف الشخصي
+                <Link href='/profile' className='second-nav-item'><a>الملف الشخصي
                 </a>
                     </Link>
                 </li>
