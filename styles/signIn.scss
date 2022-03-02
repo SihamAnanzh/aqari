@@ -1,6 +1,6 @@
 .signin-contanier{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: $background-color;
     display: flex;
     justify-content: flex-start;
@@ -15,6 +15,8 @@
         h2{
             font-size: 28px;
             color: $second-color;
+            margin-right: -14px;
+            font-family: otfPlain;
         }
     
     }
@@ -35,16 +37,16 @@
     margin-top: 5px;
     font-size: 28px;
     border: 2px solid $main-color;
-    color: $second-color;
+    color: $main-color;
     outline: none;
   
       border-radius: 10px;
-    &::placeholder{
+   
+    }  
+    input::placeholder{
         font-size:20px ;
         font-family: otfPlain;
         font-weight: normal;
-
-    }  
 
       
     }
@@ -54,7 +56,8 @@
         border-color: $second-color;
     }
     input{
-color: #00416B;    }
+    color: #00416B;
+    }
     h3{
         color: #00416B;
         font-size: 28px;
@@ -83,6 +86,7 @@ color: #00416B;    }
 
         span{
             font-size: 20px;
+            cursor: pointer;
  img{
      margin-right: 10px;
      margin-top: 10px;
@@ -101,6 +105,7 @@ color: #00416B;    }
     align-items: center;
     font-size: 28px;
     border-radius: 10px;
+    cursor: pointer;
     margin-top: 40px;
 
     }
@@ -188,7 +193,9 @@ color: #00416B;    }
     .signin-contanier .sign {
    
         margin-right: -250px;
-          
+            h2{
+                margin-right: 0px;
+            }
     }    
 
     .signin-contanier h3{

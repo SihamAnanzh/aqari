@@ -6,11 +6,7 @@ const ForgetPasswrod = () => {
   return (
     <div className="signin-contanier">
         <div className="sign">
-            <h2 style={{
-                fontFamily:'otfPlain',
-                marginRight:"-14px"
-            }
-            }>نسيت كلمة السر</h2>
+            <h2 >نسيت كلمة السر</h2>
         </div>
         <div className="inputs-group">
            <div className="sign-input mail">

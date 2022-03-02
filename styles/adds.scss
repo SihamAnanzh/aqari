@@ -40,7 +40,6 @@
     left: -9px;
     top: -8px;
     font-family: otfPlain;
-    font-family: normal;
 
 }
 .details{
@@ -278,8 +277,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 907px;
-    height: 166px;
+    // width: 907px;
+    // height: 166px;
     background-color: #E6ECEF;
     border: 1px solid #00416B;
     border-radius: 10px;
@@ -292,8 +291,8 @@
 }
 
 .regular{
-    width: 914px;
-    height: 112px;
+    // width: 914px;
+    // height: 112px;
     .info{
         display: flex;
         right: 707px;

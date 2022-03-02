@@ -194,10 +194,12 @@ font-family:otfPlain ;
 }
 
 
+
+
 @media (max-width:1600px) {
-     .actions{
-         width: 888px;
-     }
+    //  .actions{
+    //      width: 888px;
+    //  }
 
      .second {
         margin-left: -25px;
@@ -227,7 +229,6 @@ font-family:otfPlain ;
     position: absolute;
     content: "";
     width: 14px;
-
     height: 14px;
     right: 252px;
     margin-top: 9px;
@@ -241,4 +242,11 @@ font-family:otfPlain ;
 .dropdwon-menu li {
     font-size: 16px;
  }
+
+ .arrow-drop-name,
+.arrow-drop{
+    position: absolute;
+    right: 256px;
+    top: 25px;
+}
 }

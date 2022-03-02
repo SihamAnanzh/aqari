@@ -3,10 +3,21 @@
     border-top: 1px solid $main-color;
     padding: 30px;
     width: 100%;
-    height: 900px;
+    height: 100vh;
     font-family: otfPlian;
 
-
+    .overlay::after{
+        content: "";
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        background-color: rgba($color: #000, $alpha: 0.4);
+        width: 100%;
+        height: 100vh;
+        z-index: 1;
+      }
 }
 
 .packge-heading{
@@ -68,8 +79,8 @@ font-size: 28px;
 
 .packge-type{
     color: $second-color;
-    font-size: 25px;
-    width: 140px;
+    font-size: 23px;
+    width: 151px;
     margin-right: 23px;
     font-family: otfPlain;
 
@@ -139,6 +150,7 @@ cursor: pointer;
 }
 
 .single-packge{
+
     width: 818px;
     height: 868px;
     background-color: $main-color; 
@@ -150,6 +162,7 @@ cursor: pointer;
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 2;
     transform: translate(-50%,-50%);
     h3{
         font-size: 29px;
@@ -157,6 +170,8 @@ cursor: pointer;
         padding: 0px 80px;
        font-family: otfPlain;
         padding-top: 7px;
+        z-index: 2;
+
     }
     .packge-img{
         width: 621px;
@@ -165,6 +180,8 @@ cursor: pointer;
         margin-bottom: 21px;
         align-self: center;
         border-radius: 10px;
+        z-index: 2;
+
     }
 
     .btn-packge{
@@ -183,6 +200,8 @@ cursor: pointer;
         cursor: pointer;
         font-family:otfPlain;
       font-weight: 600;
+      z-index: 2;
+
     }
 
 

@@ -10,9 +10,9 @@ const Packges = () => {
     <div className='packge-contaier'>
       <h1 className='packge-heading'>الباقات</h1>
       <div className='pakges'>
-        <Packge/>
-        <Packge/>
-        <Packge/>
+        <Packge titleOne="عقارية" titleTwo="إعلان مميز"/>
+        <Packge  titleOne="خدمات" titleTwo="عضوية معتمدة"/>
+        <Packge  titleOne="مكاتب" titleTwo="عضوية معتمدة"/>
       </div>
     </div>
     <Footer/>

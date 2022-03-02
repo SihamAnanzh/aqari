@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 const SignUpComponents = () => {
   return (
-    <div className="signin-contanier ">
+    <div className="signin-contanier signup-container ">
     <div className="sign">
         <h2>تسجيل</h2>
     </div>

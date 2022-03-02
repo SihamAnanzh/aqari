@@ -27,7 +27,7 @@ export const ContactUs = () => {
          </div>
          <div className="input-box">
              <h2>الرسالة</h2>
-             <input className="user-message-input" placeholder='الرسالة'/>
+             <textarea className="user-message-input" placeholder='الرسالة'/>
          </div>
          <div className="send-btn-contact">
          ارسال

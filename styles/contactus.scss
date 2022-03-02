@@ -20,13 +20,14 @@
         color: #737373;
     }
 
-    input{
+    input,textarea{
     width: 757px;
     height: 72px;
     border: 2px solid $main-color; 
     border-radius: 10px;
     outline: none;
     background-color: $background-color;
+    font-family: otfPlain;
 
     }
     input:focus{
@@ -71,5 +72,34 @@
         color: #fff;
         border-radius: 10px;
     }
+
+
+    .user-message-input{
+    width: 757px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px;
+
+    
+   &::placeholder{
+       font-size: 22px;
+       padding: 5px;
+       color: #9F9F9F;
+       font-family: otfPlain;
+       
+   }
+       
+}
+}
+
+
+@media (max-width:1600px) {
+    .contact-container{
+        height: 100%;
+        padding-bottom: 28px;
+    }
+
 
 }

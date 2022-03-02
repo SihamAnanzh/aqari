@@ -38,7 +38,7 @@ const DropdownTypes = ({items=[], title, setSelectItem}) => {
         //  e.target.nextSibling.classList.toggle('hidden')
           }}>
         <span className='serach-icon' >
-                <img src='assets/img/research.svg' style={{
+                <img src='/assets/img/homSerach.svg' style={{
                     margin:'10px '
                 }}/>              
             </span>
@@ -57,6 +57,8 @@ const DropdownTypes = ({items=[], title, setSelectItem}) => {
  
     selection.value !== undefined?selection.value:title
 }</p> 
+<img src='/assets/img/Stroke 1.svg' className='arrow-drop'/>
+
         </div>
         {
                open ?  <ul className={`list-items ${showListTypes?'hidden':""}`}>

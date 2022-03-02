@@ -19,7 +19,9 @@ export const SignInComponent = () => {
                <h3>كلمة السر</h3>
                <input type={showPassword ?"text":"password"} className="sign-password" placeholder='كلمة السر' tabIndex={2} />
                <span className='passwrod-icon' onClick={()=>setShowPassword(!showPassword)}>
-               <img src={`assets/img/${showPassword?"showPassword":"hidePassword"}.svg`}alt="" />
+               <img src={`assets/img/${showPassword?"showPassword":"hidePassword"}.svg`}alt="" style={{
+                   cursor:'pointer'
+               }} />
             </span>
            </div>
 
@@ -66,6 +68,7 @@ export const SignInComponent = () => {
                 </li>
                 <li className="face">
                     <img src="assets/img/facebook-2.svg" alt="" />
+               
                 </li>
                 <li className="apple">
                     <img src="assets/img/appSgin.svg" alt="" />

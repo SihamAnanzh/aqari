@@ -2,12 +2,16 @@ import React ,{useState,useEffect} from 'react'
 import onClickOutside from 'react-onclickoutside';
 
 
-function Slider({imgs,setShowImg ,setOverlay}) {
-  const [index, setIndex] = useState(0)
-  Slider.handleClickOutside = () => setShowImg(false)
+function Slider({imgs,setShowImg ,currentInedx,showImg}) {
+  const [index, setIndex] = useState(currentInedx)
+  const [bg, setBg] = useState(false)
+  // Slider.handleClickOutside = () => {
+  //   setShowImg(false)
+  //   }
  
+
   useEffect(() => {
-    setIndex(0)
+    setIndex(currentInedx)
   }, [])
 
   const next = () => {
@@ -27,22 +31,30 @@ function Slider({imgs,setShowImg ,setOverlay}) {
 
   
   return (
-    <div className="slideshow-two" >
-    
-      <div className="nextBtn" onClick={next}><img src="/assets/img/arr.svg" alt="" /></div>
-      <img className="currentImg" src={imgs[index]}/>
-       <div className="preBtn"onClick={prev}><img src="/assets/img/arr2.svg" alt="" /></div>
-      </div>
+ 
 
-  
+  <div className={showImg?"overlay":""} id='overlay' onClick={(e)=>{
+    console.log(e.target.id);
+    e.target.id !== 'overlay'?
+    setShowImg(true):setShowImg(false)
+  }}>
+    <div className="slideshow-two">
+    
+    <div id='next' className="nextBtn" onClick={next}><img id='next' src="/assets/img/arr.svg" alt="" /></div>
+    <img className="currentImg" src={imgs[index]}/>
+     <div id='pre' className="preBtn"onClick={prev}><img  id='pre' src="/assets/img/arr2.svg" alt="" /></div>
+    </div>
+  </div>
+
+
   );
 }
 
 
-const clickOutsideConfig = {
-  handleClickOutside: () => Slider.handleClickOutside,
-};
+// const clickOutsideConfig = {
+//   handleClickOutside: () => Slider.handleClickOutside,
+// };
 
-export default onClickOutside(Slider,clickOutsideConfig);
-
+// export default onClickOutside(Slider,clickOutsideConfig);
+export default Slider
 

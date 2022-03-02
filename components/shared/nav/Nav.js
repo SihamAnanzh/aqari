@@ -103,7 +103,7 @@ const Nav = ({logo,icon}) => {
 
                             </li>
                             <li>
-                            <Link href="/" className='add-adds-item'><a>اضف إعلان</a></Link>
+                            <Link href="/" className='add-adds-item'><a>اضف خدمة</a></Link>
 
                             </li>
 

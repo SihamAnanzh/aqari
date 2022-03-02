@@ -5,7 +5,8 @@ import Slider from './Slider';
 
   
 
-const Thumbnail = ({ arr, image, index }) => {
+const Thumbnail = ({ arr, image, index ,setCurrentIndex}) => {
+
 
     return (
     
@@ -13,7 +14,9 @@ const Thumbnail = ({ arr, image, index }) => {
               <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={5} >
       {
         arr.map((imgsrc, i) => (
-            <div key={i} style={{
+            <div key={i}
+             onClick={()=>setCurrentIndex(i)}
+            style={{
               height:"66px",
               backgroundColor:"#fff",
               margin:"0",
@@ -22,11 +25,12 @@ const Thumbnail = ({ arr, image, index }) => {
             
             }}>
           <img
+          
             key={i}
            src={imgsrc}
             onClick={() => image(i)}
             className='thumbail-img'
-      
+    
           />
        </div>
         ))
@@ -42,6 +46,7 @@ const Thumbnail = ({ arr, image, index }) => {
 const Slideshow = ({ imgs,setOverlay }) => {
   const [index, setIndex] = useState(0)
   const [showImg, setShowImg]=useState(false)
+  const [currentInedx,setCurrentIndex]=useState(0)
   // Slideshow.handleClickOutside = () => setShowImg(false)
 
   useEffect(() => {
@@ -73,13 +78,13 @@ const Slideshow = ({ imgs,setOverlay }) => {
       <img className="mainImg" src={imgs[index]} width="200px" height='200px' />
     </div>
     <div className="">
-    <Thumbnail arr={imgs} image={setIndex} index={index} />
+    <Thumbnail arr={imgs} image={setIndex} index={index} setCurrentIndex={setCurrentIndex} />
 
     </div>
       </div>
 
       {
-        showImg &&  <Slider imgs={imgs} setShowImg={setShowImg}  setOverlay={setOverlay}/>
+        showImg &&  <Slider imgs={imgs} setShowImg={setShowImg} currentInedx={currentInedx} showImg={showImg} />
                 }
       </>
   )

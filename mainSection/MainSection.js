@@ -1,8 +1,8 @@
 import React ,{useState} from 'react'
-import SearchBoxNames from '../searchBox/SearchBoxNames'
+import SearchBoxNames from '../components/searchBox/SearchBoxNames'
 import onClickOutside from 'react-onclickoutside';
-import SearchBoxTypes from '../searchBox/SearchBoxTypes';
-import SearchBoxSerivce from '../searchBox/SearchBoxSerivce';
+import SearchBoxTypes from '../components/searchBox/SearchBoxTypes';
+import SearchBoxSerivce from '../components/searchBox/SearchBoxSerivce';
 import Link from 'next/link';
 
 const MainSection = () => {

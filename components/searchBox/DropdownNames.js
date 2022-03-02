@@ -13,21 +13,21 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
   
     }
 
-    useEffect(() => {
-        console.log(selectItem);
-        selectItem !==undefined?
-        selectItem.map((item)=>{
-            toggleAcitveElement(item.id)
-            console.log(item.id);
+ 
 
+    useEffect(() => { 
+
+        selectItem?
+        selectItem.map(item=>{
+           toggleAcitveElement(item.id)
         }):""
-
         
     }, [showListNames]); 
+
+
+
+
     const toggleAcitveElement=(id)=>{
-        let items=document.querySelectorAll('.list-item.selected')
-            
-     
         let item=document.getElementById(id)
         item!== null ?item.classList.add('selected'):""
 
@@ -56,22 +56,23 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
             </span>
         <p className='placeholder cityName' style={{
          
-            fontSize:`${selection.length>0 ?"18px":""}`,
+            fontSize:`${selection.length>0 ?"16px":""}`,
             color:`${selection.length>0 ?"#EDAA43":""}`
 }}>
       
      
           {
-    
+           
 
             selection.length >0 ?(
-               selection.length <4?
+               selection.length <3?
                 selection.map((select, index)=>(
                     (index?' ,':"")+select
-                )):selection[0]+" ,"+selection[1]+"..."            
+                )):selection[0]+","+selection[1]+","+selection[2]+"..."            
             ):title
           }
          </p> 
+         <img src='/assets/img/Stroke 1.svg' className='arrow-drop-name'/>
         </div>
         {
                open ?  <ul className={`list-items ${showListNames?'hidden':""}`}>
@@ -88,9 +89,10 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
                     <li className='list-item'  key={item.id}  id={item.id} onClick={(e)=>
                        
                         
-                        {      
+                        {
+                            e.target.classList.add('selected')
+
                             toggleAcitveElement(item.id)
-                      
               
                              let selectInfo= {
                                value:item.value,
@@ -100,11 +102,10 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
                            let index=selection.findIndex((el)=>el===item.value)
                            if(index == -1){
                                setSelection(pre=>[...pre,item.value])
-                               setSelectItem([...selectItem,selectInfo])
-
+                               setSelectItems(pre=>[...pre,selectInfo])
 
                            }else{
-                            // e.target.classList.remove('selected')
+                            e.target.classList.remove('selected')
                                let newArray=[...selection]
                                newArray.splice(index,1)
                                 setSelection(newArray)

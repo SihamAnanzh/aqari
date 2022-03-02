@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-const Packge = () => {
-    const [showPackgeDetail,setShwoPackgeDerail]=useState(false)
+const Packge = ({titleOne , titleTwo}) => {
+    const [showPackgeDetail,setShwoPackgeDetail]=useState(false)
   
     
   
@@ -9,12 +9,12 @@ const Packge = () => {
       <>
     <div className='packge'>
         <div className='type'>
-            <div className='packge-img'  onClick={()=>setShwoPackgeDerail(!showPackgeDetail)}>
+            <div className='packge-img'  onClick={()=>setShwoPackgeDetail(!showPackgeDetail)}>
                 <img src='assets/img/packge.jpg'/>
             </div>
             <div className='packge-info'>
-                <span className='packge-name'>عقارية</span>
-                <span className='packge-type'>إعلان مميز</span>
+                <span className='packge-name'>{titleOne}</span>
+                <span className='packge-type'>{titleTwo}</span>
             </div>
         </div>
         <div className='add-type'>
@@ -36,12 +36,16 @@ const Packge = () => {
         
 
         { showPackgeDetail&&
+          <div className={showPackgeDetail?"overlay":""}   onClick={()=>{
+            setShwoPackgeDetail(false)
+          }}>
+
                 <div className="single-packge">
                 <h3>اجعل إعلانك مميز</h3>
                 <img className='packge-img' src="/assets/img/packge.jpg" alt="" />
-                <button className='btn-packge'  onClick={()=>setShwoPackgeDerail(!showPackgeDetail)}>إغلاق</button>
+                <button className='btn-packge'  onClick={()=>setShwoPackgeDetail(!showPackgeDetail)}>إغلاق</button>
             </div>
-
+            </div>
         }
        
    
