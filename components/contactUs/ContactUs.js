@@ -23,7 +23,7 @@ export const ContactUs = () => {
          </div>
          <div className="input-box">
              <h2>رقم الهاتف</h2>
-             <input  className="phone-unm-input" placeholder='رقم الهاتف'/>
+             <input type='number'  className="phone-unm-input" placeholder='رقم الهاتف'/>
          </div>
          <div className="input-box">
              <h2>الرسالة</h2>
