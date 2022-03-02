@@ -4,7 +4,7 @@ import DialogBox from '../dialogBox/DialogBox';
 const ForgetPasswrod = () => {
     const [showDialog, setShowDialog] = useState(false);
   return (
-    <div className="signin-contanier">
+    <div className="signin-contanier forget-password-contanier">
         <div className="sign">
             <h2 >نسيت كلمة السر</h2>
         </div>
