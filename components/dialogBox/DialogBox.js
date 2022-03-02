@@ -17,7 +17,7 @@ const DialogBox = () => {
         <div className="box-btns">
            
               <div className="box-btn signUp-btn">
-              <Link href='/signIN'>تسجيل</Link>
+              <Link href='/signIN'>اغلاق</Link>
               </div>
               <div className="box-btn">
             <div  onClick={()=>console.log(res)}>إعادة الإرسال</div>
