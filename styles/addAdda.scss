@@ -1,0 +1,90 @@
+.profile-tab{
+    .category-icon{
+        position: absolute;
+        left: 520px;
+        bottom: 317px;
+        cursor: pointer;
+    }
+    .type-icon{
+        bottom: 176px; 
+       }
+    .dropdown-category,
+    .dropdown-typeList{
+        width: 909px;
+        height: 103px;
+        background-color: $main-color;
+        padding-top: 10px;
+        color: #fff;
+        border-radius: 10px;
+         li{
+             margin-top: 10px;
+             cursor: pointer;
+             font-size: 20px;
+             padding-right: 10px;
+         }
+    
+         li.active-category,
+         li:hover{
+             background-color: $second-color;
+         }
+
+
+
+    }
+    
+    .dropdown-typeList{
+        width: 908px;
+        height: 285px;
+        cursor: pointer;
+        li{
+            margin-top: 15px
+        }
+        li.active-type,
+        li:hover{
+            background-color: $second-color;
+        }
+        height:310px;
+
+    }
+
+   .map-adds{
+    width: 911px;
+    height: 202px;
+    border-radius: 10px;
+    border-color: $main-color;
+ 
+   }
+
+   .map-adds>* div{
+    border-radius: 10px;
+    padding: 0;
+}
+
+
+.checksbox{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    .chack-groub{
+        margin-bottom: 15px;
+        margin-right: -450px;
+        span{
+            padding-right: 8px;
+            font-size: 20px;
+            color: $main-color;
+            font-family: otfPlain;
+            font-weight: 600;
+        }
+
+   
+    }
+
+    .chack-groub:last-child{
+        margin-top: 46px;
+    }
+}
+}
+
+

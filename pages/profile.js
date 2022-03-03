@@ -4,6 +4,8 @@ import Footer from '../components/shared/footer/Footer'
 import MyPorfile from '../components/profile/MyPorfile';
 import MyAdds from '../components/profile/MyAdds';
 import AddAdds from '../components/profile/AddAdds';
+import AddService from '../components/profile/addService';
+import AddOffice from '../components/profile/AddOffice';
 const profile = () => {
  const  [activeState, setAcitveState]=useState(true)
 const [myProfile, setmyProfile] = useState(true);
@@ -89,8 +91,8 @@ const toggleClass=(id)=>{
             { myAdds && <MyAdds/>}
             { favorite && <MyAdds/>}
             { addAdds && <AddAdds/>}
-            { addOffice && <AddAdds/>}
-            { addService && <AddAdds/>}
+            { addOffice && <AddOffice />}
+            { addService && <AddService/>}
 
             </div>
 

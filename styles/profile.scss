@@ -65,3 +65,38 @@
 }
 
 }
+
+
+     
+.office-heading-paragraph{
+    font-size: 20px;
+    font-family: otfPlain;
+    font-weight: normal;
+    color: #9F9F9F;
+    width: 875px;
+    height: 52px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+.showUploadedImage{
+    width: 446px;
+    height: 446px;
+    align-self: flex-start;
+    justify-content: flex-start;
+}
+
+.office-logo{
+        /* align-items: flex-start; */
+        align-self: flex-start;
+        margin-bottom: 29px;
+        margin-top: 26px;
+}
+
+
+
+.remove-img{
+    bottom: -115px;
+    position: absolute;
+    left: 930px;
+}
