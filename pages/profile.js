@@ -14,6 +14,7 @@ const [favorite, setFavorite]=useState(false)
 const [addAdds, setAddAdds]=useState(false)
 const [addOffice, setAddOffice]=useState(false)
 const [addService, setAddService]=useState(false)
+const [myService, setMySerivce]=useState(false)
 
 
 const toggleClass=(id)=>{
@@ -38,6 +39,8 @@ const toggleClass=(id)=>{
                 setAddAdds(false)
                 setAddOffice(false)
                 setAddService(false)
+                setMySerivce(false)
+
             }}>شخصي</div>
             <div className="myAdds section" id='myAdds'onClick={(e)=>{
                 toggleClass(e.target.id)             
@@ -47,14 +50,27 @@ const toggleClass=(id)=>{
                 setAddAdds(false)
                 setAddOffice(false)
                 setAddService(false)
+                setMySerivce(false)
+
             }}>إعلاناتي</div>
-            <div className="favorite section" id='favorite'onClick={(e)=>{
+            <div className="favorite section" id='mySerivce'onClick={(e)=>{
+                toggleClass(e.target.id)             
+                setmyProfile(false)
+                setMyAdds(false)
+                setFavorite(false)
+                setAddAdds(false)
+                setAddOffice(false)
+                setAddService(false)
+                setMySerivce(true)
+            }}>خدماتي</div>
+                <div className="favorite section" id='favorite'onClick={(e)=>{
                 toggleClass(e.target.id)             
                 setmyProfile(false)
                 setMyAdds(false)
                 setFavorite(true)
                 setAddAdds(false)
                 setAddOffice(false)
+                setMySerivce(false)
                 setAddService(false)
             }}>المفضلة</div>
             <div className="addAdds section" id='addAdds'  onClick={(e)=>{
@@ -65,6 +81,8 @@ const toggleClass=(id)=>{
                 setAddAdds(true)
                 setAddOffice(false)
                 setAddService(false)
+                setMySerivce(false)
+
             }}>اضف إعلان</div>
             <div className="addOffice section" id='addOffice'  onClick={(e)=>{
                 toggleClass(e.target.id)             
@@ -74,6 +92,8 @@ const toggleClass=(id)=>{
                 setAddAdds(false)
                 setAddOffice(true)
                 setAddService(false)
+                setMySerivce(false)
+
             }}
             >اضف مكتب</div>
             <div className="addService section" id='addService'   onClick={(e)=>{
@@ -84,6 +104,8 @@ const toggleClass=(id)=>{
                 setAddAdds(false)
                 setAddOffice(false)
                 setAddService(true)
+                setMySerivce(false)
+
             }}>اضف خدمة</div>
             </div>
             <div className="show-contanier">
@@ -93,6 +115,7 @@ const toggleClass=(id)=>{
             { addAdds && <AddAdds/>}
             { addOffice && <AddOffice />}
             { addService && <AddService/>}
+            { myService && <MyAdds/>}
 
             </div>
 

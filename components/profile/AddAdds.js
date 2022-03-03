@@ -90,7 +90,8 @@ const items = [
        </div>
        <div className="sign-input addAdds-type" id='type-list'>
            <h3>نوع العقار</h3>
-           <input type="text" className="sign-mail" placeholder='نوع العقار' tabIndex={3}  id='type-list' value={typeEstat}  onClick={()=>{
+           <input type="text" className="sign-mail" placeholder='نوع العقار' tabIndex={3}  id='type-list' value={typeEstat}
+             onClick={()=>{
                setShwoListType(!showListType)
            }}/>
           <img src="assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />

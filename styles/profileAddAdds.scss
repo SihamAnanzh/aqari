@@ -19,6 +19,7 @@ height: 100%;
 .addAdds-group input{
         width: 911px;
         height: 72px;
+        cursor: pointer;
     }
    textarea{
     width: 911px;
@@ -53,3 +54,26 @@ height: 100%;
     
 }
 }
+
+
+
+    .remove-img {
+        z-index: 10;
+        bottom: -248px;
+        position: absolute;
+        left: 958px;
+    
+    }
+    
+
+
+.remove-img-serivce{
+    bottom: -329px;
+    position: absolute;
+    left: 958px;
+    z-index: 10;
+}
+
+
+
+

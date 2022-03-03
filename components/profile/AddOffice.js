@@ -34,8 +34,12 @@ useEffect(() => {
       </div>
     <div className="inputs-group addAdds-group">
     <div className="sign-input  addAdds-phone ">
+    <div className="sign-input  addAdds-phone ">
+           <h3>عنوان المكتب</h3>
+           <input type="text" className="sign-mail" placeholder='عنوان الأعلان' tabIndex={1} autoFocus />
+       </div>
            <h3>رقم الهاتف</h3>
-           <input type="number" className="sign-mail" placeholder='رقم الهاتف' tabIndex={3} autoFocus />
+           <input type="number" className="sign-mail" placeholder='رقم الهاتف' tabIndex={3}  />
        </div>
      
        <div className="sign-input ">
