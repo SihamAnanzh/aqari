@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const AddService = () => {
 const [checkedConditions,setCheckedConditions]=useState(false)
@@ -11,6 +11,15 @@ const handleClickFileBtn=()=>{
     let fileButton=document.getElementById('select-file').click()
 
 }
+
+
+useEffect(()=>{
+  let services=document.querySelectorAll('.profile-list-service')
+  services.length >0 ? [...services].map((serivec)=>{
+    serivec.classList.remove('.selected')
+    
+  }):""
+},[service])
 const handleChange=(e)=>{
     setImageUpLoaded(true)
     let file= e.target.files
@@ -66,7 +75,7 @@ const items = [
 
     <div className="sign-input  addAdds-phone ">
            <h3>رقم الهاتف</h3>
-           <input type="number" className="sign-mail" placeholder='رقم الهاتف' tabIndex={2}  />
+           <input type="number" min={0} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2}  />
        </div>
        <div className="sign-input  addAdds-phone ">
            <h3>نوع الخدمة</h3>
@@ -74,14 +83,14 @@ const items = [
             onClick={()=>{
                setShowListService(!showListService)
            }}/>
-           <img src="assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
+           <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
         {
           <ul className="dropdown-typeList" id='serivce-list'  style={{
             display: !showListService ?'none':""
           }} >          
               
                 {items.map((item)=>(
-                    <li className='list-item '  key={item.id} id={`${item.id} serivce-list`} onClick={(e)=>
+                    <li className='list-item profile-list-service'  key={item.id} id={`${item.id} serivce-list`} onClick={(e)=>
                         {
                          e.target.classList.add('selected')   
                              setService(item.value)
@@ -102,7 +111,7 @@ const items = [
            <h3 style={{
                paddingTop:"20px"
            }}>رقم الواتس اب</h3>
-           <input type="number" className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} />
+           <input type="number" min={0} className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} />
        </div>
        <div className="sign-input ">
            <h3 style={{
@@ -147,13 +156,13 @@ const items = [
                     <img src={`/assets/img/${imageSrc}`} height={446} width={446} alt="" style={{
                         borderRadius:"10px"
                     }} />
-                    <img src="assets/img/removeImg.svg" alt="" className='remove-img-serivce' onClick={()=>setImageUpLoaded(false)} />
+                    <img src="/assets/img/removeImg.svg" alt="" className='remove-img-serivce' onClick={()=>setImageUpLoaded(false)} />
                     </div>
        <div className="checksbox">
          <div className="conditions chack-groub" onClick={()=>{
            setCheckedConditions(!checkedConditions)
          }}>
-         <img src={`assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
+         <img src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
          <span>موافق على الشروط والقواعد</span>
       
          </div>

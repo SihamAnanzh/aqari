@@ -20,6 +20,7 @@ height: 100%;
         width: 911px;
         height: 72px;
         cursor: pointer;
+        position: relative;
     }
    textarea{
     width: 911px;
@@ -33,6 +34,8 @@ height: 100%;
     outline: none;
     padding-right: 30px;
       border-radius: 10px;
+      position: relative;
+
    }
    .map-adds{
     width: fit-content;

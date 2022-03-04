@@ -63,8 +63,10 @@ const Nav = ({logo,icon}) => {
         </div>
         <div className='second-nav'>
             <ul className='second-nav-items'>
-                <li>
-                <Link href='/profile' className='second-nav-item'><a>الملف الشخصي
+                <li className={`${route.asPath === "/profile" ?"/activeNav":""}`}>
+                <Link href='/profile' className='second-nav-item'><a 
+                  className={`${route.asPath === "/profile" ?"/active":""}`}
+                >الملف الشخصي
                 </a>
                     </Link>
                 </li>
@@ -88,11 +90,11 @@ const Nav = ({logo,icon}) => {
                             }>اضف إعلان  <img src={icon?icon:'/assets/img/+.png'} /></span>
                         <ul className={`add-adds-items ${!showAddMenu?'hidden':'showMenu'}`}>
                             <li>
-                            <Link href="/" className='add-adds-item'><a>أضف مكتب</a></Link>
+                            <Link href="/profile/addOffice" className='add-adds-item'><a>أضف مكتب</a></Link>
 
                             </li>
                             <li>
-                            <Link href="/" className='add-adds-item'><a>اضف خدمة</a></Link>
+                            <Link href="/profile/addService" className='add-adds-item'><a>اضف خدمة</a></Link>
 
                             </li>
 

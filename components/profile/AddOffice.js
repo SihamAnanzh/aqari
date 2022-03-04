@@ -33,13 +33,13 @@ useEffect(() => {
         </p>
       </div>
     <div className="inputs-group addAdds-group">
-    <div className="sign-input  addAdds-phone ">
-    <div className="sign-input  addAdds-phone ">
+    <div className="sign-input  ">
+    <div className="sign-input   ">
            <h3>عنوان المكتب</h3>
            <input type="text" className="sign-mail" placeholder='عنوان الأعلان' tabIndex={1} autoFocus />
        </div>
            <h3>رقم الهاتف</h3>
-           <input type="number" className="sign-mail" placeholder='رقم الهاتف' tabIndex={3}  />
+           <input type="number" min={0} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2}  />
        </div>
      
        <div className="sign-input ">
@@ -48,12 +48,18 @@ useEffect(() => {
            }}>البريد الإلكتروني</h3>
            <input type="text" className="sign-mail" placeholder='البريد الإلكتروني' tabIndex={3} />
        </div>
-       <div className="sign-input  addAdds-price">
+       <div className="sign-input ">
            <h3>اسم النشاط التجاري</h3>
-           <input type="text" className="sign-mail" placeholder='اسم النشاط التجاري' tabIndex={3} />
+           <input type="text" className="sign-mail" placeholder='اسم النشاط التجاري' tabIndex={4} />
+       </div>
+       <div className="sign-input  addAdds-disc">
+           <h3>تفاصيل عن النشاط التجاري</h3>
+           <input type="text" className="sign-mail" placeholder='تفاصيل عن النشاط التجاري' tabIndex={5} />
        </div>
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`}>
-           <h3>تفاصيل عن النشاط التجاري</h3>
+           <h3 style={{
+             marginTop:'40px'
+           }}>شعار النشاط التجاري</h3>
            <button
            onClick={handleClickFileBtn}
             style={{
@@ -91,11 +97,11 @@ useEffect(() => {
                     }} />
                     <img src="assets/img/removeImg.svg" alt="" className='remove-img' onClick={()=>setImageUpLoaded(false)} />
                     </div>
-       <div className="checksbox">
+       <div className="checksbox" style={{cursor:'pointer'}}>
          <div className="conditions chack-groub" onClick={()=>{
            setCheckedConditions(!checkedConditions)
          }}>
-         <img src={`assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
+         <img  src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
          <span>موافق على الشروط والقواعد</span>
       
          </div>

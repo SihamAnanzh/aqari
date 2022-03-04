@@ -1,0 +1,27 @@
+[
+    {
+        "id":"1",
+       "images":[
+        "/assets/img/home.jpg",
+        "/assets/img/packge.jpg",
+        "/assets/img/home.jpg",
+        "/assets/img/packge.jpg",
+        "/assets/img/home.jpg",
+        "/assets/img/packge.jpg"
+       ],
+       "title":"منزل للايجار",
+       "address":"الكويت حولي",
+       "discriptions":"منزل فخم شبه جديد في الصديق منزل فخم شبه جديد في منزل فخم شبه جديد في الصديق منزل فخم شبه جديد في منزل فخم شبه جديد في الصديق منزل فخم شبه جديد في",
+       "city":"حولي",
+       "space":"500",
+       "interface":"حولي",
+       "price":"350",
+       "autoNumber":"حولي",
+       "phone":"50351216",
+       "whatsapp":"50351216"
+
+
+
+
+    }
+]

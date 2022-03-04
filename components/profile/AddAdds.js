@@ -14,35 +14,35 @@ const items = [
   {
     id: 1,
     value: 'محلات',
-    icon:"assets/img/offices.svg"
+    icon:"/assets/img/offices.svg"
   },
   {
     id: 2,
     value: 'اراضي',
-    icon:"assets/img/lands.svg"
+    icon:"/assets/img/lands.svg"
   },
   {
     id: 3,
     value: 'شقق',
-    icon:"assets/img/apartments.svg"
+    icon:"/assets/img/apartments.svg"
   },
   {
     id: 4,
     value: 'عمارات',
-    icon:"assets/img/bulding.svg"
+    icon:"/assets/img/bulding.svg"
   },{
     id: 5,
     value: 'بيوت',
-    icon:"assets/img/houses.svg"
+    icon:"/assets/img/houses.svg"
 
   },{
     id: 6,
     value: 'مزارع',
-    icon:"assets/img/farms.svg"
+    icon:"/assets/img/farms.svg"
   },{
     id: 7,
     value: 'شالية',
-    icon:"assets/img/shalleh .svg"
+    icon:"/assets/img/shalleh .svg"
   }
 ];
 
@@ -65,19 +65,19 @@ const items = [
        </div>
     <div className="sign-input  addAdds-phone ">
            <h3>رقم الهاتف</h3>
-           <input type="number" className="sign-mail" placeholder='رقم الهاتف' tabIndex={2}  />
+           <input type="number" min={0} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2}  />
        </div>
        <div className="sign-input profile-category mail " id='category-list' >
            <h3>الفئة</h3>
            <input type="text" className="sign-mail" placeholder='الفئة' tabIndex={3} id='category-list' value={category} onClick={(e)=>{
                setShwoListCategory(!showListCategory)
            }} />
-           <img src="assets/img/Stroke 1.svg" alt="" className='category-icon' />
+           <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon' />
 
            <ul className="dropdown-category"  style={{
              display: !showListCategory ?'none':""
            }}  >
-              <li     onClick={(e)=>{
+              <li  onClick={(e)=>{
                 setCategory('ايجار')
               }} className={`category-item ${category==="ايجار" ? 'active-category':""}`} value='ايجار
                             '>ايجار</li>
@@ -94,7 +94,7 @@ const items = [
              onClick={()=>{
                setShwoListType(!showListType)
            }}/>
-          <img src="assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
+          <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
         {
           <ul className="dropdown-typeList" id='type-list' style={{
             display: !showListType ?'none':""
@@ -151,24 +151,24 @@ const items = [
            <SimpleMap/>
            </div>
        </div>
-       <div className="checksbox">
+       <div className="checksbox" style={{cursor:'pointer'}}>
          <div className="premium-add chack-groub" onClick={()=>{
            setCheckedAdd(!checkedAdd)
          }}>
-           <img src={`assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
+           <img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
            <span>أجعل الإعلان مميز</span>
          </div>
          <div className="post-add chack-groub" onClick={()=>{
            setCheckedOffice(!checkedOffice)
          }}>
-         <img src={`assets/img/${!checkedOffice?'emptyCheck':'fullCheck'}.svg`} alt="" />
+         <img src={`/assets/img/${!checkedOffice?'emptyCheck':'fullCheck'}.svg`} alt="" />
          <span>نشر الإعلان لدى المكاتب</span>
 
          </div>
          <div className="conditions chack-groub" onClick={()=>{
            setCheckedConditions(!checkedConditions)
          }}>
-         <img src={`assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
+         <img src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
          <span>موافق على الشروط والقواعد</span>
 
          </div>

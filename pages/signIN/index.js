@@ -2,7 +2,6 @@ import React from 'react'
 import  Nav from '../../components/shared/nav/Nav'
 import Footer from '../../components/shared/footer/Footer'
 import {SignInComponent}  from '../../components/singIN/SignIn'
-//  import {useSession , signIn} from 'next-auth/client'
 import { useSession, signIn, signOut } from "next-auth/react"
 
 const signIN = () => {

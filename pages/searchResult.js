@@ -9,6 +9,7 @@ const SearchResult = () => {
        {
          
          haveResults ?
+
          <SearchResultComponents/>:
          <NoResults/>
 

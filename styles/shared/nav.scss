@@ -244,7 +244,6 @@ a.active{
   color:#fff ;
  font-size: 24px;
 margin: 10px auto;
-
 font-weight: normal;
 
 }
@@ -252,6 +251,14 @@ font-weight: normal;
 .second-nav-items{
   display: flex;
   align-items: center;
+
+}
+
+.second-nav-items a.active{
+  color:#fff ;
+ font-size: 20px;
+font-weight: normal;
+margin: 10px auto;
 
 }
 
@@ -371,13 +378,7 @@ font-weight: normal;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-  // .select-lang-items li,
-  // .add-adds-items li{
-  //   width: 100%;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
+
   
   .select-lang-items li:hover,
   .add-adds-items li:hover{
@@ -462,6 +463,7 @@ font-weight: normal;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 40px;
   
   }
   .select-lang-menu ,

@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PremuimAdd from './PremuimAdd'
 import Add from './Add'
 const Adds = () => {
-
 
 
   const premiumAddsData={
@@ -25,6 +24,8 @@ const Adds = () => {
     time:'4',
 disc:"منزل فخم شبه جديد في الصديق منزل فخم شبه جديد في منزل فخم شبه جديد في الصديق"
   } 
+
+  
   return (
     <div className='adds-container'>
       <h1 className='premium-title'>إعلانات مميزة</h1>
