@@ -7,7 +7,7 @@ const PremuimUserAdd = (props) => {
 
 
   return (
-    <Link href='/profile/editEstate'>
+    <Link href='/profile/EditEstate'>
     <div className='premuim-add origin'>
         <div className='details'>
             <div className='img-add'><img src={props.img} /></div>

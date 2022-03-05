@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 const UserAdd = (props) => {
   return (
-    <Link href='/profile/editEstate'>
+    <Link href='/profile/EditEstate'>
     <div className='premuim-add regular'>
       <div className=' details-adds'>
         <div className='img-add'><img src='/assets/img/home.jpg' /></div>

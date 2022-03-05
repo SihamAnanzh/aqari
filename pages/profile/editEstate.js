@@ -10,7 +10,7 @@ import SubNav from '../../components/profile/SubNav'
 
 
 // should receive a  an id for  a specific ad and then get the data for this add
-const editEstate = () => {
+const EditEstate = () => {
     const [withImg, setWithImg] = useState(true)
     const  [overlay ,setOverlay]=useState(false)
      const [userAdd,setUserAdd]=useState(true)
@@ -53,6 +53,6 @@ const editEstate = () => {
 }
 
 
-export default editEstate;
+export default EditEstate;
 
 
