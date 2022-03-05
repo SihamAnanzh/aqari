@@ -98,11 +98,17 @@ const Nav = ({ logo, icon }) => {
                     </div>
                     <li>
                         <div className={`add-adds-menu ${showAddMenu ? "show" : ""}`}>
-                            <span className='add-adds-tilte' onClick={() => {
+                          
+                            <Link href="/profile/addAdds" className='add-adds-item'><a> 
+                            <span className='add-adds-tilte' >أضف إعلان
+                                <img  onClick={() => {
                                 setShowLang(false)
                                 setAddMenu(!showAddMenu)
-                            }
-                            }>اضف إعلان  <img src={icon ? icon : '/assets/img/+.png'} /></span>
+                            }} src={icon ? icon : '/assets/img/+.png'} /></span>
+                                 </a>
+                                 </Link>
+
+                                      
                             <ul className={`add-adds-items ${!showAddMenu ? 'hidden' : 'showMenu'}`}>
                                 <li>
                                     <Link href="/profile/addOffice" className='add-adds-item'><a>أضف مكتب</a></Link>

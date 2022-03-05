@@ -1,13 +1,15 @@
 .profile-tab{
     .category-icon{
         position: absolute;
-        left: 520px;
-        bottom: 24px;
-        cursor: pointer;
+            
+                left: 540px;
+                top: 900px;
+                 z-index: 10;
+               cursor: pointer;
     }
     .type-icon{
-        bottom: 176px; 
-       }
+        top:766px;
+    }
     .dropdown-category,
     .dropdown-typeList{
         width: 909px;

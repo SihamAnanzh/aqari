@@ -62,23 +62,7 @@ useEffect(() => {
            }}>شعار النشاط التجاري</h3>
            <button
            onClick={handleClickFileBtn}
-            style={{
-               color:"#fff",
-               width: '911px',
-               height: '72px',
-                background:"#00416B",
-                display: imageUpLoaded?'none':"flex",
-                justifyContent:"center",    
-                alignItems:"center",
-                fontSize:"28px",
-                fontFamily:"otfPlain",
-                fontWeight:"normal",
-                border:'none',
-                borderRadius:"10px",
-                marginTop:"15px",
-                cursor:'pointer'
-                
-           }}>تحميل</button>
+           >تحميل</button>
            <input type="file" id='select-file' tabIndex={3}
            style={{
             display: 'none',

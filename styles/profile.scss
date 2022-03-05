@@ -7,6 +7,7 @@
     align-items: center;
     padding: 53px;
     flex-direction: column;
+    position: relative;
  .profile-heading{
      font-size: 28px;
      color:$second-color;
@@ -116,7 +117,27 @@ background-color: $second-color;
 
 
 
+.sign-input.submit-logo button{
+    color: rgb(255, 255, 255);
+    width: 911px;
+    height: 72px;
+    background: rgb(0, 65, 107);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-family: otfPlain;
+    font-weight: normal;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    cursor: pointer;  
+}
 
+
+.addAdds-tab-container .addAdds-group input{
+    position: relative;
+}
 
 
 
@@ -132,15 +153,17 @@ background-color: $second-color;
     .profile-tab{
         .category-icon {
         
-    left: 242px;
-    bottom: -276px;
+            left: 250px;
+            top: 905px;
+             z-index: 10;
 
         
            
         }
         .type-icon {
-            bottom: -413px;
-            left: 245px;
+            top: 1040px;
+            left: 250px;
+            z-index: 10;
         }
         
     } 
@@ -154,3 +177,68 @@ background-color: $second-color;
 
 }
 
+
+
+@media (max-width:1120px) {
+    .subNav-items{
+        flex-wrap: wrap;
+        li{
+            margin-bottom: 20px;
+        }
+    }
+}
+
+
+@media (max-width:930px) {
+    .profile-tab .profile-group input {
+        width: 600px;
+    }
+
+    .addAdds-tab-container .addAdds-group input{
+        width: 600px;
+    }
+
+
+    .sign-input.submit-logo button{
+        width: 600px;
+     
+    }
+      
+    .profile-tab 
+    .checksbox .chack-groub {
+       margin-right: -291px;             
+    }
+    .profile-tab .checksbox .chack-groub:last-child{
+        margin-right: -291px;
+    }
+
+    .addAdds-tab-container textarea{
+        width: 600px;
+    }
+
+    .profile-tab .category-icon {
+        left: 79px;
+        top: 1107px;
+        z-index: 3;
+
+    } 
+
+    .profile-tab .type-icon {
+        left: 79px;
+        top: 964px;
+    }
+
+    .profile-tab .dropdown-typeList,
+    .profile-tab .dropdown-category, .profile-tab .dropdown-typeList{
+        width: 600px;
+    
+
+    }
+
+
+    .addAdds-tab-container .addAdds-heading{
+        align-self: center;
+        margin-right: 20px;
+    }
+    
+}

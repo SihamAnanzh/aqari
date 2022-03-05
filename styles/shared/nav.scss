@@ -198,11 +198,12 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-margin: 10px auto;
+margin: 6px auto;
 cursor: pointer;
 font-family: otfPlain;
 font-weight: 600;
-padding-right: 5px;
+margin-left: -35px;
+
 
 
 }
@@ -481,9 +482,9 @@ margin: 10px auto;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
     cursor: pointer;
-    margin-right: 32px;
+    margin-right: -7px;
+    
   
   
   }
@@ -580,4 +581,50 @@ margin-left: 0;
 
  }
   
+}
+
+
+@media (max-width:1120px) {
+
+  .logo-img{
+    margin-left: -182px;
+    margin-right: -21px;
+    width: 109px;
+    height: 203px;
+    
+  }
+
+  .main-nav-items a, .lang-title{
+    margin-right: 39px;
+}
+
+.activeNav {
+  background-color: #00416B;
+  width: 88.78px;
+  height: 40.72px;
+  border-radius: 5px;
+  display: flex;
+  margin-left: -49px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  cursor: pointer;
+  padding-left: 32px;
+  margin-left: -26px;
+}  
+ 
+.add-adds-menu span, .select-lang-menu span.active {
+  margin-right:-36px;
+
+}
+
+
+  .add-adds-menu span.add-adds-tilte{
+    margin-right: -18px;
+
+
+}
+.second-nav-items{
+  margin-left: -38px;
+}
 }
