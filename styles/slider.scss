@@ -126,6 +126,7 @@ cursor: pointer;
 
 }
 
+
 @media (max-width:1600px) {
 
   .nextBtn{
@@ -163,6 +164,8 @@ cursor: pointer;
     border-radius: 50px;
     }
   }
+
+  
 }
 
  .overlay::after{
@@ -177,3 +180,6 @@ cursor: pointer;
   height: 100%;
   z-index: 1;
 }
+
+
+

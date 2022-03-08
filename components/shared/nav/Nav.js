@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import onClickOutside from 'react-onclickoutside';
-
+import FallBackNav from './FallBackNav'
 const Nav = ({ logo, icon }) => {
     const [showLang, setShowLang] = useState(false)
     const [showAddMenu, setAddMenu] = useState(false)
-    const [activeNav, setAcitvNav] = useState(false)
-    const [activPage, setAcitvpage] = useState(false)
+    const [showNav,setShowNav]= useState(false)
+    const [login, setLogin]=useState(false)
+
+    const [iconTwo,setIconTwo]=useState(true)
     const route = useRouter()
     Nav.handleClickOutside = () => {
         setAddMenu(false)
@@ -18,6 +20,7 @@ const Nav = ({ logo, icon }) => {
 
 
     return (
+        <>
         <div className='navbar'>
             <div className='main-nav'>
                 <ul className='main-nav-items'>
@@ -46,7 +49,7 @@ const Nav = ({ logo, icon }) => {
                         >الباقات</a></Link>
 
                     </li>
-                    <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
+                    <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`} onClick={()=>setLog}>
                         <Link href="/signIN" classNamem='main-nav-item'><a
                             className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
@@ -124,8 +127,77 @@ const Nav = ({ logo, icon }) => {
                     </li>
                 </ul>
             </div>
+            {/* fallback-nav */}
+              <div className="fallback-container">
+                <div className="add-menus-profile">
+                       <div className={` ${showAddMenu ? "show" : ""}`}>
+                            <span className='menu-profile'  >
+                                <img style={{
+                                    cursor:"pointer",
+                                    widht:'39.87px',
+                                    heigth:'39.87px',
+                                    zIndex:"4"
+                                }}  onClick={() => {
+                                setShowLang(false)
+                                setAddMenu(!showAddMenu)
+                                setIconTwo(!iconTwo)
+                                setShowNav(false)
+                            }} src={iconTwo ?'/assets/img/fallback-+.svg': '/assets/img/fallback2.svg'} />
+                            </span>
+                              
 
+                                      
+                            <ul className={`add-adds-items ${!showAddMenu ? 'hidden' : 'showMenu'}`} style={{
+                                height:"160.6px",
+                                width:'158.5px',
+                                
+                            }}>
+                            <li>
+                                    <Link href="/profile/addAdds" className='add-adds-item'><a>أضف اعلان</a></Link>
+
+                                </li>
+                                <li>
+                                    <Link href="/profile/addOffice" className='add-adds-item'><a>أضف مكتب</a></Link>
+
+                                </li>
+                                <li>
+                                    <Link href="/profile/addService" className='add-adds-item'><a>اضف خدمة</a></Link>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                </div>
+                <div className="fallback-logo">
+                <Link href='/' classNamem='main-nav-item'>
+                            <a className='logo'>
+                                <img className='logo-img' src={logo ? logo : '/assets/img/logo.svg'} alt='logo' />
+                            </a>
+                            </Link>
+                    </div>
+              </div>
+               {!showNav ?
+               <img src="/assets/img/arrowUp-nav.svg" alt=""  className='arrowUp-nav' onClick={()=>{
+                   setAddMenu(false)
+                   setShowNav(true)}} style={{
+                  cursor:"pointer"   
+            }}/> 
+               :<img src="/assets/img/arrowDown-nav.svg" alt=""  className='arrowDown-nav' onClick={()=>setShowNav(false)}  style={{
+                cursor:"pointer"   
+          }}/> 
+
+           }
+           
         </div>
+
+        {showNav?
+          <div className="fallBack-dropDownNav">
+          <FallBackNav setShowNav={setShowNav} />
+         </div> 
+         :""
+        }
+   
+        </>
     )
 }
 const clickOutsideConfig = {

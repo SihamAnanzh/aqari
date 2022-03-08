@@ -2,7 +2,7 @@ import React ,{useState,useEffect} from 'react'
 import Carousel from "react-elastic-carousel";
 // import Item from './Item';
 import Slider from './Slider';
-
+import MobileSlider from './MobileSlider';
   
 
 const Thumbnail = ({ arr, image, index ,setCurrentIndex}) => {
@@ -11,7 +11,7 @@ const Thumbnail = ({ arr, image, index ,setCurrentIndex}) => {
     return (
     
     <div className="tumbnail">
-              <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={5} >
+          <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={5} >
       {
         arr.map((imgsrc, i) => (
             <div key={i}
@@ -86,6 +86,11 @@ const Slideshow = ({ imgs,setOverlay }) => {
       {
         showImg &&  <Slider imgs={imgs} setShowImg={setShowImg} currentInedx={currentInedx} showImg={showImg} />
                 }
+
+                
+  <div className="update-slider">
+       <MobileSlider imgs={imgs}/>
+    </div>
       </>
   )
 }

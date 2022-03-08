@@ -10,9 +10,11 @@ import estatData from '../estatData.json'
 
 
 // should receive a  an id for  a specific ad and then get the data for this add
+//and check if the adds belong to this user or not 
 const SingleEstate = () => {
     const [withImg, setWithImg] = useState(true)
     const  [overlay ,setOverlay]=useState(false)
+    const [userAdd, setUserAdd]=useState(false)
     
 
 
@@ -27,7 +29,7 @@ const SingleEstate = () => {
     <div className={`single-estat${overlay ? 'overlay':""} `}>
         <Nav/>
         <Banner content={content}/>
-            <Estat withImg={withImg} userAdd={false}  data={estatData}  setOverlay={setOverlay}/>
+            <Estat withImg={withImg} userAdd={userAdd}  data={estatData}  setOverlay={setOverlay}/>
         <Footer/>
     </div>
   )

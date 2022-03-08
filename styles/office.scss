@@ -189,7 +189,7 @@ text-align: right;
     margin-right: -98px;
     padding-top: 39px;
     padding-bottom: 17px;
-
+     font-weight: normal;
 
     }
     ul{
@@ -280,4 +280,92 @@ text-align: right;
   
         padding: 20px 70px;
     }
+}
+@media (max-width:940px) {
+    .office-add-title{
+        margin-right: unset;
+    }
+
+    .headerOffice{
+        flex-direction: column;
+    height: 463px;
+    border-radius: 10px;
+    width: 90vw;
+    margin: 33px auto;
+    min-width: 90vw;
+
+       .single-office-img img{
+          width: 170px;
+          height: 170px;
+        }
+    }
+
+
+    .headerOffice .office-info h3,
+    .headerOffice .office-info .office-list{
+        margin-right: unset;
+    }
+
+    .headerOffice .office-info{
+        margin-top: unset;
+    }
+
+    .office-info{
+        padding-left: unset;
+    }
+}
+
+@media (max-width:428px) {
+      .offices-heading {
+        align-self: center;
+        justify-content: center;
+      }
+
+      .office{
+          margin-bottom: 15px;
+        
+      }
+
+      .headerOffice .office-info h3 {
+      
+        font-size: 24px;
+        color: #fff;
+        font-family: otfPlain;
+        margin-bottom: 10px;
+        display: flex;
+        text-align: right;
+        margin-right: unset;
+        padding-top: 5px;
+        padding-bottom: 0;
+      }
+      .headerOffice .office-info .office-list {
+        margin-right: unset;
+        text-align: right;
+        padding-bottom: 5px;
+        margin-right: unset;
+      }
+
+
+      .headerOffice .office-info .office-whatsapp, .headerOffice .office-info .office-phone {
+        width: 167px;
+        height: 29px;
+        background-color: #EDAA43;
+        border-radius: 5px;
+      }
+
+      .headerOffice {
+        flex-direction: column;
+        height: 344px;
+        margin: 28px auto;
+        border-radius: 12px;
+        width: 364px;
+      }
+
+      .headerOffice .office-info .office-contact{
+          padding-top: 10px;
+      }
+
+      .office-whatsapp, .office-phone {
+          width: 142px;
+      }
 }

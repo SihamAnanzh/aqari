@@ -21,12 +21,13 @@
     "react-facebook-login": "^4.1.1",
     "react-onclickoutside": "^6.12.1",
     "react-responsive-carousel": "^3.2.22",
+    "react-simple-image-slider": "^2.4.0",
     "react-slick": "^0.28.1",
     "react-spinners": "^0.11.0",
     "sass": "^1.49.8",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.3",
-    "swiper": "^8.0.6"
+    "swiper": "^8.0.7"
   },
   "devDependencies": {
     "eslint": "8.9.0",

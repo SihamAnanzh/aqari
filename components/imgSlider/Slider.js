@@ -1,5 +1,6 @@
 import React ,{useState,useEffect} from 'react'
 import onClickOutside from 'react-onclickoutside';
+import Carousel from "react-elastic-carousel";
 
 
 function Slider({imgs,setShowImg ,currentInedx,showImg}) {
@@ -32,7 +33,7 @@ function Slider({imgs,setShowImg ,currentInedx,showImg}) {
   
   return (
  
-
+     <>
   <div className={showImg?"overlay":""} id='overlay' onClick={(e)=>{
     console.log(e.target.id);
     e.target.id !== 'overlay'?
@@ -46,6 +47,7 @@ function Slider({imgs,setShowImg ,currentInedx,showImg}) {
     </div>
   </div>
 
+  </>
 
   );
 }

@@ -153,16 +153,16 @@ background-color: $second-color;
     .profile-tab{
         .category-icon {
         
-            left: 250px;
-            top: 905px;
+            left: 29px;
+    top: 100px;
              z-index: 10;
 
         
            
         }
         .type-icon {
-            top: 1040px;
-            left: 250px;
+            top: 100px;
+            left: 22px;
             z-index: 10;
         }
         
@@ -182,6 +182,9 @@ background-color: $second-color;
 @media (max-width:1120px) {
     .subNav-items{
         flex-wrap: wrap;
+        width: 100vw;
+        margin-top: 25px;
+
         li{
             margin-bottom: 20px;
         }
@@ -191,16 +194,18 @@ background-color: $second-color;
 
 @media (max-width:930px) {
     .profile-tab .profile-group input {
-        width: 600px;
+        width: 70vw;
+        position: relative;
     }
 
     .addAdds-tab-container .addAdds-group input{
-        width: 600px;
+        width: 70vw;
+        position: relative;
     }
 
 
     .sign-input.submit-logo button{
-        width: 600px;
+        width: 70vw;
      
     }
       
@@ -241,4 +246,65 @@ background-color: $second-color;
         margin-right: 20px;
     }
     
+}
+
+@media (max-width:428px) {
+   
+       
+      .profile-container .profile-heading{
+        padding-right: unset;
+      }
+      .profile-container .profile-heading{
+         
+          margin-bottom: unset; 
+          align-self: center;
+          padding-right: unset;
+      }
+
+      .addAdds-tab-container .addAdds-group input,
+      .addAdds-tab-container textarea,
+      .profile-tab .profile-group input {
+            position: relative;
+        width: 80vw;
+    }
+
+    .profile-tab .map-adds {
+        width: 80vw;
+
+    }
+
+ 
+    .profile-tab .checksbox .chack-groub,
+    .profile-tab .checksbox .chack-groub:last-child {
+
+        margin-right: unset;
+    }
+      
+    .profile-tab .category-icon{
+        left: 26px;
+    top: 100px;
+    }
+    .profile-tab .type-icon{
+        left: 26px;
+        top: 100px;
+    }
+
+    .addAdds-tab-container .addAdds-heading h3{
+        margin-right:unset
+    }
+
+    .profile-tab .dropdown-typeList, .profile-tab .dropdown-category, .profile-tab .dropdown-typeList {
+        width: 80vw;
+    }
+
+    .sign-input.submit-logo button{
+        width: 80vw;
+    }
+
+    .office-heading-paragraph{
+        width: 90vw;
+        margin-right: unset;
+        margin-bottom: 20px;
+    }
+   
 }

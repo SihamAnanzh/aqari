@@ -250,3 +250,33 @@
     margin-right: 206px;
     }
 }
+
+
+@media (max-width:590px) {
+    .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn{
+        width: 89vw;
+    }
+    .signin-contanier .sign{
+        margin-right: unset;
+    }
+
+    .signin-contanier{
+        padding-left: 42px;
+        padding-right: 20px;
+    }
+
+    .signin-contanier .password img{
+        right: 86%;
+    }
+
+    .headerOffice .office-info .office-contact{
+        padding-top: unset;
+        padding-right: unset;
+    }
+
+    .office-contact{
+        padding-top: unset;
+        padding-right: unset;
+    }
+   
+}

@@ -6,11 +6,11 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    margin-top: 80px;
-    height: 100%;
+    width: 100vw;
     font-family: otfPlain;
-    margin-bottom: 50px;
-
+    padding-bottom: 50px;
+    background-color:#F2F5F7;
+    padding-top: 80px;
 }
 
 
@@ -146,7 +146,7 @@ border-radius: 20px;
 }
 
 .contact-estate{
-  
+   background-color: #E6ECF0;
     color: #fff;
     display: flex;
     justify-content:space-between;
@@ -195,4 +195,317 @@ border-radius: 20px;
 
 
  
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background-color:#F2F5F7;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  
+  }
+  
+  
+  .swiper {
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    height: 85vw;
+    z-index: 1;
+    width: 90vw;
+    border-radius: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width:90vw;
+    height: 68vh;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+    z-index: 10;
+  }
+  
+  
+  .swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+    background: $main-color;
+  }
+  
+  .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet
+  {
+    background: $second-color;
+  
+  }
+
+
+  .map-copy{
+      display: none;
+  }
+
+  .estat-fallback{
+display: none;
+}
+@media (max-width:983px) {
+    .info-estate{
+        width: 80vw;
+    }
+
+    .disc-estate{
+        font-size: 15px;
+        width: 90vw;
+    }
+
+    .estat-map{
+        width: 80vw;
+    }
+
+    .content-estat {
+        width: 95vw;
+        margin-top: 5px;
+    }
+
+    .estat-deatils {
+        font-size: 17px;
+    }
+}
+.update-slider{
+    display: none;
+  }
+
+  .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction
+   {
+       bottom: -1%;
+   }
+@media (max-width:680px) {
+
+    .update-slider{
+        display: block;
+    }
+    .mainImg{
+
+        margin-top: unset;
+    }
+
+    .tumbnail, .slideshow-two{
+        display: none;
+    }
+
+    .slideshow-two .currentImg {
+        width: 80vw;
+        height: 80vw;
+    }
+
+    .slideshow{
+        display: none;
+    }
+    .estat-deatils{
+        font-size:17px
+    }
+ 
+
+    .estat-deatils{
+    width: 175px;
+    height: 47px;
+    background-color: #E6ECEF;
+    color: #00416B;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-right: 29px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: otfPlain;
+    font-weight: 600;
+    text-align: right;
+    }
+
+    .automated-number {
+        width: 235px;
+    }
+
+    .estat-deatils .att {
+        font-size: 17px;
+    }
+
+    .estat-address h5 img{
+        width: 12px;
+        height: 12px;
+    }
+
+    .estat-address h3{
+        font-size: 25px;
+    }
+
+    .estat-address h5{
+        font-size: 16px;
+    }
+}
+
+@media (max-width:570px) {
+    .swiper-slide img{
+        height: 50vh;
+    }
+    .swiper{
+        .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal    {
+            bottom: -1%;
+        }
+    }
+ 
+}
+
+@media (max-width:428px) {
+    .estat-deatils{
+        font-size:17px
+    }
+ 
+
+    .estat-deatils{
+    width: 175px;
+    height: 47px;
+    background-color: #E6ECEF;
+    color: #00416B;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-right: 29px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: otfPlain;
+    font-weight: 600;
+    text-align: right;
+    margin-right:10px
+    }
+
+    .estat-fallback{
+    display: grid;
+    grid-template-areas: 
+            "city        spa"
+            "price       desti"
+            "phone  phone";
+
+    justify-content: center;
+    align-items: center;
+    }
+
+    .estat-origin{
+        display: none;
+    }
+
+    .automated-number {
+        width: 283px;
+        grid-area: phone;
+        margin-right:48px
+    }
+
+    .city{
+        grid-area: city;
+
+    }
+    
+    .space{
+        grid-area: spa;
+
+    }
+
+    .destination{
+        grid-area: desti;
+
+    }
+
+    .price{
+        grid-area: price;
+    }
+    .disc-estate{
+        font-size: 14px;
+        padding-right: 10px;
+    }
+
+    .estat-address h3{
+        font-size: 22px;
+
+    }
+    
+    .estat-address h5{
+        font-size: 14px;
+    }
+
+    .info-estate {
+        width: 90vw;
+        margin-top: 32px;
+    }
+
+
+    .swiper{
+ 
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    height: 100vw;
+    z-index: 1;
+    width: 100vw;
+    border-radius: 28px;
+    margin-bottom: 10px;
+    margin-top: -78px;
+    }
+
+    .fav-estat img {
+        width: 20px;
+    height: 18px;
+    }
+
+    .estat-map{
+        width: 90vw;
+    }
+
+    
+  .map-copy{
+    display: block;
+}
+
+.map-origin{
+    display: none;
+}
+
+.contact-estate .whatsApp,
+.contact-estate .phone {
+    width: 155px;
+    height: 32px;
+    font-size: 18px;
+
+}
+
+.contact-estate .whatsApp .whatsApp-icon img {
+    width: 17px;
+    height: 19px;
+    margin-left: 6px;
+    margin-top: 4px;
+}
+
+
+.estat-conianer{
+    padding-top: 110px;
+}
 }

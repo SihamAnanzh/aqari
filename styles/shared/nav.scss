@@ -78,6 +78,8 @@ li{
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  z-index: 10;
+
 }
 .select-lang-items li,
 .add-adds-items li{
@@ -108,6 +110,8 @@ li{
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  z-index: 10;
+
 }
 .add-adds-items li a{
   color: #fff;
@@ -218,6 +222,8 @@ margin: 10px auto;
 cursor: pointer;
 font-family: otfPlain;
 font-weight: 600;
+
+
 }
 .select-lang-menu,
 .add-adds-menu{
@@ -299,11 +305,31 @@ margin: 10px auto;
   right: 64px;
 }
 
+
+.fallback-logo,.fallback-container{
+  display: none;
+}
+
+.arrowUp-nav,.arrowDown-nav{
+  position: absolute;
+  display: none;
+  z-index: 10;
+}
+
+
+
+.fallBack-dropDownNav{
+  display: none;
+}
+
+li.activeNavFall{
+  background-color: $second-color;
+}
 // media
 @media (max-width:1600px) {
 
   .navbar {
-    width: 100%;
+    width: 100vw;
     height: 133px;
     background-color: #fff;
     display: flex;
@@ -358,7 +384,7 @@ margin: 10px auto;
     width: 125px;
     height: 210px;
   }
-  
+
   
  
   .select-lang-items
@@ -378,6 +404,8 @@ margin: 10px auto;
     border-top: none;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+
+   
   }
 
   
@@ -465,6 +493,9 @@ margin: 10px auto;
     align-items: center;
     justify-content: center;
     margin-right: 40px;
+    .lang-title.active{
+      margin-right: -42px;
+    }
   
   }
   .select-lang-menu ,
@@ -627,4 +658,320 @@ margin-left: 0;
 .second-nav-items{
   margin-left: -38px;
 }
+}
+
+@media (max-width:1020px) {
+
+   .main-nav-items,.second-nav-items{
+     display: none;
+   }
+   .fallback-logo{
+     display: block;
+   }
+
+   .fallBack-dropDownNav{
+     display: block;
+   }
+   .banner{
+    display: none;
+  }
+   
+  .actions-contaier{
+    .actions{
+      margin-top: 0;
+      width: 100vw;
+      
+    }
+  }
+   .arrowUp-nav{
+    display: block;
+    top: 130px;
+    right: 26px;
+    width: 27.29px;
+    height: 21.6px;
+  }
+  
+  .arrowDown-nav{
+    display: block;
+    top: 580px;
+    right: 26px;
+    width: 27.29px;
+    height: 21.6px;
+    z-index: 10;
+  }
+  
+   .fallback-container{
+     width: 100%;
+     height: 100%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     .add-menus-profile{
+       span{
+         position: absolute;
+         z-index: 4;
+         top: 41px;
+       }
+      .add-adds-items{
+       z-index: 2;
+        top: 59px;
+    
+      }
+     }
+     
+   }
+
+   .logo-img {
+
+    margin-right: 0; 
+    width: 179px;
+    height: 207px;
+   }
+   
+}
+
+
+.drop-nav-container{
+  position: relative;
+  .fallBack-drop-nav{
+    position: absolute;
+    background-color: #00416B;
+    width: 100vw;
+    height: 450px;
+    z-index: 100;
+    border-bottom: 7px solid #EDAA43;
+   padding: 20px;
+    a{
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 20px;
+
+    }
+  }
+
+  .fallBack-drop-nav{
+    position: absolute;
+    background-color: #00416B;
+    width: 100vw;
+    z-index: 100;
+   padding: 20px;
+li{
+  margin-bottom: 20px;
+  height: 45px;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+  
+  img{
+    padding-left: 10px;
+
+  }
+
+
+}
+
+
+li.active,
+  li:hover{
+    background-color: $second-color;
+  }
+    a{
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 20px;
+
+    }
+  }
+
+  .arrowUp-nav{
+    display: block;
+    top: 130px;
+    right: 26px;
+    width: 27.29px;
+    z-index: 10;
+    height: 21.6px;
+  }
+
+  .arrowDown-nav{
+    display: block;
+    top: 580px;
+    right: 26px;
+    width: 27.29px;
+    height: 21.6px;
+    z-index: 10;
+  }
+
+
+
+  .switch-lang{
+    height: 80px;
+      padding-bottom: 50px;
+      background-color: $second-color;
+      border-radius: 10px;
+      width: 823px;
+      li{
+        color: #fff;
+        font-size: 13px;
+        width: 800px;
+        margin-top: 0;
+        margin-right: 22px;
+        margin-left: 22px;
+        margin-bottom: -3px;
+        height: 30px;
+    
+      }
+
+      li:hover{
+        background-color: $main-color;
+      }
+
+
+  }
+
+  
+  .fallBack-drop-nav {
+    a{
+      cursor: pointer;
+
+    }
+    .switch-lang-li{
+    margin-bottom: 20px;
+    height: auto;
+    border-radius: 10px;
+    padding: 0;
+    cursor: pointer;
+
+         a{
+          color: #fff;
+          margin-bottom: 20px;
+          font-size: 20px;  
+          cursor: pointer;
+         }
+    li{
+      margin-bottom: 20px;
+      height: 110px;
+      border-radius: 10px;
+      padding: 0;
+  
+    }
+  }
+}
+
+
+
+
+}
+
+@media (max-width:482px) {
+  .banner{
+    display: none;
+  }
+   
+  .actions-contaier{
+    .actions{
+      margin-top: 0;
+      width: 100vw;
+      
+    }
+  }
+  .fallBack-drop-nav{
+    position: absolute;
+    background-color: #00416B;
+    width: 100vw;
+    z-index: 100;
+   padding: 20px;
+li{
+  margin-bottom: 20px;
+  height: 45px;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+  
+  img{
+    padding-left: 10px;
+
+  }
+
+
+}
+
+
+li.active,
+  li:hover{
+    background-color: $second-color;
+  }
+    a{
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 20px;
+
+    }
+  }
+  .arrowUp-nav{
+    display: block;
+    top: 130px;
+    right: 26px;
+    width: 27.29px;
+    height: 21.6px;
+    z-index: 10;
+  }
+
+  .arrowDown-nav{
+    display: block;
+    top: 580px;
+    right: 26px;
+    width: 27.29px;
+    height: 21.6px;
+    z-index: 10;
+  }
+
+
+
+  .drop-nav-container .fallBack-drop-nav .switch-lang{
+    width: 388px;
+    height: 111px;
+      margin-bottom: 20px;
+      background-color: $second-color;
+      border-radius: 10px;
+   
+      li{
+        color: #fff;
+        font-size: 13px;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-right: 20px;
+      }
+
+
+  }
+
+  
+  .fallBack-drop-nav {
+    .switch-lang-li{
+    margin-bottom: 20px;
+    height: auto;
+    border-radius: 10px;
+    padding: 0;
+    width: 100%;
+    cursor: pointer;
+         a{
+          color: #fff;
+          margin-bottom: 20px;
+          font-size: 20px;  
+          cursor: pointer;
+         }
+    li{
+      margin-bottom: 20px;
+      height: 110px;
+      border-radius: 10px;
+      padding: 0;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+}
+
+
+
 }

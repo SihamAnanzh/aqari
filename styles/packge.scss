@@ -21,7 +21,7 @@
 }
 
 .packge-heading{
-font-size: 28px;
+    font-size: 28px;
     color: $second-color;
     font-family: otfPlain;
     display: flex;
@@ -213,13 +213,14 @@ cursor: pointer;
 @media (max-width:1600px) {
     .packge-contaier{
         height: 100%;
+        width: 100vw;
         padding: 10px;
         padding-top: 20px;
         padding-bottom: 180px;
     }
 
     .packge-heading {
-        margin-right: 86px;
+        margin-right: 0px;
         font-size: 25px;
     }
 
@@ -298,4 +299,201 @@ cursor: pointer;
 
 }
     
+}
+
+
+
+@media (max-width:942px) {
+ 
+
+    .packge-heading {
+        margin-right: 0x;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .subscribe-type{
+        display: none;
+    }
+
+    .packge{
+        width: 70vw;
+    height: 132px;
+    background-color: #F2F5F7;
+    border: 1px solid #737373;
+    border-radius: 10px;
+    margin: 8px;
+    display: grid;
+    grid-template-columns: 112px 600px 195px;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 60vw;
+    margin-bottom: 20px;
+    }
+    
+    .add-type-first, .add-type-second{
+        width: 25vw;
+    height: 39px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: #737373;
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: otfPlain;
+    font-weight: 600;
+    }
+    .add-type {
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+        padding-right: 35%;
+        margin-right: 0%;
+    
+    }
+
+    .single-packge {
+        width: 67vw;
+        height: 88vh;
+        background-color: #00416B;
+        padding: 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1000;
+        transform: translate(-50%, -50%);
+        border-radius: 4px;
+    }
+      
+}
+
+@media (max-width:738px) {
+    .add-type {
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+        padding-right: 24%;
+        margin-right: 0%;
+    }
+}
+
+@media (max-width:605px) {
+.packge {
+    width: 364px;
+    height: 170px;
+}
+
+
+.packge-type {
+    color: #EDAA43;
+    font-size: 18px;
+    width: 119px;
+    margin-right: 23px;
+    font-family: otfPlain;
+}
+
+.packge-img img {
+    width: 135px;
+    height: 135px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.add-type-first, .add-type-second {
+    width: 183px;
+    height: 29px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: #737373;
+    color: #fff;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: otfPlain;
+    font-weight: 600;
+}
+
+.packge-name {
+    color: #00416B;
+    font-size: 14px;
+    margin-right: -57px;
+    font-family: otfPlain;
+    margin-bottom: 5px;
+    font-weight: 900;
+
+}
+
+
+.add-type {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    padding-right: 7%;
+    margin-right: 0%;
+    bottom: 196px;
+    /* position: absolute; */
+    margin-top: 85px;
+}
+
+.packge-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -68px;
+}
+
+.single-packge {
+    width: 95vw;
+    height: 88vh;
+    background-color: #00416B;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+}
+}
+
+
+@media (max-width:428px) {
+    .single-packge {
+        width: 100vw;
+        height: 69vh;
+        background-color: #00416B;
+        padding: 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1000;
+        transform: translate(-50%, -50%);
+        border-radius: 4px;
+
+       
+    }
+
+    .single-packge .packge-img{
+        width: 80vw;
+        height: 50vh;
+    }
 }

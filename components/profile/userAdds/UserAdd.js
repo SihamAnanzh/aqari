@@ -2,8 +2,10 @@ import React from 'react'
 import Link from 'next/link'
 const UserAdd = (props) => {
   return (
+  
+    <>
     <Link href='/profile/EditEstate'>
-    <div className='premuim-add regular'>
+    <div className=' premuim-add  regular regular-origin '>
       <div className=' details-adds'>
         <div className='img-add'><img src='/assets/img/home.jpg' /></div>
         <div className='estat-details'>
@@ -24,6 +26,32 @@ const UserAdd = (props) => {
     
     </div>
     </Link>
+    <Link href='/profile/EditEstate'>
+    <div className='premuim-add regular fallback-regular'>
+      <div className=' details-adds'>
+        <div className='img-add'><img src='/assets/img/home.jpg' /></div>
+        <div className='estat-details'>
+          <h2 className='card-title'>{props.title}</h2>
+          <span className='address'><span className='location-add-icon'><img src='/assets/img/location-gray.svg' /></span>
+          {props.address}</span>
+         
+      </div>
+      
+        </div>
+        <div className='disc'>
+            {props.disc}     
+                </div>
+        <div className='info'>
+          <span className='price'><span className='number'>{props.price}</span>د.ك</span>
+          <span className='time'><span className='number'><span className='address-time-icon'><img src='/assets/img/address-hour.svg' /></span>{props.time}</span>ساعة</span>
+
+        </div>
+
+      
+    
+    </div>
+    </Link>
+    </>
   )
 }
 

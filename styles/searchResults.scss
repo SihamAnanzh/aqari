@@ -70,3 +70,10 @@ height: 80vh;}
    
     height: 125px;
 }
+
+
+@media (max-width:428px) {
+    .results .results-heading{
+        margin-right: 0;
+    }
+}

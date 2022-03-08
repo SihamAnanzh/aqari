@@ -1,7 +1,8 @@
 import React ,{useEffect, useState} from 'react'
 import Slideshow from '../imgSlider/ImgSlider'
 import SimpleMap from '../map/Map'
-const Estat = ({withImg,setOverlay,data ,userAdd="false"}) => {
+import  SimpleMap2 from '../map/phone-map'
+const Estat = ({withImg,setOverlay,data ,userAdd}) => {
   const [addToFav,setAddtoFav]=useState(false)
 
 
@@ -49,7 +50,8 @@ const Estat = ({withImg,setOverlay,data ,userAdd="false"}) => {
             {data[0].discriptions}
             </div>
         </div>
-        <div className="content-estat">
+        
+        <div className="content-estat estat-origin">
           <div className="first-line">
           <div className="city estat-deatils">
               <span className="att">المنطقة</span>  
@@ -80,8 +82,42 @@ const Estat = ({withImg,setOverlay,data ,userAdd="false"}) => {
             </div>
           </div>
         </div>
-        <div className="estat-map">
+      
+        
+         <div className="content-estat estat-fallback">
+         
+          <div className="city estat-deatils">
+              <span className="att">المنطقة</span>  
+              
+              <span>{data[0].city}</span>
+            </div>
+            <div className="space estat-deatils">
+            <span className="att">المساحة</span>  
+            <span> متر <span>{data[0].space}</span></span>
+
+            </div>
+            <div className="destination estat-deatils">
+            <span className="att">الواجهة</span>  
+            <span>{data[0].interface}</span>
+            </div>
+                     
+            <div className="price estat-deatils">
+            <span className="att">السعر</span>
+            <span> د.ك <span>{data[0].price}</span></span>  
+
+            </div>
+            <div className="automated-number estat-deatils">
+            <span className="att">الرقم الآلي</span>  
+            <span className='autom-value'>{data[0].autoNumber}</span>
+            </div>
+          
+        </div>
+        
+        <div className="estat-map map-origin">
       <SimpleMap/>
+    </div>
+    <div className="estat-map map-copy">
+      <SimpleMap2/>
     </div>
     <div className='contact-estate'>
       <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg'/></span>{data[0].whatsapp}</div>
