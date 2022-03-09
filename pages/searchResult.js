@@ -3,7 +3,7 @@ import SearchResultComponents  from '../components/searchResult/SearchResult'
 import NoResults from '../components/searchResult/NoResults'
 
 const SearchResult = () => {
-  const [haveResults, setHaveResults] = useState(true);
+  const [haveResults, setHaveResults] = useState(false);
   return (
     <>
        {

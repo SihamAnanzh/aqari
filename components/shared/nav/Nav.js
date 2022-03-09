@@ -8,6 +8,7 @@ const Nav = ({ logo, icon }) => {
     const [showAddMenu, setAddMenu] = useState(false)
     const [showNav,setShowNav]= useState(false)
     const [login, setLogin]=useState(false)
+    const [movearrow,setMvoeArrow]=useState(false)
 
     const [iconTwo,setIconTwo]=useState(true)
     const route = useRouter()
@@ -183,7 +184,8 @@ const Nav = ({ logo, icon }) => {
                   cursor:"pointer"   
             }}/> 
                :<img src="/assets/img/arrowDown-nav.svg" alt=""  className='arrowDown-nav' onClick={()=>setShowNav(false)}  style={{
-                cursor:"pointer"   
+                cursor:"pointer" ,
+                top:movearrow?'582px':'529px'
           }}/> 
 
            }
@@ -192,7 +194,7 @@ const Nav = ({ logo, icon }) => {
 
         {showNav?
           <div className="fallBack-dropDownNav">
-          <FallBackNav setShowNav={setShowNav} />
+          <FallBackNav setShowNav={setShowNav} setMvoeArrow={setMvoeArrow} movearrow={movearrow}/>
          </div> 
          :""
         }

@@ -44,7 +44,6 @@ useEffect(() => {
      
        <div className="sign-input ">
            <h3 style={{
-               paddingTop:"20px"
            }}>البريد الإلكتروني</h3>
            <input type="text" className="sign-mail" placeholder='البريد الإلكتروني' tabIndex={3} />
        </div>
@@ -58,7 +57,6 @@ useEffect(() => {
        </div>
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`}>
            <h3 style={{
-             marginTop:'40px'
            }}>شعار النشاط التجاري</h3>
            <button
            onClick={handleClickFileBtn}

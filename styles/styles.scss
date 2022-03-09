@@ -52,3 +52,17 @@ background-color: #fff;
 }
 
 
+@media (max-width:428px) {
+
+
+  .signin-contanier{
+  input::placeholder,
+  textarea::placeholder {
+      font-size:16px ;
+      font-family: otfPlain;
+      font-weight: normal;
+
+  }
+  }
+
+}

@@ -152,19 +152,23 @@ background-color: $second-color;
 
     .profile-tab{
         .category-icon {
-        
-            left: 29px;
-    top: 100px;
+            top: 760px;
+            left: 234px;
              z-index: 10;
 
         
            
         }
         .type-icon {
-            top: 100px;
-            left: 22px;
+            top: 904px;
+            left: 236px;
             z-index: 10;
         }
+        .type-icon.city {
+            left: 236px;
+            top: 1050px;
+        }
+    
         
     } 
 
@@ -189,6 +193,23 @@ background-color: $second-color;
             margin-bottom: 20px;
         }
     }
+
+    .profile-tab .category-icon {
+        left: 10%;
+     
+        z-index: 3;
+
+    } 
+
+    .profile-tab .type-icon {
+        left: 10%;
+       
+    }
+    .profile-tab .type-icon.city {
+        left: 10%;
+
+    }
+
 }
 
 
@@ -221,18 +242,7 @@ background-color: $second-color;
         width: 600px;
     }
 
-    .profile-tab .category-icon {
-        left: 79px;
-        top: 1107px;
-        z-index: 3;
-
-    } 
-
-    .profile-tab .type-icon {
-        left: 79px;
-        top: 964px;
-    }
-
+   
     .profile-tab .dropdown-typeList,
     .profile-tab .dropdown-category, .profile-tab .dropdown-typeList{
         width: 600px;
@@ -245,8 +255,73 @@ background-color: $second-color;
         align-self: center;
         margin-right: 20px;
     }
+
+
+    .profile-tab .category-icon {
+        left: 16%;
+        z-index: 3;
+
+    } 
+
+    .profile-tab .type-icon,.profile-tab .type-icon.city {
+        left: 16%;
+       
+    }
+
+
     
 }
+
+@media (max-width:700px) {
+  
+    .profile-tab .category-icon {
+        left: 22%;
+        top:1132px
+
+
+
+    } 
+
+    .profile-tab .type-icon {
+        left: 22%;
+        top: 985px;
+       
+    }
+
+    .profile-container .profile-heading,
+    .addAdds-tab-container .addAdds-heading h3{
+        padding-right: unset;
+        align-self: center;
+        margin-bottom: 16px;
+    }
+
+    
+    
+}
+
+
+
+@media (max-width:600px) {
+  
+    .profile-tab .category-icon {
+        left: 22%;
+        top:1175px
+
+
+
+    } 
+
+    .profile-tab .type-icon {
+        left: 22%;
+        top: 1025px;
+       
+    }
+    
+    
+}
+
+
+
 
 @media (max-width:428px) {
    
@@ -254,19 +329,27 @@ background-color: $second-color;
       .profile-container .profile-heading{
         padding-right: unset;
       }
-      .profile-container .profile-heading{
-         
-          margin-bottom: unset; 
-          align-self: center;
-          padding-right: unset;
+     
+        .profile-container .profile-heading {
+            margin-bottom: unset;
+            align-self: flex-start;
+            padding-right: 22px;
+        
       }
 
       .addAdds-tab-container .addAdds-group input,
-      .addAdds-tab-container textarea,
+
       .profile-tab .profile-group input {
             position: relative;
-        width: 80vw;
+            width: 80vw;
+            height: 62px;
+        
     }
+        .addAdds-tab-container textarea{
+            width: 80vw;
+            font-size: 20px;
+            margin-right: 27px;
+        }
 
     .profile-tab .map-adds {
         width: 80vw;
@@ -280,31 +363,73 @@ background-color: $second-color;
         margin-right: unset;
     }
       
-    .profile-tab .category-icon{
-        left: 26px;
-    top: 100px;
-    }
-    .profile-tab .type-icon{
-        left: 26px;
-        top: 100px;
-    }
+ 
 
     .addAdds-tab-container .addAdds-heading h3{
-        margin-right:unset
-    }
+display: none;    }
 
     .profile-tab .dropdown-typeList, .profile-tab .dropdown-category, .profile-tab .dropdown-typeList {
         width: 80vw;
+        margin-right: 20px;
+        position: absolute;
+        z-index: 2;
     }
 
-    .sign-input.submit-logo button{
+    .sign-input.submit-logo button,
+    .signin-contanier .sign-btn {
+
         width: 80vw;
+        font-size: 20px;
+        height: 62px;
+        margin-right: 24px;
+        margin-bottom: 5px;
     }
 
     .office-heading-paragraph{
         width: 90vw;
-        margin-right: unset;
+        margin-right: 6px;
         margin-bottom: 20px;
+        font-size: 14px;
+    }
+    .profile-tab .category-icon {
+        left: 17%;
+        top: 911px;
+    
+    }
+    .profile-tab .type-icon {
+        left: 17%;
+        top: 785px;
+    }
+
+    .profile-tab .type-icon.city {
+        left: 17%;
+        top: 1032px;
+    }
+
+
+    .subNav-items .subNav-item .sub-link {
+        width: 139px;
+        height: 51px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .addAdds-tab-container .map-adds
+    {
+        margin-top: 6px;
+        margin-right: 27px;
+    }
+
+    .profile-tab .checksbox .chack-groub span{
+        font-size: 15px;
     }
    
+    .profile-tab .checksbox .chack-groub:last-child{
+        margin-top: 12px;
+    }
+
+    .profile-tab .checksbox .chack-groub, .profile-tab .checksbox .chack-groub:last-child
+    {
+        margin-right: -86px;
+    }
 }

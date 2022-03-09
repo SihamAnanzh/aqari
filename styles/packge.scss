@@ -496,4 +496,31 @@ cursor: pointer;
         width: 80vw;
         height: 50vh;
     }
+
+    .add-type-first, .add-type-second{
+        font-size: 14px;
+        border-radius: 5px;
+    } 
+
+    .packge-name 
+    {
+        font-size: 15px;
+    }
+
+    .packge-type
+    {
+        color: #EDAA43;
+    font-size: 20px;
+    width: 129px;
+    margin-right: 23px;
+    font-weight: 600;
+    font-family: otfPlain;
+    }
+
+    .signin-contanier .password img {
+        right: 90%;
+        width: 19px;
+        height: 14px;
+        top: 88px;
+    }
 }

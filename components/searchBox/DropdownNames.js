@@ -75,7 +75,8 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
          <img src='/assets/img/Stroke 1.svg' className='arrow-drop-name'/>
         </div>
         {
-               open ?  <ul className={`list-items ${showListNames?'hidden':""}`}>
+               open ? 
+                <ul className={`list-items ${showListNames?'hidden':""}`}>
                {/* {itemstype} */}
                <h3 style={{
                    color:'#EDAA43',

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 
-const FallBackNav = ({setShowNav}) => {
+const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
     const route = useRouter()
     const [switchlang, setSwitchLang]=useState(false)
     const [login, setLogin]=useState(false)
@@ -10,7 +10,9 @@ const FallBackNav = ({setShowNav}) => {
   return (
 
     <div className='drop-nav-container'>
-      <ul className='fallBack-drop-nav'>
+      <ul className='fallBack-drop-nav' style={{
+          height:switchlang?"452px":"402px",
+      }}>
     
     <li className={`${route.asPath === "/" ? "activeNavFall" : ""}`}>
         
@@ -40,10 +42,21 @@ const FallBackNav = ({setShowNav}) => {
     </li>
     <li  style={{
         marginBottom:switchlang&&"80px",
-        backgroundColor:switchlang &&"#EDAA43"
+        backgroundColor:switchlang &&"#EDAA43",
+        position:"relative"
     }}>
-        <a onClick={()=>setSwitchLang(!switchlang)}>
-        <img src="/assets/img/lang-nav.svg" alt=""  />اللغة
+        <a onClick={()=>{
+            setMvoeArrow(!movearrow)
+            setSwitchLang(!switchlang)}
+            }>
+        <img src="/assets/img/lang-nav.svg" alt=""  />
+        اللغة      
+         <img src='/assets/img/Stroke 2.svg' alt=''  style={{
+             position:"absolute",
+             right:'360px',
+             top:'10px',
+         }} />
+
         <ul className='switch-lang'
         style={{
             display:!switchlang?'none':"",
@@ -53,27 +66,31 @@ const FallBackNav = ({setShowNav}) => {
            
             
     }}>
-                 <li >العربية</li>
+                 <li >عربي</li>
                  <li>English</li>
              </ul>
         </a>
-    
     </li>
 
 
-    <li className={`${route.asPath === "/profile" ? "activeNavFall" : ""}`} onClick={()=>setLogin(true)}>
-        <Link href="/profile" classNamem='main-nav-item'><a
+    <li className={`${route.asPath === "/signIN" ? "activeNavFall" : ""}`} onClick={()=>setLogin(true)}>
+        <Link href="/signIN" classNamem='main-nav-item'><a
             className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
         >
-            {!login?"الملف الشحصي":"دخول"}</a></Link>
+            {login ? <img src='/assets/img/profile-nav.svg'/>:""}
+            {login?"الملف الشحصي":"دخول"}</a></Link>
 
     </li>
   
     <li className={`${route.asPath === "/signUp" ? "activeNavFall" : ""}`}>
         <Link href="/signUp" classNamem='main-nav-item'><a
             className={`${route.asPath === "/signUp" ? "active" : ""}`}
-        >{login?"تسجيل خروج":"تسجيل"}</a></Link>
+          
+        >
+              {login ? <img src='/assets/img/Log out.svg'/>:""}
+
+            {login?"تسجيل خروج":"تسجيل"}</a></Link>
 
     </li>
     

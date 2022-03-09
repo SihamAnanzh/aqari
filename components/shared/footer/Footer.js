@@ -6,7 +6,6 @@ const Footer = () => {
     <div className='footer'>
       <Link href='/contactus'>  
       <h2 className='contact-us'>اتصل بنا</h2>
-
       </Link>
     </div>
   )

@@ -302,7 +302,9 @@ font-family:otfPlain ;
         width: 324px;
     }
     .dropdwon-menu ul {
-      width: 325px;
+      width: 366px;
+      z-index: 1000;
+      position: absolute;
     }
 
     .arrow-drop-name, .arrow-drop{
@@ -312,4 +314,30 @@ font-family:otfPlain ;
         margin-right: 0;
         margin-left: 0;
     }
+  }
+
+
+  @media (max-width:428px) {
+      .actions{
+          .action{
+              width:114px;
+              height: 47px;
+              font-size:24px    
+                  }
+      }
+
+      .btnSearch button{
+          width:364px;
+          height:62px;
+          font-size:24px
+      }
+      .dropdwon-menu{
+          width:364px;
+          margin-right: -27px;
+       
+      }
+
+      .arrow-drop-name, .arrow-drop{
+          right:330px
+      }
   }

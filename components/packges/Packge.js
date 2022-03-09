@@ -22,6 +22,7 @@ const Packge = ({titleOne , titleTwo}) => {
             <span className='number-adds'>1</span>إعلان مميز
              <span className='price-adds'>8</span>د.ك
              </span>      
+             
              <span className='add-type-second'>
             <span className='number-adds'>1</span>إعلان مميز
              <span className='price-adds'>8</span>د.ك

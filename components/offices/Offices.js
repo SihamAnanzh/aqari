@@ -32,7 +32,18 @@ const Offices = () => {
         <SingleOffice/>
 
         </div>
+        <div className='adds-btn office-more-btn'>
+             المزيد<span className='btn-icon'>
+              <img src='/assets/img/+btn.svg' style={{
+                width: '20px',
+                height: '20px',
+            
+             
+              }}/>
+                  </span> 
+           </div>
       </div>
+
       <Footer/>
     </>
   )

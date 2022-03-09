@@ -711,6 +711,8 @@ margin-left: 0;
          position: absolute;
          z-index: 4;
          top: 41px;
+         right:25px ;
+
        }
       .add-adds-items{
        z-index: 2;
@@ -918,7 +920,7 @@ li.active,
 
   .arrowDown-nav{
     display: block;
-    top: 580px;
+    top: 531px;
     right: 26px;
     width: 27.29px;
     height: 21.6px;
@@ -936,7 +938,7 @@ li.active,
    
       li{
         color: #fff;
-        font-size: 13px;
+        font-size: 20px;
         width: 100%;
         margin-top: 0;
         margin-bottom: 0;
@@ -972,6 +974,8 @@ li.active,
   }
 }
 
-
+.drop-nav-container .fallBack-drop-nav{
+  height: 402px;
+}
 
 }

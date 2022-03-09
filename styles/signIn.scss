@@ -252,7 +252,7 @@
 }
 
 
-@media (max-width:590px) {
+@media (max-width:520px) {
     .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn{
         width: 89vw;
     }
@@ -269,14 +269,123 @@
         right: 86%;
     }
 
-    .headerOffice .office-info .office-contact{
-        padding-top: unset;
-        padding-right: unset;
+
+    .signin-contanier h3 {
+        margin-right: 29px;
+    }
+    .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn
+    {
+        margin-right: 25px;
     }
 
-    .office-contact{
-        padding-top: unset;
-        padding-right: unset;
+    .signin-contanier .sign h2 {
+        margin-right: 0px;
+        font-size: 22px;
     }
-   
+}
+@media (max-width:428px) {
+    
+
+    .signin-contanier h3 {
+        margin-right: 29px;
+        font-size: 20px;
+        margin-top: 20px;
+        padding-top: unset;
+    }
+
+    .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn {
+        margin-right: 20px;
+        height: 62px;
+        font-size: 18px;
+        width: 364px;
+        margin-top: 10px;
+    }
+
+    .signin-contanier .forget-passwrod a {
+        color: #EDAA43;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .signin-contanier .forget-passwrod span {
+        font-size: 20px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .signin-contanier .social-sign p {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #EDAA43;
+    }
+
+    .signin-contanier .social-sign .social-icon {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 16px;
+        height: 16px;
+    }
+    .signin-contanier .goSignUp {
+        margin-bottom: 70px;
+        font-size: 14px;
+    }
+    
+    .signin-contanier .goSignUp a
+     {
+         font-size: 14px;
+     }
+
+     input::placeholder{
+        font-size: 15px;
+    }
+
+
+    .signin-contanier .social-sign .social-icon {
+        margin-top: 0px;
+    margin-bottom: 10px;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+  
+    }
+
+    .signin-contanier .social-sign li{
+        margin-right: 0;
+        padding-left: unset;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
+
+    .signin-contanier .social-sign{
+        margin-top: 10px;
+    }
+
+    .signin-contanier .forget-passwrod span img{
+        margin-top: unset;
+        width: 10px;
+        margin-right: 5px;    }
+
+
+        .signin-contanier .sign-btn {
+            margin-right: 20px;
+            height: 62px;
+            font-size: 21px;
+            width: 364px;
+            margin-top: 21px
+        }
+
+
+        .signin-contanier .social-sign {
+            margin-top: 10px;
+            margin: 5px auto;
+        }
+        
+        .signin-contanier .social-sign {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            width: 70vw;
+        }
+
 }

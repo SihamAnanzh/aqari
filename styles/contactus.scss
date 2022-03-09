@@ -123,3 +123,43 @@
 
 
 }
+
+@media (max-width:700px) {
+    .contact-container .messega {
+        font-size: 15px;
+        color: #737373;
+    }
+
+    .contact-container .call-us{
+        font-size: 24px;
+    }
+
+    .contact-container input, .contact-container textarea,
+    .contact-container .user-message-input{
+        width: 70vw;
+    }
+
+    .contact-container .send-btn-contact{
+        width: 70vw;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .contact-container .contact-header{
+        margin-right: 5px;
+    }
+}
+
+@media (max-width:428px) {
+    .contact-container h2
+    {
+        font-size: 20px;
+    }
+    .contact-container input, .contact-container textarea, .contact-container .user-message-input
+    {
+        font-size: 16px;
+        height: 62px;
+    }
+
+  
+}

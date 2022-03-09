@@ -560,10 +560,7 @@ color: #737373;
             padding-bottom: 59px;
           }
     
-          .contact-details .phone, .contact-details .whatsApp {
-              margin-bottom: 10px;
-              width: 150px;
-          }
+          
           .contact-details .phone{
               margin-right:-55px;
           }
@@ -710,5 +707,37 @@ color: #737373;
                 margin-right: -33px;
             }
 
-         
+            .address-time-icon img{
+                margin-top: 3px;
+            }
+
+            .fallback-adds .time{
+                font-size: 14px;
+                margin-right: -42px;
+            }
+
+            .premuim-add.origin::after{
+                width: 62px;
+                height: 28px;
+                font-size:14px
+            }
+            .fallback-adds .contact-details .phone, .fallback-adds .contact-details .whatsApp{
+                width: 167px;
+                height: 29px;
+            }
+
+            .fallback-adds .contact-details .phone{
+                margin-right:-63px
+            }
+
+            .premium-title{
+                margin-right:-14px;
+                align-self: flex-start;
+            }
+
+            .regular{
+                .time{
+                    font-size:14px
+                }
+            }
   }

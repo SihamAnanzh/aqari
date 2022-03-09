@@ -5,9 +5,25 @@ const AddAdds = () => {
   const [typeEstat,setTypeEstat]=useState('')
   const [showListCategory,setShwoListCategory]=useState(false)
   const [showListType,setShwoListType]=useState(false)
+  const [showListNames, setShowListNames]=useState(false)
+  const [city ,setCity]=useState('')
 const [checkedAdd ,setCheckedAdd]=useState(false)
 const [checkedOffice ,setCheckedOffice]=useState(false)
 const [checkedConditions,setCheckedConditions]=useState(false)
+const [imageUpLoaded, setImageUpLoaded]=useState(false)
+
+
+const handleClickFileBtn=()=>{
+    let fileButton=document.getElementById('select-file').click()
+
+}
+const handleChange=(e)=>{
+    setImageUpLoaded(true)
+    let file= e.target.files
+    setImageSrc(file[0].name)
+    console.log(file);
+}
+
 
 
 const items = [
@@ -46,12 +62,41 @@ const items = [
   }
 ];
 
+
+const items2 = [
+  {
+    id: 1,
+    value: 'حولي',
+  },
+  {
+    id: 2,
+    value: 'السلام',
+  },
+  {
+    id: 3,
+    value: 'سلوى',
+  },
+  {
+    id: 4,
+    value: 'بيان',
+  },{
+    id: 5,
+    value: 'الشهداء',
+  },{
+    id: 6,
+    value: 'السالمية',
+  },{
+    id: 7,
+    value: 'حطين',
+  }
+];
   return (
     <div>  
       <div className='profile-tab' id='profile-tab' onClick={(e)=>{
               console.log(e.target);
                  e.target.id !== "category-list"?setShwoListCategory(false):setShwoListCategory(true)
                  e.target.id !== "type-list"?setShwoListType(false):setShwoListType(true)
+                 e.target.id !== 'city-list'?setShowListNames(false):setShowListNames(true)
 
            }}>
     <div className="signin-contanier addAdds-tab-container ">
@@ -71,6 +116,8 @@ const items = [
            <h3>الفئة</h3>
            <input type="text" className="sign-mail" placeholder='الفئة' tabIndex={3} id='category-list' value={category} onClick={(e)=>{
                setShwoListCategory(!showListCategory)
+               setShwoListType(false)
+               setShowListNames(false)
            }} />
            <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon' />
 
@@ -93,6 +140,9 @@ const items = [
            <input type="text" className="sign-mail" placeholder='نوع العقار' tabIndex={3}  id='type-list' value={typeEstat}
              onClick={()=>{
                setShwoListType(!showListType)
+               setShowListNames(false)
+               setShwoListCategory(false)
+            
            }}/>
           <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
         {
@@ -109,7 +159,7 @@ const items = [
                                 id:item.id
                             }
           
-                            console.log(selectInfo);
+                
                          setTypeEstat(selectInfo.value)
                        }
                     }>
@@ -121,9 +171,38 @@ const items = [
            </ul>
         }
        </div>
-       <div className="sign-input  addAdds-region">
+       <div className="sign-input  addAdds-region" id='city-list' >
            <h3>المنطقة</h3>
-           <input type="text" className="sign-mail" placeholder='المنطقة' tabIndex={3} />
+           <input type="text" className="sign-mail" placeholder='المنطقة' tabIndex={3}   id='city-list' value={city}
+             onClick={()=>{
+               setShowListNames(!showListNames)
+               setShwoListType(false)
+               setShwoListCategory(false)
+           
+           }}/>
+          <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon city' />
+        {
+          <ul className="dropdown-typeList" id='city-list' style={{
+            display: !showListNames ?'none':""
+          }} >
+                {items2.map((item)=>(
+                    <li 
+                    className={`list-item ${city===item.value? 'active-city':""}`}
+                     key={item.id} id={`${item.id} city-list`} onClick={(e)=>
+                        {
+                            let selectInfo= {
+                                value:item.value,
+                                id:item.id
+                            }
+          
+                    
+                         setCity(selectInfo.value)
+                       }
+                    }>
+                       {item.value}</li>
+                ))}
+           </ul>
+        }
        </div>
        <div className="sign-input  addAdds-space">
            <h3>المساحة</h3>
@@ -144,6 +223,20 @@ const items = [
        <div className="sign-input  addAdds-disc">
            <h3>وصف العقار</h3>
            <textarea className="sign-mail" placeholder='وصف العقار' tabIndex={3}  />
+       </div>
+
+       <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`}>
+           <h3 style={{
+           }}>صور</h3>
+           <button
+           onClick={handleClickFileBtn}
+           >تحميل</button>
+           <input type="file" id='select-file' tabIndex={3}
+           style={{
+            display: 'none',
+           }}
+             onChange={(e)=>handleChange(e)}/>
+                    
        </div>
        <div className="sign-input  addAdds-auto-num">
            <h3>تحديد المواقع</h3>
