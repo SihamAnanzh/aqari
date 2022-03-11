@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Packge = ({titleOne , titleTwo}) => {
+const Packge = (props) => {
     const [showPackgeDetail,setShwoPackgeDetail]=useState(false)
   
     
@@ -10,22 +10,21 @@ const Packge = ({titleOne , titleTwo}) => {
     <div className='packge'>
         <div className='type'>
             <div className='packge-img'  onClick={()=>setShwoPackgeDetail(!showPackgeDetail)}>
-                <img src='assets/img/packge.jpg'/>
+                <img src={props.logo}/>
             </div>
             <div className='packge-info'>
-                <span className='packge-name'>{titleOne}</span>
-                <span className='packge-type'>{titleTwo}</span>
+                <span className='packge-name'>{props.titleOne}</span>
+                <span className='packge-type'>{props.titleTwo}</span>
             </div>
         </div>
         <div className='add-type'>
             <span className='add-type-first'>
-            <span className='number-adds'>1</span>إعلان مميز
-             <span className='price-adds'>8</span>د.ك
-             </span>      
-             
+            <span className='number-adds'>{props.currencyId}</span>{props.titleTwo}
+             <span className='price-adds'>{props.price}</span>{props.currencyTitle}
+             </span>   
              <span className='add-type-second'>
-            <span className='number-adds'>1</span>إعلان مميز
-             <span className='price-adds'>8</span>د.ك
+            <span className='number-adds'>{props.currencyId}</span>{props.titleTwo}
+            <span className='price-adds'>{props.price}</span>{props.currencyTitle}
              </span>      
         </div>
         <div className='subscribe-type'>
@@ -43,7 +42,7 @@ const Packge = ({titleOne , titleTwo}) => {
 
                 <div className="single-packge">
                 <h3>اجعل إعلانك مميز</h3>
-                <img className='packge-img' src="/assets/img/packge.jpg" alt="" />
+                <img className='packge-img' src={props.logo} alt="" />
                 <button className='btn-packge'  onClick={()=>setShwoPackgeDetail(!showPackgeDetail)}>إغلاق</button>
             </div>
             </div>

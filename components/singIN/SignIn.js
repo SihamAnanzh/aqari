@@ -5,6 +5,8 @@ export const SignInComponent = () => {
     const [rememberME,setRememberMe]=useState(false)
     const [showPassword, setShowPassword]=useState(false)
     const [wrongPassword, setWrongPassword] = useState(true);
+    const [name,setName]=useState('')
+    const [password,setPassowrd]=useState('')
   return (
     <div className="signin-contanier">
         <div className="sign">

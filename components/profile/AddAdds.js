@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PackgeBox from '../dialogBox/PackgeBox'
 import SimpleMap from '../map/MapAdds'
 const AddAdds = () => {
   const [category,setCategory]=useState('')
@@ -11,17 +12,22 @@ const [checkedAdd ,setCheckedAdd]=useState(false)
 const [checkedOffice ,setCheckedOffice]=useState(false)
 const [checkedConditions,setCheckedConditions]=useState(false)
 const [imageUpLoaded, setImageUpLoaded]=useState(false)
-
-
+const [imageSrc, setImageSrc]=useState([])
+const [disable,setdisable]=useState(true)
+const [showDialogBox, setShowDialogiBox]=useState(false)
 const handleClickFileBtn=()=>{
     let fileButton=document.getElementById('select-file').click()
 
 }
 const handleChange=(e)=>{
     setImageUpLoaded(true)
+    // let files=e.target.files.map(())
     let file= e.target.files
+     let imagesSrc=[...file].map((src)=>{
+       imageSrc.push(src.name)
+     })
     setImageSrc(file[0].name)
-    console.log(file);
+    console.log(imageSrc);
 }
 
 
@@ -144,6 +150,7 @@ const items2 = [
                setShwoListCategory(false)
             
            }}/>
+           
           <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
         {
           <ul className="dropdown-typeList" id='type-list' style={{
@@ -231,13 +238,31 @@ const items2 = [
            <button
            onClick={handleClickFileBtn}
            >تحميل</button>
-           <input type="file" id='select-file' tabIndex={3}
+           <input type="file" id='select-file' tabIndex={3} multiple
            style={{
             display: 'none',
            }}
              onChange={(e)=>handleChange(e)}/>
                     
        </div>
+       <div className={`${imageUpLoaded?"showUploadedImage":""}`   } 
+        style={{
+            display: !imageUpLoaded?'none':"block",
+            position:"relative"
+
+           }}>        
+                  {/* {
+             imageSrc.map((src)=>(
+                <img src={`/assets/img/${src}`}  className='img-submite'  alt="" style={{
+                                        borderRadius:"10px"
+                                    }} />
+             ))
+           } */}    
+                    <img src={`/assets/img/${imageSrc[0]}`}  className='img-submite'  alt="" style={{
+                        borderRadius:"10px"
+                    }} />
+                    <img src="/assets/img/removeImg.svg" alt="" className='remove-img' onClick={()=>setImageUpLoaded(false)} />
+                    </div>
        <div className="sign-input  addAdds-auto-num">
            <h3>تحديد المواقع</h3>
            <div className="map-adds">
@@ -247,7 +272,10 @@ const items2 = [
        <div className="checksbox" style={{cursor:'pointer'}}>
          <div className="premium-add chack-groub" onClick={()=>{
            setCheckedAdd(!checkedAdd)
+           setShowDialogiBox(true)
          }}>
+                      {!showDialogBox ?<PackgeBox/>:""}
+
            <img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
            <span>أجعل الإعلان مميز</span>
          </div>
@@ -258,8 +286,11 @@ const items2 = [
          <span>نشر الإعلان لدى المكاتب</span>
 
          </div>
-         <div className="conditions chack-groub" onClick={()=>{
+         <div className="conditions chack-groub"   style={{cursor:'pointer'}} onClick={()=>{
            setCheckedConditions(!checkedConditions)
+              setdisable(()=>{
+                checkedConditions &&setdisable(!disable)
+              })
          }}>
          <img src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
          <span>موافق على الشروط والقواعد</span>
@@ -268,9 +299,11 @@ const items2 = [
        </div>
     </div>
 
-    <div className="sign-btn">
+    <div className="sign-btn" aria-disabled="true" style={{
+         backgroundColor:disable ? "#F1E6D3":"#EDAA43"
+    }}> 
     اضافة
-    </div>
+    </div> 
 
    </div>
     </div>

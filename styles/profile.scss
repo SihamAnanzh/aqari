@@ -304,19 +304,23 @@ background-color: $second-color;
 @media (max-width:600px) {
   
     .profile-tab .category-icon {
-        left: 22%;
-        top:1175px
+        left: 17%;
+        top: 1080px;
 
 
 
     } 
 
     .profile-tab .type-icon {
-        left: 22%;
-        top: 1025px;
+        left: 17%;
+        top: 932px;
        
     }
     
+      .profile-tab .type-icon.city {
+        left: 17%;
+        top: 1219px;
+    }
     
 }
 

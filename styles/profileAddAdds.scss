@@ -59,12 +59,17 @@ height: 100%;
 }
 
 
-
+ .img-submite{
+     width: 400px;
+     height: 400px;
+ }
     .remove-img {
+    
         z-index: 10;
-        bottom: -248px;
+        top: -13px;
         position: absolute;
-        left: 958px;
+        left: 37px;
+    
     
     }
     
@@ -80,3 +85,27 @@ height: 100%;
 
 
 
+@media (max-width:428px) {
+    
+    .office-logo {
+    margin-right: 39px;
+    
+    }
+ .img-submite{
+ 
+    width: 334px;
+    height: 355px;
+    border: 1px solid #00446b;
+    margin-right: 69px;
+    object-fit: cover;
+
+}
+   .remove-img {
+    z-index: 10;
+    top: -11px;
+    position: absolute;
+    left: 29px;
+   
+   }
+   
+}

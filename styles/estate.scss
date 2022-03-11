@@ -261,6 +261,32 @@ border-radius: 20px;
   .estat-fallback{
 display: none;
 }
+
+
+
+.data{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-bottom: 8px;
+   
+ div {
+    width: 60px;
+    margin-right: 7px;
+    height: 24px;
+    font-size: 11px;
+    color: #fff;
+    background-color: #00416B;
+    border-radius: 5px;
+    padding-right: 10px;
+    padding-top: 5px;
+    
+ }
+
+    img{
+        margin-left: 3px;
+    }
+}
 @media (max-width:983px) {
     .info-estate{
         width: 80vw;

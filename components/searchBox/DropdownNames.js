@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import onClickOutside from 'react-onclickoutside';
-
+import axios from 'axios';
 const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegionName}) => {
     const [open, setOpen] = useState(false);
     const [selection, setSelection] = useState([]);
@@ -15,28 +15,30 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
 
  
 
-    useEffect(() => { 
+useEffect(() => { 
 
-        selectItem?
-        selectItem.map(item=>{
-           toggleAcitveElement(item.id)
-        }):""
-        
-    }, [showListNames]); 
-
-
+selectItem?
+selectItem.map(item=>{
+toggleAcitveElement(item.id)
+}):""
+console.log(items);
+}, [showListNames]); 
 
 
-    const toggleAcitveElement=(id)=>{
-        let item=document.getElementById(id)
-        item!== null ?item.classList.add('selected'):""
 
 
-  }
+const toggleAcitveElement=(id)=>{
+let item=document.getElementById(id)
+item!== null ?item.classList.add('selected'):""
+
+
+}
   
   
     return (
-     <div className='dropdwon-menu'>
+     <div className='dropdwon-menu' style={{
+         zIndex:"1000"
+     }}>
         <div className='serach-content' onClick={(e)=>{
          setShowListNames(!showListNames)
          setOpen(!open)
@@ -96,13 +98,13 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
                             toggleAcitveElement(item.id)
               
                              let selectInfo= {
-                               value:item.value,
+                               value:item.title,
                                id:item.id
                            }
                        
-                           let index=selection.findIndex((el)=>el===item.value)
+                           let index=selection.findIndex((el)=>el===item.title)
                            if(index == -1){
-                               setSelection(pre=>[...pre,item.value])
+                               setSelection(pre=>[...pre,item.title])
                                setSelectItems(pre=>[...pre,selectInfo])
 
                            }else{
@@ -120,7 +122,7 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
                  
                         
                        }
-                    }>{item.value}</li>
+                    }>{item.title}</li>
                 ))}
            </ul>:""
         }

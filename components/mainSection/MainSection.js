@@ -1,21 +1,19 @@
-import React ,{useState} from 'react'
-import SearchBoxNames from '../components/searchBox/SearchBoxNames'
+import React ,{useState,useEffect} from 'react'
+import SearchBoxNames from '../searchBox/SearchBoxNames'
 import onClickOutside from 'react-onclickoutside';
-import SearchBoxTypes from '../components/searchBox/SearchBoxTypes';
-import SearchBoxSerivce from '../components/searchBox/SearchBoxSerivce';
+import SearchBoxTypes from '../searchBox/SearchBoxTypes';
+import SearchBoxSerivce from '../searchBox/SearchBoxSerivce';
 import Link from 'next/link';
-
+import axios from 'axios';
 const MainSection = () => {
   const [showSearchSelling, setShowSearchSelling]= useState(false)
   const [showSearchRent, setShowSearchRent]= useState(false)
   const [showSearchServics, setShowSearchServics]= useState(false)
   const [showBox,setShowBox]= useState(false)
-  const [regionName, setRegionName]=useState([])
-  const [statType, setStatType]=useState([])
-  const [selectItems,setSelectItem]=useState([])
-  const [showListNames ,setShowListNames]=useState(false)
-  const [showListTypes ,setShowListTypes]=useState(false)
-  
+  const [category,setCategory]=useState()
+  const [regions,setRegions]=useState([])
+  const [services, SetSerivces] =useState([])
+
   MainSection.handleClickOutside = () => {
     setShowSearchRent(false)
     setShowSearchServics(false)
@@ -25,8 +23,51 @@ const MainSection = () => {
 
 
 
+        
+  useEffect(()=>{
+  axios.get('https://stagingapi.aqarifinder.com/api/service_type/list',{
+      headers: {
+        "lang":'ar' 
+         },
+    })
+    .then(res=>{
+        res.status.code === 200?
+          setRegions(()=>{res.data.results}):
+            SetSerivces(res.data.results)
+    })
+  },[])
+  
+
+  
+useEffect(()=>{
+axios.get('https://stagingapi.aqarifinder.com/api/category/list',{
+    headers: {
+      "lang":'ar' 
+       },
+  })
+  .then(res=>{
+      res.status.code === 200?
+        setRegions(()=>{res.data.results}):
+          setCategory(res.data.results)
+  })
+},[])
+
+
+  
+useEffect(()=>{
+  const region=axios.get('https://stagingapi.aqarifinder.com/api/region/list/',{
+    headers: {
+      "lang":'ar' 
+       },
+  })
+  .then(res=>{
+      res.status.code === 200?
+        setRegions(()=>{res.data.results}):
+          setRegions(res.data.results)
+  })
+},[])
     
-  console.log(regionName);
+
   return (
     <div className='actions-contaier'>
         <div className={`actions ${showBox ?'showBox':''}`} tabIndex={1} >
@@ -57,10 +98,10 @@ const MainSection = () => {
         {(showBox) && !showSearchServics ?
            <div className='serarch'>
             <div className='serachContainer first'>
-            <SearchBoxNames setRegionName={setRegionName} setSelectItem={setSelectItem} showListNames={showListNames} setShowListNames={setShowListNames} />
+            <SearchBoxNames regions={regions}  />
             </div>
             <div className='serachContainer second'>
-            <SearchBoxTypes setSelectItem ={setSelectItem} showListNames={showListNames} setShowListNames={setShowListNames}/>
+            <SearchBoxTypes category={category} />
             </div>
             <Link className='searchLink' href='/searchResult'>
              <div className=' serachContainer btnSearch' >
@@ -74,10 +115,10 @@ const MainSection = () => {
                </Link>           </div>: 
              showSearchServics && showBox &&<div className='serarch'>
              <div className='serachContainer first'>
-             <SearchBoxNames setSelectItem={setSelectItem} showListNames={showListNames} setShowListNames={setShowListNames}/>
+             <SearchBoxNames regions={regions}  />
              </div>
              <div className='serachContainer second'>
-             <SearchBoxSerivce setSelectItem ={setSelectItem} showListNames={showListNames} setShowListNames={setShowListNames}/>
+             <SearchBoxSerivce services={services}/>
              </div>
              <Link className='searchLink' href='/searchResult'>
              <div className=' serachContainer btnSearch'  >

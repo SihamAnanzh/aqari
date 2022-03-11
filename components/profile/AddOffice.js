@@ -4,6 +4,7 @@ const AddOffice = () => {
 const [checkedConditions,setCheckedConditions]=useState(false)
 const [imageSrc, setImageSrc]=useState('')
 const [imageUpLoaded, setImageUpLoaded]=useState(false)
+const [disable,setdisable]=useState(true)
 
 
 const handleClickFileBtn=()=>{
@@ -72,16 +73,20 @@ useEffect(() => {
        <div className={`${imageUpLoaded?"showUploadedImage":""}`   } 
         style={{
             display: !imageUpLoaded?'none':"block",
+            position:"relative"
 
            }}>
-                    <img src={`/assets/img/${imageSrc}`} height={446} width={446} alt="" style={{
+                    <img src={`/assets/img/${imageSrc}`}  className='img-submite' alt="" style={{
                         borderRadius:"10px"
                     }} />
-                    <img src="assets/img/removeImg.svg" alt="" className='remove-img' onClick={()=>setImageUpLoaded(false)} />
+                    <img src="/assets/img/removeImg.svg" alt="" className='remove-img' onClick={()=>setImageUpLoaded(false)} />
                     </div>
        <div className="checksbox" style={{cursor:'pointer'}}>
-         <div className="conditions chack-groub" onClick={()=>{
+       <div className="conditions chack-groub" onClick={()=>{
            setCheckedConditions(!checkedConditions)
+              setdisable(()=>{
+                checkedConditions &&setdisable(!disable)
+              })
          }}>
          <img  src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
          <span>موافق على الشروط والقواعد</span>
@@ -90,7 +95,9 @@ useEffect(() => {
        </div>
     </div>
 
-    <div className="sign-btn">
+    <div className="sign-btn" aria-disabled="true" style={{
+         backgroundColor:disable ? "#F1E6D3":"#EDAA43"
+    }}> 
     اضافة
     </div>
 

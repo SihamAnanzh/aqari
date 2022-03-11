@@ -13,17 +13,17 @@ const Estat = ({withImg,setOverlay,data ,userAdd}) => {
     <div className='estat-conianer'>
       {withImg && <Slideshow 
       setOverlay={setOverlay}
-        imgs={data[0].images}
+        imgs={data.images}
       />
       }
    
         <div className="header-estat">
             <div className="info-estate">
                 <div className="estat-address">
-                <h3 className="estat-name">{data[0].title}</h3>
+                <h3 className="estat-name">{data.title}</h3>
                 <h5 className="estate-address" >
                     <img src="/assets/img/location.svg" alt="" />
-                   {data[0].address}
+                   {data.address}
                 </h5>
                 </div>
                 {!userAdd ? 
@@ -46,8 +46,18 @@ const Estat = ({withImg,setOverlay,data ,userAdd}) => {
               }}>تعديل</h4> }
               
             </div>
+            <div className="data">
+            <div className='data-time'>
+             <img src='/assets/img/time-estat.svg' width={8.63} height={8.63} />4ساعة</div>
+                        <div className='data-views'>
+                            <img src='/assets/img/view2-01 (2).svg' width={12.47} height={7.95}/>
+          
+                            <span className='number'>199</span>
+                        </div>
+
+              </div>
             <div className="disc-estate">
-            {data[0].discriptions}
+            {data.discriptions}
             </div>
         </div>
         
@@ -56,28 +66,28 @@ const Estat = ({withImg,setOverlay,data ,userAdd}) => {
           <div className="city estat-deatils">
               <span className="att">المنطقة</span>  
               
-              <span>{data[0].city}</span>
+              <span>{data.city}</span>
             </div>
             <div className="space estat-deatils">
             <span className="att">المساحة</span>  
-            <span> متر <span>{data[0].space}</span></span>
+            <span> متر <span>{data.space}</span></span>
 
             </div>
             <div className="destination estat-deatils">
             <span className="att">الواجهة</span>  
-            <span>{data[0].interface}</span>
+            <span>{data.interface}</span>
             </div>
       
             </div>
             <div className="second-line">
             <div className="price estat-deatils">
             <span className="att">السعر</span>
-            <span> د.ك <span>{data[0].price}</span></span>  
+            <span> د.ك <span>{data.price}</span></span>  
 
             </div>
             <div className="automated-number estat-deatils">
             <span className="att">الرقم الآلي</span>  
-            <span className='autom-value'>{data[0].autoNumber}</span>
+            <span className='autom-value'>{data.autoNumber}</span>
 
             </div>
           </div>
@@ -89,39 +99,39 @@ const Estat = ({withImg,setOverlay,data ,userAdd}) => {
           <div className="city estat-deatils">
               <span className="att">المنطقة</span>  
               
-              <span>{data[0].city}</span>
+              <span>{data.city}</span>
             </div>
             <div className="space estat-deatils">
             <span className="att">المساحة</span>  
-            <span> متر <span>{data[0].space}</span></span>
+            <span> متر <span>{data.space}</span></span>
 
             </div>
             <div className="destination estat-deatils">
             <span className="att">الواجهة</span>  
-            <span>{data[0].interface}</span>
+            <span>{data.interface}</span>
             </div>
                      
             <div className="price estat-deatils">
             <span className="att">السعر</span>
-            <span> د.ك <span>{data[0].price}</span></span>  
+            <span> د.ك <span>{data.price}</span></span>  
 
             </div>
             <div className="automated-number estat-deatils">
             <span className="att">الرقم الآلي</span>  
-            <span className='autom-value'>{data[0].autoNumber}</span>
+            <span className='autom-value'>{data.autoNumber}</span>
             </div>
           
         </div>
         
         <div className="estat-map map-origin">
-      <SimpleMap/>
+      <SimpleMap lat={data.lat} lng={data.lang}/>
     </div>
     <div className="estat-map map-copy">
-      <SimpleMap2/>
+    <SimpleMap2 lat={data.lat} lng={data.lang}/>
     </div>
     <div className='contact-estate'>
-      <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg'/></span>{data[0].whatsapp}</div>
-      <div className='phone'><span className='address-phone'><img src='/assets/img/phone.svg'/></span>{data[0].phone}</div>
+      <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg'/></span>{data.whatsApp}</div>
+      <div className='phone'><span className='address-phone'><img src='/assets/img/phone.svg'/></span>{data.phone}</div>
     </div>
     </div>
   

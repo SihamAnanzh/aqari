@@ -50,7 +50,7 @@ const Nav = ({ logo, icon }) => {
                         >الباقات</a></Link>
 
                     </li>
-                    <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`} onClick={()=>setLog}>
+                    <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`} >
                         <Link href="/signIN" classNamem='main-nav-item'><a
                             className={`${route.asPath === "/signIN" ? "active" : ""}`}
 

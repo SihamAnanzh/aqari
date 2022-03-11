@@ -6,6 +6,7 @@ const [imageSrc, setImageSrc]=useState('')
 const [imageUpLoaded, setImageUpLoaded]=useState(false)
 const [showListService,setShowListService]=useState(false)
 const [service,setService]=useState("")
+const [disable,setdisable]=useState(true)
 
 const handleClickFileBtn=()=>{
     let fileButton=document.getElementById('select-file').click()
@@ -143,8 +144,11 @@ const items = [
                     <img src="/assets/img/removeImg.svg" alt="" className='remove-img-serivce' onClick={()=>setImageUpLoaded(false)} />
                     </div>
        <div className="checksbox">
-         <div className="conditions chack-groub" onClick={()=>{
+       <div className="conditions chack-groub" style={{cursor:'pointer'}} onClick={()=>{
            setCheckedConditions(!checkedConditions)
+              setdisable(()=>{
+                checkedConditions &&setdisable(!disable)
+              })
          }}>
          <img src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
          <span>موافق على الشروط والقواعد</span>
@@ -153,7 +157,9 @@ const items = [
        </div>
     </div>
 
-    <div className="sign-btn">
+    <div className="sign-btn" aria-disabled="true" style={{
+         backgroundColor:disable ? "#F1E6D3":"#EDAA43"
+    }}> 
     اضافة
     </div>
 

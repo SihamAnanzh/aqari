@@ -51,17 +51,14 @@ const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
             }>
         <img src="/assets/img/lang-nav.svg" alt=""  />
         اللغة      
-         <img src='/assets/img/Stroke 2.svg' alt=''  style={{
-             position:"absolute",
-             right:'360px',
-             top:'10px',
-         }} />
+         <img src='/assets/img/Stroke 2.svg' alt='' className='lang-arr'/>
 
         <ul className='switch-lang'
         style={{
             display:!switchlang?'none':"",
             height:"83px",
             marginRight:"-5px",
+            marginLeft:"-5px"
         
            
             

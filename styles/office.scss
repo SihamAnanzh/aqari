@@ -333,7 +333,7 @@ text-align: right;
         margin-bottom: 10px;
         display: flex;
         text-align: right;
-        margin-right: unset;
+        margin-right: 35px;
         padding-top: 9px;
         padding-bottom: 0;
       }
@@ -341,7 +341,7 @@ text-align: right;
         margin-right: unset;
         text-align: right;
         padding-bottom: 5px;
-        margin-right: unset;
+        margin-right: 109px;
       }
 
 
@@ -361,8 +361,17 @@ text-align: right;
       }
 
       .headerOffice .office-info .office-contact{
-          padding-top: 10px;
+
+         padding-left: unset;
+        padding-top: unset;
+        padding-right: 0;
+        margin-right: 33px;
+
       }
+
+
+
+     
 
       .office-whatsapp, .office-phone {
           width: 167px;
@@ -374,7 +383,7 @@ text-align: right;
       }
 
       .office-social{
-          padding-left: 69px;
+          padding-left: 14px;
           .office-list {
               margin-right: -31px;
               margin-top: 7px;
@@ -407,13 +416,6 @@ text-align: right;
       } 
       }
 
-
-      .headerOffice .office-info .office-contact {
-        padding-top: unset;
-        padding-right: 1px;
-      }
-
-
       .headerOffice .office-info .office-list{
         text-align: right;
         padding-bottom: 11px;
@@ -439,6 +441,7 @@ text-align: right;
         align-self: flex-start;
         justify-self: flex-start;
         margin-right: -193px;
+        margin-bottom: -38px;
       }
 
 
@@ -447,7 +450,7 @@ text-align: right;
       }
 
       .office-details {
-        padding-right: 44px;
+        padding-right: 78px;
 
     }
 }

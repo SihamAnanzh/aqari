@@ -1,5 +1,6 @@
 import React, { useState ,useEffect} from 'react'
 import onClickOutside from 'react-onclickoutside';
+import axios from 'axios';
 
 
 const DropdownServcies = ({items=[], title, setSelectItem}) => {
@@ -73,7 +74,7 @@ const DropdownServcies = ({items=[], title, setSelectItem}) => {
                             toggleAcitveElement(item.id)
 
                             let selectInfo= {
-                                value:item.value,
+                                value:item.title,
                                 id:item.id
                             }
                             setSelection(selectInfo)
@@ -81,7 +82,7 @@ const DropdownServcies = ({items=[], title, setSelectItem}) => {
                          setSelectItem(selectInfo)
                             }
                     
-                    }>{item.value}</li>
+                    }>{item.title}</li>
                 ))}
            </ul>:""
         }
@@ -97,3 +98,6 @@ const clickOutsideConfig = {
   
 
 export default  onClickOutside(DropdownServcies,clickOutsideConfig);
+
+
+

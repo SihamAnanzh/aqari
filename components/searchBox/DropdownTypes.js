@@ -14,20 +14,20 @@ const DropdownTypes = ({items=[], title, setSelectItem}) => {
         
     }
 
-    useEffect(() => {
-        selection.id !==undefined ? toggleAcitveElement(selection.id):""
-    }, [showListTypes]);  
-      const toggleAcitveElement=(id)=>{
+    // useEffect(() => {
+    //     selection.id !==undefined ? toggleAcitveElement(selection.id):""
+    // }, [showListTypes]);  
+    //   const toggleAcitveElement=(id)=>{
   
-          let items=document.querySelectorAll('.list-item')
+    //       let items=document.querySelectorAll('.list-item')
   
-          Array.from(items).map((item)=>{
-              item.classList.remove('selected')
-          })
-          let item=document.getElementById(id)
-          item!== null ?item.classList.toggle('selected'):""
+    //       Array.from(items).map((item)=>{
+    //           item.classList.remove('selected')
+    //       })
+    //       let item=document.getElementById(id)
+    //       item!== null ?item.classList.toggle('selected'):""
   
-    }
+    // }
  
   
     return (
@@ -77,7 +77,7 @@ const DropdownTypes = ({items=[], title, setSelectItem}) => {
                             toggleAcitveElement(item.id)
 
                             let selectInfo= {
-                                value:item.value,
+                                value:item.title,
                                 id:item.id
                             }
                             setSelection(selectInfo)
@@ -86,8 +86,11 @@ const DropdownTypes = ({items=[], title, setSelectItem}) => {
                        }
                     }><span>
                         <img style={{  
-                            paddingLeft:'10px'
-                        }} src={item.icon}/></span>{item.value}</li>
+                            width:'20px',
+                            height:"20px",
+                            paddingLeft:'10px',
+                            objectFit:'cover'
+                        }} src={item.logo_url}/></span>{item.title}</li>
                 ))}
            </ul>:""
         }

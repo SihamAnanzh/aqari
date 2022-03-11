@@ -5,13 +5,13 @@ import Slider from './Slider';
 import MobileSlider from './MobileSlider';
   
 
-const Thumbnail = ({ arr, image, index ,setCurrentIndex}) => {
+const Thumbnail = ({ arr, image, index ,setCurrentIndex,length}) => {
 
 
     return (
     
     <div className="tumbnail">
-          <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={5} >
+          <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={3} >
       {
         arr.map((imgsrc, i) => (
             <div key={i}
@@ -48,7 +48,7 @@ const Slideshow = ({ imgs,setOverlay }) => {
   const [showImg, setShowImg]=useState(false)
   const [currentInedx,setCurrentIndex]=useState(0)
   // Slideshow.handleClickOutside = () => setShowImg(false)
-
+ 
   useEffect(() => {
     setIndex(0)
 
@@ -78,7 +78,7 @@ const Slideshow = ({ imgs,setOverlay }) => {
       <img className="mainImg" src={imgs[index]} width="200px" height='200px' />
     </div>
     <div className="">
-    <Thumbnail arr={imgs} image={setIndex} index={index} setCurrentIndex={setCurrentIndex} />
+    <Thumbnail arr={imgs} image={setIndex} index={index} setCurrentIndex={setCurrentIndex} length={imgs.length} />
 
     </div>
       </div>

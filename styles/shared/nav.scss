@@ -272,7 +272,8 @@ margin: 10px auto;
 .second-nav-items a{
   color: $main-color;
   font-size: 24px;
-  margin-left: 30px;
+  margin-left: 5px;
+  margin-right: -28px;
 }
 .second-nav-items div{
   margin-left: 30px;
@@ -422,7 +423,7 @@ li.activeNavFall{
     flex-direction: column;
     background-color: #00416B;
     height: 79.72px;
-    width: 123.87px;
+    width: 145.87px;
     color: #fff;
     border: 2px solid #fff;
     border-radius: 10px;
@@ -481,7 +482,7 @@ li.activeNavFall{
   
    .add-adds-menu{
     background-color: #00416B;
-    width: 123.87px;
+    width: 145.87px;
     height: 50.72px;
   
    }
@@ -567,7 +568,7 @@ li.activeNavFall{
   
   .second-nav-items a{
     color: $main-color;
-margin-left: 0;
+    margin-left: 0;
     font-size: 18px;
   }
   .second-nav-items div{
@@ -580,15 +581,15 @@ margin-left: 0;
 
   .add-adds-tilte img {
     position: absolute;
-    width: 16px;
-    height: 17px;
+    width: 21px;
+    height: 23px;
     right: 11px;
-    top: 15px;
+    top: 12px;
 }
   
   ///banner
   .banner{
-    width:100% ;
+    width:100vw;
     height: 347px;
     background-color:$main-color ;
     display: flex;
@@ -709,14 +710,15 @@ margin-left: 0;
      .add-menus-profile{
        span{
          position: absolute;
-         z-index: 4;
+         z-index: 1001;
          top: 41px;
          right:25px ;
 
        }
       .add-adds-items{
-       z-index: 2;
+       z-index: 100;
         top: 59px;
+        right: 24px;
     
       }
      }
@@ -806,15 +808,16 @@ li.active,
 
 
   .switch-lang{
+    position: relative;
     height: 80px;
       padding-bottom: 50px;
       background-color: $second-color;
       border-radius: 10px;
-      width: 823px;
+      // width: 96.1vw;
       li{
         color: #fff;
         font-size: 13px;
-        width: 800px;
+      
         margin-top: 0;
         margin-right: 22px;
         margin-left: 22px;
@@ -890,13 +893,13 @@ li{
   width: 100%;
   
   img{
+    
     padding-left: 10px;
 
   }
 
 
 }
-
 
 li.active,
   li:hover{
@@ -930,7 +933,7 @@ li.active,
 
 
   .drop-nav-container .fallBack-drop-nav .switch-lang{
-    width: 388px;
+   
     height: 111px;
       margin-bottom: 20px;
       background-color: $second-color;
@@ -947,6 +950,7 @@ li.active,
 
 
   }
+
 
   
   .fallBack-drop-nav {
@@ -976,6 +980,15 @@ li.active,
 
 .drop-nav-container .fallBack-drop-nav{
   height: 402px;
+
 }
 
 }
+
+  .lang-arr{
+    position: absolute;
+    right: 95%;
+    top: 10px;
+    padding-left: 10px;
+  
+  }

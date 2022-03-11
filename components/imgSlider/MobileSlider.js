@@ -10,7 +10,7 @@ import { Pagination } from "swiper";
 function MobileSlider({imgs}) {
   return (
     <>
-      <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+      <Swiper loop pagination={true} modules={[Pagination]} className="mySwiper">
         {imgs.map((img)=>(
           <SwiperSlide><img src={img} alt="" /></SwiperSlide>
 
