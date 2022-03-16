@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+import { AuthContext } from '../../../stores/auth-context';
 
 const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
     const route = useRouter()
     const [switchlang, setSwitchLang]=useState(false)
     const [login, setLogin]=useState(false)
-
+ const authCtx=useContext(AuthContext)
   return (
 
     <div className='drop-nav-container'>
@@ -16,7 +17,7 @@ const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
     
     <li className={`${route.asPath === "/" ? "activeNavFall" : ""}`}>
         
-        <Link href="/" classNamem='main-nav-item'><a
+        <Link href="/" className='main-nav-item'><a
             className={`${route.asPath === "/" ? "active" : ""}`}
         >
             <img src="/assets/img/main-nav.svg" alt="" />
@@ -24,7 +25,7 @@ const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
 
     </li>
     <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNavFall" : ""}`}>
-        <Link href="/offices" classNamem='main-nav-item'><a
+        <Link href="/offices" className='main-nav-item'><a
             className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "active" : ""}`}
         > <img src="/assets/img/office-nav.svg" alt="" />
 
@@ -32,7 +33,7 @@ const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
 
     </li>
     <li className={`${route.asPath === "/packges" ? "activeNavFall" : ""}`}>
-        <Link href="/packges" classNamem='main-nav-item'><a
+        <Link href="/packges" className='main-nav-item'><a
             className={`${route.asPath === "/packges" ? "active" : ""}`}
         >
        <img src="/assets/img/packegIcon-nav.svg" alt="" />
@@ -71,23 +72,31 @@ const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
 
 
     <li className={`${route.asPath === "/signIN" ? "activeNavFall" : ""}`} onClick={()=>setLogin(true)}>
-        <Link href="/signIN" classNamem='main-nav-item'><a
+        <Link href={authCtx.isLoggedIn?"/profile":"/signIN" }className='main-nav-item'><a
             className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
         >
-            {login ? <img src='/assets/img/profile-nav.svg'/>:""}
-            {login?"الملف الشحصي":"دخول"}</a></Link>
+            {authCtx.isLoggedIn ? <img src='/assets/img/profile-nav.svg'/>:""}
+            {authCtx.isLoggedIn?"الملف الشحصي":"دخول"}</a></Link>
 
     </li>
   
     <li className={`${route.asPath === "/signUp" ? "activeNavFall" : ""}`}>
-        <Link href="/signUp" classNamem='main-nav-item'><a
-            className={`${route.asPath === "/signUp" ? "active" : ""}`}
-          
+        {authCtx.isLoggedIn ?
+        <div   className='main-nav-item'><a
+            className={`${route.asPath === "/signUp" ? "active" : ""}`}   
+            onClick={()=>authCtx.logout()}  
         >
-              {login ? <img src='/assets/img/Log out.svg'/>:""}
+              <img src='/assets/img/Log out.svg'/>
 
-            {login?"تسجيل خروج":"تسجيل"}</a></Link>
+             تسجيل خروج</a></div> :
+              <Link href="/signUp" className='main-nav-item'><a
+              className={`${route.asPath === "/signUp" ? "active" : ""}`}
+          >  
+               تسجيل</a></Link>
+             }
+     
+            
 
     </li>
     

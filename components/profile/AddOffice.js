@@ -1,10 +1,17 @@
-import React ,{useState ,useEffect} from 'react'
-
+import React ,{useState ,useEffect,useContext} from 'react'
+import SoicalInput from '../socialInput/SoicalInput'
+import axios from 'axios'
+import { AuthContext } from '../../stores/auth-context'
 const AddOffice = () => {
+  const authCtx=useContext(AuthContext)
 const [checkedConditions,setCheckedConditions]=useState(false)
 const [imageSrc, setImageSrc]=useState('')
 const [imageUpLoaded, setImageUpLoaded]=useState(false)
 const [disable,setdisable]=useState(true)
+const [title,setTitle]=useState('')
+const [phone, setPhone]=useState('')
+const [email,setEmail]=useState('')
+const  [descOffice,setDecOffice]=useState('')
 
 
 const handleClickFileBtn=()=>{
@@ -16,9 +23,37 @@ const handleChange=(e)=>{
     let file= e.target.files
     setImageSrc(file[0].name)
     console.log(file);
+
 }
 
+const handelSubmit=()=>{
+  let data={}
+  let formData=new FormData()
+  title == ''&&  descOffice == ''&& phone  =="" && email =='' && imageSrc ==  "" ?
+(alert('fill all')):
+  
+    formData.append('title',title)
+    formData.append('desc',descOffice)
+    formData.append('phone',phone)
+    formData.append('whatsapp',phone)
+    formData.append('is_premium',false)
+    formData.append('logo_file',imageSrc)
+  
+    axios({
+      method: "post",
+      url: "https://stagingapi.aqarifinder.com/api/user/office/add",
+      headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
+      data: formData,
+    })
+      .then( (response) =>{
 
+        console.log(response);
+      })
+      .catch( (response)=> {
+
+        console.log(response);
+      });
+}
 useEffect(() => {
   setImageSrc(imageSrc)
 }, [imageSrc]);
@@ -35,26 +70,23 @@ useEffect(() => {
       </div>
     <div className="inputs-group addAdds-group">
     <div className="sign-input  ">
-    <div className="sign-input   ">
-           <h3>عنوان المكتب</h3>
-           <input type="text" className="sign-mail" placeholder='عنوان الأعلان' tabIndex={1} autoFocus />
-       </div>
+
            <h3>رقم الهاتف</h3>
-           <input type="number" min={0} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2}  />
+           <input type="text" maxLength={12} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2} onChange={(e)=>setPhone(e.target.value)}  />
        </div>
      
        <div className="sign-input ">
            <h3 style={{
            }}>البريد الإلكتروني</h3>
-           <input type="text" className="sign-mail" placeholder='البريد الإلكتروني' tabIndex={3} />
+           <input type="text" className="sign-mail" placeholder='البريد الإلكتروني' tabIndex={3} onChange={(e)=>setEmail(e.target.value)} />
        </div>
        <div className="sign-input ">
            <h3>اسم النشاط التجاري</h3>
-           <input type="text" className="sign-mail" placeholder='اسم النشاط التجاري' tabIndex={4} />
+           <input type="text" className="sign-mail" placeholder='اسم النشاط التجاري' tabIndex={4} onChange={(e)=>setTitle(e.target.value)} />
        </div>
        <div className="sign-input  addAdds-disc">
            <h3>تفاصيل عن النشاط التجاري</h3>
-           <input type="text" className="sign-mail" placeholder='تفاصيل عن النشاط التجاري' tabIndex={5} />
+           <input type="text" className="sign-mail" placeholder='تفاصيل عن النشاط التجاري' tabIndex={5} onChange={(e)=>setDecOffice(e.target.value)} />
        </div>
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`}>
            <h3 style={{
@@ -80,7 +112,8 @@ useEffect(() => {
                         borderRadius:"10px"
                     }} />
                     <img src="/assets/img/removeImg.svg" alt="" className='remove-img' onClick={()=>setImageUpLoaded(false)} />
-                    </div>
+       </div>
+       {/* <SoicalInput/> */}
        <div className="checksbox" style={{cursor:'pointer'}}>
        <div className="conditions chack-groub" onClick={()=>{
            setCheckedConditions(!checkedConditions)
@@ -95,7 +128,7 @@ useEffect(() => {
        </div>
     </div>
 
-    <div className="sign-btn" aria-disabled="true" style={{
+    <div className="sign-btn" aria-disabled="true" onClick={handelSubmit} style={{
          backgroundColor:disable ? "#F1E6D3":"#EDAA43"
     }}> 
     اضافة

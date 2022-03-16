@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-const PackgeBox = () => {
+const PackgeBox = ({setShowDialogiBox,showDialogBoxn,count}) => {
   return (
     <div className='box' style={{
         top:"82%"
@@ -11,17 +11,18 @@ const PackgeBox = () => {
             }}/>
         </div>
         <div className="content-box">
-            <p>
-            تبقى لديك اعلان مميز عدد 3 هل ترغب بالاستمرار ؟ </p>
+            <p>{`تبقى لديك اعلان مميز عدد ${count} هل ترغب بالاستمرار ؟ 
+`}
+            </p>
         </div>
         <div className="box-btns">
            
-              <div className="box-btn signUp-btn">
+              <div className="box-btn signUp-btn"  onClick={()=>setShowDialogiBox(false)}>
               {/* <Link href='/'>استمرار</Link> */}
               استمرار
               </div>
               <div className="box-btn">
-            <div  onClick={()=>console.log(res)}>الغاء</div>
+            <div  onClick={()=>setShowDialogiBox(true)}>الغاء</div>
             </div>
         </div>
     </div>

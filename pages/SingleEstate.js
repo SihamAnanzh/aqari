@@ -12,19 +12,17 @@ import axios from 'axios'
 // should receive a  an id for  a specific ad and then get the data for this add
 //and check if the adds belong to this user or not 
 const SingleEstate = ({data}) => {
-    const [withImg, setWithImg] = useState(true)
+    const [withImg, setWithImg] = useState(false)
     const  [overlay ,setOverlay]=useState(false)
     const [userAdd, setUserAdd]=useState(false)
     const [estat, setEstateData]=useState([])
 
 
-  console.log(data);
-
-
   useEffect(()=>{
-      data.images.length>0?
+      data.images?
       setWithImg(true):setWithImg(false)
-    
+      console.log(data);
+
   },[])
 
     let content='/assets/img/estate.svg'

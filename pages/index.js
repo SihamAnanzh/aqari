@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from 'react'
+import React ,{useState,useEffect, useContext} from 'react'
 import Nav from '../components/shared/nav/Nav'
 import Banner from '../components/banner/Banner'
 import Footer from '../components/shared/footer/Footer'
@@ -6,132 +6,161 @@ import Adds from '../components/adds/Adds'
 import Loader from '../components/loader/Loader'
 import MainSection from '../components/mainSection/MainSection'
 import axios from 'axios'
-const Index = ({prem,latest}) => {
-  const [loading,setLoading]=useState(true)
-  const [singleEstate, setSingleEsate]=useState([])
-  const [singleEstateLatest, setSingleEsateLatest]=useState([])
-  const [premuimAdds,setPremuimAdds]=useState([])
-  const [latestData,setLeastestAdd]=useState([])
- 
-    
+import { AuthContext } from '../stores/auth-context'
+import { FliterProvider } from '../stores/filter'
 
-  useEffect(()=>{
-    setLoading(false)
-    
-    prem && prem.map((adds)=>{
-      let singleEstatData= {
-        id:adds.id,
-       images:adds.images.length >0?adds.images:[
-       
-        "/assets/img/packge.jpg",
-        "/assets/img/packge.jpg",
-       
-        "/assets/img/packge.jpg"
-       ],
-       title:adds.title,
-       address:adds.region.country.title+" " + adds.region.title,
-       discriptions:adds.desc,
-       city:adds.region.title,
-       space:adds.area,
-       interface:adds.front,
-       price:adds.price,
-       autoNumber:adds.auto_number,
-       phone:adds.phone,
-       whatsApp:adds.whatsapp,
-       lat:adds.lat,
-       lng:adds.lng,
-       views:adds.view_count,
-       time:'4',
-       user_id:adds.user_id,
 
+
+const Index = ({prem,latest,services}) => {
+const [premuimAdds,setPremuimAdds]=useState([])
+const [latestData,setLeastestAdd]=useState([])
+const [servicesData,setServicse]=useState([])
+const authCtx=useContext(AuthContext)
+
+console.log(services);
+useEffect(()=>{
+prem && prem.map((adds)=>{
+let data={ 
+  add_id:adds.id,
+  user_id:adds.user_id,
+  images:adds.images,
+  title:adds.title,
+  address:adds.region.country.title+" " + adds.region.title,
+  price:adds.price,
+  time:'4',
+  views:adds.view_count,
+  whatsApp:adds.whatsapp,
+  phone:adds.phone,
+  disc:adds.desc,
+  lat:adds.lat,
+  lng:adds.lng,
+  singleEstatData:{
+  id:adds.id,
+  images:adds.images,
+  title:adds.title,
+  address:adds.region.country.title+" " + adds.region.title,
+  discriptions:adds.desc,
+  city:adds.region.title,
+  space:adds.area,
+  interface:adds.front,
+  price:adds.price,
+  autoNumber:adds.auto_number,
+  phone:adds.phone,
+  whatsApp:adds.whatsapp,
+  lat:adds.lat,
+  lng:adds.lng,
+  views:adds.view_count,
+  time:'4',
+  user_id:adds.user_id,
+
+}
       }
-      let data={ 
-        add_id:adds.id,
-        user_id:adds.user_id,
-        img:adds.images.length >0?adds.images:'/assets/img/home.jpg',
-        title:adds.title,
-        address:adds.region.country.title+" " + adds.region.title,
-        price:adds.price,
-        time:'4',
-        views:adds.view_count,
-        whatsApp:adds.whatsapp,
-        phone:adds.phone,
-        disc:adds.desc,
-       lat:adds.lat,
-       lng:adds.lng
-            }
-      
-            setPremuimAdds(pre=>[...pre,data])
-            setSingleEsate(pre=>[...pre,singleEstatData])
-           
-            // console.log(singelEstate)
-     })
+      setPremuimAdds(pre=>[...pre,data])      
+  
+})
+},[prem])
 
- 
-    
-    },[prem])
+useEffect(()=>{
+latest&&latest.map((adds)=>{
 
-    useEffect(()=>{
-      setLoading(false)
-      latest&&latest.map((adds)=>{
-        let singleEstatData= {
-          id:adds.id,
-         images:adds.images.length >0?adds.images:[
-          "/assets/img/home.jpg",
-          "/assets/img/home.jpg",
+let data={ 
+add_id:adds.id,
+user_id:adds.user_id,
+images:adds.images.length >0?adds.images:'/assets/img/home.jpg',
+title:adds.title,
+address:adds.region.country.title+" " + adds.region.title,
+price:adds.price,
+time:'4',
+views:adds.view_count,
+whatsApp:adds.whatsapp,
+phone:adds.phone,
+disc:adds.desc,
+lat:adds.lat,
+lng:adds.lng,
+singleEstatData:{
+id:adds.id,
+images:adds.images,
+title:adds.title,
+address:adds.region.country.title+" " + adds.region.title,
+discriptions:adds.desc,
+city:adds.region.title,
+space:adds.area,
+interface:adds.front,
+price:adds.price,
+autoNumber:adds.auto_number,
+phone:adds.phone,
+whatsApp:adds.whatsapp,
+lat:adds.lat,
+lng:adds.lng,
+views:adds.view_count,
+time:'4',
+user_id:adds.user_id,
+
+}
+}
+
+setLeastestAdd(pre=>[...pre,data])
+authCtx.loadding(false)
+
+
+})
+},[latest])
+// useEffect(()=>{
+//   services && services.map((adds)=>{
   
-          "/assets/img/home.jpg",
-          
-         ],
-         title:adds.title,
-         address:adds.region.country.title+" " + adds.region.title,
-         discriptions:adds.desc,
-         city:adds.region.title,
-         space:adds.area,
-         interface:adds.front,
-         price:adds.price,
-         autoNumber:adds.auto_number,
-         phone:adds.phone,
-         whatsApp:adds.whatsapp,
-         lat:adds.lat,
-         lng:adds.lng,
-         views:adds.view_count,
-         time:'4',
-         user_id:adds.user_id,
+//   let data={ 
+//   add_id:adds.id,
+//   user_id:adds.user_id,
+//   images:adds.images.length >0?adds.images:'/assets/img/home.jpg',
+//   title:adds.title,
+//   address:adds.region.country.title+" " + adds.region.title,
+//   price:adds.price,
+//   time:'4',
+//   views:adds.view_count,
+//   whatsApp:adds.whatsapp,
+//   phone:adds.phone,
+//   disc:adds.discriptions,
+//   lat:adds.lat,
+//   lng:adds.lng,
+//   singleEstatData:{
+//   id:adds.id,
+//   images:adds.images,
+//   title:adds.title,
+//   address:adds.region.country.title+" " + adds.region.title,
+//   discriptions:adds.desc,
+//   city:adds.region.title,
+//   space:adds.area,
+//   interface:adds.front,
+//   price:adds.price,
+//   autoNumber:adds.auto_number,
+//   phone:adds.phone,
+//   whatsApp:adds.whatsapp,
+//   lat:adds.lat,
+//   lng:adds.lng,
+//   views:adds.view_count,
+//   time:'4',
+//   user_id:adds.user_id,
   
-        }
-        let data={ 
-          add_id:adds.id,
-          user_id:adds.user_id,
-          img:adds.images.length >0?adds.images:'/assets/img/home.jpg',
-          title:adds.title,
-          address:adds.region.country.title+" " + adds.region.title,
-          price:adds.price,
-          time:'4',
-          views:adds.view_count,
-          whatsApp:adds.whatsapp,
-          phone:adds.phone,
-          disc:adds.desc,
-         lat:adds.lat,
-         lng:adds.lng
-              }
+//   }
+//   }
   
-              setLeastestAdd(pre=>[...pre,data])
-              setSingleEsateLatest(singleEstatData)
-              console.log(latestData)
-        
-    })
-      },[latest])
+//   setServicse(pre=>[...pre,data])
+//   authCtx.loadding(false)
+  
+  
+//   })
+//   },[services])
+  
 
   return (
       <>
       {
-        !loading ?
+        !authCtx.isLoadding ?
         <>
         <Nav/>
          <Banner/>
          <MainSection  />
-         <Adds latestData={latestData}  premuimAdds={premuimAdds} singleEstate={singleEstate} singleEstateLatest={singleEstateLatest}/>
+         <Adds latestData={latestData}  premuimAdds={premuimAdds} servicesData={servicesData} />
          <Footer/> 
          </>
          :<Loader/>
@@ -146,14 +175,15 @@ export default Index
 export async function getServerSideProps() {
   let prem;
   let latest;
+  let services;
      let data=await axios.get('https://stagingapi.aqarifinder.com/api/ads/premium/list?',{
         headers: {
           "lang":'ar' 
            },
       })
       .then(res=>{
-        console.log(res.data.results);
-          res.data.status.code === 200 &&console.log('sucsuss')
+        // console.log(res.data.results);
+          // res.data.status.code === 200 &&console.log('success')
            prem=res.data.results
 
       })
@@ -164,16 +194,27 @@ export async function getServerSideProps() {
            },
       })
       .then(res=>{
-        console.log(res.data.results);
-          res.data.status.code === 200 &&console.log('sucsuss')
+  
+          // res.data.status.code === 200 &&console.log('success')
           latest=res.data.results
 
       
       })
+      let serviceData=await axios.get('https://stagingapi.aqarifinder.com/api/services/list',{
+        headers: {
+          "lang":'ar' 
+           },
+      })
+      .then(res=>{
+          // res.data.status.code === 200 &&console.log()
+          services=res.data.results
+
+      })
+
     
 
 
 
   // Pass data to the page via props
-  return { props: { prem,latest } }
+  return { props: { prem,latest,services } }
 }

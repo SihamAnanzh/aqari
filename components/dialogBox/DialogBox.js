@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const DialogBox = () => {
+const DialogBox = ({message}) => {
   return (
     <div className='box'>
         <div className="icon-box">
@@ -17,7 +17,7 @@ const DialogBox = () => {
         <div className="box-btns">
            
               <div className="box-btn signUp-btn">
-              <Link href='/signIN'>اغلاق</Link>
+              <Link href='/signIN/forgetPasswrod/confirmPassword'>اغلاق</Link>
               </div>
               <div className="box-btn">
             <div  onClick={()=>console.log(res)}>إعادة الإرسال</div>

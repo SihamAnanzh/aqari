@@ -1,10 +1,12 @@
-import React , {useState,useEffect} from 'react'
+import React , {useState,useEffect,useContext} from 'react'
 import onClickOutside from 'react-onclickoutside';
+import { FilterContext } from '../../stores/filter';
 
-const DropdownTypes = ({items=[], title, setSelectItem}) => {
+const DropdownTypes = ({items=[], title}) => {
     const [open, setOpen] = useState(false);
     const [selection, setSelection] = useState({});
     const [showListTypes, setShowListTypes]=useState(true)
+    const filterCtx=useContext(FilterContext)
     // const toggle = () => setOpen(!open);
     DropdownTypes.handleClickOutside = () => {
         setOpen(false);
@@ -14,20 +16,20 @@ const DropdownTypes = ({items=[], title, setSelectItem}) => {
         
     }
 
-    // useEffect(() => {
-    //     selection.id !==undefined ? toggleAcitveElement(selection.id):""
-    // }, [showListTypes]);  
-    //   const toggleAcitveElement=(id)=>{
+    useEffect(() => {
+        selection.id !==undefined ? toggleAcitveElement(selection.id):""
+    }, [showListTypes]);  
+      const toggleAcitveElement=(id)=>{
   
-    //       let items=document.querySelectorAll('.list-item')
+          let items=document.querySelectorAll('.list-item')
   
-    //       Array.from(items).map((item)=>{
-    //           item.classList.remove('selected')
-    //       })
-    //       let item=document.getElementById(id)
-    //       item!== null ?item.classList.toggle('selected'):""
+          Array.from(items).map((item)=>{
+              item.classList.remove('selected')
+          })
+          let item=document.getElementById(id)
+          item!== null ?item.classList.toggle('selected'):""
   
-    // }
+    }
  
   
     return (
@@ -82,7 +84,8 @@ const DropdownTypes = ({items=[], title, setSelectItem}) => {
                             }
                             setSelection(selectInfo)
                             console.log(selectInfo);
-                         setSelectItem(selectInfo)
+                            filterCtx.setTypeId(item.id)
+                      
                        }
                     }><span>
                         <img style={{  

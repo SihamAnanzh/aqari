@@ -1,19 +1,22 @@
-import React ,{useState,useEffect} from 'react'
+import React ,{useState,useEffect, useContext} from 'react'
 import SearchBoxNames from '../searchBox/SearchBoxNames'
 import onClickOutside from 'react-onclickoutside';
 import SearchBoxTypes from '../searchBox/SearchBoxTypes';
 import SearchBoxSerivce from '../searchBox/SearchBoxSerivce';
 import Link from 'next/link';
 import axios from 'axios';
+import { FilterContext } from '../../stores/filter';
+import { useRouter } from 'next/router';
 const MainSection = () => {
   const [showSearchSelling, setShowSearchSelling]= useState(false)
   const [showSearchRent, setShowSearchRent]= useState(false)
   const [showSearchServics, setShowSearchServics]= useState(false)
   const [showBox,setShowBox]= useState(false)
   const [category,setCategory]=useState()
-  const [regions,setRegions]=useState([])
-  const [services, SetSerivces] =useState([])
-
+  const [region,setRegions]=useState([])
+  const [services, setSerivces] =useState([])
+const route=useRouter()
+ const filterCtx=useContext(FilterContext)
   MainSection.handleClickOutside = () => {
     setShowSearchRent(false)
     setShowSearchServics(false)
@@ -21,7 +24,35 @@ const MainSection = () => {
     setShowBox(false)
   }
 
+let  regions=filterCtx.regions_id
+let  category_id=showSearchServics?filterCtx.serivce_id:filterCtx.type_id
 
+
+  const handelClick=async ()=>{
+
+    // const response = await axios({
+    //   method: 'POST',
+    //   data: {'category_id': category_id,'regions': regions},
+
+    //   header:{"lang": "ar", "Content-Type": "application/json"},
+    //   url: `https://stagingapi.aqarifinder.com/api/ads/filter`
+    // });
+
+    axios.post(`https://stagingapi.aqarifinder.com/api/${showSearchServics?'services/filter':"ads/filter"}`,
+    {"category_id":category_id,"regions":regions},
+    {headers: {
+      "lang":'ar' 
+    }
+       })
+    .then(res=>{
+      console.log(res.data.results);
+      console.log(filterCtx);
+      showSearchServics?filterCtx.setSerivceResutls(res.data.results):filterCtx.setAddsSResutls(res.data.results)
+      console.log(res);
+      route.replace('/searchResult')
+
+    })
+  }
 
         
   useEffect(()=>{
@@ -31,9 +62,7 @@ const MainSection = () => {
          },
     })
     .then(res=>{
-        res.status.code === 200?
-          setRegions(()=>{res.data.results}):
-            SetSerivces(res.data.results)
+        !res.data.status.message == 'OK' ?console.log(res.data):setSerivces(res.data.results)
     })
   },[])
   
@@ -46,11 +75,14 @@ axios.get('https://stagingapi.aqarifinder.com/api/category/list',{
        },
   })
   .then(res=>{
-      res.status.code === 200?
-        setRegions(()=>{res.data.results}):
-          setCategory(res.data.results)
+
+      !res.data.status.message == 'OK' ?console.log(res.data):setCategory(res.data.results)
+
   })
 },[])
+
+
+  
 
 
   
@@ -61,9 +93,8 @@ useEffect(()=>{
        },
   })
   .then(res=>{
-      res.status.code === 200?
-        setRegions(()=>{res.data.results}):
-          setRegions(res.data.results)
+    !res.data.status.message == 'OK' ?console.log(res.data):setRegions(res.data.results)
+
   })
 },[])
     
@@ -98,13 +129,13 @@ useEffect(()=>{
         {(showBox) && !showSearchServics ?
            <div className='serarch'>
             <div className='serachContainer first'>
-            <SearchBoxNames regions={regions}  />
+            <SearchBoxNames regions={region}  />
             </div>
             <div className='serachContainer second'>
             <SearchBoxTypes category={category} />
             </div>
-            <Link className='searchLink' href='/searchResult'>
-             <div className=' serachContainer btnSearch' >
+          {/* <Link className='searchLink' href='/searchResult'> */}
+          <div className=' serachContainer btnSearch' onClick={handelClick}  >
                <button style={{
                cursor:"pointer"
              }}>
@@ -112,16 +143,18 @@ useEffect(()=>{
                </button>
 
                </div>
-               </Link>           </div>: 
+               {/* </Link> */}
+               
+                      </div>: 
              showSearchServics && showBox &&<div className='serarch'>
              <div className='serachContainer first'>
-             <SearchBoxNames regions={regions}  />
+             <SearchBoxNames regions={region}  />
              </div>
              <div className='serachContainer second'>
              <SearchBoxSerivce services={services}/>
              </div>
-             <Link className='searchLink' href='/searchResult'>
-             <div className=' serachContainer btnSearch'  >
+             {/* <Link className='searchLink' href='/searchResult'> */}
+             <div className=' serachContainer btnSearch' onClick={handelClick}  >
                <button style={{
                cursor:"pointer"
              }}>
@@ -129,7 +162,7 @@ useEffect(()=>{
                </button>
 
                </div>
-               </Link>
+               {/* </Link> */}
             </div>
            
       

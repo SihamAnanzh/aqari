@@ -1,18 +1,21 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState ,useEffect, useContext} from 'react'
 import onClickOutside from 'react-onclickoutside';
 import axios from 'axios';
+import { FilterContext } from '../../stores/filter';
 
 
 const DropdownServcies = ({items=[], title, setSelectItem}) => {
     const [open, setOpen] = useState(false);
     const [selection, setSelection] = useState({});
     const [showListServices, setShowListServices]=useState(true)
+    const filterCtx=useContext(FilterContext)
     // const toggle = () => setOpen(!open);
     DropdownServcies.handleClickOutside = () => {
         setOpen(false);
         setShowListServices(true)
   
     }
+
 
   useEffect(() => {
       selection.id !==undefined ? toggleAcitveElement(selection.id):""
@@ -78,8 +81,7 @@ const DropdownServcies = ({items=[], title, setSelectItem}) => {
                                 id:item.id
                             }
                             setSelection(selectInfo)
-                            console.log(selectInfo);
-                         setSelectItem(selectInfo)
+                            filterCtx.setSerivceId(item.id)
                             }
                     
                     }>{item.title}</li>

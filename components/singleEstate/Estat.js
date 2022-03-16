@@ -1,11 +1,38 @@
-import React ,{useEffect, useState} from 'react'
+import axios from 'axios'
+import React ,{useContext, useEffect, useState} from 'react'
+import { AuthContext } from '../../stores/auth-context'
 import Slideshow from '../imgSlider/ImgSlider'
 import SimpleMap from '../map/Map'
 import  SimpleMap2 from '../map/phone-map'
 const Estat = ({withImg,setOverlay,data ,userAdd}) => {
   const [addToFav,setAddtoFav]=useState(false)
+const authCtx=useContext(AuthContext)
+useEffect(()=>{
+
+  axios.get(`https://stagingapi.aqarifinder.com/api/ads/${data.id}`)
+},[])
 
 
+
+const toggleFavAdds=()=>{
+  setAddtoFav(!addToFav)
+  addToFav?
+  axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.id}`,{
+    headers: {
+      
+      "Authorization":authCtx.token
+       },
+
+  }).then((res)=>console.log(res))
+  :
+  axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.id}`,
+    {
+      headers: {
+        Authorization:authCtx.token
+         },
+  }).then((res)=>console.log(res))
+
+}
 
   return (
     <>
@@ -26,9 +53,9 @@ const Estat = ({withImg,setOverlay,data ,userAdd}) => {
                    {data.address}
                 </h5>
                 </div>
-                {!userAdd ? 
-                  <div className="fav-estat" onClick={()=>setAddtoFav(!addToFav)}>
-                {addToFav?  <img src="assets/img/fav-icon.svg" alt="" />:
+                {!authCtx.token ? 
+                  <div className="fav-estat" onClick={toggleFavAdds}>
+                {addToFav?  <img src="/assets/img/fav-icon.svg" alt="" />:
                   <img src="/assets/img/emptyHearrt.svg" alt="" />
                 }
                 
@@ -52,7 +79,7 @@ const Estat = ({withImg,setOverlay,data ,userAdd}) => {
                         <div className='data-views'>
                             <img src='/assets/img/view2-01 (2).svg' width={12.47} height={7.95}/>
           
-                            <span className='number'>199</span>
+                            <span className='number'>{data.views}</span>
                         </div>
 
               </div>
@@ -130,8 +157,8 @@ const Estat = ({withImg,setOverlay,data ,userAdd}) => {
     <SimpleMap2 lat={data.lat} lng={data.lang}/>
     </div>
     <div className='contact-estate'>
-      <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg'/></span>{data.whatsApp}</div>
-      <div className='phone'><span className='address-phone'><img src='/assets/img/phone.svg'/></span>{data.phone}</div>
+      <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg'/></span><a style={{textDecoration:"none",color:"#fff" ,fontFamily:"fangsong"}} target="_blank" href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>0787012409</a></div>
+      <div className='phone' style={{fontFamily:"fangsong"}}><span className='address-phone'><img src='/assets/img/phone.svg'/></span>{data.phone}</div>
     </div>
     </div>
   

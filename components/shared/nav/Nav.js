@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import onClickOutside from 'react-onclickoutside';
 import FallBackNav from './FallBackNav'
+import {AuthContext} from '../../../stores/auth-context'
+import axios from 'axios';
 const Nav = ({ logo, icon }) => {
     const [showLang, setShowLang] = useState(false)
     const [showAddMenu, setAddMenu] = useState(false)
     const [showNav,setShowNav]= useState(false)
     const [login, setLogin]=useState(false)
     const [movearrow,setMvoeArrow]=useState(false)
+    const authCtx=useContext(AuthContext)
 
     const [iconTwo,setIconTwo]=useState(true)
     const route = useRouter()
@@ -26,42 +29,56 @@ const Nav = ({ logo, icon }) => {
             <div className='main-nav'>
                 <ul className='main-nav-items'>
                     <li>
-                        <Link href='/' classNamem='main-nav-item'>
+                        <Link href='/' className='main-nav-item'>
                             <a className='logo'>
                                 <img className='logo-img' src={logo ? logo : '/assets/img/logo.svg'} alt='logo' />
                             </a></Link>
 
                     </li>
                     <li className={`${route.asPath === "/" ? "activeNav" : ""}`}>
-                        <Link href="/" classNamem='main-nav-item'><a
+                        <Link href="/" className='main-nav-item'><a
                             className={`${route.asPath === "/" ? "active" : ""}`}
                         >الرئيسية</a></Link>
 
                     </li>
                     <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNav" : ""}`}>
-                        <Link href="/offices" classNamem='main-nav-item'><a
+                        <Link href="/offices" className='main-nav-item'><a
                             className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "active" : ""}`}
                         >المكاتب</a></Link>
 
                     </li>
                     <li className={`${route.asPath === "/packges" ? "activeNav" : ""}`}>
-                        <Link href="/packges" classNamem='main-nav-item'><a
+                        <Link href="/packges" className='main-nav-item'><a
                             className={`${route.asPath === "/packges" ? "active" : ""}`}
                         >الباقات</a></Link>
 
                     </li>
-                    <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`} >
-                        <Link href="/signIN" classNamem='main-nav-item'><a
+                    <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`} onClick={()=>setLogin(true)} style={{display:authCtx.isLoggedIn&&'none'}}>
+                        <Link href={`${authCtx.isLoggedIn?'/profile':"/signIN"}`} className='main-nav-item'><a
                             className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
                         >دخول</a></Link>
 
                     </li>
                     <li className={`${route.asPath === "/signUp" ? "activeNav" : ""}`}>
-                        <Link href="/signUp" classNamem='main-nav-item'><a
-                            className={`${route.asPath === "/signUp" ? "active" : ""}`}
-                        >تسجيل</a></Link>
-
+                        {!authCtx.isLoggedIn ?
+                                      <Link href="/signUp" className='main-nav-item'><a
+                                      className={`${route.asPath === "/signUp" ? "active" : ""}`}
+                                  >تسجيل</a></Link>
+                                :(
+                                    <div className='main-nav-item'><a style={{cursor:'pointer'}}
+                                    className={`${route.asPath === "/signUp" ? "active" : ""}`}
+                                    onClick={()=>{
+                                     
+                                    
+                                        axios.post('https://stagingapi.aqarifinder.com/api/user/logout',{headers:{'Authorization':authCtx.token}
+                                        }).then(res=>{       authCtx.logout()})
+                                 
+                                    }}
+                                >تسجيل خروج</a></div>
+                                )}
+          
+                  
                     </li>
                 </ul>
             </div>
@@ -69,17 +86,19 @@ const Nav = ({ logo, icon }) => {
                 <ul className='second-nav-items'>
                     <li style={{
                         height:"50px",
-                        width:"140px",
+                        width:"170px",
                         backgroundColor: route.asPath === "/profile" ? "#00416B" : "",
                            display:'flex',
                            justifyContent:"center",
                            alignItems:"center",
-                           borderRadius:"10px"
+                           borderRadius:"10px",
+                        
                     }}>
                         <Link href='/profile' className='second-nav-item'><a
                             style={{
-
-                                color: route.asPath === "/profile" ? "#fff" : "#00416b",
+                                 fontSize:route.asPath =='/profile'?"20px":"21px",
+                                  color: route.asPath === "/profile" ? "#fff" : "#00416b",
+                                  marginRight:route.asPath =='/profile'?"-26px":"-27px"
 
 
                             }}
@@ -170,7 +189,7 @@ const Nav = ({ logo, icon }) => {
                         </div>
                 </div>
                 <div className="fallback-logo">
-                <Link href='/' classNamem='main-nav-item'>
+                <Link href='/' className='main-nav-item'>
                             <a className='logo'>
                                 <img className='logo-img' src={logo ? logo : '/assets/img/logo.svg'} alt='logo' />
                             </a>

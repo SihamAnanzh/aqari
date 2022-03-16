@@ -9,16 +9,19 @@ const [packageData,setPacakgeData]=useState([])
 useEffect(() => {
   data.map((data)=>{
     let datapack={ 
-        titleOne:data.package_type.title,
-        titleTwo:data.package_type.subtitle,
-          logo:data.package_type.logo_url,
-          packgeId:data.package_type_id,
-          currencyId:data.currency.id,
-           currencyTitle:data.currency.title,
-           price:data.price
+        id:data.id,
+        titleOne:data.title,
+        titleTwo:data.subtitle,
+          logo:data.logo_url,
+          packgeId:data.packages.id,
+          packageTitle:data.packages.title,
+           currencyTitle:  data.packages.length !==0 && data.packages[0].currency.title,
+           currencyCode:  data.packages.length !==0 && data.packages[0].currency.code,
+           price: data.packages.length !==0 && data.packages[0].price
          
 
     }
+    console.log(data);
   setPacakgeData(pre=>[...pre,datapack])
   })
 }, []);
@@ -32,7 +35,7 @@ useEffect(() => {
       <div className='pakges'>
         {
           packageData.map((pack)=>(
-            <Packge  price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} key={pack.packgeId} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId}/>
+            <Packge  price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} key={pack.id} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId}/>
 
           ))
         }

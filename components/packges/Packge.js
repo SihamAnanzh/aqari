@@ -22,14 +22,14 @@ const Packge = (props) => {
             <span className='number-adds'>{props.currencyId}</span>{props.titleTwo}
              <span className='price-adds'>{props.price}</span>{props.currencyTitle}
              </span>   
-             <span className='add-type-second'>
+             {/* <span className='add-type-second'>
             <span className='number-adds'>{props.currencyId}</span>{props.titleTwo}
             <span className='price-adds'>{props.price}</span>{props.currencyTitle}
-             </span>      
+             </span>       */}
         </div>
         <div className='subscribe-type'>
             <button className='subscribe-btn'>إشتراك</button>
-            <button className='subscribe-btn'>إشتراك</button>
+            {/* <button className='subscribe-btn'>إشتراك</button> */}
 
         </div>
     </div>

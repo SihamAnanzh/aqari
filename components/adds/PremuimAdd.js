@@ -2,24 +2,19 @@ import Link from 'next/link'
 import React  ,{useState}from 'react'
 
 const PremuimAdd = (props) => {
-    let singleData=Array.from([...props.singleEstate])
-      let allData=[]
-  singleData.map((data)=>{
-    allData.push(data)
- })
 
     return (
         <>
         <Link href={{
                 pathname:'/SingleEstate',
-                query: {...allData[0]}
+                query: props.singleEstate
             }}
                             
             as={`SingleEstate/${props.add_id}`}
         >
         <div className='premuim-add origin fallback-origin '>
             <div className='details'>
-                <div className='img-add'><img src={props.img}    style={{
+                <div className='img-add'><img  src='/assets/img/home.jpg'   style={{
                               objectFit:'cover'
                                        }} /></div>
                 <div className='estat-details'>
@@ -52,7 +47,7 @@ const PremuimAdd = (props) => {
         <Link href={{
           
                 pathname:'/SingleEstate',
-                query: {...allData[0]}
+                query: props.singleEstate
             }}
                             
             as={`SingleEstate${props.add_id}`}
@@ -63,7 +58,7 @@ const PremuimAdd = (props) => {
         >
         <div className='premuim-add origin fallback-adds'>
             <div className='details'>
-                <div className='img-add'><img src={props.img}  style={{
+                <div className='img-add'><img src='/assets/img/home.jpg'  style={{
                            objectFit:'cover'
                                      }} /></div>
                 <div className="fallback-img-details">

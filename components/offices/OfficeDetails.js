@@ -1,6 +1,8 @@
 import React from 'react'
 import Adds from '../adds/Adds'
-const OfficeDetails = () => {
+const OfficeDetails = ({office,ads, premium}) => {
+
+console.log(office);
   return (
       <>
     <div className='headerOffice'>
@@ -8,21 +10,30 @@ const OfficeDetails = () => {
              <img src="/assets/img/packge.jpg" alt="" />
          </div>
          <div className="office-info">
-             <h3>شركة عبدالله العقارية</h3>
+             <h3>{office.title}</h3>
              <div className='office-social'>
               <ul className='office-list'>
           
                 <li className='office-social-item'>
+                  <a href={office.email}>
                   <img className='soical-icon' src='/assets/img/mailW.svg'/>
+
+                  </a>
                 </li>
                 <li className='office-social-item'>
+                  <a href={office.facebook_url}>
                   <img className='soical-icon' src='/assets/img/faceW.svg'/>
+                  </a>
                 </li>
                 <li className='office-social-item'>
+                  <a href={office.twitter_url}>
                   <img className='soical-icon' src='/assets/img/twtterW.svg'/>
+                  </a>
                 </li>
                 <li className='office-social-item'>
+                  <a href={office.instagram_url}>
                   <img className='soical-icon' src='/assets/img/instaW.svg'/>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -32,20 +43,21 @@ const OfficeDetails = () => {
           <span className='phone-icon'>
               <img src='/assets/img/phone.svg'/>
           </span>
-            <span className='number'>50351216</span>
+            <span className='number'>{office.phone}</span>
           </div>
           <div className='office-whatsapp'>
             <span className='whatsapp-icon'>
                 <img src='/assets/img/whatsApp.svg'/>
             </span>
-            <span className='number'>50351216</span>
+            <span className='number'>{office.whatsapp}</span>
           </div>
         </div>
          </div>
     </div>
   <div className="office-adds">
       <h4 className='office-add-title'>إعلانات المكتب </h4>
-      <Adds/>
+         {ads&& premium? <h4 className='office-add-title'>لا يوجد اعلانات </h4>: <Adds ads={ads} premium={premium}/>}
+     
 
   </div>
 

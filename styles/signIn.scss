@@ -284,7 +284,18 @@
     }
 }
 @media (max-width:428px) {
-    
+     
+    .signin-contanier{
+        padding-left: 0;
+        padding-right: 0;
+        padding: 0;
+        padding-top:54px;
+        height: 100%;
+
+        h2{
+            padding-right: 50px;
+        }
+    }
 
     .signin-contanier h3 {
         margin-right: 29px;
@@ -319,15 +330,10 @@
         color: #EDAA43;
     }
 
-    .signin-contanier .social-sign .social-icon {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 16px;
-        height: 16px;
-    }
     .signin-contanier .goSignUp {
         margin-bottom: 70px;
         font-size: 14px;
+        width: 40vw;
     }
     
     .signin-contanier .goSignUp a
@@ -376,22 +382,25 @@
 
 
         .signin-contanier .social-sign {
-            margin-top: 10px;
-            margin: 5px auto;
-        }
-        
-        .signin-contanier .social-sign {
+    
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
             width: 70vw;
+            margin-right: 15px;
+       
         }
+
 
 
         .signin-contanier .password img {
             right: 89%;
             top: 86px;
         }
+
+
+
+        
 
 }

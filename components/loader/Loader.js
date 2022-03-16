@@ -1,20 +1,10 @@
 import React,{useEffect,useState} from 'react'
 import ClipLoader from "react-spinners/ClipLoader";
-import { css } from "@emotion/react";
 
 const Loader = ({}) => {
     
    
 
-
-// const override = css`
-//  position:absolute,
-//  top:50%,
-//  left:50%,
-//  width:100px,
-//  height:100px,
-// transform:translate(-50%,-50%)
-// `;
 
 
   return (

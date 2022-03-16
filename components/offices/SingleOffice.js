@@ -1,10 +1,21 @@
+import axios from 'axios'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const SingleOffice = () => {
+const SingleOffice = ({office}) => {
+
+
   return (
     <>
-    <Link href="./offices/singleOffec">
+    <Link href={{
+                pathname:'/offices/singleOffice',
+                query: {id:office.id}
+            }}
+                      
+  
+     as={`/offices/singleOffice`} 
+    
+  >
        <div className='office'>
         <div className='office-info-container'>
         <div className='office-info'>
@@ -13,7 +24,7 @@ const SingleOffice = () => {
           </div>
           <div className='office-details'>
             <div className='office-name-contaier'>
-              <h3 className='office-name'>شركة عبدالله العقارية</h3>
+              <h3 className='office-name'>{office.title}</h3>
             </div>
             <div className='office-social'>
               <ul className='office-list'>
@@ -39,13 +50,13 @@ const SingleOffice = () => {
             <span className='whatsapp-icon'>
                 <img src='assets/img/whatsApp.svg'/>
             </span>
-            <span className='number'>50351216</span>
+            <span className='number'>{office.whatsapp}</span>
           </div>
           <div className='office-phone'>
           <span className='phone-icon'>
               <img src='assets/img/phone.svg'/>
           </span>
-            <span className='number'>50351216</span>
+            <span className='number'>{office.phone}</span>
           </div>
 
         </div>

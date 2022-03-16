@@ -2,12 +2,8 @@ import Link from 'next/link'
 import React from 'react'
 
 const Add = (props) => {
-  // let singleData=Array.from([...props.singleEstate])
-  let allData=[]
-// singleData.map((data)=>{
-// allData.push(data)
-// })
-console.log(props.singleEstate);
+  
+
   return (
     <>
        <Link href={{
@@ -42,7 +38,7 @@ console.log(props.singleEstate);
     </Link>
     <Link href={{
                 pathname:'/SingleEstate',
-                query: {...allData[0]}
+                query: props.singleEstate
             }}
                             
             as={`SingleEstate/${props.add_id}`}

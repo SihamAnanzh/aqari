@@ -1,8 +1,19 @@
-import React from 'react'
+import axios from 'axios';
+import React ,{useState}from 'react'
 
 const ConfirmPasswrod = () => {
+const [newPassword, setNewPassword] = useState('');
+
+
+
+const handelClick=()=>{
+    axios.post('https://stagingapi.aqarifinder.com/api/user/password/reset',{newPassword}).then((res)=>{
+       console.log(res)
+      
+    })
+    }
   return (
-    <div className="signin-contanier">
+    <div className="signin-contanier" style={{height:'100vh'}}>
     <div className="sign">
         <h2 style={{
             fontFamily:'otfPlain',
@@ -15,9 +26,9 @@ const ConfirmPasswrod = () => {
            <h3 style={{
                paddingBottom:"10px"
            }}>كلمة السر الجديدة</h3>
-           <input type="text" className="sign-mail" placeholder='كلمة السر الجديدة'/>
+           <input type="text" className="sign-mail" placeholder='كلمة السر الجديدة' onChange={e=>setNewPassword(e.target.value)}/>
        </div>
-       <div className="sign-btn">
+       <div className="sign-btn" onClick={handelClick}>
        استمرار
         </div>
     </div>

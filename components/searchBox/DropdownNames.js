@@ -1,11 +1,18 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import onClickOutside from 'react-onclickoutside';
 import axios from 'axios';
+import { FilterContext } from '../../stores/filter';
+
+
 const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegionName}) => {
     const [open, setOpen] = useState(false);
     const [selection, setSelection] = useState([]);
     const [showListNames, setShowListNames]=useState(true)
     const [selectItem,setSelectItems]=useState([])
+    const [regionsId,setRegions]=useState([])
+    const filterCtx=useContext(FilterContext)
+
+   
     // const toggle = () => setOpen(!open);
     DropdownNames.handleClickOutside = () => {
         setOpen(false);
@@ -25,6 +32,17 @@ console.log(items);
 }, [showListNames]); 
 
 
+ 
+
+useEffect(() => { 
+  
+     filterCtx.setRegionsId(regionsId)
+  console.log(filterCtx);
+    }, [regionsId]); 
+    
+    
+
+    
 
 
 const toggleAcitveElement=(id)=>{
@@ -79,7 +97,7 @@ item!== null ?item.classList.add('selected'):""
         {
                open ? 
                 <ul className={`list-items ${showListNames?'hidden':""}`}>
-               {/* {itemstype} */}
+  
                <h3 style={{
                    color:'#EDAA43',
                    fontSize:'17px',
@@ -94,6 +112,10 @@ item!== null ?item.classList.add('selected'):""
                         
                         {
                             e.target.classList.add('selected')
+                            let indexRegion=regionsId.findIndex((el)=>el===item.id)
+                            let newArray=[...regionsId]
+                            newArray.splice(indexRegion,1)
+                            regionsId.push(item.id)
 
                             toggleAcitveElement(item.id)
               
@@ -106,18 +128,20 @@ item!== null ?item.classList.add('selected'):""
                            if(index == -1){
                                setSelection(pre=>[...pre,item.title])
                                setSelectItems(pre=>[...pre,selectInfo])
+                             
 
                            }else{
                             e.target.classList.remove('selected')
                                let newArray=[...selection]
                                newArray.splice(index,1)
                                 setSelection(newArray)
+                           
                                 
                        
                            }
                              
                        
-
+                          
                        
                  
                         
