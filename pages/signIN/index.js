@@ -2,20 +2,20 @@ import React from 'react'
 import  Nav from '../../components/shared/nav/Nav'
 import Footer from '../../components/shared/footer/Footer'
 import {SignInComponent}  from '../../components/singIN/SignIn'
-import { useSession, signIn, signOut } from "next-auth/react"
+import { getSession ,useSession, signIn, signOut } from "next-auth/react";
 
+import data from '../api/getYTData'
 const signIN = () => {
-  return (
-    <div>
-        <Nav/>
-        <SignInComponent/>
+  // return (
+  //   <div>
+  //       <Nav/>
+  //       <SignInComponent/>
        
-        <Footer/>
-    </div>
-  )
-  // const { data: session } = useSession()
-
-  // console.log({session});
+  //       <Footer/>
+  //   </div>
+  // )
+  const { data: token, status } = useSession()
+  console.log(token)
   // if (session) {
   //   return (
   //     <>
@@ -24,13 +24,17 @@ const signIN = () => {
   //     </>
   //   )
   // }
-  // return (
-  //   <>
-  //     Not signed in <br />
-  //     <button onClick={() => signIn()}>Sign in</button>
-  //   </>
-  // )
+  return (
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
+    </>
+  )
   
 }
 
 export default signIN
+
+export async function getServiceSideProps(context){
+console.log(context + "siham ananzeh");
+}

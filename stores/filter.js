@@ -4,6 +4,7 @@ export const FilterContext=createContext({
     type_id:'',
     serivce_id:'',
     regions_id:[],
+    rent:false,
     serviceResults:[],
     setAddsSResutls:()=>{},
     addsResults:[],
@@ -40,6 +41,7 @@ const FilterContextValue={
     setSerivceResutls:setSResutls,
     setAddsSResutls:setAResults,
     addsResults:aResults,
+    rent:false
  
 }
 

@@ -10,7 +10,7 @@ const PremuimAdd = (props) => {
                 query: props.singleEstate
             }}
                             
-            as={`SingleEstate/${props.add_id}`}
+            as={`SingleEstate/${props.title}`}
         >
         <div className='premuim-add origin fallback-origin '>
             <div className='details'>

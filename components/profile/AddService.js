@@ -1,9 +1,11 @@
 import React, { useState,useEffect,useContext } from 'react'
-
+import { AuthContext } from '../../stores/auth-context';
 
 import { FilterContext } from '../../stores/filter';
 import axios from 'axios'
 const AddService = () => {
+  const authCtx=useContext(AuthContext)
+
 const [checkedConditions,setCheckedConditions]=useState(false)
 const [imageUpLoaded, setImageUpLoaded]=useState(false)
 const [showListService,setShowListService]=useState(false)
@@ -22,7 +24,14 @@ const [selectItem,setSelectItems]=useState([])
 const [regionsId,setRegionsId]=useState([])
 const filterCtx=useContext(FilterContext)
 const [selection, setSelection] = useState([]);
+const [price, setPrice]=useState('')
+const [title, setTitle]=useState('')
+const [desc ,setDesc]=useState('')
+const [phoneNumber ,setPhone]=useState('')
+const [files,setFiles]=useState([])
 
+const [selectServId,setSelectServiId]=useState('')
+const [selectCategoryId,setSelectCategoryId]=useState([])
 
 useEffect(() => { 
 
@@ -112,7 +121,8 @@ useEffect(()=>{
 useEffect(()=>{
   axios.get('https://stagingapi.aqarifinder.com/api/service_type/list',{
       headers: {
-        "lang":'ar' 
+        "lang":'ar' ,
+        
          },
     })
     .then(res=>{
@@ -122,26 +132,29 @@ useEffect(()=>{
 
   const  handelSubmit=(e)=>{
     let data={}
-    servicTitle !== ''&& desc !== ''&& price !== ''&&  phoneNumber !== " " ?
-  ( alert('fill all')
+  //   title == ''|| desc == ''|| price == ''||  phoneNumber == " " ?
+  // ( alert('fill all')
      
   
-      )
-      :
+  //     )
+  //     :
       setFiles([imageOne,imageTwo,imageThree,imageFour])
   
       let formData=new FormData()
-      formData.append('title',addTitle)
+      formData.append('title',title)
       formData.append('description',desc)
-      formData.append('region_ids','1')
+      selectCategoryId.map((categ)=>{
+        formData.append('region_ids',categ)
+      })
+    
       formData.append('price',price)
-      formData.append('service_type_id','1')
+      formData.append('service_type_id',selectServId)
       formData.append('phone',phoneNumber)
       formData.append('whatsapp',phoneNumber)
-      formData.append('image_files',files)
+      formData.append('image_files',imageOne)
       axios({
         method: "post",
-        url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+        url: "https://stagingapi.aqarifinder.com/api/user/services/add",
         headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
         data: formData,
       })
@@ -171,23 +184,25 @@ useEffect(()=>{
     <div className="inputs-group addAdds-group">
     <div className="sign-input  addAdds-phone ">
            <h3>عنوان الخدمة</h3>
-           <input type="text" className="sign-mail" placeholder='عنوان الخدمة' tabIndex={1} autoFocus />
+           <input type="text" className="sign-mail" placeholder='عنوان الخدمة' tabIndex={1} autoFocus onChange={(e)=>setTitle(e.target.value)} />
        </div>
 
     <div className="sign-input  addAdds-phone ">
            <h3>رقم الهاتف</h3>
-           <input type="number" min={0} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2}  />
+           <input type="number" min={0} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2} onChange={(e)=>setPhone(e.target.value)} />
        </div>
-       <div className="sign-input  addAdds-phone ">
+       <div className="sign-input  addAdds-phone " style={{position:'relative'}}>
            <h3>نوع الخدمة</h3>
            <input type="text" id='serivce-list' className="sign-mail" placeholder='نوع الخدمة' tabIndex={3} value={service} 
             onClick={()=>{
                setShowListService(!showListService)
            }}/>
-           <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
+           <img src="/assets/img/Stroke 1.svg" alt="" className='add-service-stroke-category' />
         {
           <ul className="dropdown-typeList" id='serivce-list'  style={{
-            display: !showListService ?'none':""
+            display: !showListService ?'none':"",
+            position:"absolute",
+            zIndex:"5"
           }} >          
               
                 {services.map((item)=>(
@@ -200,6 +215,7 @@ useEffect(()=>{
                                 value:item.title,
                                 id:item.id
                             }
+                            setSelectServiId(item.id)
              
                             }
                     
@@ -215,7 +231,7 @@ useEffect(()=>{
            }}>رقم الواتس اب</h3>
            <input type="number" min={0} className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} />
        </div>
-       <div className="sign-input  addAdds-region" id='city-list' >
+       <div className="sign-input  addAdds-region" id='city-list' style={{position:'relative'}} >
            <h3>المنطقة</h3>
            <input type="text" className="sign-mail" placeholder='المنطقة' tabIndex={3}   id='city-list'  value={[...selection]}
            onChange={e=>setCity(e.target.value)}
@@ -224,10 +240,12 @@ useEffect(()=>{
                setShowListService(false)
            
            }}/>
-          <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon city' />
+          <img src="/assets/img/Stroke 1.svg" alt="" className='add-service-stroke-city' />
         {
           <ul className="dropdown-typeList" id='city-list' style={{
             display: !showListNames ?'none':"",
+            position:"absolute",
+            zIndex:"5"
         
           }} >
                  {regions.map((item)=>(
@@ -252,14 +270,16 @@ useEffect(()=>{
                            if(index == -1){
                                setSelection(pre=>[...pre,item.title])
                                setSelectItems(pre=>[...pre,selectInfo])
-                             
+                               selectCategoryId.push(item.id)
+
 
                            }else{
                             e.target.classList.remove('selected')
                                let newArray=[...selection]
                                newArray.splice(index,1)
                                 setSelection(newArray)
-                           
+                                selectCategoryId.pop(item.id)
+
                                 
                        
                            }
@@ -283,7 +303,7 @@ useEffect(()=>{
            <h3 style={{
                paddingTop:"20px"
            }}>تفاصيل الخدمة</h3>
-           <input type="text" className="sign-mail" placeholder='تفاصيل الخدمة'  tabIndex={5} />
+           <input type="text" className="sign-mail" placeholder='تفاصيل الخدمة'  tabIndex={5} onChange={(e)=>setDesc(e.target.value)}/>
        </div>
  
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`} style={{ display:imageUpLoaded ?'none':"block",width:"66vw"

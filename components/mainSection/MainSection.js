@@ -7,6 +7,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { FilterContext } from '../../stores/filter';
 import { useRouter } from 'next/router';
+import { Filter } from '@mui/icons-material';
 const MainSection = () => {
   const [showSearchSelling, setShowSearchSelling]= useState(false)
   const [showSearchRent, setShowSearchRent]= useState(false)
@@ -25,30 +26,47 @@ const route=useRouter()
   }
 
 let  regions=filterCtx.regions_id
-let  category_id=showSearchServics?filterCtx.serivce_id:filterCtx.type_id
-
 
   const handelClick=async ()=>{
-
-    // const response = await axios({
-    //   method: 'POST',
-    //   data: {'category_id': category_id,'regions': regions},
-
-    //   header:{"lang": "ar", "Content-Type": "application/json"},
-    //   url: `https://stagingapi.aqarifinder.com/api/ads/filter`
-    // });
-
-    axios.post(`https://stagingapi.aqarifinder.com/api/${showSearchServics?'services/filter':"ads/filter"}`,
-    {"category_id":category_id,"regions":regions},
+    showSearchServics && axios.post('https://stagingapi.aqarifinder.com/api/services/filter',
+    {"service_type_id":filterCtx.serivce_id,"regions":regions},
     {headers: {
       "lang":'ar' 
     }
        })
     .then(res=>{
+
       console.log(res.data.results);
+        filterCtx.setSerivceResutls(res.data.results)
+      route.replace('/searchResultsService')
+
+    })
+
+    showSearchRent && axios.post('https://stagingapi.aqarifinder.com/api/ads/filter',
+    {"category_id":filterCtx.type_id,"regions":regions,"ad_type_id":1},
+    {headers: {
+      "lang":'ar' 
+    }
+       })
+    .then(res=>{
       console.log(filterCtx);
-      showSearchServics?filterCtx.setSerivceResutls(res.data.results):filterCtx.setAddsSResutls(res.data.results)
-      console.log(res);
+      console.log(res.data.results);
+      filterCtx.setAddsSResutls(res.data.results)
+      filterCtx.setSerivceId('')
+      route.replace('/searchResult')
+
+    })
+    showSearchSelling && axios.post('https://stagingapi.aqarifinder.com/api/ads/filter',
+    {"category_id":filterCtx.type_id,"regions":regions,"ad_type_id":2},
+    {headers: {
+      "lang":'ar' 
+    }
+       })
+    .then(res=>{
+      console.log(res.data);
+      filterCtx.setAddsSResutls(res.data.results)
+      filterCtx.setSerivceId('')
+        filterCtx.rent=false
       route.replace('/searchResult')
 
     })

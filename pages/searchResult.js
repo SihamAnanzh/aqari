@@ -13,26 +13,17 @@ const SearchResult = () => {
   const [haveResults, setHaveResults] = useState(true);
 
 
-  useEffect(()=>{
-  console.log(filterCtx.addsResults.premium_ads.length);
-  },[filterCtx.addsResults])
-
-console.log(filterCtx.serviceResults);
-console.log(filterCtx.addsResults && filterCtx.addsResults.length);
 
   return (
     <>
-       {
+         {
+           (
+       filterCtx.addsResults.premium_ads.length == 0 &&filterCtx.addsResults.ads.length == 0?<NoResults/>:<SearchResultComponents />
+           )
+         }
   
          
-     (filterCtx.addsResults.ads.length == 0 && filterCtx.addsResults.premium_ads.length == 0) ?
-      filterCtx.serviceResults.length == 0 ?
-       <NoResults/>
-       :!filterCtx.serviceResults.length == 0
-        ?<SearchResultComponents showAds='false' />
-        :<SearchResultComponents showAds='true' />:<SearchResultComponents showAds='true' />
-
-       }
+     
        </>
   )
 }

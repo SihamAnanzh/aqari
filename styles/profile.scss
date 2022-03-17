@@ -182,7 +182,15 @@ background-color: $second-color;
     .office-heading-paragraph {
         margin-right: -250px;
     }
-
+.add-service-stroke-city,.add-service-stroke-category{
+    position: absolute;
+    top: 75%;
+    left: 5%;
+}
+.add-service-stroke-category{
+    top: 73%;
+    z-index: 2;
+}
 }
 
 

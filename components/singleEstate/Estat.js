@@ -10,6 +10,8 @@ const authCtx=useContext(AuthContext)
 useEffect(()=>{
 
   axios.get(`https://stagingapi.aqarifinder.com/api/ads/${data.id}`)
+
+  console.log(data.user_id + "  " + authCtx.userId);
 },[])
 
 
@@ -17,7 +19,7 @@ useEffect(()=>{
 const toggleFavAdds=()=>{
   setAddtoFav(!addToFav)
   addToFav?
-  axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.id}`,{
+  axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.id}`,{
     headers: {
       
       "Authorization":authCtx.token
@@ -53,7 +55,7 @@ const toggleFavAdds=()=>{
                    {data.address}
                 </h5>
                 </div>
-                {!authCtx.token ? 
+                {authCtx.userId !== data.user_id ? 
                   <div className="fav-estat" onClick={toggleFavAdds}>
                 {addToFav?  <img src="/assets/img/fav-icon.svg" alt="" />:
                   <img src="/assets/img/emptyHearrt.svg" alt="" />
@@ -79,7 +81,7 @@ const toggleFavAdds=()=>{
                         <div className='data-views'>
                             <img src='/assets/img/view2-01 (2).svg' width={12.47} height={7.95}/>
           
-                            <span className='number'>{data.views}</span>
+                            <span className='number' style={{paddingRight:'5px'}}>{data.views}</span>
                         </div>
 
               </div>

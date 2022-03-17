@@ -22,4 +22,14 @@ export default NextAuth({
       })
     
   ],
+
+  callbacks: {
+    async jwt(token, user, account, profile, isNewUser) {
+      if (account?.accessToken) {
+        token.accessToken = account.accessToken;
+      }
+      // console.log(token.account);
+      return token;
+    },
+  },
 })

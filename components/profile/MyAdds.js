@@ -8,7 +8,6 @@ const [latest, setLatest]=useState([])
 const [useData,setUserData]=useState([])
 const authCtx=useContext(AuthContext)
   useEffect(()=>{
- 
 
     axios({
       method: "get",
