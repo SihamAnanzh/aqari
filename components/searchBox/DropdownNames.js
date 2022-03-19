@@ -9,7 +9,7 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
     const [selection, setSelection] = useState([]);
     const [showListNames, setShowListNames]=useState(true)
     const [selectItem,setSelectItems]=useState([])
-    const [regionsId,setRegions]=useState([])
+    const [regionsId,setRegionsId]=useState([])
     const filterCtx=useContext(FilterContext)
 
    
@@ -22,32 +22,39 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
 
  
 
-useEffect(() => { 
-
-selectItem?
-selectItem.map(item=>{
-toggleAcitveElement(item.id)
-}):""
-console.log(items);
-}, [showListNames]); 
+// useEffect(() => { 
+// selectItem?
+// selectItem.map(item=>{
+//     AddActiveClass(item.id)
+// }):""
+// console.log(items);
+// }, [showListNames]); 
 
 
  
 
 useEffect(() => { 
-  
-     filterCtx.setRegionsId(regionsId)
-  console.log(filterCtx);
+
+filterCtx.setRegionsId(regionsId)
+console.log(regionsId);
     }, [regionsId]); 
     
     
 
     
-
-
-const toggleAcitveElement=(id)=>{
+    
+const AddActiveClass=(id)=>{
 let item=document.getElementById(id)
-item!== null ?item.classList.add('selected'):""
+item.classList.add('selected')
+console.log(item);
+
+
+}
+          
+const removeAcitveCllass=(id)=>{
+let item=document.getElementById(id)
+item.classList.remove('selected')
+console.log(item);
 
 
 }
@@ -111,13 +118,20 @@ item!== null ?item.classList.add('selected'):""
                        
                         
                         {
-                            e.target.classList.add('selected')
-                            let indexRegion=regionsId.findIndex((el)=>el===item.id)
-                            let newArray=[...regionsId]
-                            newArray.splice(indexRegion,1)
-                            regionsId.push(item.id)
 
-                            toggleAcitveElement(item.id)
+                            // let indexRegion=regionsId.findIndex((el)=>el===item.id)
+                            // if(indexRegion == -1){
+                            //     let newArray=[...regionsId]
+                            //     newArray.splice(indexRegion,1)
+
+    
+                            // }else{
+                            //     let newArray=[...regionsId]
+                            //     newArray.splice(indexRegion,1)
+                            //        console.log(regionsId);
+                            // }                               
+
+                           
               
                              let selectInfo= {
                                value:item.title,
@@ -126,19 +140,29 @@ item!== null ?item.classList.add('selected'):""
                        
                            let index=selection.findIndex((el)=>el===item.title)
                            if(index == -1){
+                            setRegionsId(pre=>[...pre,item.id])
                                setSelection(pre=>[...pre,item.title])
                                setSelectItems(pre=>[...pre,selectInfo])
-                             
+                                AddActiveClass(e.target.id)
+                            //  let regionId=regionsId.findIndex((el)=>el===item.id)
+                            //   regionId == -1 && setRegionsId(pre=>[...pre,item.id])
+                            //     console.log(index);
 
                            }else{
-                            e.target.classList.remove('selected')
                                let newArray=[...selection]
                                newArray.splice(index,1)
                                 setSelection(newArray)
-                           
+                                let newRegions=[...regionsId]
+                                newRegions.splice(index,1)
+                                setRegionsId(newRegions)
+                                removeAcitveCllass(e.target.id)
+                                // setRegionsId(pre=>[...pre,selectInfo.id])
+
+
                                 
                        
                            }
+                           console.log(regionsId);
                              
                        
                           

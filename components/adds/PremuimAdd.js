@@ -50,7 +50,7 @@ const PremuimAdd = (props) => {
                 query: props.singleEstate
             }}
                             
-            as={`SingleEstate${props.add_id}`}
+            as={`SingleEstate${props.title}`}
         
                             
 

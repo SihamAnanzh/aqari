@@ -17,6 +17,7 @@ const [latestData,setLeastestAdd]=useState([])
 const [servicesData,setServicse]=useState([])
 const authCtx=useContext(AuthContext)
 
+console.log(prem);
 console.log(services);
 useEffect(()=>{
 prem && prem.map((adds)=>{
@@ -34,6 +35,8 @@ let data={
   disc:adds.desc,
   lat:adds.lat,
   lng:adds.lng,
+  regionId:adds.region_id,
+  is_premium:adds.is_premium,
   singleEstatData:{
   id:adds.id,
   images:adds.images,
@@ -52,6 +55,14 @@ let data={
   views:adds.view_count,
   time:'4',
   user_id:adds.user_id,
+  regionId:adds.region_id,
+  is_premium:adds.is_premium,
+  isFav:adds.is_fav,
+  regionsString:adds.regions_string,
+category:adds.category.title,
+adType:adds.ad_type.title
+
+
 
 }
       }
@@ -62,7 +73,7 @@ let data={
 
 useEffect(()=>{
 latest&&latest.map((adds)=>{
-
+console.log(adds);
 let data={ 
 add_id:adds.id,
 user_id:adds.user_id,
@@ -77,6 +88,8 @@ phone:adds.phone,
 disc:adds.desc,
 lat:adds.lat,
 lng:adds.lng,
+regionId:adds.region_id,
+is_premium:adds.is_premium,
 singleEstatData:{
 id:adds.id,
 images:adds.images,
@@ -95,12 +108,20 @@ lng:adds.lng,
 views:adds.view_count,
 time:'4',
 user_id:adds.user_id,
+regionId:adds.region_id,
+is_premium:adds.is_premium,
+isFav:adds.is_fav,
+regionsString:adds.region.title,
+category:adds.category.title,
+adType:adds.ad_type.title
+
 
 }
 }
 
 setLeastestAdd(pre=>[...pre,data])
 authCtx.loadding(false)
+console.log(data);
 
 
 })

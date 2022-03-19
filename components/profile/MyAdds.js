@@ -5,7 +5,7 @@ import axios from 'axios'
 import { AuthContext } from '../../stores/auth-context'
 const MyAdds = () => {
 const [latest, setLatest]=useState([])
-const [useData,setUserData]=useState([])
+const [userData,setUserData]=useState([])
 const authCtx=useContext(AuthContext)
   useEffect(()=>{
 
@@ -23,10 +23,10 @@ const authCtx=useContext(AuthContext)
   }
   ,[])
 
-
+console.log(userData);
 
   useEffect(()=>{
-    useData&&useData.map((adds)=>{
+    userData&&userData.map((adds)=>{
     
     let data={ 
     add_id:adds.id,
@@ -66,11 +66,11 @@ const authCtx=useContext(AuthContext)
     
     setLatest(pre=>[...pre,data])
     authCtx.loadding(false)
-    console.log();
+   
     
     
     })
-    },[useData])
+    },[userData])
   return (
     <div className='adds-container'>
          <h1 className='premium-title'>أحدث الإعلانات</h1>

@@ -1,12 +1,11 @@
 import React, { useEffect,useContext, useState } from 'react'
-import Adds from '../adds/Adds'
-import Add from '../adds/Add'
+import PremiumService from '../adds/PremiumService'
 import axios from 'axios'
 import { AuthContext } from '../../stores/auth-context'
 
 const MyService = () => {
 const [latest, setLatest]=useState([])
-const [useData,setUserData]=useState([])
+const [userData,setUserData]=useState([])
 const authCtx=useContext(AuthContext)
 useEffect(()=>{
 
@@ -27,37 +26,30 @@ console.log(res.data.results);
 
 
 useEffect(()=>{
-useData&&useData.map((adds)=>{
+  userData&&userData.map((adds)=>{
 
 let data={ 
 add_id:adds.id,
 user_id:adds.user_id,
 images:adds.images.length >0?adds.images:'/assets/img/home.jpg',
 title:adds.title,
-// address:adds.regions.country.title+" " + adds.regions.title,
+address:adds.regions_string,
 price:adds.price,
 time:'4',
 views:adds.view_count,
 whatsApp:adds.whatsapp,
 phone:adds.phone,
-disc:adds.desc,
-lat:adds.lat,
-lng:adds.lng,
+disc:adds.description,
 singleEstatData:{
 id:adds.id,
 images:adds.images,
 title:adds.title,
-// address:adds.regions.country.title+" " + adds.regions.title,
-discriptions:adds.desc,
+address:adds.regions_string,
+discriptions:adds.description,
 city:adds.regions.title,
-space:adds.area,
-interface:adds.front,
 price:adds.price,
-autoNumber:adds.auto_number,
 phone:adds.phone,
 whatsApp:adds.whatsapp,
-lat:adds.lat,
-lng:adds.lng,
 views:adds.view_count,
 time:'4',
 user_id:adds.user_id,
@@ -67,17 +59,19 @@ user_id:adds.user_id,
 
 setLatest(pre=>[...pre,data])
 authCtx.loadding(false)
-console.log();
+
 
 
 })
-},[useData])
+},[userData])
+
+console.log(latest);
   return (
 <div className='adds-container'>
          <h1 className='premium-title'>أحدث الخدمات</h1>
       {
-       latest&&latest.map((addsData)=>(
-        <Add singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
+       latest&&latest.map((premiumAddsData)=>(
+        <PremiumService singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.add_id} add_id={premiumAddsData.add_id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
 
        ))
        }

@@ -16,14 +16,17 @@ export const AuthContext=createContext({
  
  export const AuthContextProvider=(props)=>{
   const ISSERVER = typeof window === "undefined";
-  const intitToken=""
+  let intitToken="";
+  let intiId=''
   if(!ISSERVER) {
      intitToken= sessionStorage.getItem('token')
+     intiId= sessionStorage.getItem('userId')
+
    }
 
     const [token ,setToken]=useState(intitToken)
     const [loadding ,setloadding]=useState(true)
-    const [userId ,setUserId]=useState('')
+    const [userId ,setUserId]=useState(intiId)
     const [premiumAdd ,setPremiumAdd]=useState(0)
   const route=useRouter()
   const userIsLoggedIn=!!token
@@ -37,6 +40,7 @@ export const AuthContext=createContext({
 
     const loginHandler=(token,userId)=>{
       sessionStorage.setItem('token',token)
+      sessionStorage.setItem('userId',userId)
       setToken(token)
       setUserId(userId)
   

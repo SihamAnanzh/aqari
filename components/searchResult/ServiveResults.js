@@ -1,5 +1,5 @@
 import React ,{useState,useEffect,useContext} from 'react'
-import PremuimAdd from '../adds/PremuimAdd'
+import PremiumService from '../adds/PremiumService'
 import Footer from '../shared/footer/Footer'
 import Nav from '../shared/nav/Nav'
 import Add from '../adds/Add'
@@ -57,7 +57,7 @@ const ServiveResults = () => {
         <h1 className='premium-title'>أحدث الإعلانات</h1>
         {
           latestData&&latestData.map((addsData)=>(
-          <Add singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
+          <PremiumService singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
   
           ))
           }

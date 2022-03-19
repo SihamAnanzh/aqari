@@ -114,31 +114,34 @@ height: 100%;
            cursor: pointer;
        }
    }
-
+   .showUploadedImage{
+    width: 446px;
+    height: 446px;
+    align-self: flex-start;
+    justify-content: flex-start;
+}
 
 @media (max-width:428px) {
     
     .office-logo {
+        position: relative;
     margin-right: 39px;
+    .remove-img {
+        z-index: 10;
+        top: 3px;
+        position: absolute;
+        left: 3px;
+       
+       }
+  
+    }
+    .img-submite,.showUploadedImage{
+        width:300px;
+        height:300px;
+        align-self: center;
+        justify-content: center;
     
     }
- .img-submite{
- 
-    width: 334px;
-    height: 355px;
-    border: 1px solid #00446b;
-    margin-right: 69px;
-    object-fit: cover;
-
-}
-   .remove-img {
-    z-index: 10;
-    top: 3px;
-    position: absolute;
-    left: 3px;
-   
-   }
-
    .submit-imgs{
     width: 120px;
     height:120px;
@@ -166,8 +169,6 @@ height: 100%;
        }
    }
 
-   .submit-imgs, .uploadedImage {
-       width: 120px;
-   }
+
    
 }

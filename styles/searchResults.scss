@@ -1,5 +1,5 @@
 .results-container{
-height: 100vh;
+height: 100%;
 
 
 }
@@ -70,6 +70,18 @@ height: 80vh;}
    
     height: 125px;
 }
+
+@media(max-width:800px){
+    .results .results-heading ,   .end-results{
+
+         margin-right: unset;
+    }
+
+  
+ 
+
+}
+
 
 
 @media (max-width:428px) {

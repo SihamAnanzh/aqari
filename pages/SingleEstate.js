@@ -14,7 +14,6 @@ import axios from 'axios'
 const SingleEstate = ({data}) => {
     const [withImg, setWithImg] = useState(false)
     const  [overlay ,setOverlay]=useState(false)
-    const [userAdd, setUserAdd]=useState(false)
     const [estat, setEstateData]=useState([])
 
 
@@ -30,7 +29,7 @@ const SingleEstate = ({data}) => {
     <div className={`single-estat${overlay ? 'overlay':""} `}>
         <Nav/>
         <Banner content={content}/>
-            <Estat withImg={withImg} userAdd={userAdd}  data={data}  setOverlay={setOverlay}/>
+            <Estat withImg={withImg}   data={data}  setOverlay={setOverlay}/>
         <Footer/>
     </div>
   )

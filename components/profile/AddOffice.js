@@ -1,6 +1,7 @@
 import React ,{useState ,useEffect,useContext} from 'react'
 import SoicalInput from '../socialInput/SoicalInput'
 import axios from 'axios'
+import swal from 'sweetalert'
 import { AuthContext } from '../../stores/auth-context'
 const AddOffice = () => {
   const authCtx=useContext(AuthContext)
@@ -21,7 +22,7 @@ const handleClickFileBtn=()=>{
 const handleChange=(e)=>{
     setImageUpLoaded(true)
     let file= e.target.files
-    setImageSrc(file[0].name)
+    setImageSrc(file[0])
     console.log(file);
 
 }
@@ -29,15 +30,15 @@ const handleChange=(e)=>{
 const handelSubmit=()=>{
   let data={}
   let formData=new FormData()
-  title == ''&&  descOffice == ''&& phone  =="" && email =='' && imageSrc ==  "" ?
-(alert('fill all')):
-  
-    formData.append('title',title)
-    formData.append('desc',descOffice)
-    formData.append('phone',phone)
-    formData.append('whatsapp',phone)
-    formData.append('is_premium',false)
-    formData.append('logo_file',imageSrc)
+  title == " " ||  descOffice == " " || phone  =="" || email =='' || imageSrc ==  "" ?
+  swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):(
+    
+    formData.append('title',title),
+    formData.append('desc',descOffice),
+    formData.append('phone',phone),
+    formData.append('whatsapp',phone),
+    formData.append('is_premium',false),
+    formData.append('logo_file',imageSrc),
   
     axios({
       method: "post",
@@ -46,13 +47,17 @@ const handelSubmit=()=>{
       data: formData,
     })
       .then( (response) =>{
-
-        console.log(response);
+        response.data.status.code == 400 ?swal("تحذير",response.data.status.message, 'warning'):
+        (swal('تهانيا','تمت اضافة المكتب بنجاح', 'success'),
+        route.replace('/profile')
+        )
+   
       })
       .catch( (response)=> {
 
-        console.log(response);
-      });
+        swal("لا يمكنك إضافة في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
+      }))
+
 }
 useEffect(() => {
   setImageSrc(imageSrc)
@@ -78,7 +83,7 @@ useEffect(() => {
        <div className="sign-input ">
            <h3 style={{
            }}>البريد الإلكتروني</h3>
-           <input type="text" className="sign-mail" placeholder='البريد الإلكتروني' tabIndex={3} onChange={(e)=>setEmail(e.target.value)} />
+           <input type="email" className="sign-mail" placeholder='البريد الإلكتروني' tabIndex={3} onChange={(e)=>setEmail(e.target.value)} />
        </div>
        <div className="sign-input ">
            <h3>اسم النشاط التجاري</h3>
@@ -88,9 +93,11 @@ useEffect(() => {
            <h3>تفاصيل عن النشاط التجاري</h3>
            <input type="text" className="sign-mail" placeholder='تفاصيل عن النشاط التجاري' tabIndex={5} onChange={(e)=>setDecOffice(e.target.value)} />
        </div>
-       <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`}>
-           <h3 style={{
-           }}>شعار النشاط التجاري</h3>
+       <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`}  style={{
+                         display: imageUpLoaded?'none':"block",
+
+           }}>
+           <h3>شعار النشاط التجاري</h3>
            <button
            onClick={handleClickFileBtn}
            >تحميل</button>
@@ -105,10 +112,12 @@ useEffect(() => {
        <div className={`${imageUpLoaded?"showUploadedImage":""}`   } 
         style={{
             display: !imageUpLoaded?'none':"block",
-            position:"relative"
+            position:"relative",
+            marginTop:"25px",
+            marginBottom:"25px"
 
            }}>
-                    <img src={`/assets/img/${imageSrc}`}  className='img-submite' alt="" style={{
+                    <img src={`/assets/img/${imageSrc.name}`}  className='img-submite' alt="" style={{
                         borderRadius:"10px"
                     }} />
                     <img src="/assets/img/removeImg.svg" alt="" className='remove-img' onClick={()=>setImageUpLoaded(false)} />

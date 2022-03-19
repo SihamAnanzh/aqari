@@ -107,7 +107,7 @@ console.log(latestData);
   <div className='results-container'>
   <Nav/>
   <div className='results'>
-    <h2 className='results-heading'>{`منازل ${!filterCtx.rent?'للإيجار':'للبيع'} في حولي`}</h2>
+    {/* <h2 className='results-heading'>{`منازل ${!filterCtx.rent?'للإيجار':'للبيع'} في حولي`}</h2> */}
     { premuimAdds.length !== 0 &&
    <div className="premium-adds-results">
    <h1 className='premium-title'>إعلانات مميزة</h1>

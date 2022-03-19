@@ -3,7 +3,6 @@ import React from 'react'
 
 const Add = (props) => {
   
-  console.log(props);
 
   return (
     <>
@@ -12,7 +11,7 @@ const Add = (props) => {
                 query: props.singleEstate
             }}
                             
-            as={`SingleEstate/${props.add_id}`}
+            as={`SingleEstate/${props.title}`}
         >
     <div className=' premuim-add  regular regular-origin '>
       <div className=' details-adds'>
@@ -42,7 +41,7 @@ const Add = (props) => {
                 query: props.singleEstate
             }}
                             
-            as={`SingleEstate/${props.add_id}`}
+            as={`SingleEstate/${props.title}`}
         >
     <div className='premuim-add regular fallback-regular'>
       <div className=' details-adds'>

@@ -5,179 +5,152 @@ import { FilterContext } from '../../stores/filter';
 import axios from 'axios'
 import swal from 'sweetalert';
 
-const AddService = () => {
-  const authCtx=useContext(AuthContext)
 
-const [checkedConditions,setCheckedConditions]=useState(false)
-const [imageUpLoaded, setImageUpLoaded]=useState(false)
-const [showListService,setShowListService]=useState(false)
-const [service,setService]=useState("")
-const [disable,setdisable]=useState(true)
-const [imageOne,setImageOne]=useState()
-const [imageTwo,setImageTwo]=useState()
-const [imageThree,setImageThree]=useState()
-const [imageFour,setImageFour]=useState()
-const [regions,setRegions]=useState([])
-const [items,setItem]=useState([])
-const [city ,setCity]=useState('')
-const [showListNames, setShowListNames]=useState(false)
-const [services, setSerivces] =useState([])
-const [selectItem,setSelectItems]=useState([])
-const [regionsId,setRegionsId]=useState([])
-const filterCtx=useContext(FilterContext)
-const [selection, setSelection] = useState([]);
-const [price, setPrice]=useState('')
-const [title, setTitle]=useState('')
-const [desc ,setDesc]=useState('')
-const [phoneNumber ,setPhone]=useState('')
-const [files,setFiles]=useState([])
-const [selectServId,setSelectServiId]=useState('')
-const [selectCategoryId,setSelectCategoryId]=useState([])
-const route = useRouter()
-useEffect(() => { 
+const UpdateService = () => {
+    const authCtx=useContext(AuthContext)
 
-selectItem?
-selectItem.map(item=>{
-toggleAcitveElement(item.id)
-}):""
-console.log(items);
-}, [showListNames]); 
-
-
- 
-
-useEffect(() => { 
-  
-     filterCtx.setRegionsId(regionsId)
-  console.log(filterCtx);
-    }, [regionsId]); 
+    const [checkedConditions,setCheckedConditions]=useState(false)
+    const [imageUpLoaded, setImageUpLoaded]=useState(false)
+    const [showListService,setShowListService]=useState(false)
+    const [service,setService]=useState("")
+    const [disable,setdisable]=useState(true)
+    const [imageOne,setImageOne]=useState()
+    const [imageTwo,setImageTwo]=useState()
+    const [imageThree,setImageThree]=useState()
+    const [imageFour,setImageFour]=useState()
+    const [regions,setRegions]=useState([])
+    const [items,setItem]=useState([])
+    const [city ,setCity]=useState('')
+    const [showListNames, setShowListNames]=useState(false)
+    const [services, setSerivces] =useState([])
+    const [selectItem,setSelectItems]=useState([])
+    const [regionsId,setRegionsId]=useState([])
+    const filterCtx=useContext(FilterContext)
+    const [selection, setSelection] = useState([]);
+    const [price, setPrice]=useState('')
+    const [title, setTitle]=useState('')
+    const [desc ,setDesc]=useState('')
+    const [phoneNumber ,setPhone]=useState('')
+    const [files,setFiles]=useState([])
+    const [selectServId,setSelectServiId]=useState('')
+    const [selectCategoryId,setSelectCategoryId]=useState([])
+    const route = useRouter()
+    useEffect(() => { 
+    
+    selectItem?
+    selectItem.map(item=>{
+    toggleAcitveElement(item.id)
+    }):""
+    console.log(items);
+    }, [showListNames]); 
     
     
-
+     
     
-
-
-const toggleAcitveElement=(id)=>{
-let item=document.getElementById(id)
-item!== null ?item.classList.add('selected'):""
-
-
-}
-
-
-useEffect(()=>{
-  let services=document.querySelectorAll('.profile-list-service')
-  services.length >0 ? [...services].map((serivec)=>{
-    serivec.classList.remove('.selected')
-    
-  }):""
-},[service])
-const handleChange=(e)=>{
-    setImageUpLoaded(true)
-    let file= e.target.files
-    setImageSrc(file[0].name)
-    console.log(file);
-}
-// const items = [
-//     {
-//       id: 1,
-//       value: 'محركات',
-//     },
-//     {
-//       id: 2,
-//       value: 'حرف',
-//     },
-//     {
-//       id: 3,
-//       value: 'تركيب ستالايت',
-//     },
-//     {
-//       id: 4,
-//       value: 'مكافحة حشرات',
-//     },{
-//       id: 5,
-//       value: 'نقل عفش',
-//     },{
-//       id: 6,
-//       value: 'اصباغ',
-//     },{
-//       id: 7,
-//       value: 'تنظيف',
-//     }
-//   ];
-  
-
-useEffect(()=>{
-  const region=axios.get('https://stagingapi.aqarifinder.com/api/region/list/',{
-    headers: {
-      "lang":'ar' 
-       },
-  })
-  .then(res=>{
-    !res.data.status.message == 'OK' ?console.log(res.data):setRegions(res.data.results)
-
-  })
-},[])
-
-useEffect(()=>{
-  axios.get('https://stagingapi.aqarifinder.com/api/service_type/list',{
-      headers: {
-        "lang":'ar' ,
-        
-         },
-    })
-    .then(res=>{
-        !res.data.status.message == 'OK' ?console.log(res.data):setSerivces(res.data.results)
-    })
-  },[])
-
-  const  handelSubmit=(e)=>{
- 
-    setFiles([imageOne,imageTwo,imageThree,imageFour])
-    console.log(files);
-    let formData;
-    title == ''|| desc == ''|| price == ''||  phoneNumber == " " ||files.length ==0?
-    swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning')     
-      :
-      (
-        formData=new FormData(),
-        formData.append('title',title),
-        formData.append('description',desc),
-        selectCategoryId.map((categ)=>{
-          formData.append('region_ids',categ)
-        }),
-        formData.append('price',price),
-        formData.append('service_type_id',selectServId),
-        formData.append('phone',phoneNumber),
-        formData.append('whatsapp',phoneNumber),
-        files.map((file)=>{
-          formData.append('image_files',file)
-        }),
-  
-        axios({
-          method: "post",
-          url: "https://stagingapi.aqarifinder.com/api/user/services/add",
-          headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
-          data: formData,
-        })
-          .then( (response) =>{
-                     console.log(response.data);
-            response.data.status.code == 200&& swal("تهانينا",'تمت إضافة الخدمة بنجاح','success')
-            route.replace('/profile/mySerivces')
-          })
-          .catch( (response)=> {
-    
-            swal("لا يمكنك إضافة في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
-          })
-
-      )
-  
+    useEffect(() => { 
       
-  }
+         filterCtx.setRegionsId(regionsId)
+      console.log(filterCtx);
+        }, [regionsId]); 
+        
+        
+    
+        
+    
+    
+    const toggleAcitveElement=(id)=>{
+    let item=document.getElementById(id)
+    item!== null ?item.classList.add('selected'):""
+    
+    
+    }
+    
+    
+    useEffect(()=>{
+      let services=document.querySelectorAll('.profile-list-service')
+      services.length >0 ? [...services].map((serivec)=>{
+        serivec.classList.remove('.selected')
+        
+      }):""
+    },[service])
+    const handleChange=(e)=>{
+        setImageUpLoaded(true)
+        let file= e.target.files
+        setImageSrc(file[0].name)
+        console.log(file);
+    }
 
-  
+    
+    useEffect(()=>{
+      const region=axios.get('https://stagingapi.aqarifinder.com/api/region/list/',{
+        headers: {
+          "lang":'ar' 
+           },
+      })
+      .then(res=>{
+        !res.data.status.message == 'OK' ?console.log(res.data):setRegions(res.data.results)
+    
+      })
+    },[])
+    
+    useEffect(()=>{
+      axios.get('https://stagingapi.aqarifinder.com/api/service_type/list',{
+          headers: {
+            "lang":'ar' ,
+            
+             },
+        })
+        .then(res=>{
+            !res.data.status.message == 'OK' ?console.log(res.data):setSerivces(res.data.results)
+        })
+      },[])
+    
+
+      const  handelSubmit=(e)=>{
+ 
+        console.log(files);
+        let formData;
+        title == ''|| desc == ''|| price == ''||  phoneNumber == " " ||files.length ==0?
+        swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning')     
+          :
+          (
+            formData=new FormData(),
+            formData.append('title',title),
+            formData.append('description',desc),
+            selectCategoryId.map((categ)=>{
+              formData.append('region_ids',categ)
+            }),
+            formData.append('price',price),
+            formData.append('service_type_id',selectServId),
+            formData.append('phone',phoneNumber),
+            formData.append('whatsapp',phoneNumber),
+            formData.append('id',props.add_id),
+
+      
+            axios({
+              method: "post",
+              url: "https://stagingapi.aqarifinder.com/api/user/services/add",
+              headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
+              data: formData,
+            })
+              .then( (response) =>{
+                         console.log(response.data);
+                response.data.status.code == 200&& swal("تهانينا",'تمت إضافة الخدمة بنجاح','success')
+                route.replace('/profile/mySerivces')
+              })
+              .catch( (response)=> {
+        
+                swal("لا يمكنك إضافة في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
+              })
+    
+          )
+      
+          
+      }
+    
+      
   return (
-<div>  
+    <div>  
       <div className='profile-tab add-servie-tab' onClick={(e)=>{
                  e.target.id !== "serivce-list"?setShowListService(false):""
 
@@ -461,7 +434,7 @@ useEffect(()=>{
    </div>
     </div>
     </div>  
-    )
+  )
 }
 
-export default AddService
+export default UpdateService

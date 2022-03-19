@@ -4,31 +4,34 @@ import React, { useContext, useEffect, useState ,} from 'react'
 import { AuthContext } from '../../stores/auth-context'
 import PackgeBox from '../dialogBox/PackgeBox'
 import SimpleMap from '../map/MapAdds'
+import swal from 'sweetalert';
+
+
 const AddAdds = () => {
-  const authCtx=useContext(AuthContext)
-  const [showListCategory,setShwoListCategory]=useState(false)
-  const [showListType,setShwoListType]=useState(false)
-  const [showListNames, setShowListNames]=useState(false)
-  const [checkedAdd ,setCheckedAdd]=useState(false)
-  const [checkedOffice ,setCheckedOffice]=useState(false)
-  const [checkedConditions,setCheckedConditions]=useState(false)
-  const [imageUpLoaded, setImageUpLoaded]=useState(false)
-  const [imageSrc, setImageSrc]=useState([])
-  const [disable,setdisable]=useState(true)
-  const [showDialogBox, setShowDialogiBox]=useState(false)
-  const  [addTitle,setAddTitle]=useState('')
-  const  [phoneNumber,setPhoneNumber]=useState('')
-  const [category,setCategory]=useState('')
-  const [typeEstat,setTypeEstat]=useState('')
-  const [city ,setCity]=useState('')
-  const [space, setSpace]=useState('')
-  const [price , setPrice]=useState('')
-  const [front,setFront]=useState('')
-  const [autoNum,setAutoNum]=useState('')
-  const [desc,setDesc]=useState('')
-  const [files,setFiles]=useState([])
-  const [lat,setLat]=useState('')
-  const [lng ,setLng]=useState('')
+const authCtx=useContext(AuthContext)
+const [showListCategory,setShwoListCategory]=useState(false)
+const [showListType,setShwoListType]=useState(false)
+const [showListNames, setShowListNames]=useState(false)
+const [checkedAdd ,setCheckedAdd]=useState(false)
+const [checkedOffice ,setCheckedOffice]=useState(false)
+const [checkedConditions,setCheckedConditions]=useState(false)
+const [imageUpLoaded, setImageUpLoaded]=useState(false)
+const [imageSrc, setImageSrc]=useState([])
+const [disable,setdisable]=useState(true)
+const [showDialogBox, setShowDialogiBox]=useState(false)
+const [addTitle,setAddTitle]=useState('')
+const [phoneNumber,setPhoneNumber]=useState('')
+const [category,setCategory]=useState('')
+const [typeEstat,setTypeEstat]=useState('')
+const [city ,setCity]=useState('')
+const [space, setSpace]=useState('')
+const [price , setPrice]=useState('')
+const [front,setFront]=useState('')
+const [autoNum,setAutoNum]=useState('')
+const [desc,setDesc]=useState('')
+const [files,setFiles]=useState([])
+const [lat,setLat]=useState('')
+const [lng ,setLng]=useState('')
 const [imageOne,setImageOne]=useState()
 const [imageTwo,setImageTwo]=useState()
 const [imageThree,setImageThree]=useState()
@@ -36,68 +39,64 @@ const [imageFour,setImageFour]=useState()
 const [regions,setRegions]=useState([])
 const [items,setItem]=useState([])
 const [imgList,setImgList]=useState([{}])
+//ids for api
+const [type_id, setType_id]=useState('')
+const [category_id,setCategory_id]=useState('')
+const [region_id,setRegion_id]=useState('')
 
-  useEffect(()=>{
-    setFiles([imageOne,imageTwo,imageThree,imageFour])
 
-  },[imageFour,imageOne,imageThree,imageTwo])
+useEffect(()=>{
+setFiles([imageOne,imageTwo,imageThree,imageFour])
+console.log(imageOne==''?'true':"false");
 
+},[imageFour,imageOne,imageThree,imageTwo])
 
 const  handelSubmit=(e)=>{
-  let data={}
-  addTitle !== ''&& desc !== ''&& space !=="" && front !==''&& price !== ''&& autoNum !==""&&phoneNumber !== " " ?
-( 
-   data= {
-      title:addTitle,
-      desc,
-      area:space,
-      front,
-      price,
-      auto_number:autoNum,
-      lat,
-      lng,
-      phone:phoneNumber,
-      is_premium:false,
-      currency_id:1,
-      region_id:1
-    
-    }
+  let formData;
 
-    )
-    :alert('fill all')
-    setFiles([imageOne,imageTwo,imageThree,imageFour])
+addTitle == ''|| desc == ''|| space =="" || front ==''|| price == ''|| autoNum 
+==""||phoneNumber == " " || imageOne == ""||imageTwo == '' ||imageThree == ''||imageFour == '' ?
+swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):(
+  setFiles([imageOne,imageTwo,imageThree,imageFour]),
 
-    let formData=new FormData()
-        formData.append('title',addTitle)
-        formData.append('desc',desc)
-        formData.append('region_id','1')
-        formData.append('area',space)
-        formData.append('front',front)
-        formData.append('price',price)
-        formData.append('currency_id','1')
-        formData.append('category_id','1')  
-        formData.append('ad_type_id','1')
-        formData.append('lat','2.333')
-        formData.append('lng','32.33')
-        formData.append('phone',phoneNumber)
-        formData.append('whatsapp',phoneNumber)
-        formData.append('is_premium',false)
-        formData.append('image_files',files)
-    axios({
-      method: "post",
-      url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
-      headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
-      data: formData,
-    })
-      .then( (response) =>{
+  formData=new FormData(),
+  formData.append('title',addTitle),
+  formData.append('desc',desc),
+  formData.append('area',space),
+  formData.append('front',front),
+  formData.append('price',price),
+  formData.append('currency_id','1'),
+  formData.append('category_id',category_id)  ,
+  formData.append('ad_type_id',type_id),
+  formData.append('region_id',region_id),
+  formData.append('lat','2.333'),
+  formData.append('lng','32.33'),
+  formData.append('phone',phoneNumber),
+  formData.append('whatsapp',phoneNumber),
+  formData.append('is_premium',showDialogBox),
+  files.map((file)=>{
+    formData.append('image_files',file)
+  }),
 
-        console.log(response);
-      })
-      .catch( (response)=> {
+  formData.append('auto_number',autoNum),
 
-        console.log(response);
-      });
-  return e.target.value
+
+  axios({
+  method: "post",
+  url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+  headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
+  data: formData,
+  })
+  .then( (response) =>{
+    response.data.status.code == 200&& swal("تهانينا",'تمت إضافة الإعلان بنجاح','success')
+    route.replace('profile/myAdds')
+
+  })
+  .catch( (response)=> {
+     swal("لا يمكنك إضافة في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
+  })
+
+)
 }
 
 
@@ -139,6 +138,7 @@ useEffect(()=>{
 
   return (
     <div>  
+    
       <div className='profile-tab' id='profile-tab' onClick={(e)=>{
 
                  e.target.id !== "category-list"?setShwoListCategory(false):setShwoListCategory(true)
@@ -153,15 +153,15 @@ useEffect(()=>{
     <div className="inputs-group addAdds-group">
     <div className="sign-input  addAdds-phone ">
            <h3>عنوان الأعلان</h3>
-           <input type="text" className="sign-mail" placeholder='عنوان الأعلان' tabIndex={1} autoFocus  onChange={e=>setAddTitle(e.target.value)}/>
+           <input type="text" className="sign-mail" placeholder='عنوان الأعلان' value={addTitle} tabIndex={1} autoFocus  onChange={e=>setAddTitle(e.target.value)}/>
        </div>
     <div className="sign-input  addAdds-phone ">
            <h3>رقم الهاتف</h3>
-           <input type="text" maxLength={12} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2} onChange={e=>setPhoneNumber(e.target.value)}/>
+           <input type="text" maxLength={12} className="sign-mail" placeholder='رقم الهاتف' value={phoneNumber} tabIndex={2} onChange={e=>setPhoneNumber(e.target.value)}/>
        </div>
        <div className="sign-input profile-category mail " id='category-list' >
            <h3>الفئة</h3>
-           <input type="text" className="sign-mail" placeholder='الفئة' tabIndex={3} id='category-list' value={category} onChange={e=>setCategory(e.target.value)} onClick={(e)=>{
+           <input type="text" className="sign-mail" placeholder='الفئة'tabIndex={3} id='category-list' value={category} onChange={e=>setCategory(e.target.value)} onClick={(e)=>{
                setShwoListCategory(!showListCategory)
                setShwoListType(false)
                setShowListNames(false)
@@ -171,13 +171,15 @@ useEffect(()=>{
            <ul className="dropdown-category"  style={{
              display: !showListCategory ?'none':""
            }}  >
-              <li  onClick={(e)=>{
+              <li  id='1' onClick={(e)=>{
+                 setType_id(e.target.id)
+
                 setCategory('ايجار')
               }} className={`category-item ${category==="ايجار" ? 'active-category':""}`} value='ايجار
                             '>ايجار</li>
-              <li className={`category-item ${category==="بيع" ? 'active-category':""}`}  value='بيع'
+              <li id='2' className={`category-item ${category==="بيع" ? 'active-category':""}`}  value='بيع'
                  onClick={(e)=>{
-            
+                  setType_id(e.target.id)
                 setCategory('بيع')
               }} >بيع</li>
            </ul>
@@ -210,6 +212,7 @@ useEffect(()=>{
           
                 
                          setTypeEstat(item.title)
+                         setCategory_id(item.id)
                        }
                     }>
                        <span id='type-list'>
@@ -226,7 +229,7 @@ useEffect(()=>{
        </div>
        <div className="sign-input  addAdds-region" id='city-list' >
            <h3>المنطقة</h3>
-           <input type="text" className="sign-mail" placeholder='المنطقة' tabIndex={3}   id='city-list' value={city}
+           <input type="text" className="sign-mail" placeholder='المنطقة' value={city} tabIndex={3}   id='city-list'
            onChange={e=>setCity(e.target.value)}
              onClick={()=>{
                setShowListNames(!showListNames)
@@ -251,6 +254,7 @@ useEffect(()=>{
           
                     
                          setCity(item.title)
+                         setRegion_id(item.id)
                        }
                     }>
                        {item.title}</li>
@@ -260,23 +264,23 @@ useEffect(()=>{
        </div>
        <div className="sign-input  addAdds-space">
            <h3>المساحة</h3>
-           <input type="text" className="sign-mail" placeholder='المساحة' tabIndex={3} onChange={e=>setSpace(e.target.value)} />
+           <input type="text" className="sign-mail" placeholder='المساحة' value={space} tabIndex={3} onChange={e=>setSpace(e.target.value)} />
        </div>
        <div className="sign-input  addAdds-price">
            <h3>السعر</h3>
-           <input type="text" className="sign-mail" placeholder='السعر' tabIndex={3} onChange={e=>setPrice(e.target.value)} />
+           <input type="text" className="sign-mail" placeholder='السعر' tabIndex={3} value={price} onChange={e=>setPrice(e.target.value)} />
        </div>
        <div className="sign-input  addAdds-interface">
            <h3>الواجهة</h3>
-           <input type="text" className="sign-mail" placeholder='الواجهة' tabIndex={3}  onChange={e=>setFront(e.target.value)}/>
+           <input type="text" className="sign-mail" placeholder='الواجهة' value={front} tabIndex={3}  onChange={e=>setFront(e.target.value)}/>
        </div>
        <div className="sign-input  addAdds-auto-num">
            <h3>الرقم الآلي</h3>
-           <input type="text" className="sign-mail" placeholder='الرقم الآلي' tabIndex={3} onChange={e=>setAutoNum(e.target.value)}/>
+           <input type="text" className="sign-mail" placeholder='الرقم الآلي' value={autoNum} tabIndex={3} onChange={e=>setAutoNum(e.target.value)}/>
        </div>
        <div className="sign-input  addAdds-disc">
            <h3>وصف العقار</h3>
-           <textarea className="sign-mail" placeholder='وصف العقار' tabIndex={3} onChange={e=>setDesc(e.target.value)}  />
+           <textarea className="sign-mail" placeholder='وصف العقار' tabIndex={3} value={desc} onChange={e=>setDesc(e.target.value)}  />
        </div>
 
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`} style={{ display:imageUpLoaded ?'none':"block",width:"66vw"
@@ -294,7 +298,7 @@ useEffect(()=>{
             display: 'none',
            }}
              onChange={(e)=>{
-               setImageOne(e.target.files[0].name)
+               setImageOne(e.target.files[0])
         }
             
              }/>
@@ -304,7 +308,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-            <img src={`/assets/img/${imageOne}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+            <img src={`/assets/img/${imageOne.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
             <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageOne('')
           }} />
@@ -320,7 +324,7 @@ useEffect(()=>{
             display: 'none',
            }}
              onChange={(e)=>{
-               setImageTwo(e.target.files[0].name)
+               setImageTwo(e.target.files[0])
            
 
           
@@ -333,7 +337,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageTwo}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img src={`/assets/img/${imageTwo.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageTwo('')
           }} />
@@ -349,7 +353,7 @@ useEffect(()=>{
             display: 'none',
            }}
              onChange={(e)=>{
-               setImageThree(e.target.files[0].name)
+               setImageThree(e.target.files[0])
          
           
               
@@ -361,7 +365,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageThree}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img src={`/assets/img/${imageThree.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageThree('')
           }} />
@@ -377,7 +381,7 @@ useEffect(()=>{
             display: 'none',
            }}
              onChange={(e)=>{
-               setImageFour(e.target.files[0].name)
+               setImageFour(e.target.files[0])
             
 
               
@@ -389,7 +393,7 @@ useEffect(()=>{
           </div>
 
           :<div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageFour}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img src={`/assets/img/${imageFour.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img' id='select-file-4'  onClick={(e)=>{ 
           setImageFour('')
           }}/>
@@ -417,7 +421,7 @@ useEffect(()=>{
            setCheckedAdd(!checkedAdd)
            setShowDialogiBox(!showDialogBox)
          }}>
-                      {showDialogBox && <PackgeBox setShowDialogiBox={setShowDialogiBox} showDialogBox={showDialogBox} count={authCtx.premiumAdd}/>}
+           {showDialogBox && authCtx.premiumAdd >0 && <PackgeBox setShowDialogiBox={setShowDialogiBox} showDialogBox={showDialogBox} count={authCtx.premiumAdd}/>}
 
            <img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
            <span>أجعل الإعلان مميز</span>
