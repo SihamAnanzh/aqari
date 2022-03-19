@@ -8,11 +8,26 @@ const Service = ({withImg,setOverlay,data }) => {
 const [addToFav,setAddtoFav]=useState(false)
 const authCtx=useContext(AuthContext)
 const [userAdd,setUserAdd]=useState(false)
+const [allInfo ,setAllInfo]=useState({})
 const route =useRouter()
   useEffect(()=>{
 
     axios.get(`https://stagingapi.aqarifinder.com/api/ads/${data.id}`)
+    setAllInfo({
+      id:data.id,
+      title:data.title,
+      desc:data.discriptions,
+      region_id:data.regionId,
+       price:data.price,
+       address:data.address,
+       phone:data.phone,
+       whatsaap:data.whatsaap,
+       regionsString:data.regionsString,
+       category:data.category,
+       adType:data.adType
+   
   
+  })
   },[])
   useEffect(()=>{
     authCtx.userId == data.user_id ?setUserAdd(true):setUserAdd(false)
@@ -85,8 +100,8 @@ const route =useRouter()
                 cursor:'pointer'
               }}><Link 
               href={{
-                pathname:'/profile/addAdds',
-                // query:{...allInfo}
+                pathname:'/profile/updateService',
+                query:{...allInfo}
             }}
                      
               as={`update/${data.title}`}

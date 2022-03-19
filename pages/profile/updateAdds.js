@@ -37,7 +37,6 @@ export default updateAdds
 
   export async function getServerSideProps(context) {
   
-  console.log('siham' + context.query);
   let data=context.query
   return{props:{data}}
   }

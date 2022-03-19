@@ -6,7 +6,7 @@ import UpdateService from '../../components/profile/UpdateService'
 import {AuthContext} from '../../stores/auth-context'
 import { useRouter } from 'next/router';
 
-const updateService = () => {
+const updateService = ({data}) => {
     
   const authCtx=useContext(AuthContext)
   const route =useRouter()
@@ -23,7 +23,7 @@ const updateService = () => {
         <div className='profile-container'>
         <h1 className="profile-heading">الملف الشخصي</h1>
         <SubNav/>
-        <UpdateService/>
+        <UpdateService updateData={data}/>
         </div> 
         <Footer/>
         </>
@@ -33,3 +33,12 @@ const updateService = () => {
 }
 
 export default updateService
+
+s
+
+
+  export async function getServerSideProps(context) {
+  
+  let data=context.query
+  return{props:{data}}
+  }
