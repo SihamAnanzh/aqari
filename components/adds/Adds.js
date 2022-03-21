@@ -4,7 +4,7 @@ import Add from './Add'
 import axios from 'axios'
 
 
-const Adds = ({premuimAdds,latestData,servicesData,ads,premium}) => {
+const Adds = ({premuimAdds,latestData,ads,premium}) => {
 
   
   return (

@@ -1,9 +1,9 @@
 import React from 'react'
 import  Nav from '../../../components/shared/nav/Nav'
 import Footer from '../../../components/shared/footer/Footer'
-import ForgetPasswrod from '../../../components/singIN/ForgetPasswrod'
+import ForgetPasswrod  from '../../../components/singIN/ForgetPasswrod'
 
-const forgetPasswrod = () => {
+const Index = () => {
 
   return (
     <div>
@@ -14,4 +14,4 @@ const forgetPasswrod = () => {
   )
 }
 
-export default forgetPasswrod
+export default Index

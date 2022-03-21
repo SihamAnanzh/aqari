@@ -1,10 +1,10 @@
 import React from 'react'
 import { ContactUs } from '../components/contactUs/ContactUs'
 
-const contactus = () => {
+const Contactus = () => {
   return (
     <ContactUs/>
   )
 }
 
-export default contactus
+export default Contactus

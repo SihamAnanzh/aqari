@@ -6,7 +6,7 @@ import AddAdds from '../../components/profile/AddAdds'
 import {AuthContext} from '../../stores/auth-context'
 import { useRouter } from 'next/router';
 
-const addAdds = () => {
+const  Adds = () => {
 
   const authCtx=useContext(AuthContext)
   const route =useRouter()
@@ -32,4 +32,4 @@ const addAdds = () => {
   )
 }
 
-export default addAdds
+export default Adds

@@ -6,7 +6,7 @@ import {AuthContext} from '../../stores/auth-context'
 import { useRouter } from 'next/router';
 import MyFav from '../../components/profile/MyFav';
 
-const myFavorite = () => {
+const MyFavorite = () => {
   const authCtx=useContext(AuthContext)
   const route =useRouter()
 
@@ -33,4 +33,4 @@ const myFavorite = () => {
  )
 }
 
-export default myFavorite
+export default MyFavorite

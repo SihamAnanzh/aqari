@@ -2,14 +2,15 @@ import React from 'react'
 import Link from 'next/link'
 
 const PremiumService = (props) => {
+
   return (
     <>
     <Link href={{
-            pathname:'/SingleServices',
+            pathname:'/services/id',
             query: props.singleEstate
         }}
                         
-        as={`SingleServices/${props.title}`}
+        as={`services/${props.add_id}`}
     >
     <div className='premuim-add origin fallback-origin '>
         <div className='details'>
@@ -45,11 +46,11 @@ const PremiumService = (props) => {
 
     <Link href={{
       
-            pathname:'/SingleServices',
-            query: props.singleEstate
+      pathname:'/services/id',
+      query: props.singleEstate
         }}
                         
-        as={`SingleServices${props.title}`}
+        as={`/services/${props.add_id}`}
     
                         
 

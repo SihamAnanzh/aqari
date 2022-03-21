@@ -16,7 +16,6 @@ headers: {"lang":'ar' , 'Authorization':authCtx.token},
 
 })  .then(res=>{
 setUserData(res.data.results)
-console.log(res.data.results);
 
 
 })
@@ -66,7 +65,7 @@ user_id:adds.user_id,
 
 setLatest(pre=>[...pre,data])
 authCtx.loadding(false)
-console.log();
+
 
 
 })

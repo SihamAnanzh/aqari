@@ -53,7 +53,7 @@ let  regions=filterCtx.regions_id
       console.log(res.data.results);
       filterCtx.setAddsSResutls(res.data.results)
       filterCtx.setSerivceId('')
-      route.replace('/searchResult')
+      route.replace('/SearchResult')
 
     })
     showSearchSelling && axios.post('https://stagingapi.aqarifinder.com/api/ads/filter',
@@ -67,7 +67,7 @@ let  regions=filterCtx.regions_id
       filterCtx.setAddsSResutls(res.data.results)
       filterCtx.setSerivceId('')
         filterCtx.rent=false
-      route.replace('/searchResult')
+      route.replace('/SearchResult')
 
     })
   }

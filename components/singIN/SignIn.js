@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { AuthContext } from '../../stores/auth-context'
 
-export const SignInComponent = () => {
+export const SignInComponent = ({signIn}) => {
     const [rememberME,setRememberMe]=useState(false)
     const [showPassword, setShowPassword]=useState(false)
     const [wrongPassword, setWrongPassword] = useState(true);
@@ -16,7 +16,7 @@ export const SignInComponent = () => {
     return e.target.value
   }
 
-
+// signIn("cridentioanl", {username : '', password: ''})
  const  handleSubmit=()=>{
      password !=="" && email !=="" ?(
      axios.post('https://stagingapi.aqarifinder.com/api/user/login',{email ,password})
@@ -33,7 +33,7 @@ export const SignInComponent = () => {
      }).catch(err=>console.log(err))
     ):    alert('الرجاء تعبئة جميع الحقول')
 
-       
+    // signIn("credentials", { username: email, password: password })
  }
 
   return (

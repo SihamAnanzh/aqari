@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { ReactDOM } from 'react'
 import FormControl from '@mui/material/FormControl';
 import {Facebook , Twitter,Email,Instagram} from '@mui/icons-material/';
 import InputAdornment from '@mui/material/InputAdornment'
@@ -43,3 +43,6 @@ const SoicalInput = () => {
 }
 
 export default SoicalInput
+
+
+

@@ -8,7 +8,6 @@ const [newPassword, setNewPassword] = useState('');
 
 const handelClick=()=>{
     axios.post('https://stagingapi.aqarifinder.com/api/user/password/reset',{newPassword}).then((res)=>{
-       console.log(res)
       
     })
     }

@@ -5,6 +5,7 @@ import { AuthContext } from '../../stores/auth-context'
 import PackgeBox from '../dialogBox/PackgeBox'
 import SimpleMap from '../map/MapAdds'
 import swal from 'sweetalert';
+import { useRouter } from 'next/router'
 const UpdateAdd = ({updateData}) => {
     console.log(updateData);
 const [showListCategory,setShwoListCategory]=useState(false)
@@ -33,50 +34,55 @@ const authCtx=useContext(AuthContext)
 //ids for api
 const [type_id, setType_id]=useState('')
 const [category_id,setCategory_id]=useState('')
-const [region_id,setRegion_id]=useState('')
-
+const [region_id,setRegion_id]=useState(updateData&&updateData.region_id)
+const route=useRouter()
 const  handelSubmit=(e)=>{
     let data;
   addTitle == ''|| desc == ''|| space =="" || front ==''|| price == ''|| autoNum 
   ==""||phoneNumber == " "?
   swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):(
 
-  data={
-    id: UpdateAdd.id,
-    title: addTitle,
-    desc:desc,
-    region_id:region_id,
-    area: space,
-    front:front,
-    price: price,
-    currency_id: 1,
-    auto_number: autoNum,
-    lat: "39.123112",
-    lng: "32.663212",
-    phone: phoneNumber,
-    whatsapp: phoneNumber,
-    is_premium: showDialogBox
-  },
-  
+      data={
+        id: Number(updateData.id),
+        title: addTitle,
+        desc:desc,
+       region_id:Number(region_id),
+       area: Number(space),
+       front:front,
+       price: Number(price) ,
+       currency_id:  1,    
+       auto_number: autoNum,
+       lat: "39.123112", 
+       lng: "32.663212",
+       phone: phoneNumber,
+       whatsapp: phoneNumber,
+       is_premium: showDialogBox,
+       ad_type_id:updateData.adTypeId,
+       category_id:updateData.categoryId
+   
+      }
+  )
     axios({
     method: "post",
     url: "https://stagingapi.aqarifinder.com/api/user/ad/update",
-    headers: { 'Authorization':authCtx.token },
+    headers: { "content-type": 'application/json', 'Authorization':authCtx.token },
     data:{...data}
     })
     .then( (response) =>{
-        console.log(response);
-      response.data.status.code == 200&& swal("تهانينا",'تمت إضافة الإعلان بنجاح','success')
-      route.replace('profile/myAdds')
+      console.log(response);
+
+    response.data.status.code == 200&&  (swal("تهانينا",'تمت تعديل الإعلان بنجاح','success'),
+      route.replace('/profile/myAdds'))
   
     })
     .catch( (response)=> {
-        console.log(response);
-       swal("لا يمكنك إضافة في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
+      console.log(response);
+       swal("لا يمكنك التعديل في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
     })
   
-  )
-  }
+  
+  
+}
 
   useEffect(()=>{
     setShowDialogiBox(showDialogBox)
@@ -307,3 +313,4 @@ const  handelSubmit=(e)=>{
 }
 
 export default UpdateAdd
+

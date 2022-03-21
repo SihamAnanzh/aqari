@@ -1,8 +1,8 @@
 import React from 'react'
-import ConfirmPasswrod  from '../../../components/singIN/ConfirmPasswrod'
+import ConfirmPasswrod   from '../../../components/singIN/ConfirmPasswrod'
 import  Nav from '../../../components/shared/nav/Nav'
 import Footer from '../../../components/shared/footer/Footer'
-const confirmPassword = () => {
+const  Index = () => {
   return (
     <>
 <Nav/>
@@ -12,4 +12,4 @@ const confirmPassword = () => {
   )
 }
 
-export default confirmPassword
+export default Index

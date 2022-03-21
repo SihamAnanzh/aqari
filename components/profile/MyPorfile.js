@@ -31,7 +31,6 @@ useEffect(()=>{
 
  const handleSubmit=()=>{
  let data ={name, email , phone}
- console.log(data);
  axios.post('https://stagingapi.aqarifinder.com/api/user/update',{...data},{headers:{'Authorization':authCtx.token}})
   .then(res=>{ console.log(res);
   })

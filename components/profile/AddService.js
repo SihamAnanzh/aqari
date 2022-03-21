@@ -30,6 +30,8 @@ const [price, setPrice]=useState('')
 const [title, setTitle]=useState('')
 const [desc ,setDesc]=useState('')
 const [phoneNumber ,setPhone]=useState('')
+const [whatsPhone,setWhatsPhone]=useState('')
+
 const [files,setFiles]=useState([])
 const [selectServId,setSelectServiId]=useState('')
 const [selectCategoryId,setSelectCategoryId]=useState([])
@@ -40,7 +42,6 @@ selectItem?
 selectItem.map(item=>{
 toggleAcitveElement(item.id)
 }):""
-console.log(items);
 }, [showListNames]); 
 
 
@@ -49,7 +50,6 @@ console.log(items);
 useEffect(() => { 
   
      filterCtx.setRegionsId(regionsId)
-  console.log(filterCtx);
     }, [regionsId]); 
     
     
@@ -76,7 +76,6 @@ const handleChange=(e)=>{
     setImageUpLoaded(true)
     let file= e.target.files
     setImageSrc(file[0].name)
-    console.log(file);
 }
 // const items = [
 //     {
@@ -134,7 +133,6 @@ useEffect(()=>{
   const  handelSubmit=(e)=>{
  
     setFiles([imageOne,imageTwo,imageThree,imageFour])
-    console.log(files);
     let formData;
     title == ''|| desc == ''|| price == ''||  phoneNumber == " " ||files.length ==0?
     swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning')     
@@ -161,7 +159,6 @@ useEffect(()=>{
           data: formData,
         })
           .then( (response) =>{
-                     console.log(response.data);
             response.data.status.code == 200&& swal("تهانينا",'تمت إضافة الخدمة بنجاح','success')
             route.replace('/profile/mySerivces')
           })
@@ -234,7 +231,7 @@ useEffect(()=>{
            <h3 style={{
                paddingTop:"20px"
            }}>رقم الواتس اب</h3>
-           <input type="number" min={0} className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} />
+           <input type="number" min={0} className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} onChange={e=>setWhatsPhone(e.target.value)}/>
        </div>
        <div className="sign-input  addAdds-region" id='city-list' style={{position:'relative'}} >
            <h3>المنطقة</h3>
@@ -287,7 +284,6 @@ useEffect(()=>{
                                 
                        
                            }
-                             console.log(selectCategoryId);
                        
                           
                        

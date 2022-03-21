@@ -1,14 +1,14 @@
 import React from 'react'
 import Packges from '../components/packges/Packges'
 
-const packges = ({data}) => {
+const PackgesAdd = ({data}) => {
 
   return (
     <div><Packges  data={data.results}/></div>
   )
 }
 
-export default packges
+export default PackgesAdd
 
 
 

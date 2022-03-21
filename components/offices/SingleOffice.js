@@ -8,12 +8,12 @@ const SingleOffice = ({office}) => {
   return (
     <>
     <Link href={{
-                pathname:'/offices/singleOffice',
+                pathname:'/offices/id',
                 query: {id:office.id}
             }}
                       
   
-     as={`/offices/singleOffice`} 
+     as={`/offices/${office.id}`} 
     
   >
        <div className='office'>

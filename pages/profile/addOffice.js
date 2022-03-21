@@ -6,7 +6,7 @@ import AddOffice from '../../components/profile/AddOffice'
 import {AuthContext} from '../../stores/auth-context'
 import { useRouter } from 'next/router';
 
-const addOffice = () => {
+const Office = () => {
   
   const authCtx=useContext(AuthContext)
   const route =useRouter()
@@ -32,4 +32,4 @@ const addOffice = () => {
     )
 }
 
-export default addOffice
+export default Office

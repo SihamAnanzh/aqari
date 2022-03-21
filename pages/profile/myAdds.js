@@ -4,13 +4,11 @@ import Footer from '../../components/shared/footer/Footer'
 import SubNav from '../../components/profile/SubNav'
 import MyAdds from '../../components/profile/MyAdds'
 import {AuthContext} from '../../stores/auth-context'
-import { useRouter } from 'next/router';
 import axios from 'axios';
 
 
-const myAdds = () => {
+const ProfileAdd = () => {
   const authCtx=useContext(AuthContext)
-  const route =useRouter()
 
   useEffect(()=>{
     !authCtx.isLoggedIn  && route.replace('/signIN')
@@ -35,4 +33,4 @@ const myAdds = () => {
  )
 }
 
-export default myAdds
+export default ProfileAdd

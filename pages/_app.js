@@ -1,5 +1,4 @@
 import '../styles/styles.scss';
-// import {Provder as AuthProvider} from 'next-auth'
 import { SessionProvider } from "next-auth/react"
 import { AuthContext, AuthContextProvider } from '../stores/auth-context';
 import { useContext } from 'react';
@@ -10,19 +9,21 @@ function MyApp({
   Component, 
   pageProps: { session, ...pageProps }
 }) {
+
+  
 const authCtx=useContext(AuthContext)
   return( 
-    <FliterProvider>
-  <AuthContextProvider>
     <SessionProvider session={session}>
+    <FliterProvider>
+      <AuthContextProvider>
 
         {
           !authCtx.isLoadding? <Loader/>:  <Component {...pageProps} />
         }
     
-    </SessionProvider>
   </AuthContextProvider>
   </FliterProvider>
+  </SessionProvider>
   ) 
 }
 

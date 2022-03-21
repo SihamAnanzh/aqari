@@ -1,39 +1,42 @@
-import axios from 'axios'
 import React ,{useContext, useEffect, useState} from 'react'
 import { AuthContext } from '../../stores/auth-context'
 import Slideshow from '../imgSlider/ImgSlider'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+
+
 const Service = ({withImg,setOverlay,data }) => {
 const [addToFav,setAddtoFav]=useState(false)
 const authCtx=useContext(AuthContext)
 const [userAdd,setUserAdd]=useState(false)
 const [allInfo ,setAllInfo]=useState({})
 const route =useRouter()
-  useEffect(()=>{
+ 
+//  useEffect(()=>{
 
-    axios.get(`https://stagingapi.aqarifinder.com/api/ads/${data.id}`)
-    setAllInfo({
-      id:data.id,
-      title:data.title,
-      desc:data.discriptions,
-      region_id:data.regionId,
-       price:data.price,
-       address:data.address,
-       phone:data.phone,
-       whatsaap:data.whatsaap,
-       regionsString:data.regionsString,
-       category:data.category,
-       adType:data.adType
+//     setAllInfo({
+//       id:data.id,
+//       desc:data.discriptions,
+//        price:data.price,
+//        address:data.address,
+//        phone:data.phone,
+//        whatsaap:data.whatsaap,
+//        category:data.category,
+//        regionsString:data.regionsString,
+//        serviceTypeString:data.serviceTypeString,
+//        serviceTypeId:data.service_type_id,
+//        regionsId:data.regionsId,
+//        title:data.title,
+//        whatsApp:data.whatsApp
+
    
   
-  })
-  },[])
+//   })
+//   },[])
   useEffect(()=>{
     authCtx.userId == data.user_id ?setUserAdd(true):setUserAdd(false)
   },[data.user_id])
   
-  console.log(data.id);
   
   const toggleFavAdds=()=>{
     authCtx.token?
@@ -45,7 +48,7 @@ const route =useRouter()
         "Authorization":authCtx.token
          },
   
-    }).then((res)=>{console.log(res)
+    }).then((res)=>{
       setAddtoFav(!addToFav)})
      )
     :
@@ -98,13 +101,14 @@ const route =useRouter()
                 borderRadius:'10px',
                 padding:'5px',
                 cursor:'pointer'
-              }}><Link 
+              }}><Link  
+     
               href={{
-                pathname:'/profile/updateService',
-                query:{...allInfo}
+                pathname:`/profile/updateService/${data.add_id}`,
+                query:data.id
             }}
                      
-              as={`update/${data.title}`}
+              // as={'/profile/updateService/'+ data.title.trim().replace(' ', '-') + "/" + data.id}
               >تعديل</Link></h4> }
               
             </div>
@@ -119,7 +123,7 @@ const route =useRouter()
 
               </div>
             <div className="disc-estate">
-            {data.discriptions}
+            {data.description}
             </div>
         </div>
         
@@ -138,7 +142,7 @@ const route =useRouter()
         
   
     <div className='contact-estate'>
-      <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg'/></span><a style={{textDecoration:"none",color:"#fff" ,fontFamily:"fangsong"}} target="_blank" href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>0787012409</a></div>
+      <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg'/></span><a style={{textDecoration:"none",color:"#fff" ,fontFamily:"fangsong"}} href={`https://api.whatsapp.com/send/?phone=+9620787012409`} >0787012409</a></div>
       <div className='phone' style={{fontFamily:"fangsong"}}><span className='address-phone'><img src='/assets/img/phone.svg'/></span>{data.phone}</div>
     </div>
     </div>

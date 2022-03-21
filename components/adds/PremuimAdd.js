@@ -6,11 +6,11 @@ const PremuimAdd = (props) => {
     return (
         <>
         <Link href={{
-                pathname:'/SingleEstate',
-                query: props.singleEstate
+                pathname:`/advertises/id`,
+                query: props.add_id
             }}
                             
-            as={`SingleEstate/${props.title}`}
+            as={`advertises/${props.add_id}`}
         >
         <div className='premuim-add origin fallback-origin '>
             <div className='details'>
@@ -46,11 +46,11 @@ const PremuimAdd = (props) => {
 
         <Link href={{
           
-                pathname:'/SingleEstate',
-                query: props.singleEstate
+                pathname:`/advertises/id`,
+                query: props.add_id
             }}
                             
-            as={`SingleEstate${props.title}`}
+            as={`advertises/${props.add_id}`}
         
                             
 

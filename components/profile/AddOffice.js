@@ -122,7 +122,7 @@ useEffect(() => {
                     }} />
                     <img src="/assets/img/removeImg.svg" alt="" className='remove-img' onClick={()=>setImageUpLoaded(false)} />
        </div>
-       {/* <SoicalInput/> */}
+
        <div className="checksbox" style={{cursor:'pointer'}}>
        <div className="conditions chack-groub" onClick={()=>{
            setCheckedConditions(!checkedConditions)

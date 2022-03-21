@@ -7,11 +7,11 @@ const Add = (props) => {
   return (
     <>
        <Link href={{
-                pathname:'/SingleEstate',
-                query: props.singleEstate
+                pathname:'/advertises/id',
+                query: props.add_id
             }}
                             
-            as={`SingleEstate/${props.title}`}
+            as={`/advertises/${props.add_id}`}
         >
     <div className=' premuim-add  regular regular-origin '>
       <div className=' details-adds'>
@@ -37,11 +37,11 @@ const Add = (props) => {
     </div>
     </Link>
     <Link href={{
-                pathname:'/SingleEstate',
-                query: props.singleEstate
+                pathname:'/advertises/id',
+                query: props.add_id
             }}
                             
-            as={`SingleEstate/${props.title}`}
+            as={`/advertises/${props.add_id}`}
         >
     <div className='premuim-add regular fallback-regular'>
       <div className=' details-adds'>

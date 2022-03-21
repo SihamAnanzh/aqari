@@ -11,8 +11,8 @@ function MobileSlider({imgs}) {
   return (
     <>
       <Swiper loop pagination={true} modules={[Pagination]} className="mySwiper">
-        {imgs.map((img)=>(
-          <SwiperSlide><img src={img} alt="" /></SwiperSlide>
+        {imgs.map((img,index)=>(
+          <SwiperSlide key={index}><img src={img} alt="" /></SwiperSlide>
 
         ))}
       

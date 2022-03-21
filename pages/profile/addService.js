@@ -6,7 +6,7 @@ import AddService from '../../components/profile/AddService'
 import {AuthContext} from '../../stores/auth-context'
 import { useRouter } from 'next/router';
 
-const addSevice = () => {
+const Service = () => {
 
   const authCtx=useContext(AuthContext)
   const route =useRouter()
@@ -32,4 +32,4 @@ const addSevice = () => {
   )
 }
 
-export default addSevice
+export default Service
