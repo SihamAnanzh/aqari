@@ -14,6 +14,13 @@ const Estat = ({ withImg, setOverlay, data }) => {
   const [userAdd, setUserAdd] = useState(false)
   const route = useRouter()
   const [allInfo, setAllInfo] = useState({})
+  const [lat, setLat]=useState('')
+  const [lng,setLng]=useState()
+
+useEffect(()=>{
+  setLat(data.lat)
+  setLng(data.lng)
+},[data])
 
   useEffect(() => {
     authCtx.userId == data.user_id ? setUserAdd(true) : setUserAdd(false)
@@ -175,10 +182,10 @@ const Estat = ({ withImg, setOverlay, data }) => {
         </div>
 
         <div className="estat-map map-origin">
-          <SimpleMap lat={data.lat} lng={data.lang} />
+          <SimpleMap getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat}  />
         </div>
         <div className="estat-map map-copy">
-          <SimpleMap2 lat={data.lat} lng={data.lang} />
+          <SimpleMap2   getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat} />
         </div>
         <div className='contact-estate'>
           <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' /></span><a style={{ textDecoration: "none", color: "#fff", fontFamily: "fangsong" }} href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>0787012409</a></div>

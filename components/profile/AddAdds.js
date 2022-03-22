@@ -45,6 +45,7 @@ const [category_id,setCategory_id]=useState('')
 const [region_id,setRegion_id]=useState('')
 
 
+
 useEffect(()=>{
 setFiles([imageOne,imageTwo,imageThree,imageFour])
 console.log(imageOne==''?'true':"false");
@@ -69,8 +70,8 @@ swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):(
   formData.append('category_id',category_id)  ,
   formData.append('ad_type_id',type_id),
   formData.append('region_id',region_id),
-  formData.append('lat','2.333'),
-  formData.append('lng','32.33'),
+  formData.append('lat',lat),
+  formData.append('lng', lng),
   formData.append('phone',phoneNumber),
   formData.append('whatsapp',phoneNumber),
   formData.append('is_premium',showDialogBox),
@@ -413,7 +414,7 @@ useEffect(()=>{
        <div className="sign-input  addAdds-auto-num">
            <h3>تحديد المواقع</h3>
            <div className="map-adds">
-           <SimpleMap />
+           <SimpleMap getLat={setLat} getLng={setLng} />
            </div>
        </div>
        <div className="checksbox" style={{cursor:'pointer'}}>

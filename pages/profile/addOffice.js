@@ -24,6 +24,7 @@ const Office = () => {
     <h1 className="profile-heading">الملف الشخصي</h1>
     <SubNav/>
     <AddOffice/>
+    
     </div> 
     <Footer/>
     </>

@@ -3,7 +3,7 @@
     border-top: 1px solid $main-color;
     padding: 30px;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     font-family: otfPlian;
 }
 
@@ -254,6 +254,65 @@ text-align: right;
     margin-top: 42px;
 }
 
+.input-social{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 40vw;
+    width: 40vw;
+    border-bottom: 1px solid #ccc;
+    height: 100px;
+
+    div{
+        border-bottom: 1px soild #ccc;
+ 
+    }
+
+    button{
+        margin-right: 20px;
+        border: none;
+        outline: none;
+        background: #F09304;
+        color: white;
+        width: 66px;
+        font-size: 20px;
+        height: 30px;
+        border-radius: 5px;
+
+    }
+
+    .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    h3{
+        margin-top: unset;
+        color: #F09304;
+    }
+    }
+
+    .text{
+      input{
+        border: none;
+        height: 35px;
+          background-color: $background-color;
+          align-self: flex-start;
+          outline: none;
+          width:180px
+
+    }
+    input::hover,
+    input::focus{
+       outline: none;
+    }
+    input::placeholder{
+        color:#00055F
+    }
+} 
+}
+
 @media (max-width:1600px) {
     .offices{
         background-color: #F1F4F6;
@@ -453,4 +512,7 @@ text-align: right;
         padding-right: 78px;
 
     }
+
+
+   
 }

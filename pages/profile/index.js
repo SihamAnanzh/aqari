@@ -4,11 +4,13 @@ import Footer from '../../components/shared/footer/Footer'
 import SubNav from '../../components/profile/SubNav'
 import MyProfile from '../../components/profile/MyPorfile'
 import {AuthContext} from '../../stores/auth-context'
+import { useRouter } from 'next/router';
 
 
 
 const Index = ({adds}) => {
   const authCtx=useContext(AuthContext)
+  const route=useRouter()
 let infoUser;
   useEffect(()=>{
     !authCtx.isLoggedIn  && route.replace('/signIN')

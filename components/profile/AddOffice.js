@@ -2,6 +2,8 @@ import React ,{useState ,useEffect,useContext} from 'react'
 import SoicalInput from '../socialInput/SoicalInput'
 import axios from 'axios'
 import swal from 'sweetalert'
+import {Facebook , Twitter,Email,Instagram, Mail} from '@mui/icons-material/';
+
 import { AuthContext } from '../../stores/auth-context'
 const AddOffice = () => {
   const authCtx=useContext(AuthContext)
@@ -136,7 +138,48 @@ useEffect(() => {
          </div>
        </div>
     </div>
+    <div className="social-contanier">
+     <div className="input-social insta">
+        <div className="title">
+          <h3>Instgram</h3>
+        </div>
+        <div className="text">
+           <input type="text" placeholder='ادخل اسم المستخدم' />
+           <button>تاكيد</button>
 
+        </div>
+     </div>
+     <div className="input-social twitter">
+     <div className="title">
+          <h3>Twitter</h3>
+        </div>
+        <div className="text">
+           <input type="text"  placeholder='ادخل اسم المستخدم'/>
+           <button>تاكيد</button>
+        </div>
+     </div>
+     <div className="input-social facebook">
+     <div className="title">
+          <h3>Facebook</h3>
+        </div>
+        <div className="text">
+           <input type="text"   placeholder='ادخل اسم المستخدم'/>
+           <button>تاكيد</button>
+
+        </div>
+     </div>
+     <div className="input-social mail">
+     <div className="title">
+          <h3>Email</h3>
+        </div>
+        <div className="text">
+           <input type="text"  placeholder='ادخل اسم المستخدم' />
+           <button>تاكيد</button>
+
+        </div>
+     </div>
+
+   </div>
     <div className="sign-btn" aria-disabled="true" onClick={handelSubmit} style={{
          backgroundColor:disable ? "#F1E6D3":"#EDAA43"
     }}> 

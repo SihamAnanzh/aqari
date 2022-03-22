@@ -129,7 +129,7 @@ const Index = ({ prem, latest, services, Request }) => {
   return (
     <>
       {
-        !authCtx.isLoadding ?
+        // !authCtx.isLoadding ?
           <>
             <Nav />
             <Banner />
@@ -137,7 +137,7 @@ const Index = ({ prem, latest, services, Request }) => {
             <Adds latestData={latestData} premuimAdds={premuimAdds} />
             <Footer />
           </>
-          : <Loader />
+          // : <Loader />
       }
     </>
   )
@@ -147,7 +147,7 @@ export default Index
 
 
 export async function getServerSideProps(context) {
-  console.log("INSIDE SERVER SIDE", context.req);
+  // console.log("INSIDE SERVER SIDE", context.req);
   let prem;
   let latest;
 

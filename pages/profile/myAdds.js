@@ -5,11 +5,12 @@ import SubNav from '../../components/profile/SubNav'
 import MyAdds from '../../components/profile/MyAdds'
 import {AuthContext} from '../../stores/auth-context'
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 
 const ProfileAdd = () => {
   const authCtx=useContext(AuthContext)
-
+  const route=useRouter()
   useEffect(()=>{
     !authCtx.isLoggedIn  && route.replace('/signIN')
   },[])
