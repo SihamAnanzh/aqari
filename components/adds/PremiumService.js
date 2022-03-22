@@ -10,7 +10,7 @@ const PremiumService = (props) => {
             query: props.singleEstate
         }}
                         
-        as={`services/${props.add_id}`}
+        as={`/services/${props.add_id}`}
     >
     <div className='premuim-add origin fallback-origin '>
         <div className='details'>

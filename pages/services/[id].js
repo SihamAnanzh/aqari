@@ -9,14 +9,14 @@ const SingleServices = ({data}) => {
   const [withImg, setWithImg] = useState(false)
   const  [overlay ,setOverlay]=useState(false)
 useEffect(()=>{
-    // data.images?
-    // setWithImg(true):setWithImg(false)
-    // console.log(data);
+    data.images?
+    setWithImg(true):setWithImg(false)
+    console.log(data);
 
 },[])
 
 
-
+console.log(data);
 
 
 let content='/assets/img/estate.svg'

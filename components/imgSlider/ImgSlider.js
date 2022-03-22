@@ -47,15 +47,19 @@ const Slideshow = ({ imgs,setOverlay }) => {
   const [index, setIndex] = useState(0)
   const [showImg, setShowImg]=useState(false)
   const [currentInedx,setCurrentIndex]=useState(0)
+  const [img,setImg]=useState([])
   // Slideshow.handleClickOutside = () => setShowImg(false)
- 
+ console.log(imgs);
+ console.log(img)
   useEffect(() => {
     setIndex(0)
-
+      imgs.map((img)=>{
+        setImg(pre=>[...pre,img.logo_url])
+      })
   }, [])
 
   const next = () => {
-    if (index === imgs.length - 1) {
+    if (index === img.length - 1) {
       setIndex(0)
     } else {
       setIndex(index + 1)
@@ -63,7 +67,7 @@ const Slideshow = ({ imgs,setOverlay }) => {
   }
   const prev = () => {
     if (index === 0) {
-      setIndex(imgs.length - 1)
+      setIndex(img.length - 1)
     } else {
       setIndex(index - 1)
     }
@@ -75,21 +79,21 @@ const Slideshow = ({ imgs,setOverlay }) => {
 <>
       <div className="slid-container">
        <div className="slideshow" onClick={()=>setShowImg(!showImg)}>
-      <img className="mainImg" src={imgs[index]} width="200px" height='200px' />
+      <img className="mainImg" src={img[index]} width="200px" height='200px' />
     </div>
     <div className="">
-    <Thumbnail arr={imgs} image={setIndex} index={index} setCurrentIndex={setCurrentIndex} length={imgs.length} />
+    <Thumbnail arr={img} image={setIndex} index={index} setCurrentIndex={setCurrentIndex} length={img.length} />
 
     </div>
       </div>
 
       {
-        showImg &&  <Slider imgs={imgs} setShowImg={setShowImg} currentInedx={currentInedx} showImg={showImg} />
+        showImg &&  <Slider imgs={img} setShowImg={setShowImg} currentInedx={currentInedx} showImg={showImg} />
                 }
 
                 
   <div className="update-slider">
-       <MobileSlider imgs={imgs}/>
+       <MobileSlider imgs={img}/>
     </div>
       </>
   )

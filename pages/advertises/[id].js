@@ -14,6 +14,7 @@ const SingleEstate = ({ data }) => {
     data.images ?
       setWithImg(true) : setWithImg(false)
   }, [])
+  console.log(data);
 
 
   let content = '/assets/img/estate.svg'
