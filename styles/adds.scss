@@ -429,10 +429,10 @@ color: #737373;
       }
 
       .disc{
-        width: 70vw;
+        width: 55vw;
         margin-top: -68px;
         padding-left: 19px;
-        padding-right: 43px;
+        padding-right: 16px;
       }
 
       .contact-details{
@@ -452,7 +452,7 @@ color: #737373;
         .disc{
             margin-right: 13px;
             font-size: 15px;
-            width: 336px;
+            width: 70vw;
         }
     }
     .regular .info {
@@ -474,6 +474,7 @@ color: #737373;
         }
         .regular .card-title{
          font-size: 15px;
+         margin-left: -14px;
          }
         .card-title{
             font-size: 15px;
@@ -596,7 +597,8 @@ color: #737373;
             height: 104px;
             .disc{
                 margin-right: 24px;
-                font-size: 13px;
+                font-size: 12px;
+                width: 50vw;
                }
                .card-title {
                    margin-top: 8px;
@@ -725,13 +727,25 @@ color: #737373;
                     font-size:14px
                 }
             }
+
+            .fallback-adds .disc {
+                width: 75vw;
+                margin-top: -54px;
+margin-right: -3px;            }
   }
 
   @media (max-width:428px) {
     .fallback-adds .disc {
-        width: 85vw;
-        padding-right: unset;
+        width: 84vw;
+        margin-right: -4px;
         padding-left: unset;
+    
 
+    }
+
+    .regular{
+        .disc{
+            width: 75vw;
+        }
     }
   }

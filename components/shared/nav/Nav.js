@@ -124,13 +124,13 @@ const Nav = ({ logo, icon }) => {
                         </div>
                         <li>
                             <div className={`add-adds-menu ${showAddMenu ? "show" : ""}`} style={{display:'flex',flexDirection:"row",marginLeft:"unset",zIndex:"3"}}>
-                                  <div className="" style={{zIndex:"4",cursor:'pointer'}}>  <img  width={22} height={22} onClick={() => {
+                                  <div className="" style={{zIndex:"4",cursor:'pointer'}}>  <img className='add-img-btn'  width={22} height={22} onClick={() => {
                                             setShowLang(false)
                                             setAddMenu(!showAddMenu)
                                         }} src={icon ? icon : '/assets/img/+.png'} /></div>
                                 <Link href="/profile/addAdds" className='add-adds-item'><a style={{
                                         marginLeft: '22px',
-                                        marginRight: '13px'
+                                        marginRight: '17px'
                                 }}>
                                     <span className='add-adds-tilte' >أضف إعلان
                                       </span>

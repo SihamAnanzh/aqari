@@ -57,7 +57,7 @@ const Add = (props) => {
       
         </div>
         <div className='disc'>
-                 {props.disc.length >50 ?props.disc.substr(0, 50- 1) + "..." : props.disc}
+                 {props.disc.length >60 ?props.disc.substr(0, 60- 1) + "..." : props.disc}
                 </div>
         <div className='info'>
           <span className='price'><span className='number'>{props.price}</span>د.ك</span>
