@@ -13,12 +13,13 @@
      color:$second-color;
      font-family: otfPlain;
      font-weight: 600;
-     margin-bottom: 88px;
+     margin-bottom: 100px;
      align-self:flex-start ;
-     padding-right: 229px;
+     padding-right: 46px;
 
  }
 }
+
 
 .subNav-items{
   display: flex;
@@ -172,10 +173,10 @@ background-color: $second-color;
     } 
 
     .addAdds-tab-container .addAdds-heading h3{
-        margin-right: -250px;
+        margin-right: 200px;
     }
     .office-heading-paragraph {
-        margin-right: -250px;
+        margin-right: 206px;
     }
 .add-service-stroke-city,.add-service-stroke-category{
     position: absolute;
@@ -193,7 +194,7 @@ background-color: $second-color;
 @media (max-width:1120px) {
     .subNav-items{
         flex-wrap: wrap;
-        width: 100vw;
+        width: 100%;
         margin-top: 25px;
 
         li{
@@ -203,7 +204,7 @@ background-color: $second-color;
 
     .profile-tab{
        .category-icon {
-            top: 760px;
+            top: 40%;
             left: 14%;
              z-index: 10;
 
@@ -211,14 +212,14 @@ background-color: $second-color;
            
         }
         .type-icon {
-            top: 897px;
+            top: 30.4%;
             left: 14%;
             z-index: 10;
         }
     
         .type-icon.city {
             left: 14%;
-            top: 1050px;
+            top: 35.3%;
         }
     
         
@@ -229,6 +230,13 @@ background-color: $second-color;
 
 
 @media (max-width:930px) {
+    
+     
+    .profile-container .profile-heading{
+        align-self: center;
+        padding-right: 0;
+    
+  }
     .profile-tab .profile-group input {
         width: 70vw;
         position: relative;
@@ -254,13 +262,13 @@ background-color: $second-color;
     }
 
     .addAdds-tab-container textarea{
-        width: 600px;
+        width: 70vw;
     }
 
    
     .profile-tab .dropdown-typeList,
     .profile-tab .dropdown-category, .profile-tab .dropdown-typeList{
-        width: 600px;
+        width: 70vw;
     
 
     }
@@ -268,18 +276,27 @@ background-color: $second-color;
 
     .addAdds-tab-container .addAdds-heading{
         align-self: center;
-        margin-right: 20px;
     }
 
 
     .profile-tab .category-icon {
-        left: 16%;
+        left: 18.5%;
         z-index: 3;
+        top: 35.7%;
+
 
     } 
 
-    .profile-tab .type-icon,.profile-tab .type-icon.city {
-        left: 16%;
+    .profile-tab .type-icon
+    {
+        left: 18.5%;
+        top:30.8%
+
+    }.profile-tab .type-icon.city {
+        left: 18.5%;
+        top:40.4%
+
+
        
     }
 
@@ -310,6 +327,27 @@ background-color: $second-color;
         margin-bottom: 16px;
     }
 
+    .profile-tab .category-icon {
+        left: 18.5%;
+        z-index: 3;
+        top:31.9%
+
+
+
+    } 
+
+    .profile-tab .type-icon
+    {
+        left: 18.5%;
+        top: 36.4%;
+
+    }.profile-tab .type-icon.city {
+        left: 18.5%;
+         top: 40.9%
+
+
+       
+    }
     
     
 }
@@ -318,25 +356,26 @@ background-color: $second-color;
 
 @media (max-width:600px) {
   
+    
+
+    
     .profile-tab .category-icon {
-        left: 17%;
-        top: 1080px;
+        top:33.8%
 
 
 
     } 
 
-    .profile-tab .type-icon {
-        left: 17%;
-        top: 932px;
+    .profile-tab .type-icon
+    {
+        top:38.1%;
+
+    }.profile-tab .type-icon.city {
+        top: 42.4%;
+
+
        
     }
-    
-      .profile-tab .type-icon.city {
-        left: 17%;
-        top: 1219px;
-    }
-    
 }
 
 
@@ -345,14 +384,12 @@ background-color: $second-color;
 @media (max-width:428px) {
    
        
-      .profile-container .profile-heading{
-        padding-right: unset;
-      }
      
-        .profile-container .profile-heading {
+     
+    .profile-container .profile-heading{
             margin-bottom: unset;
-            align-self: flex-start;
-            padding-right: 22px;
+            align-self: center;
+            padding-right: 0;
         
       }
 
@@ -450,5 +487,12 @@ display: none;    }
     .profile-tab .checksbox .chack-groub, .profile-tab .checksbox .chack-groub:last-child
     {
         margin-right: -86px;
+    }
+
+    .office-heading-paragraph {
+        width: 90vw;
+        margin-right: 651px;
+        margin-bottom: 20px;
+        font-size: 14px;
     }
 }

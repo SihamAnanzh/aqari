@@ -5,6 +5,7 @@ import SubNav from '../../components/profile/SubNav'
 import AddOffice from '../../components/profile/AddOffice'
 import {AuthContext} from '../../stores/auth-context'
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const Office = () => {
   
@@ -12,6 +13,10 @@ const Office = () => {
   const route =useRouter()
   useEffect(()=>{
     !authCtx.isLoggedIn  && route.replace('/signIN')
+      axios.get('https://stagingapi.aqarifinder.com/api/user/office',{headers:{'Authorization':authCtx.token}})
+      .then((res)=>{
+        console.log(res.data.results);
+      })
   },[])
 
   return (

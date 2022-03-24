@@ -1,17 +1,26 @@
 import Link from 'next/link'
-import React  ,{useState}from 'react'
-
+import React  ,{useContext, useState}from 'react'
+import { AuthContext } from '../../stores/auth-context';
 const PremuimAdd = (props) => {
-
+    const authCtx=useContext(AuthContext)
+console.log(props);
     return (
         <>
-        <Link href={{
-                pathname:`/advertises/id`,
-                query: props.add_id
-            }}
-                            
-            as={`advertises/${props.add_id}`}
+        <Link  
+       href={{
+            pathname:`/advertises/${props.add_id}`,
+            query:authCtx.token ?authCtx.token:null
+        }}
+        //  href={`/advertises/${props.add_id}`}     
+    //   as={`/advertises/${props.title}`}
+
         >
+        
+        
+        {/* href={`/advertises/${props.add_id}`}      */}
+    {/* //   as={`/advertises/${props.title.trim().replace(' ', '')}`} */}
+
+        
         <div className='premuim-add origin fallback-origin '>
             <div className='details'>
                 <div className='img-add'><img  src='/assets/img/home.jpg'   style={{
@@ -44,13 +53,10 @@ const PremuimAdd = (props) => {
         </div>
         </Link>
 
-        <Link href={{
-          
-                pathname:`/advertises/id`,
-                query: props.add_id
-            }}
+        <Link  href={`/advertises/${props.add_id}`}     
+
                             
-            as={`advertises/${props.add_id}`}
+            // as={`/advertises/${props.title}`}
         
                             
 

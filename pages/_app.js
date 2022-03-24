@@ -17,23 +17,23 @@ const [pageLoading, setPageLoading] = useState(false);
 
 
 
-useEffect(() => {
-const handleStart = () => { setPageLoading(true); };
-const handleComplete = () => {
-  setTimeout(() => {
-    setPageLoading(false);
-  }, 1000)
-};
+// useEffect(() => {
+// const handleStart = () => { setPageLoading(true); };
+// const handleComplete = () => {
+//   setTimeout(() => {
+//     setPageLoading(false);
+//   }, 1000)
+// };
 
-router.events.on('routeChangeStart', handleStart);
-router.events.on('routeChangeComplete', handleComplete);
-router.events.on('routeChangeError', handleComplete);
-}, [router]);
+// router.events.on('routeChangeStart', handleStart);
+// router.events.on('routeChangeComplete', handleComplete);
+// router.events.on('routeChangeError', handleComplete);
+// }, [router]);
 
 const authCtx=useContext(AuthContext)
   return( 
     <SessionProvider session={session} 
-    refetchInterval={5 * 60}
+  
     >  
     <FliterProvider>
       <AuthContextProvider>

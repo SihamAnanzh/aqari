@@ -121,7 +121,7 @@ const UpdateService = ({updateData}) => {
             })
               .then( (response) =>{
                          response.data.status.code == 200&& swal("تهانينا",'تمت تعديل الخدمة بنجاح','success')
-                         route.replace('/profile/myAdds')
+                         route.replace('/profile/mySerivces')
               })
               .catch( (response)=> {
         

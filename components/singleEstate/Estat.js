@@ -20,6 +20,7 @@ const Estat = ({ withImg, setOverlay, data }) => {
 useEffect(()=>{
   setLat(data.lat)
   setLng(data.lng)
+  console.log(data.add_id);
 },[data])
 
   useEffect(() => {
@@ -99,7 +100,11 @@ useEffect(()=>{
                 borderRadius: '10px',
                 padding: '5px',
                 cursor: 'pointer'
-              }}><Link  href={'/profile/updateAdds/' + data.title.trim().replace(' ', '-') + "/" + data.id}
+              }}><Link  href={
+                `/profile/updateAdds/${data.add_id}`
+            
+            }
+              //  as={`/profile/updateAdds/${data.title.trim().replace(' ', '-')}`}
     
               >تعديل</Link></h4>}
 

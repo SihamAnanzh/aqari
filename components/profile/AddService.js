@@ -231,7 +231,7 @@ useEffect(()=>{
            <h3 style={{
                paddingTop:"20px"
            }}>رقم الواتس اب</h3>
-           <input type="number" min={0} className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} onChange={e=>setWhatsPhone(e.target.value)}/>
+           <input type="text" min='8' max='12' className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} onChange={e=>setWhatsPhone(e.target.value)}/>
        </div>
        <div className="sign-input  addAdds-region" id='city-list' style={{position:'relative'}} >
            <h3>المنطقة</h3>
@@ -331,7 +331,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-            <img src={`/assets/img/${imageOne.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+            <img  src={URL.createObjectURL(imageOne)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
             <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageOne('')
           }} />
@@ -360,7 +360,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageTwo.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img  src={URL.createObjectURL(imageTwo)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageTwo('')
           }} />
@@ -388,7 +388,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageThree.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img  src={URL.createObjectURL(imageThree)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageThree('')
           }} />
@@ -416,7 +416,7 @@ useEffect(()=>{
           </div>
 
           :<div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageFour.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img  src={URL.createObjectURL(imageFour)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img' id='select-file-4'  onClick={(e)=>{ 
           setImageFour('')
           }}/>

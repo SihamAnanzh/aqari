@@ -311,7 +311,7 @@
 }
 
 .details-adds .card-title {
-    font-size: 20px;
+    font-size: 18px;
 }
     .card-title{
         font-size: 20px;
@@ -320,6 +320,7 @@
     .disc{
         color: #737373;
         font-size: 14px;
+        align-self: flex-start;
         padding: 5px 13px;
     }
 
@@ -728,8 +729,9 @@ color: #737373;
 
   @media (max-width:428px) {
     .fallback-adds .disc {
-        width: 92vw;
-        margin-top: -54px;
-        margin-right: 10px;
+        width: 85vw;
+        padding-right: unset;
+        padding-left: unset;
+
     }
   }

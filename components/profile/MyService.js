@@ -7,13 +7,13 @@ const [latest, setLatest]=useState([])
 const [userData,setUserData]=useState([])
 const authCtx=useContext(AuthContext)
 
-
+console.log(serviceData);
   return (
 <div className='adds-container'>
          <h1 className='premium-title'>أحدث الخدمات</h1>
       {
        serviceData&&serviceData.map((premiumAddsData)=>(
-        <PremiumService singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.add_id} add_id={premiumAddsData.add_id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
+        <PremiumService singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.id} id={premiumAddsData.id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
 
        ))
        }

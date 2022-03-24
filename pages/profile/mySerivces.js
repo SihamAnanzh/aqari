@@ -6,6 +6,9 @@ import {AuthContext} from '../../stores/auth-context'
 import { useRouter } from 'next/router';
 import MyService from '../../components/profile/MyService';
 import axios from 'axios';
+
+
+
 const ProfileService = () => {
   const authCtx=useContext(AuthContext)
   const [serviceData,setServicseData]=useState([])
@@ -23,16 +26,17 @@ const ProfileService = () => {
     .then(res=>{
         // res.data.status.code === 200 &&console.log()
         setService(res.data.results)
+        console.log(res.data.results);
   
     })
 
-  
+    console.log(serviceData);
 
   },[])
   useEffect(()=>{
     services && services.map((adds)=>{
     let data={ 
-    add_id:adds.id,
+    id:adds.id,
     user_id:adds.user_id,
     address:adds.regions_string,
     images:adds.images.length >0?adds.images.logo_url:'/assets/img/home.jpg',
@@ -68,7 +72,6 @@ const ProfileService = () => {
     }
     
     setServicseData(pre=>[...pre,data])
-    
     
     })
 

@@ -28,19 +28,34 @@ const SingleOffice = ({office}) => {
             </div>
             <div className='office-social'>
               <ul className='office-list'>
-          
-                <li className='office-social-item'>
+              <li className='office-social-item'>
+                <a href={office.email}>
                   <img className='soical-icon' src='assets/img/mail.svg'/>
+                  </a>
                 </li>
-                <li className='office-social-item'>
-                  <img className='soical-icon' src='assets/img/face.svg'/>
+              
+                {office.facebook_url &&
+                  <li className='office-social-item'>
+                    <a href={office.facebook_url}>
+                    <img className='soical-icon' src='assets/img/face.svg'/>
+                    </a>
                 </li>
-                <li className='office-social-item'>
-                  <img className='soical-icon' src='assets/img/twitter.svg'/>
-                </li>
-                <li className='office-social-item'>
+                }             
+               {
+                 office.twitter_url &&
+                 <li className='office-social-item'>
+                 <a href={ office.twitter_url}>
+                 <img className='soical-icon' src='assets/img/twitter.svg'/>
+                 </a>
+               </li>
+               }
+                
+                {office.instagram_url && <li className='office-social-item'>
+                  <a href={office.instagram_url}>
                   <img className='soical-icon' src='assets/img/insta.svg'/>
-                </li>
+                  </a>
+                </li>}
+               
               </ul>
             </div>
           </div>

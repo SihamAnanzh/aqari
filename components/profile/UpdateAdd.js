@@ -1,4 +1,3 @@
-import { style } from '@mui/system'
 import axios from 'axios'
 import React, { useContext, useEffect, useState ,} from 'react'
 import { AuthContext } from '../../stores/auth-context'
@@ -7,7 +6,6 @@ import SimpleMap from '../map/MapAdds'
 import swal from 'sweetalert';
 import { useRouter } from 'next/router'
 const UpdateAdd = ({updateData}) => {
-    console.log(updateData);
 const [showListCategory,setShwoListCategory]=useState(false)
 const [showListType,setShwoListType]=useState(false)
 const [showListNames, setShowListNames]=useState(false)

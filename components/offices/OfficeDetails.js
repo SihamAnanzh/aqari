@@ -12,29 +12,36 @@ const OfficeDetails = ({ office, ads, premium }) => {
         <div className="office-info">
           <h3>{office.title}</h3>
           <div className='office-social'>
-            <ul className='office-list'>
+            <ul className='office-list '>
 
               <li className='office-social-item'>
-                <a href={office.email}>
-                  <img className='soical-icon' src='/assets/img/mailW.svg' />
-
-                </a>
-              </li>
-              <li className='office-social-item'>
-                <a href={office.facebook_url}>
-                  <img className='soical-icon' src='/assets/img/faceW.svg' />
-                </a>
-              </li>
-              <li className='office-social-item'>
-                <a href={office.twitter_url}>
-                  <img className='soical-icon' src='/assets/img/twtterW.svg' />
-                </a>
-              </li>
-              <li className='office-social-item'>
-                <a href={office.instagram_url}>
-                  <img className='soical-icon' src='/assets/img/instaW.svg' />
-                </a>
-              </li>
+              <a href={office.email}>
+                  <img className='soical-icon' src='/assets/img/mailW.svg'/>
+                  </a>
+                </li>
+              
+                {office.facebook_url &&
+                  <li className='office-social-item'>
+                    <a href={office.facebook_url}>
+                    <img className='soical-icon' src='/assets/img/faceW.svg'/>
+                    </a>
+                </li>
+                }             
+               {
+                 office.twitter_url &&
+                 <li className='office-social-item'>
+                 <a href={ office.twitter_url}>
+                 <img className='soical-icon' src='/assets/img/twitterW.svg'/>
+                 </a>
+               </li>
+               }
+                
+                {office.instagram_url && <li className='office-social-item'>
+                  <a href={office.instagram_url}>
+                  <img className='soical-icon' src='/assets/img/instaW.svg'/>
+                  </a>
+                </li>}
+               
             </ul>
           </div>
           <div className='office-contact'>

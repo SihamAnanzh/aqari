@@ -3,12 +3,14 @@ import Nav from '../shared/nav/Nav'
 import Footer from '../shared/footer/Footer'
 import axios from 'axios'
 import swal from 'sweetalert';
+import { useRouter } from 'next/router';
 
 export const ContactUs = () => {
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [phone,setPhone]=useState('')
     const [message,setMessage]=useState('')
+    const route=useRouter()
      const [clear,setClear]=useState(false)
     useEffect(()=>{
         setName('')
@@ -23,6 +25,7 @@ export const ContactUs = () => {
 
        :axios.post('https://stagingapi.aqarifinder.com/api/contact_us/create',{name, email,message, phone}).then(res=>{
         swal("شكرا للتواصل",'تم ارسال الرسالة بنجاح','success')
+        route.reload('/')
   setClear(true)
        })
    }

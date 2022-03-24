@@ -36,12 +36,11 @@ const Nav = ({ logo, icon }) => {
 
                         </li>
                         <li className={`${route.asPath === "/" ? "activeNav" : ""}`}>
-                            {route.asPath === "/" ? (<span className="main-nav-item active" style={{color:"#fff"}}>الرئيسية</span>) :
+                            {/* {route.asPath === "/" ? (<div className="main-nav-item active" style={{color:"#fff"}}>الرئيسية</div>) : */}
                                 <Link href="/" className='main-nav-item'><a
                                     className={`${route.asPath === "/" ? "active" : ""}`}
                                 >الرئيسية</a></Link>
-                            }
-
+                           {/* } */}
                         </li>
                         <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNav" : ""}`}>
                             <Link href="/offices" className='main-nav-item'><a
@@ -124,14 +123,17 @@ const Nav = ({ logo, icon }) => {
                             </ul>
                         </div>
                         <li>
-                            <div className={`add-adds-menu ${showAddMenu ? "show" : ""}`}>
-
-                                <Link href="/profile/addAdds" className='add-adds-item'><a>
-                                    <span className='add-adds-tilte' >أضف إعلان
-                                        <img onClick={() => {
+                            <div className={`add-adds-menu ${showAddMenu ? "show" : ""}`} style={{display:'flex',flexDirection:"row",marginLeft:"unset",zIndex:"3"}}>
+                                  <div className="" style={{zIndex:"4",cursor:'pointer'}}>  <img  width={22} height={22} onClick={() => {
                                             setShowLang(false)
                                             setAddMenu(!showAddMenu)
-                                        }} src={icon ? icon : '/assets/img/+.png'} /></span>
+                                        }} src={icon ? icon : '/assets/img/+.png'} /></div>
+                                <Link href="/profile/addAdds" className='add-adds-item'><a style={{
+                                        marginLeft: '22px',
+                                        marginRight: '13px'
+                                }}>
+                                    <span className='add-adds-tilte' >أضف إعلان
+                                      </span>
                                 </a>
                                 </Link>
 

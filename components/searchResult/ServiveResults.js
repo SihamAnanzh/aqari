@@ -14,7 +14,8 @@ const ServiveResults = () => {
       filterCtx.serviceResults&&filterCtx.serviceResults.map((adds)=>{
       
       let data={ 
-      add_id:adds.service_type_id.id,
+        id:adds.id,
+      serviceId:adds.service_type_id.id,
       user_id:adds.user_id,
       images:adds.images.length >0?adds.images.logo_url:'/assets/img/home.jpg',
       title:adds.title,
@@ -34,7 +35,6 @@ const ServiveResults = () => {
       price:adds.price,
       phone:adds.phone,
       whatsApp:adds.whatsapp,
-      views:adds.view_count,
       time:'4',
       user_id:adds.user_id,
       
@@ -54,13 +54,13 @@ const ServiveResults = () => {
     <Nav/>
     <div className='results'>    
         <div className="adds-results">
-        <h1 className='premium-title'>أحدث الإعلانات</h1>
+        <h1 className='premium-title'>أحدث الخدمات</h1>
         {
-          latestData&&latestData.map((addsData)=>(
-          <PremiumService singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
-  
-          ))
-          }
+       latestData&&latestData.map((premiumAddsData)=>(
+        <PremiumService singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.id} id={premiumAddsData.id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
+
+       ))
+       }
         </div>
       
           <span className="end-results">

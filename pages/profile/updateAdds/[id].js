@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const Update = ({updateData}) => {
 const authCtx=useContext(AuthContext)
-
+console.log(updateData);
 useEffect(()=>{
 !authCtx.isLoggedIn  && route.replace('/signIN')
 },[])
@@ -40,6 +40,7 @@ export default Update
 
   export async function getServerSideProps(context) {
     let updateData;
+    
     const { id } = context.params;
     if (id) {
       await axios.get(`https://stagingapi.aqarifinder.com/api/ads/${id}`, { headers: { 'lang': "ar" } }).then((res) => {

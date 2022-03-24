@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 const PremiumService = (props) => {
 
+    console.log(props);
   return (
     <>
     <Link href={{
@@ -10,7 +11,7 @@ const PremiumService = (props) => {
             query: props.singleEstate
         }}
                         
-        as={`/services/${props.add_id}`}
+        as={`/services/${props.id}`}
     >
     <div className='premuim-add origin fallback-origin '>
         <div className='details'>
@@ -50,7 +51,7 @@ const PremiumService = (props) => {
       query: props.singleEstate
         }}
                         
-        as={`/services/${props.add_id}`}
+        as={`/services/${props.id}`}
     
                         
 

@@ -35,6 +35,8 @@ export default SingleEstate;
 
 export async function getServerSideProps(context) {
   let data;
+  let token=context.query
+  console.log({...token} + "siham");
   const { id } = context.params;
   if (id) {
     await axios.get(`https://stagingapi.aqarifinder.com/api/ads/${id}`, { headers: { 'lang': "ar" } }).then((res) => {

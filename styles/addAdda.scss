@@ -17,6 +17,8 @@
         padding-top: 10px;
         color: #fff;
         border-radius: 10px;
+        position: absolute;
+        z-index: 10;
          li{
              margin-top: 10px;
              cursor: pointer;
@@ -132,4 +134,40 @@ position: relative;
         margin: 5px;
         margin-right: 30px;
     }
+}
+
+
+@media (max-width:950px) {
+    
+   .profile-tab .map-adds{
+    width: 70vw;
+    height: 202px;
+    border-radius: 10px;
+    border-color: $main-color;
+ 
+   }
+
+}
+
+@media (max-width:800px) {
+    .profile-tab .checksbox {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-right:61%;
+    }
+    
+    
+}
+
+@media (max-width:428px) {
+    .profile-tab .checksbox {
+        display: flex;
+    
+        flex-direction: column;
+     margin: 10px auto;
+    }
+    
+    
 }

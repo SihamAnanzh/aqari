@@ -11,7 +11,7 @@ const [premuimAdds,setPremuimAdds]=useState([])
 const [latestData,setLeastestAdd]=useState([])
 const filterCtx=useContext(FilterContext)
 useEffect(()=>{
-filterCtx.addsResults.premium_ads.map((adds)=>{
+filterCtx.addsResults.premium_ads&&filterCtx.addsResults.premium_ads.map((adds)=>{
   let data={ 
     add_id:adds.id,
     user_id:adds.user_id,

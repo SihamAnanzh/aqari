@@ -5,9 +5,11 @@ import { AuthContext } from '../../stores/auth-context'
 import PackgeBox from '../dialogBox/PackgeBox'
 import SimpleMap from '../map/MapAdds'
 import swal from 'sweetalert';
+import { useRouter } from 'next/router'
 
 
 const AddAdds = () => {
+  const route=useRouter()
 const authCtx=useContext(AuthContext)
 const [showListCategory,setShwoListCategory]=useState(false)
 const [showListType,setShwoListType]=useState(false)
@@ -39,6 +41,7 @@ const [imageFour,setImageFour]=useState()
 const [regions,setRegions]=useState([])
 const [items,setItem]=useState([])
 const [imgList,setImgList]=useState([{}])
+const [isPremium,setIspremium]=useState(false)
 //ids for api
 const [type_id, setType_id]=useState('')
 const [category_id,setCategory_id]=useState('')
@@ -74,7 +77,7 @@ swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):(
   formData.append('lng', lng),
   formData.append('phone',phoneNumber),
   formData.append('whatsapp',phoneNumber),
-  formData.append('is_premium',showDialogBox),
+  formData.append('is_premium',isPremium),
   files.map((file)=>{
     formData.append('image_files',file)
   }),
@@ -286,7 +289,7 @@ useEffect(()=>{
 
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`} style={{ display:imageUpLoaded ?'none':"block",width:"66vw"
            }}>
-           <h3 >صور</h3>
+           <h3 className='img-heading' >صور</h3>
            <div className="wrrap-images">
               {
               !imageOne ?
@@ -309,7 +312,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-            <img src={`/assets/img/${imageOne.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+            <img src={URL.createObjectURL(imageOne)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
             <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageOne('')
           }} />
@@ -338,7 +341,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageTwo.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img src={URL.createObjectURL(imageTwo)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageTwo('')
           }} />
@@ -366,7 +369,7 @@ useEffect(()=>{
           </div>
 
           : <div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageThree.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img src={URL.createObjectURL(imageThree)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
           setImageThree('')
           }} />
@@ -394,7 +397,7 @@ useEffect(()=>{
           </div>
 
           :<div className="" style={{position:'relative'}}>
-          <img src={`/assets/img/${imageFour.name}`} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
+          <img src={URL.createObjectURL(imageFour)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
           <img src="/assets/img/removeImg.svg" alt="" className='remove-img' id='select-file-4'  onClick={(e)=>{ 
           setImageFour('')
           }}/>
@@ -417,15 +420,24 @@ useEffect(()=>{
            <SimpleMap getLat={setLat} getLng={setLng} />
            </div>
        </div>
+         
+
        <div className="checksbox" style={{cursor:'pointer'}}>
          <div className="premium-add chack-groub" onClick={()=>{
            setCheckedAdd(!checkedAdd)
            setShowDialogiBox(!showDialogBox)
+            
          }}>
-           {showDialogBox && authCtx.premiumAdd >0 && <PackgeBox setShowDialogiBox={setShowDialogiBox} showDialogBox={showDialogBox} count={authCtx.premiumAdd}/>}
-
-           <img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
+           {showDialogBox && authCtx.premiumAdd >0&& <PackgeBox setShowDialogiBox={setShowDialogiBox} showDialogBox={showDialogBox} count={authCtx.premiumAdd}/> }
+    
+                 <a  style={{
+                   textDecoration:"none"
+                 }} href={`${showDialogBox &&authCtx.premiumAdd == 0 ?' /packges':"#" }`} target='_blank'>
+                 <img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
            <span>أجعل الإعلان مميز</span>
+           </a> 
+
+           
          </div>
          <div className="post-add chack-groub" onClick={()=>{
            setCheckedOffice(!checkedOffice)

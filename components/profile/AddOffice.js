@@ -2,8 +2,7 @@ import React ,{useState ,useEffect,useContext} from 'react'
 import SoicalInput from '../socialInput/SoicalInput'
 import axios from 'axios'
 import swal from 'sweetalert'
-import {Facebook , Twitter,Email,Instagram, Mail} from '@mui/icons-material/';
-
+import CloseIcon from '@mui/icons-material/Close';
 import { AuthContext } from '../../stores/auth-context'
 const AddOffice = () => {
   const authCtx=useContext(AuthContext)
@@ -15,7 +14,25 @@ const [title,setTitle]=useState('')
 const [phone, setPhone]=useState('')
 const [email,setEmail]=useState('')
 const  [descOffice,setDecOffice]=useState('')
+const [showLinkBtnI,setShowLinkBtnI]=useState(true)
+const [showLinkBtnF,setShowLinkBtnF]=useState(true)
+const [showLinkBtnE,setShowLinkBtnE]=useState(true)
+const [showLinkBtnT,setShowLinkBtnT]=useState(true)
 
+const [showBoxI,setShowBoxI]=useState(false)
+const [showBoxF,setShowBoxF]=useState(false)
+const [showBoxE,setShowBoxE]=useState(false)
+const [showBoxT,setShowBoxT]=useState(false)
+
+const [showSpanI,setShowSpanI]=useState(false)
+const [showSpanF,setShowSpanF]=useState(false)
+const [showSpanT,setShowSpanT]=useState(false)
+const [showSpanE,setShowSpanE]=useState(false)
+
+const [iUrl,setIUrl]=useState('')
+const [fUrl,setFUrl]=useState('')
+const [EUrl,setEUrl]=useState('')
+const [Turl,setTUrl]=useState('')
 
 const handleClickFileBtn=()=>{
     let fileButton=document.getElementById('select-file').click()
@@ -32,7 +49,7 @@ const handleChange=(e)=>{
 const handelSubmit=()=>{
   let data={}
   let formData=new FormData()
-  title == " " ||  descOffice == " " || phone  =="" || email =='' || imageSrc ==  "" ?
+  title == " " ||  descOffice == " " || phone  =="" || email =='' || imageSrc ==  "" ||EUrl == "" ?
   swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):(
     
     formData.append('title',title),
@@ -40,8 +57,11 @@ const handelSubmit=()=>{
     formData.append('phone',phone),
     formData.append('whatsapp',phone),
     formData.append('is_premium',false),
+    formData.append('facebook_url',fUrl),
+    formData.append('instagram_url',iUrl),
+    formData.append('twitter_url',Turl),
+    formData.append('email',EUrl),
     formData.append('logo_file',imageSrc),
-  
     axios({
       method: "post",
       url: "https://stagingapi.aqarifinder.com/api/user/office/add",
@@ -95,6 +115,181 @@ useEffect(() => {
            <h3>تفاصيل عن النشاط التجاري</h3>
            <input type="text" className="sign-mail" placeholder='تفاصيل عن النشاط التجاري' tabIndex={5} onChange={(e)=>setDecOffice(e.target.value)} />
        </div>
+       <div className="social-contanier">
+     <div className="input-social insta">
+        <div className="title">
+          <h3>Instgram</h3>
+          <img src="/assets/img/insta.svg" alt="" />
+        </div>
+        <div className="text">
+          {
+            showLinkBtnI &&  <button onClick={e=>{
+              setShowLinkBtnI(false)
+              setShowBoxI(true)}
+              
+            }>Link</button>
+          }
+          {
+            showBoxI &&
+            <div className=" content-box content-boxI">
+            <div className="submit-Btn" onClick={()=>{
+              setShowBoxI(false)
+              setShowSpanI(true)
+            
+            }}>Submit</div>
+            <input type='url' className="field" placeholder='Enter Username' onChange={e=>setIUrl(e.target.value)} />
+          </div>
+          }
+            {showSpanI&&
+            <div className="userUrl">
+              {/* <img src="removeUrl" alt="" /> */}
+              <CloseIcon  onClick={()=>{
+                setIUrl('')
+                setShowSpanI(false)
+                setShowLinkBtnI(true)
+
+              }} style={{
+                color:'black'
+              }} fontSize='small'/>
+            <span>{iUrl}</span>
+            </div>  } 
+    
+
+
+        </div>
+     </div>
+     <div className="input-social twitter">
+     <div className="title">
+
+          <h3>Twitter</h3>
+          <img src="/assets/img/twitter.svg" alt="" />
+
+        </div>
+        <div className="text">
+        {
+            showLinkBtnT &&  <button  onClick={e=>{
+              setShowLinkBtnT(false)
+              setShowBoxT(true)}
+              
+            }>Link</button>
+          }
+          {showBoxT && <div className=" content-box content-boxT">
+           <img src="/assets/img/close/svg" alt="" />
+           <div className="submit-Btn" 
+           onClick={()=>{
+            setShowBoxT(false)
+            setShowSpanT(true)
+          
+          }}
+           >Submit</div>
+
+             <input type='url' className="field"  placeholder='Enter Username' onChange={e=>setTUrl(e.target.value)}  />
+           </div>}
+           {showSpanT&&<div className="userUrl">
+              {/* <img src="removeUrl" alt="" /> */}
+              <CloseIcon  onClick={()=>{
+                setTUrl('')
+                setShowSpanT(false)
+                setShowLinkBtnT(true)
+              }} style={{
+                color:'black'
+              }} fontSize='small'/>
+            <span>{Turl}</span>
+            </div>  } 
+    
+
+        </div>
+     </div>
+     <div className="input-social facebook">
+     <div className="title">
+
+          <h3>Facebook</h3>
+          <img src="/assets/img/face.svg" alt="" />
+
+        </div>
+        <div className="text">
+        {
+            showLinkBtnF &&  <button  onClick={e=>{
+              setShowLinkBtnF(false)
+              setShowBoxF(true)}
+              
+            }
+              
+            >Link</button>
+          }
+          {
+            showBoxF &&  <div className=" content-box content-boxF">
+            <img src="/assets/img/close/svg" alt="" />
+            <div className="submit-Btn" onClick={()=>{
+              setShowBoxF(false)
+              setShowSpanF(true)
+            
+            }}>Submit</div>
+              <input type='url' className="field"   placeholder='Enter Username' onChange={e=>setFUrl(e.target.value)}  />
+            </div>
+          }
+              {showSpanF&&<div className="userUrl">
+              {/* <img src="removeUrl" alt="" /> */}
+              <CloseIcon  onClick={()=>{
+                setFUrl('')
+                setShowSpanF(false)
+                setShowLinkBtnF(true)
+              }} style={{
+                color:'black'
+              }} fontSize='small'/>
+            <span>{fUrl}</span>
+            </div>  } 
+    
+         
+
+        </div>
+     </div>
+     <div className="input-social mail">
+     <div className="title">
+
+          <h3>Email</h3>
+          <img src="/assets/img/mail.svg" alt="" />
+
+        </div>
+        <div className="text">
+        {
+            showLinkBtnE &&  <button onClick={e=>{
+              setShowLinkBtnE(false)
+              setShowBoxE(true)}
+              
+            }>Link</button>
+          }
+
+          {showBoxE &&   <div className="content-box content-boxE">
+           <img src="/assets/img/close/svg" alt="" />
+           <div className="submit-Btn" onClick={()=>{
+              setShowBoxE(false)
+              setShowSpanE(true)
+            
+            }}>Submit</div>
+             <input type='url' className="field"   placeholder='Enter Username' onChange={e=>setEUrl(e.target.value)}/>
+           
+
+           </div> }
+
+           {showSpanE&&<div className="userUrl">
+              {/* <img src="removeUrl" alt="" /> */}
+              <CloseIcon  onClick={()=>{
+                setEUrl('')
+                setShowSpanE(false)
+                setShowLinkBtnE(true)
+              }} style={{
+                color:'black'
+              }} fontSize='small'/>
+            <span>{EUrl}</span>
+            </div>  } 
+    
+        
+
+        </div>
+     </div>
+
+   </div>
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`}  style={{
                          display: imageUpLoaded?'none':"block",
 
@@ -138,48 +333,7 @@ useEffect(() => {
          </div>
        </div>
     </div>
-    <div className="social-contanier">
-     <div className="input-social insta">
-        <div className="title">
-          <h3>Instgram</h3>
-        </div>
-        <div className="text">
-           <input type="text" placeholder='ادخل اسم المستخدم' />
-           <button>تاكيد</button>
-
-        </div>
-     </div>
-     <div className="input-social twitter">
-     <div className="title">
-          <h3>Twitter</h3>
-        </div>
-        <div className="text">
-           <input type="text"  placeholder='ادخل اسم المستخدم'/>
-           <button>تاكيد</button>
-        </div>
-     </div>
-     <div className="input-social facebook">
-     <div className="title">
-          <h3>Facebook</h3>
-        </div>
-        <div className="text">
-           <input type="text"   placeholder='ادخل اسم المستخدم'/>
-           <button>تاكيد</button>
-
-        </div>
-     </div>
-     <div className="input-social mail">
-     <div className="title">
-          <h3>Email</h3>
-        </div>
-        <div className="text">
-           <input type="text"  placeholder='ادخل اسم المستخدم' />
-           <button>تاكيد</button>
-
-        </div>
-     </div>
-
-   </div>
+  
     <div className="sign-btn" aria-disabled="true" onClick={handelSubmit} style={{
          backgroundColor:disable ? "#F1E6D3":"#EDAA43"
     }}> 

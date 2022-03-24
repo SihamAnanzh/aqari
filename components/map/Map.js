@@ -6,9 +6,7 @@ const Marker = ({ children }) => <div className="">{children}</div>;
 
 const SimpleMap = ({getLat, getLng , currLat, currLng}) => {
   const [lat,setLat]=useState( !currLat?"29.266666":currLat)
-  const [lng,setLng]=useState(!currLat?'47.933334':currLng)
-
-
+  const [lng,setLng]=useState(!currLng?'47.933334':currLng)
   useEffect(()=>{
     setLat(lat)
     setLng(lng)
@@ -19,7 +17,7 @@ const SimpleMap = ({getLat, getLng , currLat, currLng}) => {
     <div style={{ height: '298px', width: '888px'}}>
     <GoogleMapReact
       bootstrapURLKeys={{ key:'AIzaSyCcY5aS5-7z5NW5226234uPiKhswMx6LqY' }}
-      defaultCenter={{ lat: lat, lng:lng}}
+      defaultCenter={{lat:29.26666,lng:47.933334}}
       defaultZoom={10}
       onClick={ev => {
         setLat(ev.lat)
