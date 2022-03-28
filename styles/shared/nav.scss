@@ -14,6 +14,10 @@
 
 }
 
+.ltr .navbar{
+  flex-direction: row-reverse;
+}
+
 li{
   list-style: none;
   cursor:pointer
@@ -35,6 +39,7 @@ li{
 
 
 }
+
 .main-nav-items span,
 .add-adds-tilte,
 .lang-title

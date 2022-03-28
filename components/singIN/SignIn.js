@@ -83,7 +83,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                 <h2>{sginOb.sn1}</h2>
             </div>
             <form method="post" action="/api/auth/callback/aqari-login-auth">
-                <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+                <input name="csrfToken" type="hidden" defaultValue={csrfToken} value="https://akarii-demo.herokuapp.com/signIN" />
 
                 <div className="inputs-group">
                     <div className="sign-input mail">
@@ -154,11 +154,11 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     {Object.values(providers).filter(q => q.type !== 'credentials').map((provider) => (
 
                         <li key={provider.name} onClick={() => {
-                            signIn(provider.id, { callbackUrl: window.location })
+                            signIn(provider.id, { callbackUrl: route.query.callbackUrl })
                             console.log(session.data);
 
 
-                        }}>         
+                        }}>
                             {provider.name == 'Google' && <img src="/assets/img/google-icon.svg" alt="" />}
                             {provider.name == 'Facebook' && <img src="/assets/img/facebook-2.svg" alt="" />}
                             {provider.name == 'Apple' && <img src="/assets/img/appSgin.svg" alt="" />}

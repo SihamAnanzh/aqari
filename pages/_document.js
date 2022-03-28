@@ -26,7 +26,7 @@ class MyDocument extends Document {
   render() {
     const lang = this.props.locale
     return (
-      <Html>
+      <Html lang="ar">
         <Head>
           <meta charset="utf-8" class="next-head" />
 
@@ -39,7 +39,7 @@ class MyDocument extends Document {
           />
 
         </Head>
-        <body id='body' className={lang === "EN" ? "ltr" : "rtl"}>
+        <body id='body' className={lang === "en" ? "ltr" : "rtl"}>
           <Main />
           <NextScript />
         </body>

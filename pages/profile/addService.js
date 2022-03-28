@@ -88,7 +88,6 @@ const Service = () => {
     pic: t('add-service:pic'),
     city: t('add-service:city'),
     price: t('add-service:price'),
-
     tearmAndCondition: t('add-service:tearmAndCondition'),
 
 
@@ -126,5 +125,5 @@ export default Service
 
 
 export async function getServerSideProps({ locale }) {
-  return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'profile', 'add-serivce'])) } }
+  return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'profile', 'add-service'])) } }
 }

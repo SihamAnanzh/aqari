@@ -12,7 +12,7 @@ const nextConfig = {
 module.exports = {
   i18n: {
     defaultLocale: "ar",
-    locales: ["ar","ar"]
+    locales: ["ar","en"]
   },
   env: {
       endPoint: 'https://akarii-demo.herokuapp.com/',
