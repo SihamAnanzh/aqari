@@ -154,11 +154,11 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     {Object.values(providers).filter(q => q.type !== 'credentials').map((provider) => (
 
                         <li key={provider.name} onClick={() => {
-                            signIn(provider.id, { callbackUrl:route.query.callbackUrl })
+                            signIn(provider.id, { callbackUrl: window.location })
                             console.log(session.data);
 
 
-                        }}>
+                        }}>         
                             {provider.name == 'Google' && <img src="/assets/img/google-icon.svg" alt="" />}
                             {provider.name == 'Facebook' && <img src="/assets/img/facebook-2.svg" alt="" />}
                             {provider.name == 'Apple' && <img src="/assets/img/appSgin.svg" alt="" />}
