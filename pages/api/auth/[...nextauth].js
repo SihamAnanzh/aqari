@@ -9,7 +9,7 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       id: "aqari-login-auth",
-      name: "Administrator",
+      name: "user",
       async authorize(credentials, req) {
       const endpoint = 'https://stagingapi.aqarifinder.com/api/user/login'
       const response = await axios({
