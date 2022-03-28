@@ -5,14 +5,15 @@ import onClickOutside from 'react-onclickoutside';
 import FallBackNav from './FallBackNav'
 import { AuthContext } from '../../../stores/auth-context'
 import axios from 'axios';
-const Nav = ({ logo, icon }) => {
+import { useSession,signOut } from 'next-auth/react';
+const Nav = ({ logo, icon,navOb }) => {
     const [showLang, setShowLang] = useState(false)
     const [showAddMenu, setAddMenu] = useState(false)
     const [showNav, setShowNav] = useState(false)
     const [login, setLogin] = useState(false)
     const [movearrow, setMvoeArrow] = useState(false)
     const authCtx = useContext(AuthContext)
-
+const session=useSession()
     const [iconTwo, setIconTwo] = useState(true)
     const route = useRouter()
     Nav.handleClickOutside = () => {
@@ -32,53 +33,56 @@ const Nav = ({ logo, icon }) => {
                             <Link href='/' className='main-nav-item'>
                                 <a className='logo'>
                                     <img className='logo-img' src={logo ? logo : '/assets/img/logo.svg'} alt='logo' />
-                                </a></Link>
+                                </a>
+                                </Link>
 
                         </li>
                         <li className={`${route.asPath === "/" ? "activeNav" : ""}`}>
                             {/* {route.asPath === "/" ? (<div className="main-nav-item active" style={{color:"#fff"}}>الرئيسية</div>) : */}
-                                <Link href="/" className='main-nav-item'><a
+                                <Link href="/" className='main-nav-item '>
+                                    <span
                                     className={`${route.asPath === "/" ? "active" : ""}`}
-                                >الرئيسية</a></Link>
+                                >
+                                    {navOb.nav1}
+                                </span>
+                                </Link>
                            {/* } */}
                         </li>
-                        <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNav" : ""}`}>
-                            <Link href="/offices" className='main-nav-item'><a
+                        {/* <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNav" : ""}`}>
+                            <Link href="/offices" className='main-nav-item'><span
                                 className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "active" : ""}`}
                                 disable={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? true : false}`}
-                            >المكاتب</a></Link>
+                            >
+                                {navOb.nav2}</span></Link>
 
-                        </li>
+                        </li> */}
                         <li className={`${route.asPath === "/packges" ? "activeNav" : ""}`}>
-                            <Link href="/packges" className='main-nav-item'><a
+                            <Link href="/packges" className='main-nav-item'><span
                                 className={`${route.asPath === "/packges" ? "active" : ""}`}
-                            >الباقات</a></Link>
+                            >{navOb.nav3}</span></Link>
 
                         </li>
-                        <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`} onClick={() => setLogin(true)} style={{ display: authCtx.isLoggedIn && 'none' }}>
-                            <Link href={`${authCtx.isLoggedIn ? '/profile' : "/signIN"}`} className='main-nav-item'><a
+                        <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
+                            <Link href={"/signIN"} className='main-nav-item'>
+                                <span
                                 className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
-                            >دخول</a></Link>
+                            >{navOb.nav4}</span></Link>
 
                         </li>
+                        
                         <li className={`${route.asPath === "/signUp" ? "activeNav" : ""}`}>
-                            {!authCtx.isLoggedIn ?
-                                <Link href="/signUp" className='main-nav-item'><a
+                            {session.data ==null?
+                                <Link href="/signUp" className='main-nav-item'><span
                                     className={`${route.asPath === "/signUp" ? "active" : ""}`}
-                                >تسجيل</a></Link>
+                                >{navOb.nav5}</span></Link>
                                 : (
-                                    <div className='main-nav-item'><a style={{ cursor: 'pointer' }}
+                                    <div className='main-nav-item'><span style={{ cursor: 'pointer' }}
                                         className={`${route.asPath === "/signUp" ? "active" : ""}`}
                                         onClick={() => {
-
-
-                                            axios.post('https://stagingapi.aqarifinder.com/api/user/logout', {
-                                                headers: { 'Authorization': authCtx.token }
-                                            }).then(res => { authCtx.logout() })
-
-                                        }}
-                                    >تسجيل خروج</a></div>
+                                            signOut()
+                                                                    }}
+                                    >{navOb.nav6}</span></div>
                                 )}
 
 
@@ -97,16 +101,15 @@ const Nav = ({ logo, icon }) => {
                             borderRadius: "10px",
 
                         }}>
-                            <Link href='/profile' className='second-nav-item'><a
+                            <Link href='/profile' className='second-nav-item'><span
                                 style={{
                                     fontSize: route.asPath == '/profile' ? "20px" : "21px",
                                     color: route.asPath === "/profile" ? "#fff" : "#00416b",
-                                    marginRight: route.asPath == '/profile' ? "-26px" : "-27px"
+                                    marginRight: route.asPath == '/profile' ? "4px" : "-27px"
 
 
                                 }}
-                            >الملف الشخصي
-                            </a>
+                            >{navOb.nav7} </span>
                             </Link>
                         </li>
                         <div className={`select-lang-menu ${showLang ? "active" : ""}`}>
@@ -115,11 +118,24 @@ const Nav = ({ logo, icon }) => {
                                 setShowLang(!showLang)
                             }
                             }>
-                                <img src={`/assets/img/${showLang ? 'Arrow - Left 2.svg' : 'Stroke 1.svg'}`} /> اللغة</span>
+                                <img src={`/assets/img/${showLang ? 'Arrow - Left 2.svg' : 'Stroke 1.svg'}`} /> {navOb.nav8}</span>
 
                             <ul className={`select-lang-items ${!showLang ? 'hidden' : 'showMenu'}`}>
-                                <li className='arabic-lang'>عربي</li>
-                                <li className='english-lang'>English</li>
+                          
+                                     
+                                     {
+                                         route.locales.map((locale)=>(
+                                             <Link   key={locale}   href={route.asPath} locale={locale}>
+                                            <li  className='arabic-lang'>
+                                                {locale=="ar"&&"عربي"}
+                                                {locale=="en"&&"English"}
+                                                </li>
+                                                </Link>
+  
+                                         ))
+                                     }
+
+              
                             </ul>
                         </div>
                         <li>
@@ -128,23 +144,23 @@ const Nav = ({ logo, icon }) => {
                                             setShowLang(false)
                                             setAddMenu(!showAddMenu)
                                         }} src={icon ? icon : '/assets/img/+.png'} /></div>
-                                <Link href="/profile/addAdds" className='add-adds-item'><a style={{
+                                <Link href="/profile/addAdds" className='add-adds-item'><span style={{
                                         marginLeft: '22px',
                                         marginRight: '17px'
                                 }}>
-                                    <span className='add-adds-tilte' >أضف إعلان
+                                    <span className='add-adds-tilte shortcutNav' >{navOb.nav9}
                                       </span>
-                                </a>
+                                </span>
                                 </Link>
 
 
                                 <ul className={`add-adds-items ${!showAddMenu ? 'hidden' : 'showMenu'}`}>
-                                    <li>
-                                        <Link href="/profile/addOffice" className='add-adds-item'><a>أضف مكتب</a></Link>
+                                    {/* <li>
+                                        <Link href="/profile/addOffice" className='add-adds-item'><span className='shortcutNav'>{navOb.nav11}</span></Link>
 
-                                    </li>
+                                    </li> */}
                                     <li>
-                                        <Link href="/profile/addService" className='add-adds-item'><a>اضف خدمة</a></Link>
+                                        <Link href="/profile/addService" className='add-adds-item'><span className='shortcutNav'>{navOb.nav10}</span></Link>
 
                                     </li>
 
@@ -179,15 +195,15 @@ const Nav = ({ logo, icon }) => {
 
                             }}>
                                 <li>
-                                    <Link href="/profile/addAdds" className='add-adds-item'><a>أضف اعلان</a></Link>
+                                    <Link href="/profile/addAdds" className='add-adds-item'><div className='shortcutNav'>{navOb.nav9}</div></Link>
 
                                 </li>
-                                <li>
-                                    <Link href="/profile/addOffice" className='add-adds-item'><a>أضف مكتب</a></Link>
+                                {/* <li>
+                                    <Link href="/profile/addOffice" className='add-adds-item'><span className='shortcutNav'>{navOb.nav11}</span></Link>
 
-                                </li>
+                                </li> */}
                                 <li>
-                                    <Link href="/profile/addService" className='add-adds-item'><a>اضف خدمة</a></Link>
+                                    <Link href="/profile/addService" className='add-adds-item'><div className='shortcutNav'>{navOb.nav10}</div></Link>
 
                                 </li>
 
@@ -196,9 +212,9 @@ const Nav = ({ logo, icon }) => {
                     </div>
                     <div className="fallback-logo">
                         <Link href='/' className='main-nav-item'>
-                            <a className='logo'>
+                            <span className='logo'>
                                 <img className='logo-img' src={logo ? logo : '/assets/img/logo.svg'} alt='logo' />
-                            </a>
+                            </span>
                         </Link>
                     </div>
                 </div>
@@ -220,7 +236,7 @@ const Nav = ({ logo, icon }) => {
 
             {showNav ?
                 <div className="fallBack-dropDownNav">
-                    <FallBackNav setShowNav={setShowNav} setMvoeArrow={setMvoeArrow} movearrow={movearrow} />
+                    <FallBackNav navOb={navOb} setShowNav={setShowNav} setMvoeArrow={setMvoeArrow} movearrow={movearrow} />
                 </div>
                 : ""
             }

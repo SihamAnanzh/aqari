@@ -3,11 +3,11 @@ import DropdownServcies from './DropdownServcies';
 
 
   
-const SearchBoxSerivce = ({services}) => {
+const SearchBoxSerivce = ({services, searchOb}) => {
  
     return (
            <>
-         <DropdownServcies title='نوع الخدمة' items={services} />
+         <DropdownServcies title={searchOb.sh9} items={services} />
           </>
     )
 }

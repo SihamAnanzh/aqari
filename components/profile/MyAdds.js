@@ -3,16 +3,22 @@ import Adds from '../adds/Adds'
 import Add from '../adds/Add'
 import axios from 'axios'
 import { AuthContext } from '../../stores/auth-context'
-const MyAdds = () => {
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+const MyAdds = ({adsOb}) => {
 const [latest, setLatest]=useState([])
 const [userData,setUserData]=useState([])
 const authCtx=useContext(AuthContext)
+const route=useRouter()
+
+const session=useSession()
+let userDataSession=session.data.xyz
   useEffect(()=>{
 
     axios({
       method: "get",
       url: "https://stagingapi.aqarifinder.com/api/user/ads/list",
-      headers: {"lang":'ar' , 'Authorization':authCtx.token},
+      headers: {"lang":route.locale , 'Authorization':userDataSession.id},
 
     })  .then(res=>{
       setUserData(res.data.results)
@@ -71,9 +77,9 @@ console.log(userData);
     
     })
     },[userData])
-  return (
+    return (
     <div className='adds-container'>
-         <h1 className='premium-title'>أحدث الإعلانات</h1>
+         <h1 className='premium-title'>{adsOb.ad2}</h1>
       {
        latest&&latest.map((addsData)=>(
         <Add singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>

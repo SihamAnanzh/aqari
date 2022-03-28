@@ -1,20 +1,22 @@
 import axios from 'axios'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState ,useContext} from 'react'
 import { AuthContext } from '../../stores/auth-context'
 
-const MyPorfile = ({props}) => {
+const MyPorfile = (props) => {
 const [name,setName]=useState('')
 const [email,setEmail]=useState('')
 const [phone,setPhone]=useState('')
 const authCtx=useContext(AuthContext)
-
+const route=useRouter()
 useEffect(()=>{
 
 
   axios.get('https://stagingapi.aqarifinder.com/api/user/profile',{
     headers: {
-      "lang":'ar' ,
-      "Authorization":authCtx.token
+      "lang":route.locale ,
+      "Authorization":session.data.xyz.id
        },
 
   }).then(res=>{
@@ -28,10 +30,13 @@ useEffect(()=>{
 
 },[])
 
+const session=useSession()
+
+// let userData= session.data !== null && session.data
 
  const handleSubmit=()=>{
  let data ={name, email , phone}
- axios.post('https://stagingapi.aqarifinder.com/api/user/update',{...data},{headers:{'Authorization':authCtx.token}})
+ axios.post('https://stagingapi.aqarifinder.com/api/user/update',{...data},{headers:{'Authorization':session.xyz.id}})
   .then(res=>{ console.log(res);
   })
 
@@ -47,23 +52,23 @@ useEffect(()=>{
     <div className="signin-contanier profile-tab-container  ">
     <div className="inputs-group profile-group">
     <div className="sign-input profile-name">
-            <h3>الاسم</h3>
-               <input type="text" className="sign-name" placeholder='الاسم' tabIndex={1} autoFocus value={name} onChange={e=>setName(handleChange(e))} />
+            <h3>{props.sginOb.sn10}</h3>
+               <input type="text" className="sign-name" placeholder={props.sginOb.sn10} tabIndex={1} autoFocus value={name} onChange={e=>setName(handleChange(e))} />
            </div>
        <div className="sign-input profile-mail mail">
-           <h3>البريد الإلكتروني</h3>
-           <input type="text" className="sign-mail" placeholder='البريد الإلكتروني' tabIndex={2}  value={email} onChange={e=>setEmail(handleChange(e))}  />
+           <h3>{props.sginOb.sn2}</h3>
+           <input type="text" className="sign-mail" placeholder={props.sginOb.sn2} tabIndex={2}  value={email} onChange={e=>setEmail(handleChange(e))}  />
        </div>
        <div className="sign-input  profile-phone phone-singup">
-           <h3>رقم الهاتف</h3>
-           <input type="text" className="sign-mail" placeholder='رقم الهاتف' tabIndex={3} value={phone} onChange={e=>setPhone(handleChange(e))}/>
+           <h3>{props.sginOb.sn11}</h3>
+           <input type="text" className="sign-mail" placeholder={props.sginOb.sn11} tabIndex={3} value={phone} onChange={e=>setPhone(handleChange(e))}/>
        </div>
 
 
     </div>
 
     <div className="sign-btn" onClick={handleSubmit}>
-    حفظ
+    {props.sginOb.sn12}
     </div>
 
    </div>

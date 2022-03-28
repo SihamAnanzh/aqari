@@ -4,6 +4,7 @@ import axios from 'axios'
 import swal from 'sweetalert'
 import CloseIcon from '@mui/icons-material/Close';
 import { AuthContext } from '../../stores/auth-context'
+import { useSession } from 'next-auth/react';
 const AddOffice = () => {
   const authCtx=useContext(AuthContext)
 const [checkedConditions,setCheckedConditions]=useState(false)
@@ -42,9 +43,13 @@ const handleChange=(e)=>{
     setImageUpLoaded(true)
     let file= e.target.files
     setImageSrc(file[0])
-    console.log(file);
+    console.log(file[0]);
 
 }
+
+
+const session=useSession()
+let userData=session.data.xyz
 
 const handelSubmit=()=>{
   let data={}
@@ -65,7 +70,7 @@ const handelSubmit=()=>{
     axios({
       method: "post",
       url: "https://stagingapi.aqarifinder.com/api/user/office/add",
-      headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
+      headers: { "Content-Type": "multipart/form-data" , 'Authorization':userData.id},
       data: formData,
     })
       .then( (response) =>{
@@ -314,7 +319,8 @@ useEffect(() => {
             marginBottom:"25px"
 
            }}>
-                    <img src={`/assets/img/${imageSrc.name}`}  className='img-submite' alt="" style={{
+              {/* src={URL.createObjectURL(imageSrc)} */}
+                    <img src={imageSrc&&URL.createObjectURL(imageSrc)}  className='img-submite' alt="" style={{
                         borderRadius:"10px"
                     }} />
                     <img src="/assets/img/removeImg.svg" alt="" className='remove-img' onClick={()=>setImageUpLoaded(false)} />

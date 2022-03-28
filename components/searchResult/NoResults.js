@@ -1,15 +1,16 @@
 import React from 'react'
 import Footer from '../shared/footer/Footer'
 import Nav from '../shared/nav/Nav'
-const NoResults = () => {
+const NoResults = ({navOb,adsOb ,fo1}) => {
   return (
     <div className="noResults-container">
-      <Nav/>
+      <Nav navOb={navOb}/>
     <div className='noResults'>
       <img  src="assets/img/noResults.svg" alt="" />
-      <h2 className='noResults-heading'>عذراً لا يوجد نتائج</h2>
+      <h2 className='noResults-heading'>
+{adsOb.ad5}      </h2>
     </div>
-    <Footer/>
+    <Footer fo1={fo1}/>
     </div>
   )
 }

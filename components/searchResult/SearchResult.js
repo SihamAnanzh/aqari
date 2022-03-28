@@ -4,12 +4,15 @@ import Footer from '../shared/footer/Footer'
 import Nav from '../shared/nav/Nav'
 import Add from '../adds/Add'
 import { FilterContext } from '../../stores/filter';
+import { TranslateContext } from '../../stores/translate-context';
 
 
-const SearchResultComponents = () => {
+const SearchResultComponents = ({navOb, fo1, adsOb}) => {
 const [premuimAdds,setPremuimAdds]=useState([])
 const [latestData,setLeastestAdd]=useState([])
 const filterCtx=useContext(FilterContext)
+const tranCtx=useContext(TranslateContext)
+console.log(tranCtx);
 useEffect(()=>{
 filterCtx.addsResults.premium_ads&&filterCtx.addsResults.premium_ads.map((adds)=>{
   let data={ 
@@ -55,7 +58,7 @@ filterCtx.addsResults.premium_ads&&filterCtx.addsResults.premium_ads.map((adds)=
 
   useEffect(()=>{
   
-    filterCtx.addsResults.ads.map((adds)=>{
+    filterCtx.addsResults.ads&&filterCtx.addsResults.ads.map((adds)=>{
     let data={ 
       add_id:adds.id,
       user_id:adds.user_id,
@@ -105,7 +108,7 @@ console.log(latestData);
 
   return (
   <div className='results-container'>
-  <Nav/>
+  <Nav navOb={navOb}/>
   <div className='results'>
     {/* <h2 className='results-heading'>{`منازل ${!filterCtx.rent?'للإيجار':'للبيع'} في حولي`}</h2> */}
     { premuimAdds.length !== 0 &&
@@ -121,7 +124,7 @@ console.log(latestData);
     }
    
       <div className="adds-results">
-      <h1 className='premium-title'>أحدث الإعلانات</h1>
+      <h1 className='premium-title'>{adsOb.ad2}</h1>
       {
         latestData&&latestData.map((addsData)=>(
         <Add singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
@@ -130,11 +133,10 @@ console.log(latestData);
         }
       </div>
     
-        <span className="end-results">
-        انتهت نتائج البحث ولا يوجد المزيد من الإعلانات
+        <span className="end-results">{adsOb.ad4}
         </span>
   </div>
-    <Footer/>
+    <Footer fo1={fo1}/>
   </div>
   )
 }

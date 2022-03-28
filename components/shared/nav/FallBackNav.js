@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../../stores/auth-context';
+import { useSession ,signOut} from 'next-auth/react';
 
-const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
+const FallBackNav = ({setShowNav,setMvoeArrow,movearrow,navOb}) => {
     const route = useRouter()
     const [switchlang, setSwitchLang]=useState(false)
     const [login, setLogin]=useState(false)
+    const session=useSession()
  const authCtx=useContext(AuthContext)
   return (
 
@@ -17,28 +19,28 @@ const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
     
     <li className={`${route.asPath === "/" ? "activeNavFall" : ""}`}>
         
-        <Link href="/" className='main-nav-item'><a
+        <Link href="/" className='main-nav-item'><span
             className={`${route.asPath === "/" ? "active" : ""}`}
         >
             <img src="/assets/img/main-nav.svg" alt="" />
-            الرئيسية</a></Link>
+            {navOb.nav1}</span></Link>
 
     </li>
-    <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNavFall" : ""}`}>
-        <Link href="/offices" className='main-nav-item'><a
+    {/* <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNavFall" : ""}`}>
+        <Link href="/offices" className='main-nav-item'><span
             className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "active" : ""}`}
         > <img src="/assets/img/office-nav.svg" alt="" />
 
-            المكاتب</a></Link>
+{navOb.nav2}</span></Link>
 
-    </li>
+    </li> */}
     <li className={`${route.asPath === "/packges" ? "activeNavFall" : ""}`}>
-        <Link href="/packges" className='main-nav-item'><a
+        <Link href="/packges" className='main-nav-item'><span
             className={`${route.asPath === "/packges" ? "active" : ""}`}
         >
        <img src="/assets/img/packegIcon-nav.svg" alt="" />
 
-            الباقات</a></Link>
+       {navOb.nav3}</span></Link>
 
     </li>
     <li  style={{
@@ -46,7 +48,7 @@ const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
         backgroundColor:switchlang &&"#EDAA43",
         position:"relative"
     }}>
-        <a onClick={()=>{
+        <span onClick={()=>{
             setMvoeArrow(!movearrow)
             setSwitchLang(!switchlang)}
             }>
@@ -57,43 +59,60 @@ const FallBackNav = ({setShowNav,setMvoeArrow,movearrow}) => {
         <ul className='switch-lang'
         style={{
             display:!switchlang?'none':"",
-            height:"83px",
+            height:"96.6px",
             marginRight:"-5px",
-            marginLeft:"-5px"
+            marginLeft:"-5px",
+            width:"144.5px",
         
            
             
     }}>
-                 <li >عربي</li>
-                 <li>English</li>
+                  
+                  {
+                                         route.locales.map((locale)=>(
+                                             <Link  key={locale} href={route.asPath} locale={locale}>
+                                            <li    className='arabic-lang'>
+                                                {locale=="ar"&&"عربي"}
+                                                {locale=="en"&&"English"}
+                                                </li>
+                                                </Link>
+  
+                                         ))
+                                     }
              </ul>
-        </a>
+        </span>
     </li>
 
 
     <li className={`${route.asPath === "/signIN" ? "activeNavFall" : ""}`} onClick={()=>setLogin(true)}>
-        <Link href={authCtx.isLoggedIn?"/profile":"/signIN" }className='main-nav-item'><a
+        <Link href={session.data?"/profile":"/signIN" }className='main-nav-item'><span
             className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
         >
-            {authCtx.isLoggedIn ? <img src='/assets/img/profile-nav.svg'/>:""}
-            {authCtx.isLoggedIn?"الملف الشحصي":"دخول"}</a></Link>
+            {session.data? <img src='/assets/img/profile-nav.svg'/>:""}
+            {session.data?navOb.nav7:navOb.nav4}</span></Link>
 
     </li>
   
     <li className={`${route.asPath === "/signUp" ? "activeNavFall" : ""}`}>
-        {authCtx.isLoggedIn ?
-        <div   className='main-nav-item'><a
+        {session.data?
+        <div   className='main-nav-item'><span
             className={`${route.asPath === "/signUp" ? "active" : ""}`}   
-            onClick={()=>authCtx.logout()}  
+            onClick={()=>{
+        
+                if(session){
+                    signOut()
+                }
+                }}  
+
         >
               <img src='/assets/img/Log out.svg'/>
 
-             تسجيل خروج</a></div> :
-              <Link href="/signUp" className='main-nav-item'><a
+              {navOb.nav6}</span></div> :
+              <Link href="/signUp" className='main-nav-item'><span
               className={`${route.asPath === "/signUp" ? "active" : ""}`}
           >  
-               تسجيل</a></Link>
+                {navOb.nav5}</span></Link>
              }
      
             

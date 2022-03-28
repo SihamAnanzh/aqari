@@ -15,9 +15,9 @@ const Loader = ({}) => {
             // height:'100%',
         
         }}>
-            <source  src='assets/video/111.mp4' type='video/mp4' />
+            <source  src='/assets/video/111.mp4' type='video/mp4' />
         </video>
-        <img src='assets/img/Aqare-Finder-Logo-Png.png' className='img-sppiner' />
+        <img src='/assets/img/Aqare-Finder-Logo-Png.png' className='img-sppiner' />
         <div className="spinners">
         <ClipLoader  color='#fff' loading='true'  size={100} />
 

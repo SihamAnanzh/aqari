@@ -6,12 +6,15 @@ const Add = (props) => {
 
   return (
     <>
-       <Link href={{
-                pathname:'/advertises/id',
-                query: props.add_id
-            }}
-                            
-            as={`/advertises/${props.add_id}`}
+       <Link 
+
+   href={`/advertises/${props.add_id}`}  
+      //  href={{
+      //           pathname:'/advertises/id',
+      //           query: props.add_id
+      //       }}
+            // as={'/advertises/'+props.title.trim().replace(' ', '-')}         
+            // as={'/advertises/'+props.title.replace('','-').trim()}
         >
     <div className=' premuim-add  regular regular-origin '>
       <div className=' details-adds'>
@@ -36,12 +39,15 @@ const Add = (props) => {
     
     </div>
     </Link>
-    <Link href={{
-                pathname:'/advertises/id',
-                query: props.add_id
-            }}
+    <Link 
+              href={`/advertises/${props.add_id}`}  
+
+    // href={{
+    //             pathname:'/advertises/id',
+    //             query: props.add_id
+    //         }}
                             
-            as={`/advertises/${props.add_id}`}
+            // as={'/advertises/'+props.title.trim().replace(' ', '-')}         
         >
     <div className='premuim-add regular fallback-regular'>
       <div className=' details-adds'>

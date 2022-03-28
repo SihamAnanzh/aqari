@@ -4,11 +4,13 @@ import Footer from '../shared/footer/Footer'
 import Nav from '../shared/nav/Nav'
 import Add from '../adds/Add'
 import { FilterContext } from '../../stores/filter';
-const ServiveResults = () => {
+import { TranslateContext } from '../../stores/translate-context'
+
+const ServiveResults = ({navOb,adsOb, fo1}) => {
     const [latestData,setLeastestAdd]=useState([])
     const filterCtx=useContext(FilterContext)
-
-     
+    const tranCtx=useContext(TranslateContext)
+     console.log(navOb);
     useEffect(()=>{
 
       filterCtx.serviceResults&&filterCtx.serviceResults.map((adds)=>{
@@ -51,10 +53,10 @@ const ServiveResults = () => {
 
   return (
     <div className='results-container'>
-    <Nav/>
+    <Nav navOb={navOb}/>
     <div className='results'>    
         <div className="adds-results">
-        <h1 className='premium-title'>أحدث الخدمات</h1>
+        <h1 className='premium-title'>{adsOb.ad6}</h1>
         {
        latestData&&latestData.map((premiumAddsData)=>(
         <PremiumService singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.id} id={premiumAddsData.id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
@@ -64,10 +66,10 @@ const ServiveResults = () => {
         </div>
       
           <span className="end-results">
-          انتهت نتائج البحث ولا يوجد المزيد من الإعلانات
+     {adsOb.ad5}
           </span>
     </div>
-      <Footer/>
+      <Footer fo1={fo1}/>
     </div>  )
 }
 

@@ -4,8 +4,9 @@ import { useRouter } from 'next/router'
 import { FilterContext } from '../../stores/filter';
 import axios from 'axios'
 import swal from 'sweetalert';
+import { useSession } from 'next-auth/react';
 
-const AddService = () => {
+const AddService = ({serviceOb}) => {
   const authCtx=useContext(AuthContext)
 
 const [checkedConditions,setCheckedConditions]=useState(false)
@@ -54,8 +55,9 @@ useEffect(() => {
     
     
 
-    
 
+    const session=useSession()
+    let userData=session.data.xyz
 
 const toggleAcitveElement=(id)=>{
 let item=document.getElementById(id)
@@ -109,7 +111,7 @@ const handleChange=(e)=>{
 useEffect(()=>{
   const region=axios.get('https://stagingapi.aqarifinder.com/api/region/list/',{
     headers: {
-      "lang":'ar' 
+      "lang":route.locale
        },
   })
   .then(res=>{
@@ -121,7 +123,7 @@ useEffect(()=>{
 useEffect(()=>{
   axios.get('https://stagingapi.aqarifinder.com/api/service_type/list',{
       headers: {
-        "lang":'ar' ,
+        "lang":route.locale
         
          },
     })
@@ -155,7 +157,7 @@ useEffect(()=>{
         axios({
           method: "post",
           url: "https://stagingapi.aqarifinder.com/api/user/services/add",
-          headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
+          headers: { "Content-Type": "multipart/form-data" , 'Authorization':userData.id},
           data: formData,
         })
           .then( (response) =>{
@@ -181,21 +183,21 @@ useEffect(()=>{
            }}>
     <div className="signin-contanier addAdds-tab-container ">
       <div className="addAdds-heading">
-        <h3>إضافة خدمة</h3>
+        <h3>{serviceOb.pro8}</h3>
       </div>
     <div className="inputs-group addAdds-group">
     <div className="sign-input  addAdds-phone ">
-           <h3>عنوان الخدمة</h3>
-           <input type="text" className="sign-mail" placeholder='عنوان الخدمة' tabIndex={1} autoFocus onChange={(e)=>setTitle(e.target.value)} />
+           <h3>{serviceOb.title}</h3>
+           <input type="text" className="sign-mail" placeholder={serviceOb.title} tabIndex={1} autoFocus onChange={(e)=>setTitle(e.target.value)} />
        </div>
 
     <div className="sign-input  addAdds-phone ">
-           <h3>رقم الهاتف</h3>
-           <input type="number" min={0} className="sign-mail" placeholder='رقم الهاتف' tabIndex={2} onChange={(e)=>setPhone(e.target.value)} />
+           <h3>{serviceOb.phone}</h3>
+           <input type="number" min={0} className="sign-mail" placeholder={serviceOb.phone} tabIndex={2} onChange={(e)=>setPhone(e.target.value)} />
        </div>
        <div className="sign-input  addAdds-phone " style={{position:'relative'}}>
-           <h3>نوع الخدمة</h3>
-           <input type="text" id='serivce-list' className="sign-mail" placeholder='نوع الخدمة' tabIndex={3} value={service} 
+           <h3>{serviceOb.serviceType}</h3>
+           <input type="text" id='serivce-list' className="sign-mail" placeholder={serviceOb.serviceType}  tabIndex={3} value={service} 
             onClick={()=>{
                setShowListService(!showListService)
            }}/>
@@ -230,12 +232,12 @@ useEffect(()=>{
        <div className="sign-input ">
            <h3 style={{
                paddingTop:"20px"
-           }}>رقم الواتس اب</h3>
-           <input type="text" min='8' max='12' className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} onChange={e=>setWhatsPhone(e.target.value)}/>
+           }}>{serviceOb.whatsaap}</h3>
+           <input type="text" min='8' max='12' className="sign-mail" placeholder={serviceOb.whatsaap} tabIndex={4} onChange={e=>setWhatsPhone(e.target.value)}/>
        </div>
        <div className="sign-input  addAdds-region" id='city-list' style={{position:'relative'}} >
-           <h3>المنطقة</h3>
-           <input type="text" className="sign-mail" placeholder='المنطقة' tabIndex={3}   id='city-list'  value={[...selection]}
+           <h3>{serviceOb.city}</h3>
+           <input type="text" className="sign-mail" placeholder={serviceOb.city} tabIndex={3}   id='city-list'  value={[...selection]}
            onChange={e=>setCity(e.target.value)}
              onClick={()=>{
                setShowListNames(!showListNames)
@@ -296,19 +298,19 @@ useEffect(()=>{
         }
        </div>
        <div className="sign-input  addAdds-price">
-           <h3>السعر</h3>
-           <input type="text" className="sign-mail" placeholder='السعر' tabIndex={3} onChange={e=>setPrice(e.target.value)} />
+           <h3>{serviceOb.price}</h3>
+           <input type="text" className="sign-mail" placeholder={serviceOb.price}  tabIndex={3} onChange={e=>setPrice(e.target.value)} />
        </div>
        <div className="sign-input ">
            <h3 style={{
                paddingTop:"20px"
-           }}>تفاصيل الخدمة</h3>
-           <textarea type="text" className="sign-mail" placeholder='تفاصيل الخدمة'  tabIndex={5} onChange={(e)=>setDesc(e.target.value)}/>
+           }}>{serviceOb.serivceDetails}</h3>
+           <textarea type="text" className="sign-mail" placeholder={serviceOb.serivceDetails}  tabIndex={5} onChange={(e)=>setDesc(e.target.value)}/>
        </div>
  
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`} style={{ display:imageUpLoaded ?'none':"block",width:"66vw"
            }}>
-           <h3 >صور</h3>
+           <h3 >{serviceOb.pic}</h3>
            <div className="wrrap-images">
               {
               !imageOne ?
@@ -327,12 +329,12 @@ useEffect(()=>{
              }/>
                     
           <img src="/assets/img/img.svg" alt=""/>
-          <p>صورة 1</p>
+          <p>{serviceOb.pic} 1</p>
           </div>
 
           : <div className="" style={{position:'relative'}}>
             <img  src={URL.createObjectURL(imageOne)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
-            <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
+            <img src="/assets/img/removeImg.svg" alt="" className='remove-img-serivce'  onClick={(e)=>{ 
           setImageOne('')
           }} />
           </div> 
@@ -356,12 +358,12 @@ useEffect(()=>{
              }/>
                     
           <img src="/assets/img/img.svg" alt=""/>
-          <p>صورة 2</p>
+          <p>{serviceOb.pic} 2</p>
           </div>
 
           : <div className="" style={{position:'relative'}}>
           <img  src={URL.createObjectURL(imageTwo)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
-          <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
+          <img src="/assets/img/removeImg.svg" alt="" className='remove-img-serivce'  onClick={(e)=>{ 
           setImageTwo('')
           }} />
         </div>
@@ -384,12 +386,12 @@ useEffect(()=>{
              }/>
                     
           <img src="/assets/img/img.svg" alt=""/>
-          <p>صورة 3</p>
+          <p>{serviceOb.pic} 3</p>
           </div>
 
           : <div className="" style={{position:'relative'}}>
           <img  src={URL.createObjectURL(imageThree)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
-          <img src="/assets/img/removeImg.svg" alt="" className='remove-img'  onClick={(e)=>{ 
+          <img src="/assets/img/removeImg.svg" alt="" className='remove-img-serivce'  onClick={(e)=>{ 
           setImageThree('')
           }} />
         </div>
@@ -412,12 +414,12 @@ useEffect(()=>{
              }/>
                     
           <img src="/assets/img/img.svg" alt=""/>
-          <p>صورة 4</p>
+          <p>{serviceOb.pic} 4</p>
           </div>
 
           :<div className="" style={{position:'relative'}}>
           <img  src={URL.createObjectURL(imageFour)} alt=""   className='uploadedImage' style={{objectFit:'cover'}}/> 
-          <img src="/assets/img/removeImg.svg" alt="" className='remove-img' id='select-file-4'  onClick={(e)=>{ 
+          <img src="/assets/img/removeImg.svg" alt="" className='remove-img-serivce' id='select-file-4'  onClick={(e)=>{ 
           setImageFour('')
           }}/>
           </div>
@@ -442,7 +444,7 @@ useEffect(()=>{
               })
          }}>
          <img src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
-         <span>موافق على الشروط والقواعد</span>
+         <span>{serviceOb.tearmAndCondition}</span>
       
          </div>
        </div>

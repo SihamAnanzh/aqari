@@ -5,20 +5,24 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 const Marker = ({ children }) => <div className="">{children}</div>;
 
 const SimpleMap = ({getLat, getLng , currLat, currLng}) => {
-  const [lat,setLat]=useState( !currLat?"29.266666":currLat)
-  const [lng,setLng]=useState(!currLng?'47.933334':currLng)
-  useEffect(()=>{
-    setLat(lat)
-    setLng(lng)
+  const [lat,setLat]=useState( !currLat?29.266666:currLat)
+  const [lng,setLng]=useState(!currLng?47.933334:currLng)
 
-},[lat,lng])
+
 
   return (
     <div style={{ height: '298px', width: '888px'}}>
     <GoogleMapReact
       bootstrapURLKeys={{ key:'AIzaSyCcY5aS5-7z5NW5226234uPiKhswMx6LqY' }}
-      defaultCenter={{lat:29.26666,lng:47.933334}}
+      center={{lat:lat,lng:lng}}
       defaultZoom={10}
+      onGoogleApiLoaded={
+        ev => {
+          getLat(ev.lat)
+          getLng(ev.lng)
+          setLat(ev.lat)
+          setLng(ev.lng)}
+      }
       onClick={ev => {
         setLat(ev.lat)
         setLng(ev.lng)

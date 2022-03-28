@@ -6,10 +6,11 @@ import SimpleMap from '../map/Map'
 import SimpleMap2 from '../map/phone-map'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 
-const Estat = ({ withImg, setOverlay, data }) => {
-  const [addToFav, setAddtoFav] = useState(false)
+const Estat = ({ withImg, setOverlay, data,addAdsOb }) => {
+  const [addToFav, setAddtoFav] = useState(data.isFav)
   const authCtx = useContext(AuthContext)
   const [userAdd, setUserAdd] = useState(false)
   const route = useRouter()
@@ -20,39 +21,41 @@ const Estat = ({ withImg, setOverlay, data }) => {
 useEffect(()=>{
   setLat(data.lat)
   setLng(data.lng)
-  console.log(data.add_id);
+  console.log(data);
 },[data])
 
+let session=useSession()
+console.log(session);
+
   useEffect(() => {
-    authCtx.userId == data.user_id ? setUserAdd(true) : setUserAdd(false)
+    session.data!= null&& session.data.xyz.sub == data.user_id ? setUserAdd(true) : setUserAdd(false)
   }, [data.user_id])
 
 
   const toggleFavAdds = () => {
-    authCtx.token ?
+    session.data != null?
       (
-        !data.isFav ?
-          (axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.id}`, null, {
+        console.log(data.isFav),
+        !addToFav?
+          (axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.add_id}`, null,  {
             headers: {
-              "Authorization": authCtx.token
+              "Authorization": session.data!= null ?session.data.id:null
             },
           }).then((res) => {
             console.log(res);
             setAddtoFav(true);
-            data.isFav = true;
           })
           )
           :
-          axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.id}`, null,
+          axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.add_id}`,null, 
             {
               headers: {
-                'Authorization': authCtx.token
+                'Authorization':session.data!= null ?session.data.id:null
               },
 
             }).then((res) => {
               console.log(res)
               setAddtoFav(false);
-              data.isFav = false;
             }
             )
       )
@@ -85,7 +88,7 @@ useEffect(()=>{
             </div>
             {!userAdd ?
               <div className="fav-estat" onClick={toggleFavAdds}>
-                {addToFav ? <img src="/assets/img/fav-icon.svg" alt="" /> :
+                {addToFav? <img src="/assets/img/fav-icon.svg" alt="" /> :
                   <img src="/assets/img/emptyHearrt.svg" alt="" />
                 }
 
@@ -106,7 +109,7 @@ useEffect(()=>{
             }
               //  as={`/profile/updateAdds/${data.title.trim().replace(' ', '-')}`}
     
-              >تعديل</Link></h4>}
+              >{addAdsOb.edit}</Link></h4>}
 
           </div>
           <div className="data">
@@ -127,29 +130,29 @@ useEffect(()=>{
         <div className="content-estat estat-origin">
           <div className="first-line">
             <div className="city estat-deatils">
-              <span className="att">المنطقة</span>
+              <span className="att">{addAdsOb.add5}</span>
 
               <span>{data.city}</span>
             </div>
             <div className="space estat-deatils">
-              <span className="att">المساحة</span>
+              <span className="att">{addAdsOb.add6}</span>
               <span> متر <span>{data.space}</span></span>
 
             </div>
             <div className="destination estat-deatils">
-              <span className="att">الواجهة</span>
+              <span className="att">{addAdsOb.add8}</span>
               <span>{data.interface}</span>
             </div>
 
           </div>
           <div className="second-line">
             <div className="price estat-deatils">
-              <span className="att">السعر</span>
+              <span className="att">{addAdsOb.add7}</span>
               <span> د.ك <span>{data.price}</span></span>
 
             </div>
             <div className="automated-number estat-deatils">
-              <span className="att">الرقم الآلي</span>
+              <span className="att">{addAdsOb.add9}</span>
               <span className='autom-value'>{data.autoNumber}</span>
 
             </div>
@@ -160,27 +163,27 @@ useEffect(()=>{
         <div className="content-estat estat-fallback">
 
           <div className="city estat-deatils">
-            <span className="att">المنطقة</span>
+            <span className="att">{addAdsOb.add5}</span>
 
             <span>{data.city}</span>
           </div>
           <div className="space estat-deatils">
-            <span className="att">المساحة</span>
+            <span className="att">{addAdsOb.add6}</span>
             <span> متر <span>{data.space}</span></span>
 
           </div>
           <div className="destination estat-deatils">
-            <span className="att">الواجهة</span>
+            <span className="att">{addAdsOb.add8}</span>
             <span>{data.interface}</span>
           </div>
 
           <div className="price estat-deatils">
-            <span className="att">السعر</span>
+            <span className="att">{addAdsOb.add7}</span>
             <span> د.ك <span>{data.price}</span></span>
 
           </div>
           <div className="automated-number estat-deatils">
-            <span className="att">الرقم الآلي</span>
+            <span className="att">{addAdsOb.add9}</span>
             <span className='autom-value'>{data.autoNumber}</span>
           </div>
 

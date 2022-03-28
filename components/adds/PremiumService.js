@@ -51,8 +51,9 @@ const PremiumService = (props) => {
       query: props.singleEstate
         }}
                         
-        as={`/services/${props.id}`}
-    
+   
+        as={'/services/'+props.title.trim().replace(' ', '-')}         
+
                         
 
 

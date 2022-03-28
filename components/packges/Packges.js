@@ -2,7 +2,7 @@ import React ,{useState,useEffect}from 'react'
 import Nav from '../shared/nav/Nav'
 import Packge from './Packge'
 import Footer from '../shared/footer/Footer'
-const Packges = ({data}) => {
+const Packges = ({data,fo1,navOb}) => {
 const [packageData,setPacakgeData]=useState([])
 
 
@@ -29,20 +29,20 @@ useEffect(() => {
   return (
     <>
     
-    <Nav/>
+    <Nav navOb={navOb}/>
     <div className='packge-contaier'>
-      <h1 className='packge-heading'>الباقات</h1>
+      <h1 className='packge-heading'>{navOb.pa1}</h1>
       <div className='pakges'>
         {
           packageData.map((pack)=>(
-            <Packge  price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} key={pack.id} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId}/>
+            <Packge  btn={navOb.pa2} price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} key={pack.id} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId}/>
 
           ))
         }
  
       </div>
     </div>
-    <Footer/>
+    <Footer fo1={fo1}/>
     </>
   )
 }

@@ -3,13 +3,14 @@ import DropdownTypes from './DropdownTypes';
 import axios from 'axios';
 
 
-const SearchBoxTypes = ({category}) => {
+const SearchBoxTypes = ({category, searchOb}) => {
   const [statType, SetStatTypes] =useState([]);
 
 
 return (
        <>
-     <DropdownTypes title='نوع العقار' items={category} />
+     
+     <DropdownTypes title={searchOb.sh10} items={category} />
       </>
 )
 }

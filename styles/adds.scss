@@ -536,7 +536,7 @@ color: #737373;
   @media (max-width:682px) {
     .fallback-adds{
         width: 364px;
-        height: 218px;
+        height: 256px;
         min-width: 70vw;
         .details{
             display: grid;
@@ -554,8 +554,8 @@ color: #737373;
 
           }
           .info{
-              margin-top: 10px;
-              margin-right: -20px;
+            margin-top: 10px;
+            margin-right: -52px;
 
           }
           .price{
@@ -729,7 +729,7 @@ color: #737373;
             }
 
             .fallback-adds .disc {
-                width: 75vw;
+                width: 72vw;
                 margin-top: -54px;
 margin-right: -3px;            }
   }

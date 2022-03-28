@@ -8,7 +8,8 @@ import axios from 'axios';
 import { FilterContext } from '../../stores/filter';
 import { useRouter } from 'next/router';
 import { Filter } from '@mui/icons-material';
-const MainSection = () => {
+import swal from 'sweetalert';
+const MainSection = ({searchOb}) => {
   const [showSearchSelling, setShowSearchSelling]= useState(false)
   const [showSearchRent, setShowSearchRent]= useState(false)
   const [showSearchServics, setShowSearchServics]= useState(false)
@@ -24,42 +25,50 @@ const route=useRouter()
     setShowSearchSelling(false)
     setShowBox(false)
   }
+  console.log(route.locale);
 
 let  regions=filterCtx.regions_id
 
-  const handelClick=async ()=>{
-    showSearchServics && axios.post('https://stagingapi.aqarifinder.com/api/services/filter',
-    {"service_type_id":filterCtx.serivce_id,"regions":regions},
-    {headers: {
-      "lang":'ar' 
-    }
-       })
-    .then(res=>{
+  const handelClick= ()=>{
+    filterCtx.serivce_id&&regions?
+    (
+      showSearchServics &&  axios.post('https://stagingapi.aqarifinder.com/api/services/filter',
+      {"service_type_id":filterCtx.serivce_id,"regions":regions},
+      {headers: {
+        "lang":route.locale 
+      }
+         })
+      .then(res=>{
+  
+        console.log(res.data.results);
+          filterCtx.setSerivceResutls(res.data.results)
+        route.push('/searchResultsService')
+  
+      })
+    ):  
+    filterCtx.type_id&&regions?
+    
+   (   showSearchRent ?
+        axios.post('https://stagingapi.aqarifinder.com/api/ads/filter',
+      {"category_id":filterCtx.type_id,"regions":regions,"ad_type_id":1},
+      {headers: {
+        "lang":route.locale
+      }
+         })
+      .then(res=>{
+        console.log(filterCtx);
+        console.log(res.data.results);
+        filterCtx.setAddsSResutls(res.data.results)
+        filterCtx.setSerivceId('')
+        route.replace('/SearchResult')
+  
+      }):
 
-      console.log(res.data.results);
-        filterCtx.setSerivceResutls(res.data.results)
-      route.replace('/searchResultsService')
-
-    })
-
-    showSearchRent && axios.post('https://stagingapi.aqarifinder.com/api/ads/filter',
-    {"category_id":filterCtx.type_id,"regions":regions,"ad_type_id":1},
-    {headers: {
-      "lang":'ar' 
-    }
-       })
-    .then(res=>{
-      console.log(filterCtx);
-      console.log(res.data.results);
-      filterCtx.setAddsSResutls(res.data.results)
-      filterCtx.setSerivceId('')
-      route.replace('/SearchResult')
-
-    })
-    showSearchSelling && axios.post('https://stagingapi.aqarifinder.com/api/ads/filter',
+    showSearchSelling &&
+      axios.post('https://stagingapi.aqarifinder.com/api/ads/filter',
     {"category_id":filterCtx.type_id,"regions":regions,"ad_type_id":2},
     {headers: {
-      "lang":'ar' 
+      "lang":route.locale
     }
        })
     .then(res=>{
@@ -70,13 +79,16 @@ let  regions=filterCtx.regions_id
       route.replace('/SearchResult')
 
     })
-  }
+
+   ):swal('!Opse','Fill in all fields','error') 
+
+}
 
         
   useEffect(()=>{
   axios.get('https://stagingapi.aqarifinder.com/api/service_type/list',{
       headers: {
-        "lang":'ar' 
+        "lang":route.locale 
          },
     })
     .then(res=>{
@@ -89,7 +101,7 @@ let  regions=filterCtx.regions_id
 useEffect(()=>{
 axios.get('https://stagingapi.aqarifinder.com/api/category/list',{
     headers: {
-      "lang":'ar' 
+      "lang":route.locale
        },
   })
   .then(res=>{
@@ -105,9 +117,10 @@ axios.get('https://stagingapi.aqarifinder.com/api/category/list',{
 
   
 useEffect(()=>{
+
   const region=axios.get('https://stagingapi.aqarifinder.com/api/region/list/',{
     headers: {
-      "lang":'ar' 
+      "lang":route.locale
        },
   })
   .then(res=>{
@@ -125,7 +138,7 @@ useEffect(()=>{
           setShowSearchServics(false)
           showSearchSelling?setShowBox(false):setShowBox(true)
           setShowSearchSelling(!showSearchSelling)}}>
-            <span className={`action ${showSearchSelling ?'acitveAction':''}`}>بيع</span>
+            <span className={`action ${showSearchSelling ?'acitveAction':''}`}>{searchOb.sh1}</span>
         </div>
         <div className='rent' onClick={()=>{
              setShowSearchSelling(false)
@@ -133,7 +146,7 @@ useEffect(()=>{
              showSearchRent?setShowBox(false):setShowBox(true)
 
           setShowSearchRent(!showSearchRent)}} tabIndex={2} >
-        <span className={`action ${showSearchRent ?'acitveAction':''}`}>إيجار</span>
+        <span className={`action ${showSearchRent ?'acitveAction':''}`}>{searchOb.sh2}</span>
         </div>
         <div className='service' onClick={()=>{
            setShowSearchSelling(false)
@@ -141,24 +154,23 @@ useEffect(()=>{
     
            showSearchServics?setShowBox(false):setShowBox(true)
           setShowSearchServics(!showSearchServics)}}>
-        <span className={`action ${showSearchServics ?'acitveAction':''}`}>خدمات</span>
+        <span className={`action ${showSearchServics ?'acitveAction':''}`}>{searchOb.sh3}</span>
         </div>
         <div>
         {(showBox) && !showSearchServics ?
            <div className='serarch'>
             <div className='serachContainer first'>
-            <SearchBoxNames regions={region}  />
+            <SearchBoxNames regions={region}  searchOb={searchOb} />
             </div>
             <div className='serachContainer second'>
-            <SearchBoxTypes category={category} />
+            <SearchBoxTypes category={category}  searchOb={searchOb} />
             </div>
           {/* <Link className='searchLink' href='/searchResult'> */}
           <div className=' serachContainer btnSearch' onClick={handelClick}  >
                <button style={{
                cursor:"pointer"
              }}>
-               ابحث الآن
-               </button>
+            {searchOb.sh7}        </button>
 
                </div>
                {/* </Link> */}
@@ -166,17 +178,17 @@ useEffect(()=>{
                       </div>: 
              showSearchServics && showBox &&<div className='serarch'>
              <div className='serachContainer first'>
-             <SearchBoxNames regions={region}  />
+             <SearchBoxNames regions={region}  searchOb={searchOb}  />
              </div>
              <div className='serachContainer second'>
-             <SearchBoxSerivce services={services}/>
+             <SearchBoxSerivce services={services}  searchOb={searchOb}/>
              </div>
              {/* <Link className='searchLink' href='/searchResult'> */}
              <div className=' serachContainer btnSearch' onClick={handelClick}  >
                <button style={{
                cursor:"pointer"
              }}>
-               ابحث الآن
+              {searchOb.sh7}
                </button>
 
                </div>

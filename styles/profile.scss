@@ -137,7 +137,7 @@ background-color: $second-color;
 
 .type-icon.city {
   left: 539px;
-    top: 1054px;
+    top: 38.2% 
 }
 
 @media (max-width:1600px) {
@@ -151,7 +151,7 @@ background-color: $second-color;
 
     .profile-tab{
         .category-icon {
-            top: 900px;
+            top: 33%;
             left: 19%;
              z-index: 10;
 
@@ -159,14 +159,15 @@ background-color: $second-color;
            
         }
         .type-icon {
-            top: 760px;
+               top: 27.8%;
+        
             left: 19%;
             z-index: 10;
         }
     
         .type-icon.city {
             left: 19%;
-            top: 1050px;
+            top: 38%;
         }
     
         
@@ -282,7 +283,7 @@ background-color: $second-color;
     .profile-tab .category-icon {
         left: 18.5%;
         z-index: 3;
-        top: 35.7%;
+        top: 34.2%;
 
 
     } 
@@ -290,11 +291,11 @@ background-color: $second-color;
     .profile-tab .type-icon
     {
         left: 18.5%;
-        top:30.8%
+        top:29.5%
 
     }.profile-tab .type-icon.city {
         left: 18.5%;
-        top:40.4%
+        top:38.7%
 
 
        
@@ -305,20 +306,7 @@ background-color: $second-color;
 }
 
 @media (max-width:700px) {
-  
-    .profile-tab .category-icon {
-        left: 22%;
-        top:1132px
 
-
-
-    } 
-
-    .profile-tab .type-icon {
-        left: 22%;
-        top: 985px;
-       
-    }
 
     .profile-heading,
     .addAdds-tab-container .addAdds-heading h3{
@@ -330,7 +318,7 @@ background-color: $second-color;
     .profile-tab .category-icon {
         left: 18.5%;
         z-index: 3;
-        top:31.9%
+        top:29.9%
 
 
 
@@ -339,11 +327,11 @@ background-color: $second-color;
     .profile-tab .type-icon
     {
         left: 18.5%;
-        top: 36.4%;
+        top: 34.4%;
 
     }.profile-tab .type-icon.city {
         left: 18.5%;
-         top: 40.9%
+         top: 39%
 
 
        
@@ -360,7 +348,7 @@ background-color: $second-color;
 
     
     .profile-tab .category-icon {
-        top:33.8%
+        top:31.8%
 
 
 
@@ -368,10 +356,10 @@ background-color: $second-color;
 
     .profile-tab .type-icon
     {
-        top:38.1%;
+        top:36.4%;
 
     }.profile-tab .type-icon.city {
-        top: 42.4%;
+        top: 40.9%;
 
 
        
@@ -449,17 +437,17 @@ display: none;    }
     }
     .profile-tab .category-icon {
         left: 12%;
-        top: 911px;
+        top: 36.9%;
     
     }
     .profile-tab .type-icon {
         left: 12%;
-        top: 785px;
+        top: 32.1%;
     }
 
     .profile-tab .type-icon.city {
         left: 12%;
-        top: 1032px;
+        top: 27.5%;
     }
 
 
@@ -494,5 +482,31 @@ display: none;    }
         margin-right: 651px;
         margin-bottom: 20px;
         font-size: 14px;
+    }
+}
+
+
+
+@media (max-width:400px) {
+  
+    
+
+    
+    .profile-tab .category-icon {
+        top:37.2%
+
+
+
+    } 
+
+    .profile-tab .type-icon
+    {
+        top:33.1%;
+
+    }.profile-tab .type-icon.city {
+        top:41.9%
+
+
+       
     }
 }

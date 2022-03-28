@@ -4,9 +4,10 @@ import { useRouter } from 'next/router'
 import { FilterContext } from '../../stores/filter';
 import axios from 'axios'
 import swal from 'sweetalert';
+import { useSession } from 'next-auth/react';
 
 
-const UpdateService = ({updateData}) => {
+const UpdateService = ({updateData,serviceOb}) => {
     const authCtx=useContext(AuthContext)
 
     const [checkedConditions,setCheckedConditions]=useState(false)
@@ -46,10 +47,6 @@ const UpdateService = ({updateData}) => {
          filterCtx.setRegionsId(regionsId)
         }, [regionsId]); 
         
-        
-    
-        
-    
     
     const toggleAcitveElement=(id)=>{
     let item=document.getElementById(id)
@@ -71,7 +68,7 @@ const UpdateService = ({updateData}) => {
     useEffect(()=>{
       const region=axios.get('https://stagingapi.aqarifinder.com/api/region/list/',{
         headers: {
-          "lang":'ar' 
+          "lang":route.locale
            },
       })
       .then(res=>{
@@ -83,7 +80,7 @@ const UpdateService = ({updateData}) => {
     useEffect(()=>{
       axios.get('https://stagingapi.aqarifinder.com/api/service_type/list',{
           headers: {
-            "lang":'ar' ,
+            "lang":route.locale
             
              },
         })
@@ -91,7 +88,9 @@ const UpdateService = ({updateData}) => {
             !res.data.status.message == 'OK' ?console.log(res.data):setSerivces(res.data.results)
         })
       },[])
-    
+
+  const session=useSession()
+  let userData=session.data.xyz
 
       const  handelSubmit=(e)=>{
  
@@ -116,7 +115,7 @@ const UpdateService = ({updateData}) => {
             axios({
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/services/update",
-              headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
+              headers: { "Content-Type": "multipart/form-data" , 'Authorization':userData.id},
               data: formData,
             })
               .then( (response) =>{
@@ -142,21 +141,21 @@ const UpdateService = ({updateData}) => {
            }}>
     <div className="signin-contanier addAdds-tab-container ">
       <div className="addAdds-heading">
-        <h3>إضافة خدمة</h3>
+        <h3>{serviceOb.pro8}</h3>
       </div>
     <div className="inputs-group addAdds-group">
     <div className="sign-input  addAdds-phone ">
-           <h3>عنوان الخدمة</h3>
-           <input type="text" className="sign-mail" placeholder='عنوان الخدمة' tabIndex={1} autoFocus onChange={(e)=>setTitle(e.target.value)} value={title} />
+           <h3>{serviceOb.title}</h3>
+           <input type="text" className="sign-mail" placeholder={serviceOb.title} tabIndex={1} autoFocus onChange={(e)=>setTitle(e.target.value)} value={title} />
        </div>
 
     <div className="sign-input  addAdds-phone ">
-           <h3>رقم الهاتف</h3>
-           <input type="txet" min="8" max='12' className="sign-mail" placeholder='رقم الهاتف' tabIndex={2}  value={phoneNumber} onChange={(e)=>setPhone(e.target.value)} />
+           <h3>{serviceOb.phone}</h3>
+           <input type="txet" min="8" max='12' className="sign-mail" placeholder={serviceOb.phone} tabIndex={2}  value={phoneNumber} onChange={(e)=>setPhone(e.target.value)} />
        </div>
        <div className="sign-input  addAdds-phone " style={{position:'relative'}}>
-           <h3>نوع الخدمة</h3>
-           <input type="text" id='serivce-list' className="sign-mail" placeholder='نوع الخدمة' tabIndex={3} value={service} 
+           <h3>{serviceOb.serviceType}</h3>
+           <input type="text" id='serivce-list' className="sign-mail" placeholder={serviceOb.serviceType} tabIndex={3} value={service} 
             onClick={()=>{
                setShowListService(!showListService)
            }}/>
@@ -191,12 +190,12 @@ const UpdateService = ({updateData}) => {
        <div className="sign-input ">
            <h3 style={{
                paddingTop:"20px"
-           }}>رقم الواتس اب</h3>
-           <input type="txet" min="8" max='12'  className="sign-mail" placeholder='رقم الواتس اب' tabIndex={4} value={whatsPhone}  onChange={e=>setWhatsPhone(e.target.value)}s />
+           }}>{serviceOb.whatsaap}</h3>
+           <input type="txet" min="8" max='12'  className="sign-mail" placeholder={serviceOb.whatsaap} tabIndex={4} value={whatsPhone}  onChange={e=>setWhatsPhone(e.target.value)}s />
        </div>
        <div className="sign-input  addAdds-region" id='city-list' style={{position:'relative'}} >
-           <h3>المنطقة</h3>
-           <input type="text" className="sign-mail" placeholder='المنطقة' tabIndex={3}   id='city-list'  value={[...selection]}
+           <h3>{serviceOb.city}</h3>
+           <input type="text" className="sign-mail" placeholder={serviceOb.city}tabIndex={3}   id='city-list'  value={[...selection]}
            onChange={e=>setCity(e.target.value)}
              onClick={()=>{
                setShowListNames(!showListNames)
@@ -257,14 +256,14 @@ const UpdateService = ({updateData}) => {
         }
        </div>
        <div className="sign-input  addAdds-price">
-           <h3>السعر</h3>
-           <input type="text" className="sign-mail" placeholder='السعر' tabIndex={3} onChange={e=>setPrice(e.target.value)} value={price} />
+           <h3>{serviceOb.price}</h3>
+           <input type="text" className="sign-mail" placeholder={serviceOb.price}   tabIndex={3} onChange={e=>setPrice(e.target.value)} value={price} />
        </div>
        <div className="sign-input ">
            <h3 style={{
                paddingTop:"20px"
-           }}>تفاصيل الخدمة</h3>
-           <textarea type="text" className="sign-mail" placeholder='تفاصيل الخدمة'  tabIndex={5} onChange={(e)=>setDesc(e.target.value)} value={desc}/>
+           }}>{serviceOb.serivceDetails}</h3>
+           <textarea type="text" className="sign-mail" placeholder={serviceOb.serivceDetails} tabIndex={5} onChange={(e)=>setDesc(e.target.value)} value={desc}/>
        </div>
  
 
@@ -279,7 +278,7 @@ const UpdateService = ({updateData}) => {
               })
          }}>
          <img src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
-         <span>موافق على الشروط والقواعد</span>
+         <span>{serviceOb.tearmAndCondition}</span>
       
          </div>
        </div>
@@ -288,7 +287,7 @@ const UpdateService = ({updateData}) => {
     <div className="sign-btn" aria-disabled="true"  onClick={handelSubmit} style={{
          backgroundColor:disable ? "#F1E6D3":"#EDAA43"
     }}> 
-    تعديل 
+    {serviceOb.edit}
     </div>
 
    </div>

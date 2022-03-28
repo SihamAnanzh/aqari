@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Nav from '../shared/nav/Nav'
 import SingleOffice from './SingleOffice'
 import Footer from '../shared/footer/Footer'
-const Offices = ({offices}) => {
-
+import {TranslateContext} from '../../stores/translate-context'
+const Offices = ({offices,fo1,navOb,ofOb}) => {
   return (
     <>  
-      <Nav/>
+      <Nav navOb={navOb}/>
       <div  className='offices'>
-      <h1  className='offices-heading'>قائمة المكاتب</h1>
+      <h1  className='offices-heading'>{ofOb.of1}</h1>
         <div className='offices-container'>
              {offices&&offices.map((office)=>(
                <SingleOffice key={office.id} office={office} />
@@ -18,8 +18,8 @@ const Offices = ({offices}) => {
          {offices.length>20&&
         
         <div className='adds-btn office-more-btn'>
-            المزيد<span className='btn-icon'>
-            <img src='/assets/img/+btn.svg' style={{
+            {ofOb.of4}<span className='btn-icon'>
+            <img src={offices.logo_url} style={{
               width: '20px',
               height: '20px',
           
@@ -29,7 +29,7 @@ const Offices = ({offices}) => {
           </div>}
       </div>
 
-      <Footer/>
+      <Footer fo1={fo1}/>
     </>
   )
 }

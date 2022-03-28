@@ -3,8 +3,17 @@ const nextConfig = {
   reactStrictMode: false,
   ignoreDuringBuilds: true,
   
+
+
 }
+
+
+
 module.exports = {
+  i18n: {
+    defaultLocale: "ar",
+    locales: ["ar","ar"]
+  },
   env: {
       endPoint: 'http://localhost:3000/',
       JWT_SECRET: {

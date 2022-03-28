@@ -5,7 +5,7 @@ import axios from 'axios'
 import swal from 'sweetalert';
 import { useRouter } from 'next/router';
 
-export const ContactUs = () => {
+export const ContactUs = ({navOb,fo1,contactOB}) => {
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [phone,setPhone]=useState('')
@@ -25,42 +25,44 @@ export const ContactUs = () => {
 
        :axios.post('https://stagingapi.aqarifinder.com/api/contact_us/create',{name, email,message, phone}).then(res=>{
         swal("شكرا للتواصل",'تم ارسال الرسالة بنجاح','success')
-        route.reload('/')
+        route.reload()
   setClear(true)
        })
    }
   return (
     <>
-    <Nav/>
+    <Nav navOb={navOb}/>
     <div className="contact-container">
         <div className="contact-header">
         <h1 className="call-us">
-         اتصل بنا
+        {contactOB.call}
          </h1>
-         <div className="messega">الرجاء تعبئة النموذج وسوف نقوم بالرد عليك بأقرب وقت</div>
+         <div className="messega">
+         {contactOB.paragaph}
+                      </div>
         </div>
      
          <div className="input-box">
-             <h2>الاسم</h2>
-             <input type='text'   className="name-input" placeholder='الاسم' onChange={e=>setName(e.target.value)} tabIndex={1}/>
+             <h2>{contactOB.name}</h2>
+             <input type='text'   className="name-input" placeholder={contactOB.name} onChange={e=>setName(e.target.value)} tabIndex={1}/>
          </div>
          <div className="input-box">
-             <h2>البريد الإلكتروني</h2>
-             <input type='email' className="email-input" placeholder='البريد الإلكتروني' tabIndex={2} onChange={e=>setEmail(e.target.value)}/>
+             <h2>{contactOB.email}</h2>
+             <input type='email' className="email-input" placeholder={contactOB.email} tabIndex={2} onChange={e=>setEmail(e.target.value)}/>
          </div>
          <div className="input-box">
-             <h2>رقم الهاتف</h2>
-             <input type='text'  className="phone-unm-input" placeholder='رقم الهاتف' tabIndex={3} onChange={e=>setPhone(e.target.value)}/>
+             <h2>{contactOB.phone}</h2>
+             <input type='text'  className="phone-unm-input" placeholder={contactOB.phone} tabIndex={3} onChange={e=>setPhone(e.target.value)}/>
          </div>
          <div className="input-box">
-             <h2>الرسالة</h2>
-             <textarea className="user-message-input" placeholder='الرسالة' onChange={e=>setMessage(e.target.value)} tabIndex={4}/>
+             <h2>{contactOB.message}</h2>
+             <textarea className="user-message-input" placeholder={contactOB.message} onChange={e=>setMessage(e.target.value)} tabIndex={4}/>
          </div>
          <div className="send-btn-contact" tabIndex={5} onClick={handleClick}>
-         ارسال
+         {contactOB.send}
          </div>
         </div>
-    <Footer/>
+    <Footer fo1={fo1}/>
     </>
   )
 }

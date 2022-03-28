@@ -3,16 +3,23 @@ import Adds from '../adds/Adds'
 import Add from '../adds/Add'
 import axios from 'axios'
 import { AuthContext } from '../../stores/auth-context'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 const MyFav = () => {
 const [latest, setLatest]=useState([])
 const [useData,setUserData]=useState([])
 const authCtx=useContext(AuthContext)
+const route=useRouter()
+
+const session=useSession()
+console.log(session.data.xyz);
+let userData=session.data.xyz
 useEffect(()=>{
 
 axios({
 method: "get",
 url: "https://stagingapi.aqarifinder.com/api/user/ad/fav/list",
-headers: {"lang":'ar' , 'Authorization':authCtx.token},
+headers: {"lang":route.locale , 'Authorization':userData.id},
 
 })  .then(res=>{
 setUserData(res.data.results)

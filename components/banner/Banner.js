@@ -1,13 +1,13 @@
 import React from 'react'
 
-const Banner = ({content}) => {
+const Banner = ({content,bn}) => {
 
 
   return (
     <div className='banner'>
          {
            content ? <img src={content}/>:
-           <h1 className='banner-title'>ابحث عن عقارك وانت مكانك</h1>
+           <h1 className='banner-title'>{bn}</h1>
 
          }
 

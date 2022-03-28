@@ -28,7 +28,7 @@ const Packge = (props) => {
              </span>       */}
         </div>
         <div className='subscribe-type'>
-            <button className='subscribe-btn'>إشتراك</button>
+            <button className='subscribe-btn'>{props.btn}</button>
             {/* <button className='subscribe-btn'>إشتراك</button> */}
 
         </div>

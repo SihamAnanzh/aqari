@@ -3,12 +3,12 @@ import DropdownNames from './DropdownNames';
 
 
 
-const SearchBoxNames = ({regions}) => {
+const SearchBoxNames = ({regions,searchOb}) => {
 
 
   return (
          <>
-       <DropdownNames  title='اسم المنطقة' items={regions}/>
+       <DropdownNames  title={searchOb.sh9} items={regions}/>
         </>
   )
   

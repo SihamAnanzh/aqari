@@ -20,7 +20,7 @@ const SingleOffice = ({office}) => {
         <div className='office-info-container'>
         <div className='office-info'>
           <div className='office-img'>
-              <img src='assets/img/packge.jpg'/>
+              <img  src={office.logo_url}/>
           </div>
           <div className='office-details'>
             <div className='office-name-contaier'>

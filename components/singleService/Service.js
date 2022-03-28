@@ -3,14 +3,16 @@ import { AuthContext } from '../../stores/auth-context'
 import Slideshow from '../imgSlider/ImgSlider'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 
-const Service = ({withImg,setOverlay,data }) => {
+const Service = ({withImg,setOverlay,data,priceWrod }) => {
 const [addToFav,setAddtoFav]=useState(false)
 const authCtx=useContext(AuthContext)
 const [userAdd,setUserAdd]=useState(false)
 const [allInfo ,setAllInfo]=useState({})
 const route =useRouter()
+const session=useSession()
  
 //  useEffect(()=>{
 
@@ -39,13 +41,13 @@ const route =useRouter()
   
   
   const toggleFavAdds=()=>{
-    authCtx.token?
+    session.data !== null?
     (
     !data.isFav?
      ( axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.id}`,{
       headers: {
         
-        "Authorization":authCtx.token
+        "Authorization":session.id
          },
   
     }).then((res)=>{
@@ -55,7 +57,7 @@ const route =useRouter()
     axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.id}`,
       {
         headers: {
-          'Authorization':authCtx.token
+          'Authorization':session.id
            },
     }).then((res)=>  setAddtoFav(!addToFav)
     )
@@ -130,7 +132,7 @@ const route =useRouter()
         <div className="content-estat estat-origin">
             <div className="second-line">
             <div className="price estat-deatils" style={{width:'173px'}}>
-            <span className="att">السعر</span>
+            <span className="att">{priceWrod}</span>
             <span> د.ك <span>{data.price}</span></span>  
 
             </div>

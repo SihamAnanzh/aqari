@@ -6,9 +6,10 @@ import PackgeBox from '../dialogBox/PackgeBox'
 import SimpleMap from '../map/MapAdds'
 import swal from 'sweetalert';
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 
-const AddAdds = () => {
+const AddAdds = ({addAdsOb}) => {
   const route=useRouter()
 const authCtx=useContext(AuthContext)
 const [showListCategory,setShwoListCategory]=useState(false)
@@ -55,6 +56,11 @@ console.log(imageOne==''?'true':"false");
 
 },[imageFour,imageOne,imageThree,imageTwo])
 
+
+
+const session=useSession()
+let userData=session.data.xyz
+
 const  handelSubmit=(e)=>{
   let formData;
 
@@ -88,7 +94,7 @@ swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):(
   axios({
   method: "post",
   url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
-  headers: { "Content-Type": "multipart/form-data" , 'Authorization':authCtx.token},
+  headers: { "Content-Type": "multipart/form-data" , 'Authorization':userData.id},
   data: formData,
   })
   .then( (response) =>{
@@ -112,7 +118,7 @@ useEffect(()=>{
 useEffect(()=>{
   const region=axios.get('https://stagingapi.aqarifinder.com/api/region/list/',{
     headers: {
-      "lang":'ar' 
+      "lang":route.locale
        },
   })
   .then(res=>{
@@ -124,7 +130,7 @@ useEffect(()=>{
 useEffect(()=>{
   axios.get('https://stagingapi.aqarifinder.com/api/category/list',{
       headers: {
-        "lang":'ar',
+        "lang":route.locale
     
 
          },
@@ -152,20 +158,20 @@ useEffect(()=>{
            }}>
     <div className="signin-contanier addAdds-tab-container ">
       <div className="addAdds-heading">
-        <h3>إضافة إعلان</h3>
+        <h3>{addAdsOb.add13}</h3>
       </div>
     <div className="inputs-group addAdds-group">
     <div className="sign-input  addAdds-phone ">
-           <h3>عنوان الأعلان</h3>
-           <input type="text" className="sign-mail" placeholder='عنوان الأعلان' value={addTitle} tabIndex={1} autoFocus  onChange={e=>setAddTitle(e.target.value)}/>
+           <h3>{addAdsOb.add1}</h3>
+           <input type="text" className="sign-mail" placeholder={addAdsOb.add1} value={addTitle} tabIndex={1} autoFocus  onChange={e=>setAddTitle(e.target.value)}/>
        </div>
     <div className="sign-input  addAdds-phone ">
-           <h3>رقم الهاتف</h3>
-           <input type="text" maxLength={12} className="sign-mail" placeholder='رقم الهاتف' value={phoneNumber} tabIndex={2} onChange={e=>setPhoneNumber(e.target.value)}/>
+           <h3>{addAdsOb.add2}</h3>
+           <input type="text" maxLength={12} className="sign-mail" placeholder={addAdsOb.add2}value={phoneNumber} tabIndex={2} onChange={e=>setPhoneNumber(e.target.value)}/>
        </div>
        <div className="sign-input profile-category mail " id='category-list' >
-           <h3>الفئة</h3>
-           <input type="text" className="sign-mail" placeholder='الفئة'tabIndex={3} id='category-list' value={category} onChange={e=>setCategory(e.target.value)} onClick={(e)=>{
+           <h3>{addAdsOb.add3}</h3>
+           <input type="text" className="sign-mail" placeholder={addAdsOb.add3} tabIndex={3} id='category-list' value={category} onChange={e=>setCategory(e.target.value)} onClick={(e)=>{
                setShwoListCategory(!showListCategory)
                setShwoListType(false)
                setShowListNames(false)
@@ -189,8 +195,8 @@ useEffect(()=>{
            </ul>
        </div>
        <div className="sign-input addAdds-type" id='type-list'>
-           <h3>نوع العقار</h3>
-           <input type="text" className="sign-mail" placeholder='نوع العقار' tabIndex={3}  id='type-list' value={typeEstat}
+           <h3>{addAdsOb.add4}</h3>
+           <input type="text" className="sign-mail" placeholder={addAdsOb.add4} tabIndex={3}  id='type-list' value={typeEstat}
            onChange={e=>setTypeEstat(e.target.value)}
              onClick={()=>{
                setShwoListType(!showListType)
@@ -232,8 +238,8 @@ useEffect(()=>{
         }
        </div>
        <div className="sign-input  addAdds-region" id='city-list' >
-           <h3>المنطقة</h3>
-           <input type="text" className="sign-mail" placeholder='المنطقة' value={city} tabIndex={3}   id='city-list'
+           <h3>{addAdsOb.add5}</h3>
+           <input type="text" className="sign-mail" placeholder={addAdsOb.add5} value={city} tabIndex={3}   id='city-list'
            onChange={e=>setCity(e.target.value)}
              onClick={()=>{
                setShowListNames(!showListNames)
@@ -267,29 +273,29 @@ useEffect(()=>{
         }
        </div>
        <div className="sign-input  addAdds-space">
-           <h3>المساحة</h3>
-           <input type="text" className="sign-mail" placeholder='المساحة' value={space} tabIndex={3} onChange={e=>setSpace(e.target.value)} />
+           <h3>{addAdsOb.add6}</h3>
+           <input type="text" className="sign-mail" placeholder={addAdsOb.add6} value={space} tabIndex={3} onChange={e=>setSpace(e.target.value)} />
        </div>
        <div className="sign-input  addAdds-price">
-           <h3>السعر</h3>
-           <input type="text" className="sign-mail" placeholder='السعر' tabIndex={3} value={price} onChange={e=>setPrice(e.target.value)} />
+           <h3>{addAdsOb.add7}</h3>
+           <input type="text" className="sign-mail" placeholder={addAdsOb.add7} tabIndex={3} value={price} onChange={e=>setPrice(e.target.value)} />
        </div>
        <div className="sign-input  addAdds-interface">
-           <h3>الواجهة</h3>
-           <input type="text" className="sign-mail" placeholder='الواجهة' value={front} tabIndex={3}  onChange={e=>setFront(e.target.value)}/>
+           <h3>{addAdsOb.add8}</h3>
+           <input type="text" className="sign-mail" placeholder={addAdsOb.add8} value={front} tabIndex={3}  onChange={e=>setFront(e.target.value)}/>
        </div>
        <div className="sign-input  addAdds-auto-num">
-           <h3>الرقم الآلي</h3>
-           <input type="text" className="sign-mail" placeholder='الرقم الآلي' value={autoNum} tabIndex={3} onChange={e=>setAutoNum(e.target.value)}/>
+           <h3>{addAdsOb.add9}</h3>
+           <input type="text" className="sign-mail" placeholder={addAdsOb.add9} value={autoNum} tabIndex={3} onChange={e=>setAutoNum(e.target.value)}/>
        </div>
        <div className="sign-input  addAdds-disc">
-           <h3>وصف العقار</h3>
-           <textarea className="sign-mail" placeholder='وصف العقار' tabIndex={3} value={desc} onChange={e=>setDesc(e.target.value)}  />
+           <h3>{addAdsOb.add10}</h3>
+           <textarea className="sign-mail" placeholder={addAdsOb.add10} tabIndex={3} value={desc} onChange={e=>setDesc(e.target.value)}  />
        </div>
 
        <div className={`sign-input submit-logo ${imageUpLoaded ?'office-logo':""}`} style={{ display:imageUpLoaded ?'none':"block",width:"66vw"
            }}>
-           <h3 className='img-heading' >صور</h3>
+           <h3 className='img-heading' >{AddAdds.add11}</h3>
            <div className="wrrap-images">
               {
               !imageOne ?
@@ -308,7 +314,7 @@ useEffect(()=>{
              }/>
                     
           <img src="/assets/img/img.svg" alt=""/>
-          <p>صورة 1</p>
+          <p>{AddAdds.add11} 1</p>
           </div>
 
           : <div className="" style={{position:'relative'}}>
@@ -337,7 +343,7 @@ useEffect(()=>{
              }/>
                     
           <img src="/assets/img/img.svg" alt=""/>
-          <p>صورة 2</p>
+          <p>{AddAdds.add11} 2</p>
           </div>
 
           : <div className="" style={{position:'relative'}}>
@@ -365,7 +371,7 @@ useEffect(()=>{
              }/>
                     
           <img src="/assets/img/img.svg" alt=""/>
-          <p>صورة 3</p>
+          <p>{AddAdds.add11} 3</p>
           </div>
 
           : <div className="" style={{position:'relative'}}>
@@ -393,7 +399,7 @@ useEffect(()=>{
              }/>
                     
           <img src="/assets/img/img.svg" alt=""/>
-          <p>صورة 4</p>
+          <p>{AddAdds.add11} 4</p>
           </div>
 
           :<div className="" style={{position:'relative'}}>
@@ -415,7 +421,7 @@ useEffect(()=>{
           </div>
                  
        <div className="sign-input  addAdds-auto-num">
-           <h3>تحديد المواقع</h3>
+           <h3>{addAdsOb.add12}</h3>
            <div className="map-adds">
            <SimpleMap getLat={setLat} getLng={setLng} />
            </div>
@@ -434,7 +440,7 @@ useEffect(()=>{
                    textDecoration:"none"
                  }} href={`${showDialogBox &&authCtx.premiumAdd == 0 ?' /packges':"#" }`} target='_blank'>
                  <img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
-           <span>أجعل الإعلان مميز</span>
+           <span>{addAdsOb.adSh1}</span>
            </a> 
 
            
@@ -443,7 +449,7 @@ useEffect(()=>{
            setCheckedOffice(!checkedOffice)
          }}>
          <img src={`/assets/img/${!checkedOffice?'emptyCheck':'fullCheck'}.svg`} alt="" />
-         <span>نشر الإعلان لدى المكاتب</span>
+         <span>{addAdsOb.adSh2}</span>
 
          </div>
          <div className="conditions chack-groub"   style={{cursor:'pointer'}} onClick={()=>{
@@ -453,7 +459,7 @@ useEffect(()=>{
               })
          }}>
          <img src={`/assets/img/${!checkedConditions?'emptyCheck':'fullCheck'}.svg`} alt="" />
-         <span>موافق على الشروط والقواعد</span>
+         <span>{addAdsOb.adSh3}</span>
 
          </div>
        </div>
@@ -462,7 +468,7 @@ useEffect(()=>{
     <div className="sign-btn" aria-disabled="true" onClick={handelSubmit} style={{
          backgroundColor:disable ? "#F1E6D3":"#EDAA43"
     }}> 
-    اضافة
+    {addAdsOb.adBtn}
     </div> 
    </div>
     </div>

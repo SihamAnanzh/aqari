@@ -1,6 +1,6 @@
 import React from 'react'
 import Adds from '../adds/Adds'
-const OfficeDetails = ({ office, ads, premium }) => {
+const OfficeDetails = ({ office, ads, premium,ofOb }) => {
 
   console.log(office);
   return (
@@ -62,8 +62,8 @@ const OfficeDetails = ({ office, ads, premium }) => {
         </div>
       </div>
       <div className="office-adds" style={{height:"100vh"}}>
-        <h4 className='office-add-title'>إعلانات المكتب </h4>
-        {ads && premium ? <span className='office-add-title'>لا يوجد اعلانات </span> : <Adds ads={ads} premium={premium} />}
+        <h4 className='office-add-title'>{ofOb.of2}</h4>
+        {ads && premium ? <span className='office-add-title'>{ofOb.of3}</span> : <Adds ads={ads} premium={premium} />}
 
 
       </div>

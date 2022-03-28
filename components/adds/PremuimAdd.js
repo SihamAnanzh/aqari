@@ -7,12 +7,8 @@ console.log(props);
     return (
         <>
         <Link  
-       href={{
-            pathname:`/advertises/${props.add_id}`,
-            query:authCtx.token ?authCtx.token:null
-        }}
-        //  href={`/advertises/${props.add_id}`}     
-    //   as={`/advertises/${props.title}`}
+        href={`/advertises/${props.add_id}`}  
+ 
 
         >
         
@@ -56,7 +52,7 @@ console.log(props);
         <Link  href={`/advertises/${props.add_id}`}     
 
                             
-            // as={`/advertises/${props.title}`}
+            // as={'/advertises/'+props.title.trim().replace(' ', '-')}         
         
                             
 
