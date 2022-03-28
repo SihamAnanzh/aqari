@@ -5,6 +5,7 @@ import PackgeBox from '../dialogBox/PackgeBox'
 import SimpleMap from '../map/MapAdds'
 import swal from 'sweetalert';
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 const UpdateAdd = ({updateData,addAdsOb}) => {
 const [showListCategory,setShwoListCategory]=useState(false)
 const [showListType,setShwoListType]=useState(false)
@@ -38,12 +39,13 @@ const route=useRouter()
 
 
 const session=useSession()
-let userData=session.data.xyz
 const  handelSubmit=(e)=>{
+
+
     let data;
-  addTitle == ''|| desc == ''|| space =="" || front ==''|| price == ''|| autoNum 
-  ==""||phoneNumber == " "?
-  swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):(
+  addTitle == ''|| desc == ''|| space =="" || front ==''|| price == ''|| autoNum ==""||phoneNumber == " "?
+  swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):
+  (
 
       data={
         id: Number(updateData.id),
@@ -54,35 +56,36 @@ const  handelSubmit=(e)=>{
        front:front,
        price: Number(price) ,
        currency_id:  1,    
-       auto_number: autoNum,
-       lat: "39.123112", 
-       lng: "32.663212",
+       auto_number:autoNum,
+       lat: lat, 
+       lng: lng,
        phone: phoneNumber,
        whatsapp: phoneNumber,
        is_premium: showDialogBox,
        ad_type_id:updateData.adTypeId,
        category_id:updateData.categoryId
    
-      }
+      },
+      axios({
+        method: "post",
+        url: "https://stagingapi.aqarifinder.com/api/user/ad/update",
+        headers: { "content-type": 'application/json', 'Authorization':session.data.id },
+        data:{...data}
+        })
+        .then( (response) =>{
+          console.log(response);
+    
+        response.data.status.code == 200&&  (swal("تهانينا",'تمت تعديل الإعلان بنجاح','success'),
+          route.replace('/profile/myAdds'))
+      
+        })
+        .catch( (response)=> {
+          console.log(response);
+           swal("لا يمكنك التعديل في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
+        })
+        
   )
-    axios({
-    method: "post",
-    url: "https://stagingapi.aqarifinder.com/api/user/ad/update",
-    headers: { "content-type": 'application/json', 'Authorization':userData.id },
-    data:{...data}
-    })
-    .then( (response) =>{
-      console.log(response);
-
-    response.data.status.code == 200&&  (swal("تهانينا",'تمت تعديل الإعلان بنجاح','success'),
-      route.replace('/profile/myAdds'))
-  
-    })
-    .catch( (response)=> {
-      console.log(response);
-       swal("لا يمكنك التعديل في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
-    })
-  
+   
   
   
 }
@@ -133,7 +136,7 @@ const  handelSubmit=(e)=>{
          }}>
   <div className="signin-contanier addAdds-tab-container ">
     <div className="addAdds-heading">
-      <h3>{addAdsOb.add13}</h3>
+      <h3>{addAdsOb.ad13}</h3>
     </div>
   <div className="inputs-group addAdds-group">
   <div className="sign-input  addAdds-phone ">
@@ -269,20 +272,35 @@ const  handelSubmit=(e)=>{
      </div>
 
      <div className="sign-input  addAdds-auto-num">
-         <h3>{addAdsOb.add11}</h3>
+         <h3>{addAdsOb.add12}</h3>
          <div className="map-adds">
-         <SimpleMap />
+         <SimpleMap getLat={setLat} getLng={setLng} />
          </div>
      </div>
      <div className="checksbox" style={{cursor:'pointer'}}>
        <div className="premium-add chack-groub" onClick={()=>{
-         setCheckedAdd(!checkedAdd)
+         setCheckedAdd( authCtx.premiumAdd?true:false )
          setShowDialogiBox(!showDialogBox)
        }}>
-         {showDialogBox && authCtx.premiumAdd >0 && <PackgeBox setShowDialogiBox={setShowDialogiBox} showDialogBox={showDialogBox} count={authCtx.premiumAdd}/>}
 
-         <img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
-         <span>{addAdsOb.adSh1}</span>
+         {
+       
+         authCtx.premiumAdd == 0 ?
+         <a  style={{textDecoration:"none"}} href="http://localhost:3000/packges" target='_blank'>
+             <img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />
+             <span>{addAdsOb.adSh1}</span>
+          </a>
+          :
+              (<img src={`/assets/img/${!checkedAdd?'emptyCheck':'fullCheck'}.svg`} alt="" />,
+              <span>{addAdsOb.adSh1}</span>
+              )
+        
+
+        }
+
+             {/* authCtx.premiumAdd >0 && <PackgeBox setShowDialogiBox={setShowDialogiBox} showDialogBox={showDialogBox} count={authCtx.premiumAdd}/> */}
+
+       
        </div>
        {/* <div className="post-add chack-groub" onClick={()=>{
          setCheckedOffice(!checkedOffice)

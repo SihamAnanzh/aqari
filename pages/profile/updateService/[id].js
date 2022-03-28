@@ -1,122 +1,123 @@
-import React,{useEffect, useContext} from 'react'
+import React, { useEffect, useContext } from 'react'
 import Nav from '../../../components/shared/nav/Nav';
 import Footer from '../../../components/shared/footer/Footer'
 import SubNav from '../../../components/profile/SubNav'
 import UpdateService from '../../../components/profile/UpdateService'
-import {AuthContext} from '../../../stores/auth-context'
+import { AuthContext } from '../../../stores/auth-context'
 import axios from 'axios'
 import { signIn, useSession } from 'next-auth/react';
-import {useTranslation} from "next-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-const Update = ({updateData}) => {
-    
-  const authCtx=useContext(AuthContext)
+const Update = ({ updateData }) => {
+
+  const authCtx = useContext(AuthContext)
   let { t } = useTranslation();
 
   const session = useSession({
     required: true,
     onUnauthenticated() {
       signIn()
-    }})
-
-    
-    // translations
-    
-    //nav
-    let nav1=t('home:nav-1')
-    let nav2=t('home:nav-2')
-    let nav3=t('home:nav-3')
-    let nav4=t('home:nav-4')
-    let nav5=t('home:nav-5')
-    let nav6=t('home:nav-6')
-    let nav7=t('home:nav-7')
-    let nav8=t('home:nav-8')
-    let nav9=t('home:nav-9')
-    let nav10=t('home:nav-10')
-    let nav11=t('home:nav-11')
-    
-    //banner 
-    let bn=t('home:banner')
-    let navOb={
-      nav1,
-      nav2,
-      nav3,
-      nav4,
-      nav5,
-      nav6,
-      nav7,
-      nav8,
-      nav9,
-      nav10,
-      nav11
     }
-    
-  
-    //footer
-  let fo1=t('home:footer')
-  
+  })
+
+
+  // translations
+
+  //nav
+  let nav1 = t('home:nav-1')
+  let nav2 = t('home:nav-2')
+  let nav3 = t('home:nav-3')
+  let nav4 = t('home:nav-4')
+  let nav5 = t('home:nav-5')
+  let nav6 = t('home:nav-6')
+  let nav7 = t('home:nav-7')
+  let nav8 = t('home:nav-8')
+  let nav9 = t('home:nav-9')
+  let nav10 = t('home:nav-10')
+  let nav11 = t('home:nav-11')
+
+  //banner 
+  let bn = t('home:banner')
+  let navOb = {
+    nav1,
+    nav2,
+    nav3,
+    nav4,
+    nav5,
+    nav6,
+    nav7,
+    nav8,
+    nav9,
+    nav10,
+    nav11
+  }
+
+
+  //footer
+  let fo1 = t('home:footer')
+
   //adds section
-  let ad1=t('home:ads-1')
-  let ad2=t('home:ads-2')
-  let ad3=t('home:ads-3')
-  
-  let adsOb={
+  let ad1 = t('home:ads-1')
+  let ad2 = t('home:ads-2')
+  let ad3 = t('home:ads-3')
+
+  let adsOb = {
     ad1,
     ad2,
     ad3
   }
-  
-  
-  
+
+
+
   //profile
-  let pro1=t('profile:pro-1')
-  let pro2=t('profile:pro-2')
-  let pro3=t('profile:pro-3')
-  let pro4=t('profile:pro-4')
-  let pro5=t('profile:pro-5')
-  let pro6=t('profile:pro-6')
-  let pro7=t('profile:pro-7')
-  let pro8=t('profile:pro-8')
-  
-  
-  let proOb={
-    pro1,pro2,pro3,pro4,pro5,pro6,pro7,pro8
+  let pro1 = t('profile:pro-1')
+  let pro2 = t('profile:pro-2')
+  let pro3 = t('profile:pro-3')
+  let pro4 = t('profile:pro-4')
+  let pro5 = t('profile:pro-5')
+  let pro6 = t('profile:pro-6')
+  let pro7 = t('profile:pro-7')
+  let pro8 = t('profile:pro-8')
+
+
+  let proOb = {
+    pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8
   }
-  
-  let serviceOb={
+
+  let serviceOb = {
     pro8,
-     title:t('add-service:service-title'),
-     phone:t('add-service:phone'),
-     serviceType:t('add-service:serviceType'),
-     whatsaap:t('add-service:whatsaap'),
-     serivceDetails:t('add-service:serivceDetails'),
-     pic:t('add-service:pic'),
-     city:t('add-service:city'),
-     price:t('add-service:price'),
-     edit:t('add-service:edit'),
+    title: t('add-service:service-title'),
+    phone: t('add-service:phone'),
+    serviceType: t('add-service:serviceType'),
+    whatsaap: t('add-service:whatsaap'),
+    serivceDetails: t('add-service:serivceDetails'),
+    pic: t('add-service:pic'),
+    city: t('add-service:city'),
+    price: t('add-service:price'),
+    edit: t('add-service:edit'),
 
-     tearmAndCondition:t('add-service:tearmAndCondition'),
-  
-  
+    tearmAndCondition: t('add-service:tearmAndCondition'),
+
+
   }
 
 
-    
-    return (
-        <>
-      
-         <>
-        <Nav navOb={navOb}/>
+
+  return (
+    <>
+
+      <>
+        <Nav navOb={navOb} />
         <div className='profile-container'>
-        <h1 className="profile-heading">{pro1}</h1>
-        <SubNav proOb={proOb}/>
-        <UpdateService updateData={updateData} serviceOb={serviceOb}/>
-        </div> 
-        <Footer fo1={fo1}/>
-        </>
-    
+          <h1 className="profile-heading">{pro1}</h1>
+          <SubNav proOb={proOb} />
+          <UpdateService updateData={updateData} serviceOb={serviceOb} />
+        </div>
+        <Footer fo1={fo1} />
+      </>
+
     </>
-      )
+  )
 }
 
 export default Update
@@ -125,14 +126,13 @@ export default Update
 
 export async function getServerSideProps(context) {
   let updateData;
-  const {locale}=context
+  const { locale } = context
   const { id } = context.params;
   if (id) {
-    await axios.get(`https://stagingapi.aqarifinder.com/api/services/${id}`, { headers: { 'lang':locale } }).then((res) => {
+    await axios.get(`https://stagingapi.aqarifinder.com/api/services/${id}`, { headers: { 'lang': locale } }).then((res) => {
 
-    
       updateData = {
-        address: res.data.results.regions_string ,
+        address: res.data.results.regions_string,
         description: res.data.results.description,
         phone: res.data.results.phone,
         price: res.data.results.price,
@@ -141,12 +141,12 @@ export async function getServerSideProps(context) {
         user_id: res.data.results.user_id,
         views: res.data.results.view_count,
         whatsApp: res.data.results.whatsapp,
-        images:res.data.results.images.length > 0 ?res.data.results.images:false,
-        id:res.data.results.id,
-        regionsString:res.data.results.regions_string,
-        regionId:res.data.results.region_ids,
-        serviceType:res.data.results. service_type.title,
-        serviceTypeId:res.data.results. service_type.id
+        images: res.data.results.images.length > 0 ? res.data.results.images : false,
+        id: res.data.results.id,
+        regionsString: res.data.results.regions_string,
+        regionId: res.data.results.region_ids,
+        serviceType: res.data.results.service_type.title,
+        serviceTypeId: res.data.results.service_type.id
 
       }
     })
@@ -155,7 +155,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       updateData,
-      ...(await serverSideTranslations(locale, ['home','signin','profile','add-serivce']))
+      ...(await serverSideTranslations(locale, ['home', 'signin', 'profile', 'add-serivce']))
     }
   }
 }

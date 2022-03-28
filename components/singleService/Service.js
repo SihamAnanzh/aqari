@@ -4,6 +4,7 @@ import Slideshow from '../imgSlider/ImgSlider'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
+import axios from 'axios'
 
 
 const Service = ({withImg,setOverlay,data,priceWrod }) => {
@@ -14,58 +15,47 @@ const [allInfo ,setAllInfo]=useState({})
 const route =useRouter()
 const session=useSession()
  
-//  useEffect(()=>{
 
-//     setAllInfo({
-//       id:data.id,
-//       desc:data.discriptions,
-//        price:data.price,
-//        address:data.address,
-//        phone:data.phone,
-//        whatsaap:data.whatsaap,
-//        category:data.category,
-//        regionsString:data.regionsString,
-//        serviceTypeString:data.serviceTypeString,
-//        serviceTypeId:data.service_type_id,
-//        regionsId:data.regionsId,
-//        title:data.title,
-//        whatsApp:data.whatsApp
-
-   
-  
-//   })
-//   },[])
   useEffect(()=>{
     authCtx.userId == data.user_id ?setUserAdd(true):setUserAdd(false)
   },[data.user_id])
   
   
-  const toggleFavAdds=()=>{
-    session.data !== null?
-    (
-    !data.isFav?
-     ( axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.id}`,{
-      headers: {
-        
-        "Authorization":session.id
-         },
-  
-    }).then((res)=>{
-      setAddtoFav(!addToFav)})
-     )
-    :
-    axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.id}`,
-      {
-        headers: {
-          'Authorization':session.id
-           },
-    }).then((res)=>  setAddtoFav(!addToFav)
-    )
-    )
-    :route.replace('/signIN')
-     
-  
+  const toggleFavAdds = () => {
+    session.data != null?
+      (
+        console.log(data.isFav),
+        !addToFav?
+          (axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.add_id}`, null,  {
+            headers: {
+              "Authorization": session.data!= null ?session.data.id:null
+            },
+          }).then((res) => {
+            console.log(res);
+            setAddtoFav(true);
+          })
+          )
+          :
+          axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.add_id}`,null, 
+            {
+              headers: {
+                'Authorization':session.data!= null ?session.data.id:null
+              },
+
+            }).then((res) => {
+              console.log(res)
+              setAddtoFav(false);
+            }
+            )
+      )
+      : route.replace('/signIN')
+
+
   }
+
+
+
+
   
   
     return (

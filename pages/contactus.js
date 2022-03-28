@@ -8,7 +8,7 @@ const Contactus = () => {
   let { t } = useTranslation();
     
   // translations
-  
+  const captions = getTranslation(t);
   //nav
   let nav1=t('home:nav-1')
   let nav2=t('home:nav-2')

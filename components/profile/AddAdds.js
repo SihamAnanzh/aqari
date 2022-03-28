@@ -6,7 +6,7 @@ import PackgeBox from '../dialogBox/PackgeBox'
 import SimpleMap from '../map/MapAdds'
 import swal from 'sweetalert';
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 
 const AddAdds = ({addAdsOb}) => {
@@ -57,8 +57,13 @@ console.log(imageOne==''?'true':"false");
 },[imageFour,imageOne,imageThree,imageTwo])
 
 
+const session = useSession({
+  required: true,
+  onUnauthenticated() {
+    signIn()
+  }
+});
 
-const session=useSession()
 let userData=session.data.xyz
 
 const  handelSubmit=(e)=>{

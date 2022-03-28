@@ -46,17 +46,11 @@ const PremiumService = (props) => {
     </Link>
 
     <Link href={{
-      
-      pathname:'/services/id',
-      query: props.singleEstate
+            pathname:'/services/id',
+            query: props.singleEstate
         }}
                         
-   
-        as={'/services/'+props.title.trim().replace(' ', '-')}         
-
-                        
-
-
+        as={`/services/${props.id}`}
     >
     <div className='premuim-add origin fallback-adds'>
         <div className='details'>

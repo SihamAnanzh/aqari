@@ -36,7 +36,7 @@ const session=useSession()
 
  const handleSubmit=()=>{
  let data ={name, email , phone}
- axios.post('https://stagingapi.aqarifinder.com/api/user/update',{...data},{headers:{'Authorization':session.xyz.id}})
+ axios.post('https://stagingapi.aqarifinder.com/api/user/update',{...data},{headers:{'Authorization':session.data.xyz.id}})
   .then(res=>{ console.log(res);
   })
 

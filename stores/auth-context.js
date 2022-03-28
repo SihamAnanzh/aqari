@@ -17,9 +17,10 @@ export const AuthContext = createContext({
 
 export const AuthContextProvider = (props) => {
   const session=useSession()
-  let intitToken 
-  const ISSERVER = typeof window === "undefined";
-  let intiId = ''
+  let intitToken
+  let intiId = '' 
+  // const ISSERVER = typeof window === "undefined";
+
   // if (!ISSERVER) {
   //   intitToken = sessionStorage.getItem('token')
   //   intiId = sessionStorage.getItem('userId')

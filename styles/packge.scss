@@ -222,7 +222,9 @@ cursor: pointer;
 
 }
 
-
+.add-type.hide{
+    display: none;
+}
 
 @media (max-width:1600px) {
     .packge-contaier{
@@ -327,8 +329,12 @@ cursor: pointer;
         align-items: center;
     }
 
-    .subscribe-type{
+    .subscribe-type, .add-type.show{
         display: none;
+    }
+    .add-type.hide{
+        display: flex;
+        cursor: pointer;
     }
 
     .packge{

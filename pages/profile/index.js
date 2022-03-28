@@ -11,9 +11,7 @@ import { useSession, getSession, signIn } from 'next-auth/react';
 import Loader from 'react-spinners/SyncLoader';
 
 
-const Index = ({ adds }) => {
-  const authCtx = useContext(AuthContext)
-  const route = useRouter()
+const Index = () => {
   let { t } = useTranslation();
 
   // translations
@@ -107,23 +105,20 @@ const Index = ({ adds }) => {
 
 
 
- 
+
   return (
     <>
       {
-
-      session.status =="authenticated"&&
+        session.status == "authenticated" &&
         <>
           <Nav navOb={navOb} />
           <div className='profile-container'>
             <h1 className="profile-heading">{pro1}</h1>
             <SubNav proOb={proOb} />
-            <MyProfile sginOb={sginOb}  />
+            <MyProfile sginOb={sginOb} />
           </div>
           <Footer fo1={fo1} />
         </>
-
-
       }
     </>
 

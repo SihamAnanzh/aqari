@@ -35,11 +35,11 @@ useEffect(() => {
       <div className='pakges'>
         {
           packageData.map((pack)=>(
-            <Packge  btn={navOb.pa2} price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} key={pack.id} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId}/>
+            <Packge id={pack.id}  btn={navOb.pa2} price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} key={pack.id} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId}/>
 
           ))
         }
- 
+  
       </div>
     </div>
     <Footer fo1={fo1}/>
