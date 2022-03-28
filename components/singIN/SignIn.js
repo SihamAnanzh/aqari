@@ -154,7 +154,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     {Object.values(providers).filter(q => q.type !== 'credentials').map((provider) => (
 
                         <li key={provider.name} onClick={() => {
-                            signIn(provider.id, { callbackUrl: router.query.callbackUrl }))
+                            signIn(provider.id, { callbackUrl:route.query.callbackUrl })
                             console.log(session.data);
 
 
