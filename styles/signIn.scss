@@ -206,6 +206,19 @@
     }
 } 
 
+
+.ltr .signin-contanier .sign {
+   
+    h2{
+        margin-right: unset; 
+        display: flex;
+        justify-content: flex-start;
+           margin-left: -261%;
+    
+
+    }
+} 
+
 @media (max-width:1700px) {
     .signin-contanier{
         height: 100%;

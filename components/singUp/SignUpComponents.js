@@ -3,6 +3,8 @@ import Link from 'next/link'
 import axios from 'axios'
 import { AuthContext } from '../../stores/auth-context'
 import { useRouter } from 'next/router'
+import { getCsrfToken, signIn, getSession, providers, useSession, getProviders, signOut } from 'next-auth/react';
+
 const SignUpComponents = ({ sginUpOb }) => {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
@@ -13,6 +15,7 @@ const SignUpComponents = ({ sginUpOb }) => {
     const authCtx = useContext(AuthContext)
     const [wrongEmail, setwrongEmail] = useState(false)
     const route = useRouter()
+    const providers = getProviders()
     const handleChnage = (e) => {
         return e.target.value
     }

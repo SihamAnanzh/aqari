@@ -15,6 +15,13 @@ function MyApp({
 
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState(false);
+  const route=useRouter()
+  const [lang, setLang] = useState(route.locale)
+  
+  useEffect(() => {
+  setLang(route.locale)
+},[route])
+
 
   useEffect(() => {
     const handleStart = () => { setPageLoading(true); };
@@ -39,7 +46,8 @@ function MyApp({
           <TranslateProvider>
 
             {
-              pageLoading ? <Loader /> : <Component {...pageProps} />
+              pageLoading ? <Loader /> :<div className={lang == "ar"?"rtl":"ltr"}><Component {...pageProps} /></div>
+     
             }
           </TranslateProvider>
         </AuthContextProvider>

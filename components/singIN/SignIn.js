@@ -155,7 +155,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                      display:"block"
                  }}></span> */}
                             {sginOb.sn5}</span>
-                        <img src={`assets/img/${!rememberME ? 'checked.svg' : "unChecked.svg"}`} alt="" />
+                        <img src={`/assets/img/${!rememberME ? 'checked.svg' : "unChecked.svg"}`} alt="" />
                     </span>
 
                 </div>
