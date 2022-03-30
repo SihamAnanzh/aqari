@@ -7,17 +7,17 @@ import { useSession } from 'next-auth/react'
 import axios from 'axios'
 
 
-const Service = ({withImg,setOverlay,data,priceWrod }) => {
-const [addToFav,setAddtoFav]=useState(false)
+const Service = ({withImg,setOverlay,data,priceWrod,addAdsOb }) => {
+  const [addToFav, setAddtoFav] = useState(data.isFav)
 const authCtx=useContext(AuthContext)
-const [userAdd,setUserAdd]=useState(false)
+const [userAdd, setUserAdd] = useState(false)
 const [allInfo ,setAllInfo]=useState({})
 const route =useRouter()
-const session=useSession()
  
+  const session=useSession()
 
   useEffect(()=>{
-    authCtx.userId == data.user_id ?setUserAdd(true):setUserAdd(false)
+    session.data != null && session.data.xyz.sub == data.user_id ? setUserAdd(true):setUserAdd(false)
   },[data.user_id])
   
   
@@ -76,7 +76,7 @@ const session=useSession()
                    {data.address}
                 </h5>
                 </div>
-                {!userAdd ? 
+                {/* {!userAdd ? 
                   <div className="fav-estat" onClick={toggleFavAdds}>
                 {addToFav?  <img src="/assets/img/fav-icon.svg" alt="" />:
                   <img src="/assets/img/emptyHearrt.svg" alt="" />
@@ -101,7 +101,32 @@ const session=useSession()
             }}
                      
               // as={'/profile/updateService/'+ data.title.trim().replace(' ', '-') + "/" + data.id}
-              >تعديل</Link></h4> }
+              >تعديل</Link></h4> } */}
+              {userAdd ?
+              <div className="fav-estat" onClick={toggleFavAdds}>
+                {addToFav ? <img src="/assets/img/fav-icon.svg" alt="" /> :
+                  <img src="/assets/img/emptyHearrt.svg" alt="" />
+                }
+
+              </div> : <h4 className='editAdd' style={{
+                width: '103px',
+                height: '35px',
+                background: "#00416B",
+                color: '#fff',
+                fontFamily: 'otfPlain',
+                textAlign: 'center',
+                fontSize: "20px",
+                borderRadius: '10px',
+                padding: '5px',
+                cursor: 'pointer'
+              }}><Link href={
+                `/profile/updateService/${data.add_id}`
+
+              }
+              //  as={`/profile/updateAdds/${data.title.trim().replace(' ', '-')}`}
+
+              >تعديل</Link></h4>}
+
               
             </div>
             <div className="data">

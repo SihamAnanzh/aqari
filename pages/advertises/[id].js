@@ -8,11 +8,12 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { AuthContext } from '../../stores/auth-context'
 import { getSession } from 'next-auth/react'
+import Head from 'next/head'
+
 
 const SingleEstate = ({ data }) => {
   const [withImg, setWithImg] = useState(false)
   const [overlay, setOverlay] = useState(false)
-  // const [data,setData]=useState({})
   const authCtx = useContext(AuthContext)
 
   let { t } = useTranslation();
@@ -64,7 +65,7 @@ const SingleEstate = ({ data }) => {
   let add11 = t('add-ads:ad-11')
   let add12 = t('add-ads:ad-12')
   let add13 = t('add-ads:add-13')
-  let edit = t('add=ads:edit')
+  let edit = t('add-ads:edit')
 
   //add-sh
   let adSh1 = t('add-ads:ad-sh-1')
@@ -89,6 +90,10 @@ const SingleEstate = ({ data }) => {
   let content = '/assets/img/estate.svg'
   return (
     <div className={`single-estat${overlay ? 'overlay' : ""} `}>
+      <Head>
+        <title>{data.title}</title>
+        <meta name="description" content={data.desc} />
+      </Head>
       <Nav navOb={navOb} />
       <Banner content={content} bn={bn} />
       <Estat withImg={withImg} data={data} setOverlay={setOverlay} addAdsOb={addAdsOb} />

@@ -18,6 +18,8 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     const [wrongPassword, setWrongPassword] = useState(true);
     const [email, setEmail] = useState('')
     const [password, setPassowrd] = useState('')
+    const [showWrongMessage, setShowWrongPassword] = useState(false)
+    const [wrongEmail, setWrongEmail] = useState(false)
     const [click, setClick] = useState(false)
     const route = useRouter()
     const authCtx = useContext(AuthContext)
@@ -79,26 +81,42 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     }
     return (
         <div className="signin-contanier">
-            <div className="sign">
-                <h2>{sginOb.sn1}</h2>
-            </div>
+
             <form method="post" action="/api/auth/callback/aqari-login-auth">
-                <input name="csrfToken" type="hidden" defaultValue={csrfToken} value="https://akarii-demo.herokuapp.com/signIN" />
+                <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 
                 <div className="inputs-group">
+                    <div className="sign-input">
+                        <div className="sign">
+                            <h2 style={{ marginRight: "17px" }}>{sginOb.sn1}</h2>
+                        </div>
+                    </div>
                     <div className="sign-input mail">
                         <h3>{sginOb.sn2}</h3>
-                        <input id='username' name='username' type="email" className="sign-mail" placeholder={sginOb.sn2} tabIndex={1} autoFocus onChange={e => {
+                        <input style={{
+                            border: wrongEmail && '2px solid red'
+                        }}
+                            id='username'
+                            name='username'
+                            type="email"
+                            className="sign-mail"
+                            required
+                            placeholder={sginOb.sn2} tabIndex={1} autoFocus onChange={e => {
                             setEmail(handleChnage(e))
                             setWrongPassword(true)
-                        }} />
+                        }}
+                        />
                     </div>
                     <div className="sign-input password">
                         <h3>{sginOb.sn3}</h3>
-                        <input id='passwrod' name='password' type={showPassword ? "text" : "password"} className="sign-password" placeholder={sginOb.sn3} tabIndex={2} onChange={e => {
-                            setPassowrd(handleChnage(e))
-                            setWrongPassword(true)
-                        }} />
+                        <input id='passwrod' style={{
+                            border: showWrongMessage && '2px solid red'
+                        }}
+                            name='password' type={showPassword ? "text" : "password"} className="sign-password" placeholder={sginOb.sn3} tabIndex={2} onChange={e => {
+                                setPassowrd(handleChnage(e))
+                                setWrongPassword(true)
+                                setShowWrongPassword(false)
+                            }} />
                         <span className='passwrod-icon' onClick={() => setShowPassword(!showPassword)}>
                             <img src={`assets/img/${showPassword ? "showPassword" : "hidePassword"}.svg`} alt="" style={{
                                 cursor: 'pointer'
@@ -113,7 +131,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     <div style={{
                         PaddingBottom: '15px'
                     }}>
-                        <span className="error-message" style={{
+                        {/* <span className="error-message" style={{
                             display: `${wrongPassword ? 'none' : ""}`,
                             marginRight: '-13px',
                             paddingBottom: "9px"
@@ -124,7 +142,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
                             }} />
                             {sginOb.sn9}
-                        </span>
+                        </span> */}
                         <Link href="/signIN/forgetPasswrod">
                             {sginOb.sn4}
                         </Link>
@@ -143,8 +161,8 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                 </div>
                 <div>
                     <button type="submit" className='sign-btn' style={{
-                        outline:'none',
-                        border:'none'
+                        outline: 'none',
+                        border: 'none'
                     }}> {sginOb.sn1}</button>
                 </div>
             </form>
@@ -154,8 +172,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     {Object.values(providers).filter(q => q.type !== 'credentials').map((provider) => (
 
                         <li key={provider.name} onClick={() => {
-                            signIn(provider.id, { callbackUrl: route.query.callbackUrl })
-                            console.log(session.data);
+                            signIn(provider.id)
 
 
                         }}>

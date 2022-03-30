@@ -2,10 +2,13 @@ import React from 'react'
 import Packges from '../components/packges/Packges'
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
+import { useRouter } from 'next/router';
 
 
 const PackgesAdd = ({ data }) => {
   let { t } = useTranslation();
+  const route = useRouter
 
   // translations
 
@@ -45,7 +48,20 @@ const PackgesAdd = ({ data }) => {
   let fo1 = t('home:footer')
   return (
     <div>
-      <Packges data={data.results} navOb={navOb} fo1={fo1}  />
+      <Head>
+        <title>{route.locale == 'ar' ? "الباقات" : "Packages"}</title>
+        <meta name="description" content={data.results.map((add) => {
+          let content = add.title + ","
+          return content
+
+        })} />
+        <meta name="description" content={data.results.map((add) => {
+          let content = add.subtitle + ","
+          return content
+
+        })} />
+      </Head>
+      <Packges data={data.results} navOb={navOb} fo1={fo1} />
     </div>
   )
 }

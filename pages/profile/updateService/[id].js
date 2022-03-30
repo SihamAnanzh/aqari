@@ -8,11 +8,14 @@ import axios from 'axios'
 import { signIn, useSession } from 'next-auth/react';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from 'next/router';
+import Head from 'next/head';
+
 const Update = ({ updateData }) => {
 
   const authCtx = useContext(AuthContext)
   let { t } = useTranslation();
-
+  const route = useRouter()
   const session = useSession({
     required: true,
     onUnauthenticated() {
@@ -84,19 +87,29 @@ const Update = ({ updateData }) => {
     pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8
   }
 
+  let title = t('add-service:service-title');
+  let phone = t('add-service:phone');
+  let serviceType = t('add-service:serviceType');
+  let whatsaap = t('add-service:whatsaap');
+  let serivceDetails = t('add-service:serivceDetails');
+  let pic = t('add-service:pic');
+  let city = t('add-service:city');
+  let price = t('add-service:price');
+  let edit = t('add-service:edit');
+  let tearmAndCondition = t('add-service:tearmAndCondition');
+
   let serviceOb = {
     pro8,
-    title: t('add-service:service-title'),
-    phone: t('add-service:phone'),
-    serviceType: t('add-service:serviceType'),
-    whatsaap: t('add-service:whatsaap'),
-    serivceDetails: t('add-service:serivceDetails'),
-    pic: t('add-service:pic'),
-    city: t('add-service:city'),
-    price: t('add-service:price'),
-    edit: t('add-service:edit'),
-
-    tearmAndCondition: t('add-service:tearmAndCondition'),
+    title,
+    phone,
+    serviceType,
+    whatsaap,
+    serivceDetails,
+    pic,
+    city,
+    price,
+    edit,
+    tearmAndCondition
 
 
   }
@@ -107,6 +120,15 @@ const Update = ({ updateData }) => {
     <>
 
       <>
+        <Head>
+          <title>{updateData.title}</title>
+          {/* <meta name="description" content={
+            updateData&&updateData.map((data) => {
+              let content = data.description + ","
+              return content
+            })
+          } /> */}
+        </Head>
         <Nav navOb={navOb} />
         <div className='profile-container'>
           <h1 className="profile-heading">{pro1}</h1>
@@ -130,7 +152,7 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
   if (id) {
     await axios.get(`https://stagingapi.aqarifinder.com/api/services/${id}`, { headers: { 'lang': locale } }).then((res) => {
-
+console.log(res.data.results);
       updateData = {
         address: res.data.results.regions_string,
         description: res.data.results.description,
@@ -155,7 +177,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       updateData,
-      ...(await serverSideTranslations(locale, ['home', 'signin', 'profile', 'add-serivce']))
+      ...(await serverSideTranslations(locale, ['home', 'signin', 'profile', 'add-service']))
     }
   }
 }

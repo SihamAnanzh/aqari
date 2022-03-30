@@ -9,11 +9,11 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSession, getSession, signIn } from 'next-auth/react';
 import Loader from 'react-spinners/SyncLoader';
+import Head from 'next/head';
 
-
-const Index = () => {
+const Index = ()=> {
   let { t } = useTranslation();
-
+const route=useRouter()
   // translations
 
   //nav
@@ -98,8 +98,16 @@ const Index = () => {
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      signIn()
-    }
+      signIn("credentials", { redirect: false })
+        .then((res) => {
+        console.log(res);
+          // if (ok) {
+          //     route.push("/profile");
+          // } else {
+          //     console.log(error)
+          //     toast("Credentials do not match!",  "error" );
+          // }
+      })    }
   })
 
 
@@ -111,6 +119,9 @@ const Index = () => {
       {
         session.status == "authenticated" &&
         <>
+           <Head>
+          <title>{route.locale == "ar" ? "الملف الشخصي" : "my profile"}</title>
+        </Head>
           <Nav navOb={navOb} />
           <div className='profile-container'>
             <h1 className="profile-heading">{pro1}</h1>

@@ -5,34 +5,38 @@ import { useRouter } from 'next/router';
 
 const Packge = (props) => {
     const [showPackgeDetail,setShwoPackgeDetail]=useState(false)
-    const [invoiceId,setInvoiceId]=useState('')
-  const session=useSession()
+    const [invoiceId, setInvoiceId] = useState('')
+    const session=useSession()
     const route=useRouter()
     const handleClick=()=>{
         let formData=new FormData()
-        formData.append('package_id',props.id)
-        axios({
-            method: "post",
-            url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
-            headers: { "Content-Type": "multipart/form-data" , 'Authorization':session.data !=null?session.data.id:route.replace('/signIN')},
-            data: formData,
+        formData.append('package_id', props.id)
+        session.data != null ?
+            (
+                axios({
+                    method: "post",
+                    url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
+                    headers: { "Content-Type": "multipart/form-data" , 'Authorization':session.data !=null?session.data.id:route.replace('/signIN')},
+                    data: formData,
+                
+              
+                }).then((res)=>{
+                    res.data.results.isSuccess?setInvoiceId(res.data.results.data.invoiceId):alert('something wrong')
+                    // route.push(res.data.results.data.paymentURL)
         
-      
-        }).then((res)=>{
-            res.data.results.isSuccess?setInvoiceId(res.data.results.data.invoiceId):alert('something wrong')
-            // route.push(res.data.results.data.paymentURL)
-
-        }).then(res=>{
-            axios({
-                method: "post",
-                url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${invoiceId}`,
-                headers: { "Content-Type": "multipart/form-data" , 'Authorization':session.data !=null?session.data.id:route.replace('/signIN')},
-            
-            }).then((res)=>{
-                console.log(res);
-                res.data.status.code == 200?route.replace('/'):""
-            })
-        })
+                }).then(res=>{
+                    axios({
+                        method: "post",
+                        url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${invoiceId}`,
+                        headers: { "Content-Type": "multipart/form-data" , 'Authorization':session.data !=null?session.data.id:route.replace('/signIN')},
+                    
+                    }).then((res)=>{
+                        console.log(res);
+                        res.data.status.code == 200?route.replace('/'):""
+                    })
+                })
+        ):route.replace('/signIN')
+           
     }
   
     return (

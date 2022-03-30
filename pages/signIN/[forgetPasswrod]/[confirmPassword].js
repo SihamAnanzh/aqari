@@ -1,10 +1,10 @@
 import React from 'react'
-import ConfirmPasswrod   from '../../../components/singIN/ConfirmPasswrod'
-import  Nav from '../../../components/shared/nav/Nav'
+import ConfirmPasswrod from '../../../components/singIN/ConfirmPasswrod'
+import Nav from '../../../components/shared/nav/Nav'
 import Footer from '../../../components/shared/footer/Footer'
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-const  Index = () => {
+const Index = () => {
 
   let { t } = useTranslation();
 
@@ -38,9 +38,9 @@ const  Index = () => {
 
   return (
     <>
-    <Nav navOb={navOb}/>
-    <ConfirmPasswrod/>
-   <Footer fo1={fo1}/>
+      <Nav navOb={navOb} />
+      <ConfirmPasswrod />
+      <Footer fo1={fo1} />
     </>
   )
 }
@@ -48,6 +48,6 @@ const  Index = () => {
 export default Index
 
 
-export async function getServerSideProps({locale}) {
-  return { props: {...(await serverSideTranslations(locale, ['home','signUp']))} }
+export async function getServerSideProps({ locale }) {
+  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp'])) } }
 }

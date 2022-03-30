@@ -15,7 +15,7 @@ const PremiumService = (props) => {
     >
     <div className='premuim-add origin fallback-origin '>
         <div className='details'>
-            <div className='img-add'><img  src='/assets/img/home.jpg'   style={{
+            <div className='img-add'><img   src={props.singleEstate.images[0]&&props.singleEstate.images[0].logo_url}   style={{
                           objectFit:'cover'
                                    }} /></div>
             <div className='estat-details'>
@@ -54,7 +54,7 @@ const PremiumService = (props) => {
     >
     <div className='premuim-add origin fallback-adds'>
         <div className='details'>
-            <div className='img-add'><img src='/assets/img/home.jpg'  style={{
+            <div className='img-add'><img  src={props.singleEstate.images[0]&&props.singleEstate.images[0].logo_url}  style={{
                        objectFit:'cover'
                                  }} /></div>
             <div className="fallback-img-details">

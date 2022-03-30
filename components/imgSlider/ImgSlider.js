@@ -11,7 +11,7 @@ const Thumbnail = ({ arr, image, index ,setCurrentIndex,length}) => {
     return (
     
     <div className="tumbnail">
-          <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={3} >
+          <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={length} >
       {
         arr.map((imgsrc, i) => (
             <div key={i}
@@ -81,9 +81,10 @@ const Slideshow = ({ imgs,setOverlay }) => {
        <div className="slideshow" onClick={()=>setShowImg(!showImg)}>
       <img className="mainImg" src={img[index]} width="200px" height='200px' />
     </div>
-    <div className="">
+        <div className="" style={{
+      position:"relative"
+    }}> 
     <Thumbnail arr={img} image={setIndex} index={index} setCurrentIndex={setCurrentIndex} length={img.length} />
-
     </div>
       </div>
 

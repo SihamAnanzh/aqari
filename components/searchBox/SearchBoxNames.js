@@ -8,7 +8,7 @@ const SearchBoxNames = ({regions,searchOb}) => {
 
   return (
          <>
-       <DropdownNames  title={searchOb.sh9} items={regions}/>
+       <DropdownNames  title={searchOb.sh8} items={regions}/>
         </>
   )
   

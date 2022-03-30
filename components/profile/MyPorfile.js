@@ -53,7 +53,7 @@ const session=useSession()
     <div className="inputs-group profile-group">
     <div className="sign-input profile-name">
             <h3>{props.sginOb.sn10}</h3>
-               <input type="text" className="sign-name" placeholder={props.sginOb.sn10} tabIndex={1} autoFocus value={name} onChange={e=>setName(handleChange(e))} />
+               <input type="text" className="sign-name" placeholder={props.sginOb.sn10} tabIndex={1}  value={name} onChange={e=>setName(handleChange(e))} />
            </div>
        <div className="sign-input profile-mail mail">
            <h3>{props.sginOb.sn2}</h3>

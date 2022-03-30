@@ -22,7 +22,7 @@ const UpdateService = ({updateData,serviceOb}) => {
     const [selectItem,setSelectItems]=useState([])
     const [regionsId,setRegionsId]=useState(updateData&&updateData.regionId)
     const filterCtx=useContext(FilterContext)
-    const [selection, setSelection] = useState([]);
+    const [selection, setSelection] = useState();
     const [price, setPrice]=useState(updateData&&updateData.price)
     const [title, setTitle]=useState(updateData&&updateData.title)
     const [desc ,setDesc]=useState(updateData&&updateData.desc)
@@ -90,7 +90,6 @@ const UpdateService = ({updateData,serviceOb}) => {
       },[])
 
   const session=useSession()
-  let userData=session.data.xyz
 
       const  handelSubmit=(e)=>{
  
@@ -115,7 +114,7 @@ const UpdateService = ({updateData,serviceOb}) => {
             axios({
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/services/update",
-              headers: { "Content-Type": "multipart/form-data" , 'Authorization':userData.id},
+              headers: { "Content-Type": "multipart/form-data" , 'Authorization':session.data.id},
               data: formData,
             })
               .then( (response) =>{
@@ -195,7 +194,7 @@ const UpdateService = ({updateData,serviceOb}) => {
        </div>
        <div className="sign-input  addAdds-region" id='city-list' style={{position:'relative'}} >
            <h3>{serviceOb.city}</h3>
-           <input type="text" className="sign-mail" placeholder={serviceOb.city}tabIndex={3}   id='city-list'  value={[...selection]}
+           <input type="text" className="sign-mail" placeholder={serviceOb.city}tabIndex={3}   id='city-list'  value={updateData?updateData.regionsString:[...selection]}
            onChange={e=>setCity(e.target.value)}
              onClick={()=>{
                setShowListNames(!showListNames)

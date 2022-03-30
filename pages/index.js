@@ -6,97 +6,87 @@ import Adds from '../components/adds/Adds'
 import Loader from '../components/loader/Loader'
 import MainSection from '../components/mainSection/MainSection'
 import axios from 'axios'
-import { AuthContext } from '../stores/auth-context'
-import { FliterProvider } from '../stores/filter'
-import {useTranslation} from "next-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
-import Link from 'next/link'
-import { useSession,getSession } from 'next-auth/react'
-
+import { useSession, getSession } from 'next-auth/react'
+import Head from "next/head";
+import { useRouter } from 'next/router'
 
 const Index = ({ prem, latest, services, Request }) => {
   const [premuimAdds, setPremuimAdds] = useState([])
   const [latestData, setLeastestAdd] = useState([])
-  const [servicesData, setServicse] = useState([])
-  const authCtx = useContext(AuthContext)
-  const session=useSession()
-    let { t } = useTranslation();
+  const route=useRouter()
+  let { t } = useTranslation();
 
-// translations
+  // translations
 
-//nav
-let nav1=t('home:nav-1')
-let nav2=t('home:nav-2')
-let nav3=t('home:nav-3')
-let nav4=t('home:nav-4')
-let nav5=t('home:nav-5')
-let nav6=t('home:nav-6')
-let nav7=t('home:nav-7')
-let nav8=t('home:nav-8')
-let nav9=t('home:nav-9')
-let nav10=t('home:nav-10')
-let nav11=t('home:nav-11')
+  //nav
+  let nav1 = t('home:nav-1')
+  let nav2 = t('home:nav-2')
+  let nav3 = t('home:nav-3')
+  let nav4 = t('home:nav-4')
+  let nav5 = t('home:nav-5')
+  let nav6 = t('home:nav-6')
+  let nav7 = t('home:nav-7')
+  let nav8 = t('home:nav-8')
+  let nav9 = t('home:nav-9')
+  let nav10 = t('home:nav-10')
+  let nav11 = t('home:nav-11')
 
-//banner 
-let bn=t('home:banner')
-let navOb={
-  nav1,
-  nav2,
-  nav3,
-  nav4,
-  nav5,
-  nav6,
-  nav7,
-  nav8,
-  nav9,
-  nav10,
-  nav11
-}
+  //banner 
+  let bn = t('home:banner')
+  let navOb = {
+    nav1,
+    nav2,
+    nav3,
+    nav4,
+    nav5,
+    nav6,
+    nav7,
+    nav8,
+    nav9,
+    nav10,
+    nav11
+  }
 
 
-//searchSection
-let sh1=t('home:search-1')
-let sh2=t('home:search-2')
-let sh3=t('home:search-3')
-let sh4=t('home:search-4')
-let sh5=t('home:search-5')
-let sh6=t('home:search-6')
-let sh7=t('home:search-7')
-let sh8=t('home:search-8')
-let sh9=t('home:search-9')
-let sh10=t('home:search-10')
+  //searchSection
+  let sh1 = t('home:search-1')
+  let sh2 = t('home:search-2')
+  let sh3 = t('home:search-3')
+  let sh4 = t('home:search-4')
+  let sh5 = t('home:search-5')
+  let sh6 = t('home:search-6')
+  let sh7 = t('home:search-7')
+  let sh8 = t('home:search-8')
+  let sh9 = t('home:search-9')
+  let sh10 = t('home:search-10')
 
-let searchOb={
-sh1,
-sh2,
-sh3,
-sh4,
-sh5,
-sh6,
-sh7,
-sh8,
-sh9,sh10
-}
+  let searchOb = {
+    sh1,
+    sh2,
+    sh3,
+    sh4,
+    sh5,
+    sh6,
+    sh7,
+    sh8,
+    sh9, sh10
+  }
 
-//footer
-let fo1=t('home:footer')
+  //footer
+  let fo1 = t('home:footer')
 
-//adds section
-let ad1=t('home:ads-1')
-let ad2=t('home:ads-2')
-let ad3=t('home:ads-3')
+  //adds section
+  let ad1 = t('home:ads-1')
+  let ad2 = t('home:ads-2')
+  let ad3 = t('home:ads-3')
 
-let adsOb={
-  ad1,
-  ad2,
-  ad3
-}
-
-
-
-
-
+  let adsOb = {
+    ad1,
+    ad2,
+    ad3
+  }
 
 
   useEffect(() => {
@@ -156,7 +146,7 @@ let adsOb={
       let data = {
         add_id: adds.id,
         user_id: adds.user_id,
-        images: adds.images.length > 0 ? adds.images : '/assets/img/home.jpg',
+        images: adds.images.length == 0 ? '/assets/img/home.jpg' : adds.images,
         title: adds.title,
         address: adds.region.country.title + " " + adds.region.title,
         price: adds.price,
@@ -199,25 +189,34 @@ let adsOb={
       }
 
       setLeastestAdd(pre => [...pre, data])
-      authCtx.loadding(false)
 
 
     })
   }, [latest])
-const router=useRouter()
 
 
   return (
 
-          <>
-            <Nav navOb={navOb}/>
+    <>
+      <Head>
+        <title>{route.locale == "ar"?"عقاري":"akariFinder"}</title>
+        <meta name="description" content={premuimAdds.map((add) => {
+          let content = add.disc + ","
+          return content
 
+        })} />
+        <meta name="description" content={latestData.map((add) => {
+          let content = add.disc + ","
+          return content
 
-            <Banner  bn={bn}/>
-            <MainSection searchOb={searchOb} />
-            <Adds  latestData={latestData} premuimAdds={premuimAdds}  adsOb={adsOb}/>
-            <Footer fo1={fo1} />
-    
+        })} />
+      </Head>
+      <Nav navOb={navOb} />
+      <Banner bn={bn} />
+      <MainSection searchOb={searchOb} />
+      <Adds latestData={latestData} premuimAdds={premuimAdds} adsOb={adsOb} />
+      <Footer fo1={fo1} />
+
     </>
   )
 }
@@ -229,7 +228,7 @@ export async function getServerSideProps(context) {
   // console.log("INSIDE SERVER SIDE", context.req);
   let prem;
   let latest;
-  let {locale}=context
+  let { locale } = context
   const session = await getSession(context);
   console.log(session);
   let data = await axios.get('https://stagingapi.aqarifinder.com/api/ads/premium/list?', {
@@ -253,6 +252,7 @@ export async function getServerSideProps(context) {
 
       // res.data.status.code === 200 &&console.log('success')
       latest = res.data.results
+      console.log(latest);
 
 
     })
@@ -262,5 +262,5 @@ export async function getServerSideProps(context) {
 
 
   // Pass data to the page via props
-  return { props: { prem, latest ,...(await serverSideTranslations(locale, ['home']))} }
+  return { props: { prem, latest, ...(await serverSideTranslations(locale, ['home'])) } }
 }

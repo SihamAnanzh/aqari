@@ -8,7 +8,7 @@ import MyFav from '../../components/profile/MyFav';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession } from 'next-auth/react';
-
+import Head from 'next/head';
 const MyFavorite = () => {
   const authCtx = useContext(AuthContext)
   const route = useRouter()
@@ -89,13 +89,16 @@ const MyFavorite = () => {
       {
         session.data != null &&
         <>
+          <Head>
+            <title>{route.locale == "ar" ? "المفضلة" : "My favourite"}</title>
+          </Head>
           <Nav navOb={navOb} />
           <div className='profile-container'>
             <h1 className="profile-heading">{pro1}</h1>
             <SubNav proOb={proOb} />
             <MyFav />
           </div>
-          <Footer />
+          <Footer fo1={fo1} />
         </>
 
       }

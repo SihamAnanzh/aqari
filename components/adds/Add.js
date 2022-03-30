@@ -2,8 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const Add = (props) => {
-  
-
+  console.log(props.singleEstate.images.logo_url);
   return (
     <>
        <Link 
@@ -18,7 +17,7 @@ const Add = (props) => {
         >
     <div className=' premuim-add  regular regular-origin '>
       <div className=' details-adds'>
-        <div className='img-add'><img src='/assets/img/home.jpg'   style={{
+        <div className='img-add'><img src={props.singleEstate.images[0]&&props.singleEstate.images[0].logo_url}  style={{
           objectFit:'cover'
         }}/></div>
         <div className='estat-details'>
@@ -51,7 +50,7 @@ const Add = (props) => {
         >
     <div className='premuim-add regular fallback-regular'>
       <div className=' details-adds'>
-        <div className='img-add'><img src='/assets/img/home.jpg'  style={{
+        <div className='img-add'><img  src={props.singleEstate.images[0]&&props.singleEstate.images[0].logo_url}   style={{
           objectFit:'cover'
         }}/></div>
         <div className='estat-details'>

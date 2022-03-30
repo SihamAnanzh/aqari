@@ -5,12 +5,13 @@ import NoResults from '../components/searchResult/NoResults'
 import { TranslateContext } from '../stores/translate-context'
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 
 const SearchResultsService = () => {
   const filterCtx = useContext(FilterContext)
-  const tranCtx = useContext(TranslateContext)
+const route=useRouter()
 
   let { t } = useTranslation();
 
@@ -69,8 +70,11 @@ const SearchResultsService = () => {
   return (
 
     <>
-      {
+       <Head>
+         <title>{route.locale == "ar"?"نتائج البحث":"Search results"}</title>
+         </Head> 
 
+      {
         filterCtx.serviceResults.length == "" ?
           <NoResults navOb={navOb} fo1={fo1} adsOb={adsOb} />
           : <ServiveResults navOb={navOb} fo1={fo1} adsOb={adsOb} />

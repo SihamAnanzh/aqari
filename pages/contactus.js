@@ -1,29 +1,29 @@
 import React from 'react'
 import { ContactUs } from '../components/contactUs/ContactUs'
-import {useTranslation} from "next-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from 'next/router'
+import Head from 'next/head';
 
 const Contactus = () => {
-
+  const route = useRouter()
   let { t } = useTranslation();
-    
   // translations
-  const captions = getTranslation(t);
   //nav
-  let nav1=t('home:nav-1')
-  let nav2=t('home:nav-2')
-  let nav3=t('home:nav-3')
-  let nav4=t('home:nav-4')
-  let nav5=t('home:nav-5')
-  let nav6=t('home:nav-6')
-  let nav7=t('home:nav-7')
-  let nav8=t('home:nav-8')
-  let nav9=t('home:nav-9')
-  let nav10=t('home:nav-10')
-  let nav11=t('home:nav-11')
-  
+  let nav1 = t('home:nav-1')
+  let nav2 = t('home:nav-2')
+  let nav3 = t('home:nav-3')
+  let nav4 = t('home:nav-4')
+  let nav5 = t('home:nav-5')
+  let nav6 = t('home:nav-6')
+  let nav7 = t('home:nav-7')
+  let nav8 = t('home:nav-8')
+  let nav9 = t('home:nav-9')
+  let nav10 = t('home:nav-10')
+  let nav11 = t('home:nav-11')
+
   //banner 
-  let navOb={
+  let navOb = {
     nav1,
     nav2,
     nav3,
@@ -37,29 +37,34 @@ const Contactus = () => {
     nav11
   }
 
-//footer
-let fo1=t('home:footer')
+  //footer
+  let fo1 = t('home:footer')
 
-let contactOb={
-  call:t('contactus:callUs'),
-  paragaph:t('contactus:paragaph'),
-  email:t('contactus:email'),
-  phone:t('contactus:phone'),
-  message:t('contactus:message'),
-  send:t('contactus:send'),
+  let contactOb = {
+    call: t('contactus:callUs'),
+    paragaph: t('contactus:paragaph'),
+    email: t('contactus:email'),
+    phone: t('contactus:phone'),
+    message: t('contactus:message'),
+    send: t('contactus:send'),
 
-}
+  }
 
 
   return (
-    <ContactUs navOb={navOb} fo1={fo1} contactOB={contactOb} />
+    <>
+      <Head>
+        <title>{route.locale == 'ar' ? 'تواصل معنا' : "Contact Us"}</title>
+      </Head>
+      <ContactUs navOb={navOb} fo1={fo1} contactOB={contactOb} />
+    </>
   )
 }
 
-export default Contactus 
+export default Contactus
 
 
 
-export async function getServerSideProps({locale}) {
-  return { props: {...(await serverSideTranslations(locale, ['home','signUp','contactus']))} }
+export async function getServerSideProps({ locale }) {
+  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp', 'contactus'])) } }
 }

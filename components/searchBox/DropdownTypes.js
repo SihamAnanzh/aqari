@@ -63,16 +63,9 @@ const DropdownTypes = ({items=[], title}) => {
 
         </div>
         {
-               open ?  <ul className={`list-items ${showListTypes?'hidden':""}`}>
+               open ?  <ul className={`list-items dropItem${showListTypes?'hidden':""}`}>
                {/* {itemstype} */}
-               <h3 style={{
-                   color:'#EDAA43',
-                   fontSize:'14px',
-                   padding:'5px 15px',
-                   height: '52px',
-                   marginBottom: '-22px',
-                   marginTop:'-10px'
-               }}>الكل</h3>
+               <h3 >الكل</h3>
                 {items.map((item)=>(
                     <li className='list-item' key={item.id} id={item.id} onClick={(e)=>
                         {
@@ -87,13 +80,8 @@ const DropdownTypes = ({items=[], title}) => {
                             filterCtx.setTypeId(item.id)
                       
                        }
-                    }><span>
-                        <img style={{  
-                            width:'20px',
-                            height:"20px",
-                            paddingLeft:'10px',
-                            objectFit:'cover'
-                        }} src={item.logo_url}/></span>{item.title}</li>
+                    }><span className='typeImg'>
+                        <img  src={item.logo_url}/></span>{item.title}</li>
                 ))}
            </ul>:""
         }

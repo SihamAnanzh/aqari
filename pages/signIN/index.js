@@ -8,7 +8,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../stores/auth-context';
-import { route } from 'next/dist/server/router';
+import Head from 'next/head';
 
 
 export async function getServerSideProps(context) {
@@ -16,11 +16,9 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   const { locale } = context
   if (session) {
-    context.res.writeHead(303, { Location: "/profile" });
-    context.res.redirect("/profile", 303);
+    context.res.writeHead(303, { Location: `${locale}/profile` });
+    context.res.redirect(`${locale}/profile` , 303);
     context.res.end();
-
-
   }
   return {
     props: {
@@ -91,6 +89,10 @@ const SignIN = ({ csrfToken, providers }) => {
 
   return (
     <div>
+         <Head>
+        <title>{route.locale == 'ar'?"تسجيل دخول":"sign in"}</title>
+        <meta name="description" content="" />
+      </Head>
       <Nav navOb={navOb} />
       <SignInComponent csrfToken={csrfToken} providers={providers} sginOb={sginOb} />
       <Footer fo1={fo1} />

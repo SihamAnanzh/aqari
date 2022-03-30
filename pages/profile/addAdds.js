@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession } from 'next-auth/react';
-
+import Head from 'next/head';
 const Adds = () => {
   const session = useSession({
     required: true,
@@ -103,7 +103,7 @@ const Adds = () => {
   let adSh1 = t('add-ads:ad-sh-1')
   let adSh2 = t('add-ads:ad-sh-2')
   let adSh3 = t('add-ads:ad-sh-3')
-  let adBtn = t('add-ads:add-btn')
+  let adBtn = t('add-ads:ad-btn')
 
 
   let addAdsOb = {
@@ -111,21 +111,24 @@ const Adds = () => {
   }
 
 
-  
+
 
   return (
     <>
 
       {
-         session.data != null &&
+        session.data != null &&
         <>
+           <Head>
+          <title>{route.locale == "ar" ? "اضف إعلان" : "Add Ads"}</title>
+        </Head>
           <Nav navOb={navOb} />
           <div className='profile-container'>
             <h1 className="profile-heading">{pro1}</h1>
             <SubNav proOb={proOb} />
             <AddAdds addAdsOb={addAdsOb} />
           </div>
-          <Footer />
+          <Footer fo1={fo1} />
         </>
       }
     </>

@@ -103,9 +103,9 @@ const session=useSession()
                         }}>
                             <Link href='/profile' className='second-nav-item'><span
                                 style={{
-                                    fontSize: route.asPath == '/profile' ? "20px" : "21px",
+                                    fontSize: route.asPath == '/profile' ? "20px" : "24px",
                                     color: route.asPath === "/profile" ? "#fff" : "#00416b",
-                                    marginRight: route.asPath == '/profile' ? "4px" : "-27px"
+                                    marginRight: route.asPath == '/profile' ? "4px" : "0"
 
 
                                 }}
@@ -139,8 +139,9 @@ const session=useSession()
                             </ul>
                         </div>
                         <li>
-                            <div className={`add-adds-menu ${showAddMenu ? "show" : ""}`} style={{display:'flex',flexDirection:"row",marginLeft:"unset",zIndex:"3"}}>
-                                  <div className="" style={{zIndex:"4",cursor:'pointer'}}>  <img className='add-img-btn'  width={22} height={22} onClick={() => {
+                            <div className={`add-adds-menu addOfficeAddSerivce ${showAddMenu ? "show" : ""}`}>
+                                <div className="" style={{ zIndex: "4", cursor: 'pointer' }}>  <img className='add-img-btn' width={22}
+                                    height={22} onClick={() => {
                                             setShowLang(false)
                                             setAddMenu(!showAddMenu)
                                         }} src={icon ? icon : '/assets/img/+.png'} /></div>

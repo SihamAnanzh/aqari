@@ -34,7 +34,6 @@ function MyApp({
 
   return (
     <SessionProvider session={pageProps.session}>
-
       <FliterProvider>
         <AuthContextProvider>
           <TranslateProvider>

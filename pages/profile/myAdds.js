@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession } from 'next-auth/react';
-
+import Head from 'next/head';
 
 const ProfileAdd = () => {
   const authCtx = useContext(AuthContext)
@@ -91,6 +91,9 @@ const ProfileAdd = () => {
       {
         session.data != null &&
         <>
+           <Head>
+          <title>{route.locale == "ar" ? "إعلاناتي" : "My Ads"}</title>
+        </Head>
           <Nav navOb={navOb} />
           <div className='profile-container'>
             <h1 className="profile-heading">{pro1}</h1>

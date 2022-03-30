@@ -15,13 +15,13 @@
         h2{
             font-size: 28px;
             color: $second-color;
-            margin-right: -14px;
+            margin-right: 10%;
             font-family: otfPlain;
+            
         }
     
     }
-
-
+   
     .inputs-group{
         display: flex;
         justify-content: flex-start;
@@ -48,7 +48,8 @@
     textarea::placeholder {
         font-size:20px ;
         font-family: otfPlain;
-        font-weight: normal;
+        font-weight: 600;
+        color:#9f9f9f
 
       
     }
@@ -134,6 +135,8 @@
        margin-top: 20px;
        margin-bottom: 20px;
        color: $second-color;
+       font-size: 20px;
+       font-weight: 600;
    }
 
            .social-icon{
@@ -167,14 +170,16 @@
            width: 445px;
            margin-bottom:40px;
            text-decoration: none;
-
-
+              
+            span{
+                font-weight: 600;
+            }
            a{
                font-size: 24px;
                color: $main-color;
                text-decoration: none;
                font-family: otfPlain;
-               font-weight: normal;
+               font-weight: 600;
                margin-top: 8px;
            }
        }
@@ -189,6 +194,18 @@
 }
 
 
+.signin-contanier .sign {
+   
+    h2{
+        margin-right: unset; 
+        display: flex;
+        justify-content: flex-end;
+           margin-left: 206%;
+    
+
+    }
+} 
+
 @media (max-width:1700px) {
     .signin-contanier{
         height: 100%;
@@ -199,9 +216,10 @@
     }
     .signin-contanier .sign {
    
-        margin-right: -250px;
             h2{
-                margin-right: 0px;
+         
+                margin-left: 282%;
+        
             }
     }    
 
@@ -246,9 +264,15 @@
         padding-right: 100px;
     }
 
-    .signin-contanier .sign{
-    margin-right: 206px;
-    }
+    .signin-contanier .sign {
+   
+        h2{
+     
+            margin-left: 274%;
+    
+        }
+}    
+
 }
 
 
@@ -277,11 +301,14 @@
     {
         margin-right: 25px;
     }
-
-    .signin-contanier .sign h2 {
-        margin-right: 0px;
-        font-size: 22px;
-    }
+    .signin-contanier .sign {
+   
+            h2{
+              
+                margin-left: 174%
+        
+            }
+    }    
 }
 @media (max-width:428px) {
      
@@ -292,8 +319,11 @@
         padding-top:54px;
         height: 100%;
 
+
         h2{
-            padding-right: 50px;
+              
+            margin-left: 175%;
+    
         }
     }
 

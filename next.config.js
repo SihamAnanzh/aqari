@@ -7,7 +7,7 @@ const nextConfig = {
 
 }
 
-
+process.env.NEXTAUTH_URL= 'https://akarii-demo.herokuapp.com/';
 
 module.exports = {
   i18n: {
@@ -15,7 +15,7 @@ module.exports = {
     locales: ["ar","en"]
   },
   env: {
-      endPoint: 'https://akarii-demo.herokuapp.com/',
+      endPoint: 'http://localhost:3000/',
       JWT_SECRET: {
           kty: "EC",
           kid: "BwmGsjvRehScmi5OmP0o1fx6_OoFlfYlhjirnlIv-k4",

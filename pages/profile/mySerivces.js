@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession } from 'next-auth/react';
+import Head from 'next/head';
 
 
 const ProfileService = () => {
@@ -57,11 +58,12 @@ const ProfileService = () => {
   let ad1 = t('home:ads-1')
   let ad2 = t('home:ads-2')
   let ad3 = t('home:ads-3')
-
+let newestٍervice=t('home:newestٍervice')
   let adsOb = {
     ad1,
     ad2,
-    ad3
+    ad3,
+    newestٍervice
   }
 
 
@@ -85,7 +87,7 @@ const ProfileService = () => {
     axios.get('https://stagingapi.aqarifinder.com/api/user/services/list', {
       headers: {
         "lang": route.locale,
-        "Authorization": session.data.xyz.id
+        "Authorization": session.data != null&&session.data.id
       },
     })
       .then(res => {
@@ -141,6 +143,8 @@ const ProfileService = () => {
     })
 
   }, [services])
+
+  
   const session = useSession({
     required: true,
     onUnauthenticated() {
@@ -154,13 +158,16 @@ const ProfileService = () => {
       {session.data != null &&
 
         <>
+        <Head>
+          <title>{route.locale == "ar" ? "خدماتي" : "My services"}</title>
+        </Head>
           <Nav navOb={navOb} />
           <div className='profile-container'>
             <h1 className="profile-heading">{pro1}</h1>
             <SubNav proOb={proOb} />
-            <MyService serviceData={serviceData} />
+          <MyService serviceData={serviceData} adsOb={adsOb} />
           </div>
-          <Footer />
+          <Footer fo1={fo1}/>
         </>
       }
 

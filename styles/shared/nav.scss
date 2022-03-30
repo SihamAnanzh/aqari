@@ -15,7 +15,7 @@
 }
 
 .ltr .navbar{
-  flex-direction: row-reverse;
+  direction: ltr;
 }
 
 li{
@@ -46,7 +46,7 @@ li{
 {
   color: $main-color;
   margin-right: 86px;
-  font-size: 25px;
+  font-size: 24px;
   cursor:pointer
 
 
@@ -155,7 +155,6 @@ li{
     cursor: pointer;
 
 }
-/////////////////////////////////////////
 .activeNav{
   background-color: $main-color;
   width: 150.78px;
@@ -267,7 +266,6 @@ font-weight: normal;
 .second-nav-items{
   display: flex;
   align-items: center;
-
 }
 
 .second-nav-items span.active{
@@ -288,12 +286,13 @@ margin: 10px auto;
 
 .add-adds-menu span.shortcutNav,.second-nav-items span.shortcutNav{
   color: #fff;
-  font-size: 18px;
+  font-size: 24px;
  
 }
 
 .second-nav-items div{
   margin-left: 30px;
+  flex-direction: row;
 }
 
 .hidden{
@@ -343,6 +342,30 @@ margin: 10px auto;
 li.activeNavFall{
   background-color: $second-color;
 }
+
+.addOfficeAddSerivce{
+  display: flex;
+  flex-direction: row;
+  margin-left: unset;
+  z-index: 3;
+}
+.ltr{
+.second-nav-items{
+  margin-right: unset;
+    margin-left: unset;
+    padding-left: unset;
+    padding-right: unset;
+}
+.addOfficeAddSerivce{
+flex-direction: row-reverse;
+
+}
+}
+
+
+
+
+
 // media
 @media (max-width:1600px) {
 
@@ -481,7 +504,7 @@ li.activeNavFall{
     cursor: pointer;
   
   }
-  /////////////////////////////////////////
+  
   .activeNav{
     background-color: #00416B;
     width: 88.78px;
@@ -520,7 +543,7 @@ li.activeNavFall{
   position: relative;
   
   }
-  //////////////////////////////////////////////
+  
   .add-adds-menu span,
   .select-lang-menu span.active{
     color: #fff;
@@ -653,6 +676,28 @@ li.activeNavFall{
 
  }
   
+
+ .ltr{
+  .second-nav-items{
+    margin-right: unset;
+      margin-left: unset;
+      padding-left: unset;
+      padding-right: unset;
+
+      li{
+        margin-left: 20px;
+      }
+  }
+  .addOfficeAddSerivce{
+  flex-direction: row-reverse;
+
+  li{
+    margin-left:30px;
+
+  }
+
+  }
+  }
 }
 
 

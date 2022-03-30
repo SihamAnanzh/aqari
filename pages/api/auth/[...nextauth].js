@@ -4,6 +4,10 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook"
 import AppleProvider from 'next-auth/providers/apple'
 import axios from "axios";
+import { useRouter } from "next/router";
+import { redirect } from "next/dist/server/api-utils";
+
+
 
 export default NextAuth({
   providers: [
@@ -18,7 +22,7 @@ export default NextAuth({
           data: { email: credentials.username, password: credentials.password },
           headers: { "Content-Type": "application/json" }
         });
-
+        
         if (response) {
           console.log("RESPONSE IS : ",response.data);
           if (response.data.status.code !== 200) {
@@ -27,7 +31,7 @@ export default NextAuth({
           else {
             const user = {
               id: response.data.results.id,
-              name: 'ADMINISTRATOR',
+              name: 'user',
               email: response.data.results.username,
               token: response.data.results.token
             };
@@ -64,13 +68,13 @@ export default NextAuth({
     secret: process.env.SECRET,
     encryption: true
   },
-  pages:{
+  pages: {
     signIn: '/signIN',
   },
-  callbacks: { 
-     async signIn(user, account, profile) {
+  callbacks: {
+    async signIn(user, account, profile) {
       if (user.account.provider === 'google') {
-        const endpoint =  'https://stagingapi.aqarifinder.com/api/user/login/social'
+        const endpoint = 'https://stagingapi.aqarifinder.com/api/user/login/social'
         const response = await axios({
           method: 'post',
           url: endpoint,
@@ -87,17 +91,21 @@ export default NextAuth({
         }
         else {
           user = undefined;
+  
         }
       }
 
       if (user !== undefined) {
         return true;
+
       }
       else {
         return false;
       }
     
     },
+  
+   
     jwt: ({ user, token }) => {
       if (user) {
         token.id = user.token

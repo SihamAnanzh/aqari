@@ -103,16 +103,9 @@ console.log(item);
         </div>
         {
                open ? 
-                <ul className={`list-items ${showListNames?'hidden':""}`}>
+                <ul className={`list-items dropItem ${showListNames?'hidden':""}`}>
   
-               <h3 style={{
-                   color:'#EDAA43',
-                   fontSize:'17px',
-                   padding:'5px 10px',
-                   height: '62px',
-                   marginBottom: '-22px',
-                   marginTop:'-10px'
-               }}>كل محافظات الكويت</h3>
+               <h3 >كل محافظات الكويت</h3>
                 {items.map((item)=>(
                     <li className='list-item'  key={item.id}  id={item.id} onClick={(e)=>
                        

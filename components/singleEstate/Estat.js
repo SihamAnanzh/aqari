@@ -9,37 +9,37 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 
 
-const Estat = ({ withImg, setOverlay, data,addAdsOb }) => {
+const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const [addToFav, setAddtoFav] = useState(data.isFav)
   const authCtx = useContext(AuthContext)
   const [userAdd, setUserAdd] = useState(false)
   const route = useRouter()
   const [allInfo, setAllInfo] = useState({})
-  const [lat, setLat]=useState('')
-  const [lng,setLng]=useState()
-
-useEffect(()=>{
-  setLat(data.lat)
-  setLng(data.lng)
-  console.log(data);
-},[data])
-
-let session=useSession()
-console.log(session);
+  const [lat, setLat] = useState('')
+  const [lng, setLng] = useState()
 
   useEffect(() => {
-    session.data!= null&& session.data.xyz.sub == data.user_id ? setUserAdd(true) : setUserAdd(false)
+    setLat(data.lat)
+    setLng(data.lng)
+    console.log(data);
+  }, [data])
+
+  let session = useSession()
+  console.log(session);
+
+  useEffect(() => {
+    session.data != null && session.data.xyz.sub == data.user_id ? setUserAdd(true) : setUserAdd(false)
   }, [data.user_id])
 
 
   const toggleFavAdds = () => {
-    session.data != null?
+    session.data != null ?
       (
         console.log(data.isFav),
-        !addToFav?
-          (axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.add_id}`, null,  {
+        !addToFav ?
+          (axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.add_id}`, null, {
             headers: {
-              "Authorization": session.data!= null ?session.data.id:null
+              "Authorization": session.data != null ? session.data.id : null
             },
           }).then((res) => {
             console.log(res);
@@ -47,10 +47,10 @@ console.log(session);
           })
           )
           :
-          axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.add_id}`,null, 
+          axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/remove/${data.add_id}`, null,
             {
               headers: {
-                'Authorization':session.data!= null ?session.data.id:null
+                'Authorization': session.data != null ? session.data.id : null
               },
 
             }).then((res) => {
@@ -71,11 +71,16 @@ console.log(session);
     <>
 
       <div className='estat-conianer'>
-        {withImg && <Slideshow
-          setOverlay={setOverlay}
-          imgs={data.images}
-        />
-        }
+        <div className="imgSliderAdd" style={{position:'relative'}}>
+          {withImg && <Slideshow
+            setOverlay={setOverlay}
+            imgs={data.images}
+
+          />
+          }
+        </div>
+
+
 
         <div className="header-estat">
           <div className="info-estate">
@@ -88,7 +93,7 @@ console.log(session);
             </div>
             {!userAdd ?
               <div className="fav-estat" onClick={toggleFavAdds}>
-                {addToFav? <img src="/assets/img/fav-icon.svg" alt="" /> :
+                {addToFav ? <img src="/assets/img/fav-icon.svg" alt="" /> :
                   <img src="/assets/img/emptyHearrt.svg" alt="" />
                 }
 
@@ -103,12 +108,12 @@ console.log(session);
                 borderRadius: '10px',
                 padding: '5px',
                 cursor: 'pointer'
-              }}><Link  href={
+              }}><Link href={
                 `/profile/updateAdds/${data.add_id}`
-            
-            }
+
+              }
               //  as={`/profile/updateAdds/${data.title.trim().replace(' ', '-')}`}
-    
+
               >{addAdsOb.edit}</Link></h4>}
 
           </div>
@@ -190,10 +195,10 @@ console.log(session);
         </div>
 
         <div className="estat-map map-origin">
-          <SimpleMap getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat}  />
+          <SimpleMap getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat} />
         </div>
         <div className="estat-map map-copy">
-          <SimpleMap2   getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat} />
+          <SimpleMap2 getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat} />
         </div>
         <div className='contact-estate'>
           <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' /></span><a style={{ textDecoration: "none", color: "#fff", fontFamily: "fangsong" }} href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>0787012409</a></div>

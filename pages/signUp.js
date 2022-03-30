@@ -4,9 +4,11 @@ import Footer from '../components/shared/footer/Footer'
 import SignUpComponents from '../components/singUp/SignUpComponents'
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const SignUp = () => {
-
+const route=useRouter()
   let { t } = useTranslation();
 
   // translations
@@ -58,6 +60,10 @@ const SignUp = () => {
   }
   return (
     <div>
+      <Head>
+        <title>{route.locale == 'ar'?"تسجيل":"sign up"}</title>
+        <meta name="description" content="" />
+      </Head>
       <Nav navOb={navOb} />
       <SignUpComponents sginUpOb={sginUpOb} />
       <Footer fo1={fo1} />

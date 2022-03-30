@@ -87,11 +87,9 @@ const session = useSession({
     signIn()
   }})
 
-  console.log(session.data.xyz);
-  let userData=session.data.xyz
   useEffect(()=>{
     authCtx.isLoggedIn && (
-      axios.get('https://stagingapi.aqarifinder.com/api/user/office',{headers:{'Authorization':userData.id}})
+      axios.get('https://stagingapi.aqarifinder.com/api/user/office',{headers:{'Authorization':session.data.id}})
      .then((res)=>{
       data=res.data.results
       data.map((data)=>{
@@ -112,7 +110,7 @@ const session = useSession({
      <SubNav proOb={proOb}/>
     <AddOffice/>
     </div> 
-    <Footer/>
+    <Footer fo1={fo1} />
     </>
 
     )

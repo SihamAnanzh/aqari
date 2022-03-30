@@ -140,6 +140,27 @@ background-color: $second-color;
     top: 38.2% 
 }
 
+.profile-container .profile-heading {
+    padding-right:11% ;
+}
+
+.ltr{
+    .profile-container .profile-heading {
+        padding-left:11%
+    }
+
+}
+
+
+.ltr .add-service-stroke-city,.add-service-stroke-category{
+    position: absolute;
+    top: 75%;
+    left: 95%;
+}
+.ltr .add-service-stroke-category{
+    top: 73%;
+    z-index: 2;
+}
 @media (max-width:1600px) {
     .profile-heading{
         padding-right:40px
@@ -151,7 +172,7 @@ background-color: $second-color;
 
     .profile-tab{
         .category-icon {
-            top: 33%;
+            top: 32%;
             left: 19%;
              z-index: 10;
 
@@ -159,19 +180,38 @@ background-color: $second-color;
            
         }
         .type-icon {
-               top: 27.8%;
-        
+               top: 26.8%;
             left: 19%;
             z-index: 10;
         }
     
         .type-icon.city {
             left: 19%;
-            top: 38%;
+            top: 37%;
         }
     
         
     } 
+
+    .ltr .profile-tab{
+        .category-icon {
+         
+            left: 80%;
+             z-index: 10;
+
+        
+           
+        }
+        .type-icon {      
+            left: 80%;
+            z-index: 10;
+        }
+    
+        .type-icon.city {
+            left: 80%;
+     
+        }
+    }
 
     .addAdds-tab-container .addAdds-heading h3{
         margin-right: 200px;
@@ -188,6 +228,19 @@ background-color: $second-color;
     top: 73%;
     z-index: 2;
 }
+.ltr .add-service-stroke-city,.ltr .add-service-stroke-category{
+    position: absolute;
+    top: 75%;
+    left: 95%;
+}
+.ltr .add-service-stroke-category{
+    top: 73%;
+    z-index: 2;
+}
+
+
+
+
 }
 
 
@@ -205,7 +258,7 @@ background-color: $second-color;
 
     .profile-tab{
        .category-icon {
-            top: 40%;
+            top: 38.1%;
             left: 14%;
              z-index: 10;
 
@@ -213,18 +266,40 @@ background-color: $second-color;
            
         }
         .type-icon {
-            top: 30.4%;
+            top: 28.5%;
             left: 14%;
             z-index: 10;
         }
     
         .type-icon.city {
             left: 14%;
-            top: 35.3%;
-        }
+            top:  33.1%
+        }   
     
         
     } 
+   .ltr .profile-tab{
+        .category-icon {
+             top: 38.1%;
+             left: 70%;
+              z-index: 10;
+ 
+         
+            
+         }
+         .type-icon {
+             top: 28.5%;
+             left: 70%;
+             z-index: 10;
+         }
+     
+         .type-icon.city {
+             left: 70%;
+             top:  33.1%
+         }   
+     
+         
+     } 
 
 
 }
@@ -283,29 +358,55 @@ background-color: $second-color;
     .profile-tab .category-icon {
         left: 18.5%;
         z-index: 3;
-        top: 34.2%;
+        top:  29.0%
 
 
     } 
 
-    .profile-tab .type-icon
+     .profile-tab .type-icon
     {
         left: 18.5%;
-        top:29.5%
+        top: 33.9%;
+
 
     }.profile-tab .type-icon.city {
         left: 18.5%;
-        top:38.7%
+        top: 38.4%;
 
 
        
     }
 
 
+    .ltr .profile-tab 
+    {
+        .category-icon {
+            z-index: 3;
+            top:  28.1%
+    
+    
+        } 
+    
+        .type-icon
+        {
+            top: 32.5%
+    
+    
+        } .type-icon.city {
+    
+            top: 36.8%
+    
+    
+           
+        }
+    }
+
+
+
     
 }
 
-@media (max-width:700px) {
+@media (max-width:781px) {
 
 
     .profile-heading,
@@ -318,7 +419,8 @@ background-color: $second-color;
     .profile-tab .category-icon {
         left: 18.5%;
         z-index: 3;
-        top:29.9%
+        top: 29.4%;
+
 
 
 
@@ -327,28 +429,52 @@ background-color: $second-color;
     .profile-tab .type-icon
     {
         left: 18.5%;
-        top: 34.4%;
+        top:34.2%
 
     }.profile-tab .type-icon.city {
         left: 18.5%;
-         top: 39%
+        top: 38.9%;
 
 
        
     }
+
+    .ltr .profile-tab 
+    {
+        .category-icon {
+            z-index: 3;
+            top:  25.1%
+    
+    
+        } 
+    
+        .type-icon
+        {
+            top: 29.5%
+    
+    
+        } .type-icon.city {
+    
+            top: 33.8%
+    
+    
+           
+        }
+    }
+
     
     
 }
 
 
 
-@media (max-width:600px) {
+@media (max-width:609px) {
   
     
 
     
     .profile-tab .category-icon {
-        top:31.8%
+        top:30.5%
 
 
 
@@ -356,10 +482,10 @@ background-color: $second-color;
 
     .profile-tab .type-icon
     {
-        top:36.4%;
+        top:35.1%
 
     }.profile-tab .type-icon.city {
-        top: 40.9%;
+        top: 39.7%
 
 
        
@@ -369,7 +495,48 @@ background-color: $second-color;
 
 
 
-@media (max-width:428px) {
+@media (max-width:578px) {
+  
+    
+
+    
+    .profile-tab .category-icon {
+        position: absolute;
+        top: 28.1%;
+
+
+
+    } 
+
+    .profile-tab .type-icon
+    {
+        top:32.4%
+
+    }.profile-tab .type-icon.city {
+        top: 36.5%
+
+
+       
+    }
+
+    .ltr .add-service-stroke-city,  .ltr .add-service-stroke-category{
+        position: absolute;
+        top: 75%;
+        left: 80%;
+    }
+    .ltr .add-service-stroke-category{
+        top: 73%;
+        z-index: 2;
+    }
+    
+
+}
+
+
+
+
+
+@media (max-width:448px) {
    
        
      
@@ -436,20 +603,26 @@ display: none;    }
         font-size: 14px;
     }
     .profile-tab .category-icon {
+        top: 30.5%;
         left: 12%;
-        top: 36.9%;
+    }
+
+
+
     
-    }
-    .profile-tab .type-icon {
+    .profile-tab .type-icon
+    {
         left: 12%;
-        top: 31.5%;
-    }
+         top: 34.7%;
 
-    .profile-tab .type-icon.city {
+
+    }.profile-tab .type-icon.city {
         left: 12%;
-        top:42.5%
-    }
+        top: 38.7%
 
+
+       
+    }
 
     .subNav-items .subNav-item .sub-link {
         width: 139px;
@@ -487,26 +660,26 @@ display: none;    }
 
 
 
-@media (max-width:400px) {
+// @media (max-width:400px) {
   
     
 
     
-    .profile-tab .category-icon {
-        top:37.2%
+//     .profile-tab .category-icon {
+//         top:37.2%
 
 
 
-    } 
+//     } 
 
-    .profile-tab .type-icon
-    {
-        top:33.1%;
+//     .profile-tab .type-icon
+//     {
+//         top:33.1%;
 
-    }.profile-tab .type-icon.city {
-        top:41.9%
+//     }.profile-tab .type-icon.city {
+//         top:41.9%
 
 
        
-    }
-}
+//     }
+// }
