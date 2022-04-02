@@ -16,8 +16,8 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   const { locale } = context
   if (session) {
-    context.res.writeHead(303, { Location: `${locale}/profile` });
-    context.res.redirect(`${locale}/profile` , 303);
+    context.res.writeHead(303, { Location: `/profile` });
+    context.res.redirect(`/profile` , 303);
     context.res.end();
   }
   return {

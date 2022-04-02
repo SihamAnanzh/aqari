@@ -24,15 +24,16 @@
     font-size: 28px;
     color: $second-color;
     font-family: otfPlain;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-right: 350px;
+    align-self: flex-start;
     margin-top: 30px;
-    padding: 20px 125px;
+    margin-bottom: 20px;
+    margin-right: 8%;
+    
 
 
 }
+
+
 
 .packge-img img{
 object-fit: cover;
@@ -40,13 +41,6 @@ object-fit: cover;
   }
 
 
-@media (max-width:428px) {
-    .packge-contaier .packge-heading{
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin-right:-100px;
-    }
-}
 
 
 
@@ -56,6 +50,8 @@ object-fit: cover;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 80%;
+  margin: 20px auto;
 }
 
 .packge{
@@ -70,6 +66,8 @@ object-fit: cover;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
+
 }
 
 
@@ -121,8 +119,7 @@ cursor: pointer;
     display: flex;
     flex-direction: column;
     margin: 0px auto;
-    padding-right: 187px;
-}
+width: 109px;}
 .subscribe-type{
     display: flex;
     flex-direction: column;
@@ -229,12 +226,7 @@ cursor: pointer;
 
 
 .ltr{
-    .packge-heading{
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin-left: 19%;
-    }
+   
 
 
 
@@ -257,10 +249,7 @@ cursor: pointer;
     }
 
 
-    .add-type{
-        padding-left: 148px;
-        padding-right: unset;
-    }
+   
     .packge-info{
         align-items: flex-start;
         margin-right: -258px;
@@ -281,11 +270,7 @@ cursor: pointer;
         padding-bottom: 180px;
     }
 
-    .packge-heading {
-        margin-right: 94px;
-        font-size: 25px;
-    }
-
+ 
     .single-packge{
         width: 508px;
         height: 568px;
@@ -364,11 +349,9 @@ cursor: pointer;
 
 .ltr{
     .packge-heading{
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin-left: 7%;
-        width: 70vw;
+ align-items: flex-end;
+ margin-left: 8%;
+     
     }
 }
     
@@ -379,12 +362,7 @@ cursor: pointer;
 @media (max-width:942px) {
  
 
-    .packge-heading {
-        margin-right: 0x;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+
 
     .subscribe-type, .add-type.show{
         display: none;
@@ -427,9 +405,7 @@ cursor: pointer;
     .add-type {
         display: flex;
         flex-direction: column;
-        margin: 0px auto;
-        padding-right: 35%;
-        margin-right: 0%;
+        width: 248px;
     
     }
 
@@ -450,28 +426,20 @@ cursor: pointer;
         border-radius: 4px;
     }
 
-    .ltr .add-type{
-padding-left: unset;
-margin-right: 22%;
-    }
+
       
 }
 
-@media (max-width:738px) {
-    .add-type {
-        display: flex;
-        flex-direction: column;
-        margin: 0px auto;
-        padding-right: 24%;
-        margin-right: 0%;
-    }
+// @media (max-width:738px) {
+//     .add-type {
+//         display: flex;
+//         flex-direction: column;
+       
+//     }
 
 
-    .ltr .add-type {
-        padding-left: unset;
-        margin-right: 43%;
-    }
-}
+  
+// }
 
 @media (max-width:605px) {
 .packge {
@@ -489,8 +457,8 @@ margin-right: 22%;
 }
 
 .packge-img img {
-    width: 135px;
-    height: 135px;
+    width: 111px;
+    height: 111px;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -525,9 +493,7 @@ margin-right: 22%;
 .add-type {
     display: flex;
     flex-direction: column;
-    margin: 0px auto;
-    padding-right: 7%;
-    margin-right: 0%;
+    margin:unset;
     bottom: 196px;
     /* position: absolute; */
     margin-top: 85px;
@@ -559,16 +525,9 @@ margin-right: 22%;
 }
 
 
-.ltr .add-type {
-    padding-left: unset;
-    margin-right: 70%;
-}
 
-.ltr .packge .type{
-    display: flex;
-    flex-direction: row-reverse;
-    margin-right: -24px;
-}
+
+
 }
 
 @media (max-width:428px) {
@@ -611,7 +570,7 @@ margin-right: 22%;
         color: #EDAA43;
     font-size: 20px;
     width: 129px;
-    margin-right: 23px;
+
     font-weight: 600;
     font-family: otfPlain;
     }

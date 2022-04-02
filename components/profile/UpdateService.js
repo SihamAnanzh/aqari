@@ -94,7 +94,8 @@ const UpdateService = ({updateData,serviceOb}) => {
       const  handelSubmit=(e)=>{
  
         let formData;
-        title == ''|| desc == ''|| price == ''||  phoneNumber == " ",whatsPhone == ""?
+        title == '' || desc == '' || price == '' || phoneNumber == " ",
+          whatsPhone == "" ?
         swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning')     
           :
           (
@@ -139,9 +140,9 @@ const UpdateService = ({updateData,serviceOb}) => {
 
            }}>
     <div className="signin-contanier addAdds-tab-container ">
-      <div className="addAdds-heading">
+      {/* <div className="addAdds-heading">
         <h3>{serviceOb.pro8}</h3>
-      </div>
+      </div> */}
     <div className="inputs-group addAdds-group">
     <div className="sign-input  addAdds-phone ">
            <h3>{serviceOb.title}</h3>
@@ -262,7 +263,8 @@ const UpdateService = ({updateData,serviceOb}) => {
            <h3 style={{
                paddingTop:"20px"
            }}>{serviceOb.serivceDetails}</h3>
-           <textarea type="text" className="sign-mail" placeholder={serviceOb.serivceDetails} tabIndex={5} onChange={(e)=>setDesc(e.target.value)} value={desc}/>
+              <textarea type="text" className="sign-mail" placeholder={serviceOb.serivceDetails}
+                tabIndex={5} onChange={(e) => setDesc(e.target.value)} value={desc} />
        </div>
  
 

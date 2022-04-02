@@ -2,79 +2,72 @@ import Link from 'next/link'
 import React from 'react'
 
 const Add = (props) => {
-  console.log(props.singleEstate.images.logo_url);
+  console.log(props);
   return (
-    <>
-       <Link 
-
-   href={`/advertises/${props.add_id}`}  
-      //  href={{
-      //           pathname:'/advertises/id',
-      //           query: props.add_id
-      //       }}
-            // as={'/advertises/'+props.title.trim().replace(' ', '-')}         
-            // as={'/advertises/'+props.title.replace('','-').trim()}
-        >
-    <div className=' premuim-add  regular regular-origin '>
-      <div className=' details-adds'>
-        <div className='img-add'><img src={props.singleEstate.images[0]&&props.singleEstate.images[0].logo_url}  style={{
-          objectFit:'cover'
-        }}/></div>
-        <div className='estat-details'>
-          <h2 className='card-title'>{props.title}</h2>
-          <span className='address'><span className='location-add-icon'><img src='/assets/img/location-gray.svg' /></span>
-          {props.address}</span>
-            <div className='disc'>
-            {props.disc.length >78 ?props.disc.substr(0, 78- 1) + "..." : props.disc}
-                </div>
-      </div>
+    <Link href={{
+      pathname: `/advertises/${props.add_id}`,
+      query:`title=${props.title.trim().replace(' ',"-")}`
+    }}>  
+      <div>
+      <div className="prem-contanier ad-contanier ad-main">
+        <div className="img-prem">
+          <img src={props.singleEstate.images[0] && props.singleEstate.images[0].logo_url} alt={props.title} />
         </div>
-        <div className='info'>
-          <span className='price'><span className='number'>{props.price}</span>د.ك</span>
-          <span className='time'><span className='number'><span className='address-time-icon'><img src='/assets/img/address-hour.svg' /></span>{props.time}</span>ساعة</span>
-
+        <div className="first-prem">
+          <div className="info-prem">
+            <div className="title">{props.title}</div>
+            <div className="address">
+              <img src='/assets/img/location-gray.svg' />
+              {props.address}</div>
+          <div className="desc-prem  ">
+              {props.disc.length > 70 ? props.disc.substr(0, 70 - 1) + "..." : props.disc}
+            </div>
+            
+          </div>
+          
+        <div className="detials">
+          <span className='price'>
+                <span className='number'>{props.price}</span>
+                {props.adsOb.priceCode}
+              </span>
+                  <span className='time'><span className='number'><span className='address-time-icon'>
+                                <img src='/assets/img/address-hour.svg' />
+              </span>{props.time}</span>{props.adsOb.hour}</span>
         </div>
-      
-    
-    </div>
-    </Link>
-    <Link 
-              href={`/advertises/${props.add_id}`}  
-
-    // href={{
-    //             pathname:'/advertises/id',
-    //             query: props.add_id
-    //         }}
-                            
-            // as={'/advertises/'+props.title.trim().replace(' ', '-')}         
-        >
-    <div className='premuim-add regular fallback-regular'>
-      <div className=' details-adds'>
-        <div className='img-add'><img  src={props.singleEstate.images[0]&&props.singleEstate.images[0].logo_url}   style={{
-          objectFit:'cover'
-        }}/></div>
-        <div className='estat-details'>
-          <h2 className='card-title'>{props.title}</h2>
-          <span className='address'><span className='location-add-icon'><img src='/assets/img/location-gray.svg' /></span>
-          {props.address}</span>
+         </div>
+   
          
       </div>
-      
+      <div className="prem-contanier ad-contanier ad-second">
+       
+          <div className="first-prem">
+          <div className="img-prem">
+          <img src={props.singleEstate.images[0] && props.singleEstate.images[0].logo_url} alt={props.title} />
         </div>
-        <div className='disc'>
-                 {props.disc.length >60 ?props.disc.substr(0, 60- 1) + "..." : props.disc}
-                </div>
-        <div className='info'>
-          <span className='price'><span className='number'>{props.price}</span>د.ك</span>
-          <span className='time'><span className='number'><span className='address-time-icon'><img src='/assets/img/address-hour.svg' /></span>{props.time}</span>ساعة</span>
-
+          <div className="info-prem">
+            <div className="title">{props.title}</div>
+            <div className="address">
+              <img src='/assets/img/location-gray.svg' />
+              {props.address}</div>
+         
+            
+          </div>
+          
+        <div className="detials">
+          <span className='price'>
+            <span className='number'>{props.price}</span>{props.adsOb.priceCode}</span>
+                  <span className='time'><span className='number'><span className='address-time-icon'>
+                                <img src='/assets/img/address-hour.svg' />
+              </span>{props.time}</span>{props.adsOb.hour}</span>
         </div>
-
-      
-    
-    </div>
+         </div>
+         <div className="desc-prem  ">
+              {props.disc.length > 50 ? props.disc.substr(0, 50 - 1) + "..." : props.disc}
+            </div>
+        
+        </div>
+        </div>
     </Link>
-    </>
   )
 }
 

@@ -5,10 +5,10 @@ import DropdownNames from './DropdownNames';
 
 const SearchBoxNames = ({regions,searchOb}) => {
 
-
+console.log(searchOb);
   return (
          <>
-       <DropdownNames  title={searchOb.sh8} items={regions}/>
+       <DropdownNames dropTitle={searchOb.droptitle}  title={searchOb.sh8} items={regions}/>
         </>
   )
   

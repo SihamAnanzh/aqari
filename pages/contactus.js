@@ -39,7 +39,7 @@ const Contactus = () => {
 
   //footer
   let fo1 = t('home:footer')
-
+  let footerDesc=t('home:footer-desc')
   let contactOb = {
     call: t('contactus:callUs'),
     paragaph: t('contactus:paragaph'),
@@ -47,6 +47,9 @@ const Contactus = () => {
     phone: t('contactus:phone'),
     message: t('contactus:message'),
     send: t('contactus:send'),
+    name: t('contactus:name'),
+
+    footerDesc
 
   }
 

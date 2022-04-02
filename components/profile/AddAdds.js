@@ -57,20 +57,14 @@ const AddAdds = ({ addAdsOb }) => {
   }, [imageFour, imageOne, imageThree, imageTwo])
 
 
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      signIn()
-    }
-  });
-
-
+console.log(imageOne);
   const handelSubmit = (e) => {
     let formData;
     !disable &&
       (
         addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum
-          == "" || phoneNumber == " " || imageOne == "" || imageTwo == '' || imageThree == '' || imageFour == '' ?
+        == "" || phoneNumber ==undefined || imageOne==undefined || imageTwo==undefined || imageThree==undefined ||
+        imageFour==undefined ?
           swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning') : (
             setFiles([imageOne, imageTwo, imageThree, imageFour]),
 
@@ -176,14 +170,16 @@ const AddAdds = ({ addAdsOb }) => {
               <h3>{addAdsOb.add2}</h3>
               <input type="text" maxLength={12} className="sign-mail" placeholder={addAdsOb.add2} value={phoneNumber} tabIndex={2} onChange={e => setPhoneNumber(e.target.value)} />
             </div>
-            <div className="sign-input profile-category mail " id='category-list' >
+            <div className="sign-input profile-category mail " id='category-list'
+              style={{ position: "relative" }}
+            >
               <h3>{addAdsOb.add3}</h3>
               <input type="text" className="sign-mail" placeholder={addAdsOb.add3} tabIndex={3} id='category-list' value={category} onChange={e => setCategory(e.target.value)} onClick={(e) => {
                 setShwoListCategory(!showListCategory)
                 setShwoListType(false)
                 setShowListNames(false)
               }} />
-              <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon' />
+              <img src="/assets/img/Stroke 1.svg" alt="" className='catergory-add-arrow' />
 
               <ul className="dropdown-category" style={{
                 display: !showListCategory ? 'none' : ""
@@ -191,17 +187,19 @@ const AddAdds = ({ addAdsOb }) => {
                 <li id='1' onClick={(e) => {
                   setType_id(e.target.id)
 
-                  setCategory('ايجار')
-                }} className={`category-item ${category === "ايجار" ? 'active-category' : ""}`} value='ايجار
-                            '>ايجار</li>
-                <li id='2' className={`category-item ${category === "بيع" ? 'active-category' : ""}`} value='بيع'
+                  setCategory( (route.locale=='ar'? "ايجار":"rent"))
+                }} className={`category-item ${category === (route.locale == 'ar' ? "ايجار" : "rent") ? 'active-category' : ""}`}
+                  value={(route.locale == 'ar' ? "ايجار" : "rent")}>{route.locale=='ar'? "ايجار":"rent"}</li>
+                <li id='2' className={`category-item ${category ===(route.locale=='ar'? "بيع":"selling")? 'active-category' : ""}`} value={(route.locale=='ar'? "يع":"selling")}
                   onClick={(e) => {
                     setType_id(e.target.id)
-                    setCategory('بيع')
-                  }} >بيع</li>
+                    setCategory( (route.locale=='ar'? "بيع":"selling"))
+                  }} >{route.locale == 'ar' ? "بيع" : "selling"}</li>
               </ul>
             </div>
-            <div className="sign-input addAdds-type" id='type-list'>
+            <div className="sign-input addAdds-type" id='type-list'
+              style={{ position: "relative" }}
+>
               <h3>{addAdsOb.add4}</h3>
               <input type="text" className="sign-mail" placeholder={addAdsOb.add4} tabIndex={3} id='type-list' value={typeEstat}
                 onChange={e => setTypeEstat(e.target.value)}
@@ -212,7 +210,7 @@ const AddAdds = ({ addAdsOb }) => {
 
                 }} />
 
-              <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
+              <img src="/assets/img/Stroke 1.svg" alt="" className='add-type-arrow' />
               {
                 <ul className="dropdown-typeList" id='type-list' style={{
                   display: !showListType ? 'none' : ""
@@ -243,7 +241,9 @@ const AddAdds = ({ addAdsOb }) => {
                 </ul>
               }
             </div>
-            <div className="sign-input  addAdds-region" id='city-list' >
+            <div className="sign-input  addAdds-region" id='city-list'
+              style={{ position: "relative" }}
+ >
               <h3>{addAdsOb.add5}</h3>
               <input type="text" className="sign-mail" placeholder={addAdsOb.add5} value={city} tabIndex={3} id='city-list'
                 onChange={e => setCity(e.target.value)}
@@ -253,7 +253,7 @@ const AddAdds = ({ addAdsOb }) => {
                   setShwoListCategory(false)
 
                 }} />
-              <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon city' />
+              <img src="/assets/img/Stroke 1.svg" alt="" className='city-add-arrow' />
               {
                 <ul className="dropdown-typeList" id='city-list' style={{
                   display: !showListNames ? 'none' : ""
@@ -299,7 +299,7 @@ const AddAdds = ({ addAdsOb }) => {
             </div>
 
             <div className={`sign-input submit-logo ${imageUpLoaded ? 'office-logo' : ""}`} style={{
-              display: imageUpLoaded ? 'none' : "block", width: "47vw"
+              display: imageUpLoaded ? 'none' : "block", width: "65vw"
             }}>
               <h3 className='img-heading' >{addAdsOb.add11}</h3>
               <div className="wrrap-images">
@@ -320,7 +320,7 @@ const AddAdds = ({ addAdsOb }) => {
                         } />
 
                       <img src="/assets/img/img.svg" alt="" />
-                      <p>{AddAdds.add11} 1</p>
+                      <p>{AddAdds.pic} 1</p>
                     </div>
 
                     : <div className="" style={{ position: 'relative' }}>
@@ -349,7 +349,7 @@ const AddAdds = ({ addAdsOb }) => {
                         } />
 
                       <img src="/assets/img/img.svg" alt="" />
-                      <p>{AddAdds.add11} 2</p>
+                      <p>{AddAdds.pic} 2</p>
                     </div>
 
                     : <div className="" style={{ position: 'relative' }}>
@@ -377,7 +377,7 @@ const AddAdds = ({ addAdsOb }) => {
                         } />
 
                       <img src="/assets/img/img.svg" alt="" />
-                      <p>{AddAdds.add11} 3</p>
+                      <p>{AddAdds.pic} 3</p>
                     </div>
 
                     : <div className="" style={{ position: 'relative' }}>
@@ -405,7 +405,7 @@ const AddAdds = ({ addAdsOb }) => {
                         } />
 
                       <img src="/assets/img/img.svg" alt="" />
-                      <p>{AddAdds.add11} 4</p>
+                      <p>{AddAdds.pic} 4</p>
                     </div>
 
                     : <div className="" style={{ position: 'relative' }}>

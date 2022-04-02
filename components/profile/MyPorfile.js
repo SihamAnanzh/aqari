@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState ,useContext} from 'react'
+import swal from 'sweetalert'
 import { AuthContext } from '../../stores/auth-context'
 
 const MyPorfile = (props) => {
@@ -37,7 +38,8 @@ const session=useSession()
  const handleSubmit=()=>{
  let data ={name, email , phone}
  axios.post('https://stagingapi.aqarifinder.com/api/user/update',{...data},{headers:{'Authorization':session.data.xyz.id}})
-  .then(res=>{ console.log(res);
+   .then(res => { 
+    swal(route.locale=='ar'?'تم تعديل بنجاح':"profile updated successfully")
   })
 
  } 

@@ -42,7 +42,7 @@ function Slider({imgs,setShowImg ,currentInedx,showImg}) {
     <div className="slideshow-two">
     
     <div id='next' className="nextBtn" onClick={next}><img id='next' src="/assets/img/arr.svg" alt="" /></div>
-    <img className="currentImg" src={imgs[index]}/>
+    <img className="currentImg" src={imgs[index].logo_url}/>
      <div id='pre' className="preBtn"onClick={prev}><img  id='pre' src="/assets/img/arr2.svg" alt="" /></div>
     </div>
   </div>

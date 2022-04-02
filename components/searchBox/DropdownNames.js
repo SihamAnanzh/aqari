@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FilterContext } from '../../stores/filter';
 
 
-const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegionName}) => {
+const DropdownNames = ({items=[], title, dropTitle, setSelectItem,showSearchSelling,setRegionName}) => {
     const [open, setOpen] = useState(false);
     const [selection, setSelection] = useState([]);
     const [showListNames, setShowListNames]=useState(true)
@@ -20,6 +20,7 @@ const DropdownNames = ({items=[], title, setSelectItem,showSearchSelling,setRegi
   
     }
 
+    console.log(title);
  
 
 // useEffect(() => { 
@@ -77,7 +78,7 @@ console.log(item);
             <span className='bar-icon' style={{
                 margin:'5px'
             }}>
-                <img src='assets/img/bar.svg' style={{
+                <img src='/assets/img/bar.svg' style={{
                     height:"28px"
                 }}/>              
             </span>
@@ -105,7 +106,7 @@ console.log(item);
                open ? 
                 <ul className={`list-items dropItem ${showListNames?'hidden':""}`}>
   
-               <h3 >كل محافظات الكويت</h3>
+                        <h3 >{dropTitle}</h3>
                 {items.map((item)=>(
                     <li className='list-item'  key={item.id}  id={item.id} onClick={(e)=>
                        

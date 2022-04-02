@@ -13,7 +13,7 @@ const Adds = () => {
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      signIn()
+      route.push(`/signIN?callbackurl=${route.asPath}`)
     }
   });
   const authCtx = useContext(AuthContext)
@@ -98,7 +98,7 @@ const Adds = () => {
   let add11 = t('add-ads:ad-11')
   let add12 = t('add-ads:ad-12')
   let add13 = t('add-ads:add-13')
-
+let pic=t('add-service:pic')
   //add-sh
   let adSh1 = t('add-ads:ad-sh-1')
   let adSh2 = t('add-ads:ad-sh-2')
@@ -107,7 +107,8 @@ const Adds = () => {
 
 
   let addAdsOb = {
-    add1, add2, add3, add4, add5, add6, add7, add8, add9, add10, add11, add12, adSh1, adSh2, adSh3, adBtn, add13
+    add1, add2, add3, add4, add5, add6, add7, add8, add9, add10, add11, add12,
+    adSh1, adSh2, adSh3, adBtn, add13,pic
   }
 
 
@@ -143,6 +144,6 @@ export default Adds
 
 
 export async function getServerSideProps({ locale }) {
-  return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'add-ads', 'profile'])) } }
+  return { props: { ...(await serverSideTranslations(locale, ['home', 'signin','add-service', 'add-ads', 'profile'])) } }
 }
 

@@ -1,21 +1,23 @@
 
 .slid-container{
   display: grid;
+flex-direction: row-reverse;
   justify-content: center;
   grid-template-columns: 150px 30px;
   justify-content: center;
   align-items: flex-start;
-  width: 90%;
+  width: 550px;
   grid-template-areas: "aaa bb";
   margin-right:-60px;
-  height:500px, 
+  height:500px;
+   
 
 }
  
   .slideshow {
     position: relative;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: 70px;
@@ -37,17 +39,24 @@
     align-items: center;
     margin-left: -80px;
     grid-area: b;
-    padding-top: -10px;
+    padding-top: 40px;
     align-content: center;
     cursor: pointer;
+    height: 420px;
 
   }
 
+
+
+
   .thumbail-img{
-  width: 80px;
-  height: 100px;
+ 
   object-fit: cover;
   border-radius: 10px;
+  margin-bottom: 9px;
+  width: 82px;
+  height: 80px;
+
   }
   
 
@@ -171,6 +180,7 @@ cursor: pointer;
   }
 
   
+
 }
 
  .overlay::after{
@@ -184,6 +194,18 @@ cursor: pointer;
   width: 100%;
   height: 100%;
   z-index: 1;
+}
+
+
+
+
+
+@media (max-width:680px) {
+  
+  .slid-container {
+    margin-top: 2px;
+    display: unset;
+  }
 }
 
 

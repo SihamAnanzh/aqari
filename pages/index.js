@@ -58,9 +58,11 @@ const Index = ({ prem, latest, services, Request }) => {
   let sh5 = t('home:search-5')
   let sh6 = t('home:search-6')
   let sh7 = t('home:search-7')
-  let sh8 = t('home:search-8')
-  let sh9 = t('home:search-9')
-  let sh10 = t('home:search-10')
+  let sh8 = t('home:search-title-city')
+  let sh9 = t('home:search-title-service')
+  let sh10 = t('home:search-title-type')
+  let dropTitle = t('home:drop-down-title')
+  let dropSubTitle=t('home:drop-down-subTitle')
 
   let searchOb = {
     sh1,
@@ -71,25 +73,37 @@ const Index = ({ prem, latest, services, Request }) => {
     sh6,
     sh7,
     sh8,
-    sh9, sh10
+    sh9, sh10,
+    dropTitle,
+    dropSubTitle
+    
   }
+  console.log(searchOb);
 
   //footer
   let fo1 = t('home:footer')
 
+
+  
   //adds section
   let ad1 = t('home:ads-1')
   let ad2 = t('home:ads-2')
   let ad3 = t('home:ads-3')
-
+  let premium = t('home:premium')
+  let hour = t('home:hour')
+  let priceCode=t('home:priceCode')
   let adsOb = {
     ad1,
     ad2,
-    ad3
+    ad3,
+    premium,
+    hour,
+    priceCode
   }
 
 
   useEffect(() => {
+    console.log(prem);
     prem && prem.map((adds) => {
       let data = {
         add_id: adds.id,
@@ -215,7 +229,7 @@ const Index = ({ prem, latest, services, Request }) => {
       <Banner bn={bn} />
       <MainSection searchOb={searchOb} />
       <Adds latestData={latestData} premuimAdds={premuimAdds} adsOb={adsOb} />
-      <Footer fo1={fo1} />
+      <Footer  fo1={fo1} />
 
     </>
   )
@@ -252,7 +266,7 @@ export async function getServerSideProps(context) {
 
       // res.data.status.code === 200 &&console.log('success')
       latest = res.data.results
-      console.log(latest);
+      console.log( locale);
 
 
     })

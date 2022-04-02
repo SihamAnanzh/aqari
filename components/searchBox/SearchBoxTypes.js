@@ -10,7 +10,7 @@ const SearchBoxTypes = ({category, searchOb}) => {
 return (
        <>
      
-     <DropdownTypes title={searchOb.sh10} items={category} />
+     <DropdownTypes subTitle={searchOb.dropSubTitle} title={searchOb.sh10} items={category} />
       </>
 )
 }

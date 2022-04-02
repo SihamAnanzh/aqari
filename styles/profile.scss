@@ -577,9 +577,10 @@ background-color: $second-color;
  
 
     .addAdds-tab-container .addAdds-heading h3{
-display: none;    }
+  display: none;    }
 
-    .profile-tab .dropdown-typeList, .profile-tab .dropdown-category, .profile-tab .dropdown-typeList {
+    .profile-tab .dropdown-typeList, .profile-tab 
+    .dropdown-category, .profile-tab .dropdown-typeList {
         width: 80vw;
         margin-right: 20px;
         position: absolute;
@@ -602,27 +603,7 @@ display: none;    }
         margin-bottom: 20px;
         font-size: 14px;
     }
-    .profile-tab .category-icon {
-        top: 30.5%;
-        left: 12%;
-    }
-
-
-
-    
-    .profile-tab .type-icon
-    {
-        left: 12%;
-         top: 34.7%;
-
-
-    }.profile-tab .type-icon.city {
-        left: 12%;
-        top: 38.7%
-
-
-       
-    }
+   
 
     .subNav-items .subNav-item .sub-link {
         width: 139px;
@@ -645,7 +626,8 @@ display: none;    }
         margin-top: 12px;
     }
 
-    .profile-tab .checksbox .chack-groub, .profile-tab .checksbox .chack-groub:last-child
+    .profile-tab .checksbox .chack-groub,
+     .profile-tab .checksbox .chack-groub:last-child
     {
         margin-right: -86px;
     }
@@ -656,30 +638,15 @@ display: none;    }
         margin-bottom: 20px;
         font-size: 14px;
     }
+
+
+    .ltr {
+        .profile-tab .checksbox .chack-groub, .profile-tab
+         .checksbox .chack-groub:last-child {
+             margin-right: -10px;
+         }
+
+    }
 }
 
 
-
-// @media (max-width:400px) {
-  
-    
-
-    
-//     .profile-tab .category-icon {
-//         top:37.2%
-
-
-
-//     } 
-
-//     .profile-tab .type-icon
-//     {
-//         top:33.1%;
-
-//     }.profile-tab .type-icon.city {
-//         top:41.9%
-
-
-       
-//     }
-// }

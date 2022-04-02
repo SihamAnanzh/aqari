@@ -110,16 +110,35 @@ cursor: pointer;
         color: #737373;
         position: relative;
 
-      &::after{
-          content: "|";
-          position: absolute;
-          left: -18px;
+    //   &::after{
+    //       content: "|";
+    //       position: absolute;
+    //       left: -18px;
     
 
-      }
+    //   }
     }
 }
 
+
+
+.ltr .automated-number .att,
+.ltr .automated-number .autom-value{
+    margin-right: 20px;
+}
+
+
+.ltr .contact-estate img{
+    margin-right: 10px;
+}
+
+.ltr .data div{
+    padding-right:0;
+    padding-left:9px;
+    img{
+        margin-right: 5px;
+    }
+}
 .automated-number{
 
  
@@ -129,7 +148,8 @@ margin: 5px auto;
 justify-content: space-evenly;
 text-align: center;
 .autom-value{
-margin-right: 80px; }
+margin-right: 80px;
+ }
 
 
 
@@ -144,7 +164,7 @@ align-items: center;
 margin-top: 30px;
 margin-bottom: 40px;
 border-radius: 10px;
-border:2px solid #737373 ;
+border:2px solid #00416B ;
 border-radius: 20px;
 }
 
@@ -154,7 +174,7 @@ border-radius: 20px;
 }
 
 .contact-estate{
-   background-color: #E6ECF0;
+   background-color: #f2f5f7;
     color: #fff;
     display: flex;
     justify-content:space-between;
@@ -171,7 +191,7 @@ border-radius: 20px;
         font-family: otfPlain;
         font-size: 20px;
         margin-left: 30px;
-
+       
         .whatsApp-icon img{
             width: 21px;
             height: 21px;
@@ -179,7 +199,10 @@ border-radius: 20px;
             margin-top: 6px;
           
         }
+
+        
     }
+   
     .phone{
         width: 173px;
         height: 41px;
@@ -204,7 +227,9 @@ border-radius: 20px;
 
  
 }
-
+.ltr .whatsApp {
+    margin-right: 30px;
+}
 .swiper-slide {
     text-align: center;
     font-size: 18px;
@@ -326,6 +351,9 @@ display: none;
    {
        bottom: -1%;
    }
+
+
+
 @media (max-width:680px) {
 
     .update-slider{
@@ -363,7 +391,7 @@ display: none;
     padding: 5px 10px;
     margin-right: 29px;
     padding-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -392,11 +420,28 @@ display: none;
     .estat-address h5{
         font-size: 16px;
     }
+    .estat-origin{
+        display: none;
+    }
+
+    
+    .estat-fallback{
+        display: grid;
+        grid-template-areas: 
+                "city        spa"
+                "price       desti"
+                "phone  phone";
+    
+        justify-content: center;
+        align-items: center;
+        }
+
+
 }
 
 @media (max-width:570px) {
     .swiper-slide img{
-        height: 50vh;
+        height: 66vh;
     }
     .swiper{
         .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal    {
@@ -432,25 +477,19 @@ display: none;
     margin-right:10px
     }
 
-    .estat-fallback{
-    display: grid;
-    grid-template-areas: 
-            "city        spa"
-            "price       desti"
-            "phone  phone";
 
-    justify-content: center;
-    align-items: center;
-    }
-
-    .estat-origin{
-        display: none;
+    .swiper-slide img{
+        height: 50vh;
     }
 
     .automated-number {
         width: 283px;
         grid-area: phone;
-        margin-right:48px
+        margin-right:48px;
+        .autom-value
+        {
+            margin-left:18px
+        }
     }
 
     .city{
@@ -542,4 +581,7 @@ display: none;
 .estat-conianer{
     padding-top: 110px;
 }
+
+.automated-number{padding-left: unset;}
+
 }

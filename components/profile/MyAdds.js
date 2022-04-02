@@ -11,14 +11,14 @@ const [userData,setUserData]=useState([])
 const authCtx=useContext(AuthContext)
 const route=useRouter()
 
-const session=useSession()
-let userDataSession=session.data.xyz
+  const session = useSession()
+  console.log(session);
   useEffect(()=>{
 
     axios({
       method: "get",
       url: "https://stagingapi.aqarifinder.com/api/user/ads/list",
-      headers: {"lang":route.locale , 'Authorization':userDataSession.id},
+      headers: {"lang":route.locale , 'Authorization':session.data!==null&&session.data.id},
 
     })  .then(res=>{
       setUserData(res.data.results)
@@ -78,11 +78,11 @@ console.log(userData);
     })
     },[userData])
     return (
-    <div className='adds-container'>
+    <div className='adds-container' style={{marginTop:"40px"}}>
          <h1 className='premium-title'>{adsOb.ad2}</h1>
       {
        latest&&latest.map((addsData)=>(
-        <Add singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
+        <Add adsOb={adsOb} singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
 
        ))
        }

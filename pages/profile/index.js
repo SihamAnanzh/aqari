@@ -13,7 +13,7 @@ import Head from 'next/head';
 
 const Index = ()=> {
   let { t } = useTranslation();
-const route=useRouter()
+  const route = useRouter()
   // translations
 
   //nav
@@ -95,20 +95,12 @@ const route=useRouter()
   }
 
 
-  const session = useSession({
+  const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      signIn("credentials", { redirect: false })
-        .then((res) => {
-        console.log(res);
-          // if (ok) {
-          //     route.push("/profile");
-          // } else {
-          //     console.log(error)
-          //     toast("Credentials do not match!",  "error" );
-          // }
-      })    }
-  })
+      route.push(`/signIN?callbackurl=${route.asPath}`);
+    }
+  });
 
 
 
@@ -117,7 +109,7 @@ const route=useRouter()
   return (
     <>
       {
-        session.status == "authenticated" &&
+        session &&
         <>
            <Head>
           <title>{route.locale == "ar" ? "الملف الشخصي" : "my profile"}</title>

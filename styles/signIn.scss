@@ -7,8 +7,8 @@
     align-items: center;
     flex-direction: column;
     padding-top: 60px;
-    padding-right: 700px;
-    padding-left: 700px;
+    padding-right: 600px;
+    padding-left: 600px;
     .sign{
             align-self: flex-start;
       
@@ -206,6 +206,10 @@
     }
 } 
 
+.signin-contanier .forget-passwrod span{
+    margin-right: 2px;
+}
+
 
 .ltr .signin-contanier .sign {
    
@@ -213,7 +217,7 @@
         margin-right: unset; 
         display: flex;
         justify-content: flex-start;
-           margin-left: -261%;
+           margin-left: -250%;
     
 
     }
@@ -234,7 +238,34 @@
                 margin-left: 282%;
         
             }
-    }    
+    } 
+
+    .signin-contanier .sign.entry h2 {
+        margin-left: 331%;
+    }
+    
+    
+
+    .ltr  .signin-contanier .sign.entry {
+   
+        h2{
+     
+            margin-left: -320%;
+    
+        }
+
+
+} 
+
+
+.ltr  .signin-contanier .sign {
+   
+    h2{
+ 
+        margin-left: -210%;
+
+    }
+}    
 
     .signin-contanier h3{
         font-size: 25px;
@@ -248,7 +279,9 @@
     .signin-contanier .password img {
         right: 455px;
     }
-
+    .ltr .signin-contanier .password img {
+        left: 455px;
+    }
 
     .signin-contanier .goSignUp{
         margin-bottom: 70px;
@@ -286,6 +319,7 @@
         }
 }    
 
+
 }
 
 
@@ -305,6 +339,11 @@
     .signin-contanier .password img{
         right: 86%;
     }
+    
+    .ltr .signin-contanier .password img{
+        left: 86%;
+    }
+
 
 
     .signin-contanier h3 {
@@ -322,6 +361,15 @@
         
             }
     }    
+
+    
+
+    .signin-contanier .forget-passwrod a {
+        font-size: 15px;
+    }
+
+
+
 }
 @media (max-width:428px) {
      
@@ -333,11 +381,19 @@
         height: 100%;
 
 
-        h2{
+        .sign h2{
               
-            margin-left: 175%;
+            margin-left: 212%;
     
         }
+    }
+
+    .ltr .signin-contanier .sign h2 {
+                
+        margin-left: -159%;
+    }
+    .ltr .signin-contanier .sign.entry h2 {
+        margin-left: -255%;
     }
 
     .signin-contanier h3 {
@@ -352,7 +408,8 @@
         margin-right: -7px;
           }
 
-    .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn {
+    .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, 
+    .signin-contanier .sign-btn {
         margin-right: 20px;
         height: 62px;
         font-size: 18px;
@@ -446,9 +503,22 @@
             right: 89%;
             top: 86px;
         }
+        .ltr .signin-contanier .password img {
+            left: 89%;
+            top: 86px;
+        }
 
 
 
+
+        .ltr .signin-contanier .forget-passwrod span{
+            margin-right: 3px;
+        }
+
+
+        .ltr .sign-btn{
+            margin-left: 10px;
+        }
         
 
 }

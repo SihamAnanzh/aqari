@@ -51,17 +51,22 @@ const ProfileAdd = () => {
   //footer
   let fo1 = t('home:footer')
 
-  //adds section
-  let ad1 = t('home:ads-1')
-  let ad2 = t('home:ads-2')
-  let ad3 = t('home:ads-3')
 
-  let adsOb = {
-    ad1,
-    ad2,
-    ad3
-  }
-
+ //adds section
+ let ad1 = t('home:ads-1')
+ let ad2 = t('home:ads-2')
+ let ad3 = t('home:ads-3')
+ let premium = t('home:premium')
+ let hour = t('home:hour')
+ let priceCode=t('home:priceCode')
+ let adsOb = {
+   ad1,
+   ad2,
+   ad3,
+   premium,
+   hour,
+   priceCode
+ }
 
 
   //profile
@@ -78,18 +83,18 @@ const ProfileAdd = () => {
   let proOb = {
     pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8
   }
-  const session = useSession({
+  const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      signIn()
+      route.push(`/signIN?callbackurl=${route.asPath}`);
     }
-  })
+  });
   return (
 
 
     <>
       {
-        session.data != null &&
+        // session.data != null &&
         <>
            <Head>
           <title>{route.locale == "ar" ? "إعلاناتي" : "My Ads"}</title>

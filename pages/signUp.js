@@ -6,8 +6,9 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { getCsrfToken, signIn, getSession, providers, useSession, getProviders, signOut } from 'next-auth/react';
 
-const SignUp = () => {
+const SignUp = ({ csrfToken, providers }) => {
 const route=useRouter()
   let { t } = useTranslation();
 
@@ -65,7 +66,7 @@ const route=useRouter()
         <meta name="description" content="" />
       </Head>
       <Nav navOb={navOb} />
-      <SignUpComponents sginUpOb={sginUpOb} />
+      <SignUpComponents sginUpOb={sginUpOb} providers={providers} csrfToken={csrfToken} />
       <Footer fo1={fo1} />
     </div>
   )
@@ -74,6 +75,16 @@ const route=useRouter()
 export default SignUp
 
 
-export async function getServerSideProps({ locale }) {
-  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp'])) } }
+
+export async function getServerSideProps(context) {
+  const providers = await getProviders();
+  const { locale } = context
+
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+      providers: providers,
+      ...(await serverSideTranslations(locale, ['home', 'signin','signUp']))
+    },
+  };
 }

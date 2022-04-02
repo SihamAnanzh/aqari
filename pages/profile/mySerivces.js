@@ -59,14 +59,19 @@ const ProfileService = () => {
   let ad2 = t('home:ads-2')
   let ad3 = t('home:ads-3')
 let newestٍervice=t('home:newestٍervice')
-  let adsOb = {
-    ad1,
-    ad2,
-    ad3,
-    newestٍervice
-  }
 
 
+ let premium = t('home:premium')
+ let hour = t('home:hour')
+ let priceCode=t('home:priceCode')
+ let adsOb = {
+   ad1,
+   ad2,
+   ad3,
+   premium,
+   hour,
+   priceCode,newestٍervice
+ }
 
   //profile
   let pro1 = t('profile:pro-1')
@@ -148,7 +153,7 @@ let newestٍervice=t('home:newestٍervice')
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      signIn()
+      route.push(`/signIN?callbackurl=${route.asPath}`)
     }
   })
 

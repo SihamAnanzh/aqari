@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Packges from '../components/packges/Packges'
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -46,6 +46,13 @@ const PackgesAdd = ({ data }) => {
 
   //footer
   let fo1 = t('home:footer')
+
+
+
+  useEffect(() => {
+
+    console.log(route.query);
+  },[])
   return (
     <div>
       <Head>

@@ -164,7 +164,7 @@ const MainSection = ({ searchOb }) => {
         }}>
           <span className={`action ${showSearchServics ? 'acitveAction' : ''}`}>{searchOb.sh3}</span>
         </div>
-        <div>
+        <div className='search-div'>
           {(showBox) && !showSearchServics ?
             <div className='serarch'>
               <div className='serachContainer first'>

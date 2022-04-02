@@ -2,9 +2,11 @@
     "ads-1": "Featured Ads",
     "ads-2": "Latest ads",
     "ads-3": "More",
+    "ads-4":"انتهت نتائج البحث ولا يوجد المزيد من الإعلانات    ",
+    "ads-5":"عذراً لا يوجد نتائج",
     "banner": "Search for your property and you are your place",
     "footer": "call us",
-    "nav-1": "the main",
+      "nav-1": "the main",
     "nav-10": "add service",
     "nav-11": "Add an office",
     "nav-2": "offices",
@@ -18,8 +20,15 @@
     "search-1": "Sale",
     "search-2": "rent",
     "search-3": "Services",
-    "search-4": "Area name",
-    "search-5": "property type",
-    "search-6": "service type",
-        "search-7": "Search Now"
+    "search-title-city": "Area name",
+    "search-title-type": "property type",
+    "search-title-service": "service type",
+    "search-7": "Search Now",
+    "drop-down-title":"كل محافظات الكويت",
+    "drop-down-subTitle":"All",
+    "premium":"premium",
+    "priceCode":"KWD",
+    "edit":"edit",
+    "hour":"hour"
+    
 }

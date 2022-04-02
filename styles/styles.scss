@@ -3,7 +3,7 @@
 @import './slider.scss';
 @import './shared/nav.scss';
 @import './mainSection.scss';
-@import './adds.scss';
+@import './premAds.scss';
 @import './office.scss';
 @import './packge.scss';
 @import './shared/footer.scss';
@@ -55,6 +55,7 @@ background-color: #fff;
 body{
   .ltr{
     direction: ltr;
+    text-align: left;
     
     }
 }

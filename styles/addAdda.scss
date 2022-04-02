@@ -121,7 +121,8 @@ position: relative;
     .profile-tab .checksbox .chack-groub{
         margin-bottom: 15px;
         margin-right: 0;
-        margin-left: -90%;
+        margin-right: 19%;
+        width: 351px;
     }
 
 
@@ -130,16 +131,23 @@ position: relative;
     }
 }
 
-@media (max-width:1600px) {
-    .profile-tab .category-icon{
-        position: absolute;
-                left: 236px;
-                top: 900px;
-                 z-index: 10;
-               cursor: pointer;
-    }
-    
+
+
+.catergory-add-arrow,.add-type-arrow,.city-add-arrow{
+    position: absolute;
+    left: 4%;
+    bottom: 29px;
 }
+
+.ltr {
+    .catergory-add-arrow,.add-type-arrow,.city-add-arrow{
+        position: absolute;
+        left:95%;
+        bottom: 29px;
+    }
+}
+
+
 @media (max-width:428px) {
     .uploadedImage .img-submite {
         width: 150px;
@@ -162,25 +170,27 @@ position: relative;
 
 }
 
-@media (max-width:800px) {
-    .profile-tab .checksbox {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-direction: column;
-        margin-right:61%;
-    }
+// @media (max-width:800px) {
+//     .profile-tab .checksbox {
+//         display: flex;
+//         justify-content: flex-start;
+//         align-items: flex-start;
+//         flex-direction: column;
+//         margin-right:61%;
+//     }
     
     
-}
+// }
 
 @media (max-width:428px) {
     .profile-tab .checksbox {
         display: flex;
     
         flex-direction: column;
-     margin: 10px auto;
+        margin: 10px auto;
     }
-    
+    .ltr .catergory-add-arrow, .ltr .add-type-arrow, .ltr .city-add-arrow {
+        left: 87%;
+    }
     
 }

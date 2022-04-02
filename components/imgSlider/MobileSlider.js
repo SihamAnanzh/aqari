@@ -7,12 +7,14 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-function MobileSlider({imgs}) {
+function MobileSlider({ imgs }) {
+  
+  console.log(imgs);
   return (
     <>
       <Swiper loop pagination={true} modules={[Pagination]} className="mySwiper">
         {imgs.map((img,index)=>(
-          <SwiperSlide key={index}><img src={img} alt="" /></SwiperSlide>
+          <SwiperSlide key={index}><img src={img.logo_url} alt="" /></SwiperSlide>
 
         ))}
       

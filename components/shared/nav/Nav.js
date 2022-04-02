@@ -5,15 +5,15 @@ import onClickOutside from 'react-onclickoutside';
 import FallBackNav from './FallBackNav'
 import { AuthContext } from '../../../stores/auth-context'
 import axios from 'axios';
-import { useSession,signOut } from 'next-auth/react';
-const Nav = ({ logo, icon,navOb }) => {
+import { useSession, signOut } from 'next-auth/react';
+const Nav = ({ logo, icon, navOb }) => {
     const [showLang, setShowLang] = useState(false)
     const [showAddMenu, setAddMenu] = useState(false)
     const [showNav, setShowNav] = useState(false)
     const [login, setLogin] = useState(false)
     const [movearrow, setMvoeArrow] = useState(false)
     const authCtx = useContext(AuthContext)
-const session=useSession()
+    const session = useSession()
     const [iconTwo, setIconTwo] = useState(true)
     const route = useRouter()
     Nav.handleClickOutside = () => {
@@ -34,19 +34,19 @@ const session=useSession()
                                 <a className='logo'>
                                     <img className='logo-img' src={logo ? logo : '/assets/img/logo.svg'} alt='logo' />
                                 </a>
-                                </Link>
+                            </Link>
 
                         </li>
                         <li className={`${route.asPath === "/" ? "activeNav" : ""}`}>
                             {/* {route.asPath === "/" ? (<div className="main-nav-item active" style={{color:"#fff"}}>الرئيسية</div>) : */}
-                                <Link href="/" className='main-nav-item '>
-                                    <span
+                            <Link href="/" className='main-nav-item '>
+                                <span
                                     className={`${route.asPath === "/" ? "active" : ""}`}
                                 >
                                     {navOb.nav1}
                                 </span>
-                                </Link>
-                           {/* } */}
+                            </Link>
+                            {/* } */}
                         </li>
                         {/* <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNav" : ""}`}>
                             <Link href="/offices" className='main-nav-item'><span
@@ -65,14 +65,14 @@ const session=useSession()
                         <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
                             <Link href={"/signIN"} className='main-nav-item'>
                                 <span
-                                className={`${route.asPath === "/signIN" ? "active" : ""}`}
+                                    className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
-                            >{navOb.nav4}</span></Link>
+                                >{navOb.nav4}</span></Link>
 
                         </li>
-                        
+
                         <li className={`${route.asPath === "/signUp" ? "activeNav" : ""}`}>
-                            {session.data ==null?
+                            {session.data == null ?
                                 <Link href="/signUp" className='main-nav-item'><span
                                     className={`${route.asPath === "/signUp" ? "active" : ""}`}
                                 >{navOb.nav5}</span></Link>
@@ -81,7 +81,7 @@ const session=useSession()
                                         className={`${route.asPath === "/signUp" ? "active" : ""}`}
                                         onClick={() => {
                                             signOut()
-                                                                    }}
+                                        }}
                                     >{navOb.nav6}</span></div>
                                 )}
 
@@ -93,64 +93,69 @@ const session=useSession()
                     <ul className='second-nav-items'>
                         <li style={{
                             height: "50px",
-                            width: "170px",
+                            width: route.locale == 'en' ?'170px': "200px",
                             backgroundColor: route.asPath === "/profile" ? "#00416B" : "",
                             display: 'flex',
                             justifyContent: "center",
                             alignItems: "center",
                             borderRadius: "10px",
+                            marginRight:'10px',
+                            marginLeft:route.locale== 'ar'&&'56px'
 
                         }}>
                             <Link href='/profile' className='second-nav-item'><span
                                 style={{
                                     fontSize: route.asPath == '/profile' ? "20px" : "24px",
                                     color: route.asPath === "/profile" ? "#fff" : "#00416b",
-                                    marginRight: route.asPath == '/profile' ? "4px" : "0"
+                                    marginRight: route.asPath == '/profile' ? "4px" : "-2px"
 
 
                                 }}
                             >{navOb.nav7} </span>
                             </Link>
                         </li>
-                        <div className={`select-lang-menu ${showLang ? "active" : ""}`}>
-                            <span className={`lang-title ${showLang ? "active" : ""}`} onClick={() => {
+                        <li style={{
+                            marginRight: route.locale == 'en' ? '-20px':'-46px', 
+                            background: showLang ? "#00416b" : "#fff",
+                            width:route.locale=='ar'? '127.87px':"166px",
+                             marginLeft:route.locale =='ar'?'20px':"-8px",
+                            height: '50.72px',
+                            paddingLeft:showLang&&"0"
+                        }}
+                            className={`add-adds-menu ${showLang ? "show" : ""}`} >
+                            {/* className={`select-lang-menu ${showLang ? "active" : ""}`} */}
+                            <span style={{
+                                fontSize:route.locale=="en"?"20":"22px",
+                                color: showLang ? "#fff" : '#00416B', 
+                                marginRight: 'unset',
+                                marginLeft: 'unset',
+                                margin:"unset"
+                            }} className={`lang-title ${showLang ? "active" : ""}`} onClick={() => {
                                 setAddMenu(false)
                                 setShowLang(!showLang)
                             }
                             }>
                                 <img src={`/assets/img/${showLang ? 'Arrow - Left 2.svg' : 'Stroke 1.svg'}`} /> {navOb.nav8}</span>
 
-                            <ul className={`select-lang-items ${!showLang ? 'hidden' : 'showMenu'}`}>
-                          
-                                     
-                                     {
-                                         route.locales.map((locale)=>(
-                                             <Link   key={locale}   href={route.asPath} locale={locale}>
-                                            <li  className='arabic-lang'>
-                                                {locale=="ar"&&"عربي"}
-                                                {locale=="en"&&"English"}
-                                                </li>
-                                                </Link>
-  
-                                         ))
-                                     }
-
-              
+                            <ul className={`select-lang-items ${!showLang ? 'hidden' : 'showMenu'}`}
+                                   >
+                                <li><Link href={route.asPath} locale='en'><a style={{ textDecoration: "none", color: "#fff" }}>English</a></Link></li>
+                                <li><Link href={route.asPath} locale='ar'><a style={{ textDecoration: "none", color: "#fff" }}>عربي</a></Link></li>
                             </ul>
-                        </div>
+                        </li>
                         <li>
                             <div className={`add-adds-menu addOfficeAddSerivce ${showAddMenu ? "show" : ""}`}>
                                 <div className="" style={{ zIndex: "4", cursor: 'pointer' }}>  <img className='add-img-btn' width={22}
                                     height={22} onClick={() => {
-                                            setShowLang(false)
-                                            setAddMenu(!showAddMenu)
-                                        }} src={icon ? icon : '/assets/img/+.png'} /></div>
+                                        setShowLang(false)
+                                        setAddMenu(!showAddMenu)
+                                    }} src={icon ? icon : '/assets/img/+.png'} /></div>
                                 <Link href="/profile/addAdds" className='add-adds-item'><span style={{
-                                        marginLeft: '22px',
-                                        marginRight: '17px'
+                                    marginLeft: '22px',
+                                    marginRight:'19px'
                                 }}>
                                     <span className='add-adds-tilte shortcutNav' >{navOb.nav9}
-                                      </span>
+                                    </span>
                                 </span>
                                 </Link>
 
@@ -160,8 +165,13 @@ const session=useSession()
                                         <Link href="/profile/addOffice" className='add-adds-item'><span className='shortcutNav'>{navOb.nav11}</span></Link>
 
                                     </li> */}
-                                    <li>
-                                        <Link href="/profile/addService" className='add-adds-item'><span className='shortcutNav'>{navOb.nav10}</span></Link>
+                                    <li style={{
+                                        marginLeft: '0',
+                                        paddingRight: route.locale=='en'?"46px":"18px"
+                                    }}>
+                                        <Link href="/profile/addService" className='add-adds-item'>
+                                            <span className='shortcutNav'>{navOb.nav10}</span>
+                                        </Link>
 
                                     </li>
 
@@ -191,8 +201,8 @@ const session=useSession()
 
 
                             <ul className={`add-adds-items ${!showAddMenu ? 'hidden' : 'showMenu'}`} style={{
-                                height: "160.6px",
-                                width: '158.5px',
+                                height: "105.6px",
+                                width: '144.5px',
 
                             }}>
                                 <li>

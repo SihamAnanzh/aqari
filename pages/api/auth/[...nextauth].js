@@ -72,38 +72,38 @@ export default NextAuth({
     signIn: '/signIN',
   },
   callbacks: {
-    async signIn(user, account, profile) {
-      if (user.account.provider === 'google') {
-        const endpoint = 'https://stagingapi.aqarifinder.com/api/user/login/social'
-        const response = await axios({
-          method: 'post',
-          url: endpoint,
-          data: {
-            social_id: user.account.providerAccountId,
-            email: user.profile.email,
-            name: user.profile.name
-          },
-          headers: { "Content-Type": "application/json" }
-        });
-        if (response.data.status.code === 200) {
-          user.user.token = response.data.results.token;
-          console.log(response);
-        }
-        else {
-          user = undefined;
+    // async signIn(user, account, profile) {
+    //   if (user.account.provider === 'google') {
+    //     const endpoint = 'https://stagingapi.aqarifinder.com/api/user/login/social'
+    //     const response = await axios({
+    //       method: 'post',
+    //       url: endpoint,
+    //       data: {
+    //         social_id: user.account.providerAccountId,
+    //         email: user.profile.email,
+    //         name: user.profile.name
+    //       },
+    //       headers: { "Content-Type": "application/json" }
+    //     });
+    //     if (response.data.status.code === 200) {
+    //       user.user.token = response.data.results.token;
+    //       console.log(response);
+    //     }
+    //     else {
+    //       user = undefined;
   
-        }
-      }
+    //     }
+    //   }
 
-      if (user !== undefined) {
-        return true;
+    //   if (user !== undefined) {
+    //     return true;
 
-      }
-      else {
-        return false;
-      }
+    //   }
+    //   else {
+    //     return false;
+    //   }
     
-    },
+    // },
   
    
     jwt: ({ user, token }) => {

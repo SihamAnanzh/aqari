@@ -43,33 +43,36 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
                         {navOb.nav3}</span></Link>
 
                 </li>
-                <li style={{
-                    marginBottom: switchlang && "80px",
+                <li onClick={() => {
+                    setMvoeArrow(!movearrow)
+                    setSwitchLang(!switchlang)
+                }
+                } style={{
+                    // marginBottom: switchlang && "80px",
                     backgroundColor: switchlang && "#EDAA43",
-                    position: "relative"
+                    cursor: "pointer",
+                    position: "relative",
+                    padding: "unset",
+
                 }}>
-                    <span onClick={() => {
-                        setMvoeArrow(!movearrow)
-                        setSwitchLang(!switchlang)
-                    }
-                    }>
+                    <span style={{ width: '100%', padding: '7px' }}>
                         <img src="/assets/img/lang-nav.svg" alt="" />
-                        اللغة
+                        {navOb.nav8}
                         <img src='/assets/img/Stroke 2.svg' alt='' className='lang-arr' />
 
-                        <ul className='switch-lang'
-                            style={{
-                                display: !switchlang ? 'none' : "",
-                                height: "96.6px",
-                                marginRight: "-5px",
-                                marginLeft: "-5px",
-                                width: "388.5px",
+
+                    </span>
+                    <ul className='switch-lang'
+                        style={{
+                            display: !switchlang ? 'none' : "",
+                            height: "96.6px",
+                            width: "100%",
 
 
 
-                            }}>
+                        }}>
 
-                            {/* {
+                        {/* {
                                 route.locales.map((locale) => (
                                     <Link key={locale} href={route.asPath} locale={locale}>
                                         <li className='arabic-lang'>
@@ -80,10 +83,35 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
 
                                 ))
                             } */}
-                            <li><Link href={route.asPath} locale='en'><a style={{textDecoration:"none"}}>English</a></Link></li>
-                            <li><Link  href={route.asPath} locale='ar'><a style={{textDecoration:"none"}}>عربي</a></Link></li>
-                        </ul>
-                    </span>
+                        <Link Link style={{ textDecoration: "none" }} href={route.asPath}
+                            locale='en'>
+                            <a className='fall-lang' style={{
+                                textDecoration: "none",
+                                fontSize: '16px',
+                                paddingTop: '3px'
+                            }}>
+                                <li style={{ textDecoration: "none" }}>
+
+                                    English
+
+                                </li>
+                            </a>
+                        </Link>
+
+                        <Link Link style={{ textDecoration: "none" }} href={route.asPath}
+                            locale='ar'>
+                            <a className='fall-nav' style={{
+                                textDecoration: "none",
+                                fontSize: '15px',
+                                paddingTop:'11px'
+                            }}>
+                                <li style={{ textDecoration: "none",fontSize:"16px" }}>
+                                    عربي
+                                </li>
+                            </a>
+                        </Link>
+
+                    </ul>
                 </li>
 
 

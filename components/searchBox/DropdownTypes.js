@@ -2,7 +2,7 @@ import React , {useState,useEffect,useContext} from 'react'
 import onClickOutside from 'react-onclickoutside';
 import { FilterContext } from '../../stores/filter';
 
-const DropdownTypes = ({items=[], title}) => {
+const DropdownTypes = ({items=[], subTitle,title}) => {
     const [open, setOpen] = useState(false);
     const [selection, setSelection] = useState({});
     const [showListTypes, setShowListTypes]=useState(true)
@@ -65,7 +65,7 @@ const DropdownTypes = ({items=[], title}) => {
         {
                open ?  <ul className={`list-items dropItem${showListTypes?'hidden':""}`}>
                {/* {itemstype} */}
-               <h3 >الكل</h3>
+                    <h3 >{subTitle}</h3>
                 {items.map((item)=>(
                     <li className='list-item' key={item.id} id={item.id} onClick={(e)=>
                         {

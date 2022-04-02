@@ -5,19 +5,23 @@ import Slider from './Slider';
 import MobileSlider from './MobileSlider';
   
 
-const Thumbnail = ({ arr, image, index ,setCurrentIndex,length}) => {
-
+const Thumbnail = ({ arr, image, index, setCurrentIndex, length }) => {
 
     return (
     
     <div className="tumbnail">
-          <Carousel pagination={false}  showArrows={false} enableMouseSwipe verticalMode   itemPadding={[10, 50]} itemsToShow={length} >
+        <Carousel pagination={false} showArrows={false}
+          enableMouseSwipe
+          verticalMode
+          itemPadding={[10, 50]}
+          itemsToShow={4}
+        >
       {
         arr.map((imgsrc, i) => (
             <div key={i}
              onClick={()=>setCurrentIndex(i)}
             style={{
-              height:"66px",
+              height:"70px",
               backgroundColor:"#fff",
               margin:"0",
               marginTop:"0",
@@ -36,6 +40,7 @@ const Thumbnail = ({ arr, image, index ,setCurrentIndex,length}) => {
         ))
       }
            </Carousel>
+        
  
     </div>
 
@@ -49,8 +54,8 @@ const Slideshow = ({ imgs,setOverlay }) => {
   const [currentInedx,setCurrentIndex]=useState(0)
   const [img,setImg]=useState([])
   // Slideshow.handleClickOutside = () => setShowImg(false)
- console.log(imgs);
- console.log(img)
+ 
+
   useEffect(() => {
     setIndex(0)
       imgs.map((img)=>{
@@ -79,7 +84,8 @@ const Slideshow = ({ imgs,setOverlay }) => {
 <>
       <div className="slid-container">
        <div className="slideshow" onClick={()=>setShowImg(!showImg)}>
-      <img className="mainImg" src={img[index]} width="200px" height='200px' />
+          <img className="mainImg" src={img[index]} width="200px" height='200px' />
+
     </div>
         <div className="" style={{
       position:"relative"
@@ -89,12 +95,12 @@ const Slideshow = ({ imgs,setOverlay }) => {
       </div>
 
       {
-        showImg &&  <Slider imgs={img} setShowImg={setShowImg} currentInedx={currentInedx} showImg={showImg} />
+        showImg &&  <Slider imgs={imgs} setShowImg={setShowImg} currentInedx={currentInedx} showImg={showImg} />
                 }
 
                 
   <div className="update-slider">
-       <MobileSlider imgs={img}/>
+       <MobileSlider imgs={imgs}/>
     </div>
       </>
   )

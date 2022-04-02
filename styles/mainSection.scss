@@ -53,13 +53,13 @@ padding-top: 20px;
 
 
 .second{
-    margin-left: 10px;
+    margin-left: -8px;
     width: 324px;
     height: 62px;
  }
  .first{
     margin-left: 31px;
-    padding-right: 38px;
+    padding-right: 32px;
  }
 
 .btnSearch button{
@@ -71,8 +71,8 @@ outline: none;
 border: none;
 border-radius: 10px;
 color: #fff;
-margin-left: 53px;
-margin-right: 20px;
+margin-left: 41px;
+margin-right: 29px;
 font-family:otfPlain ;
 }
 .dropdwon-menu{
@@ -225,29 +225,26 @@ font-family:otfPlain ;
 
 
 .ltr{
-    .serarch{
-        flex-direction: row-reverse;
-    }
+  
 
 
     .arrow-drop-name, .arrow-drop{
-        right: -334px
+        right: 18px
     }
 
     .serach-content{
     margin-left: -7px;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: flex-start;
     }
 
 
     .dropdwon-menu li {
-        flex-direction: row-reverse;
         display: flex;
     }
 
     .dropdwon-menu li::after{
-        right: 22px;
+        right: 20px;
     }
 
 
@@ -260,26 +257,32 @@ font-family:otfPlain ;
     text-align:left ;
     }
 
+    .dropdwon-menu li::before{
+        right: 8.3%;
+    }
+
 }
 
 @media (max-width:1600px) {
 
      .second {
-        margin-left: -25px;
-        width: 324px;
+        margin-left: 12px;
+        width: 336px;
         height: 62px;
      }
-
+ .ltr .second{
+     margin-left: -11px;
+ }
 .dropdwon-menu {
 
     padding: 10px;
-    width: 283px;
+    width: 336px;
 
 }
 
 .dropdwon-menu ul {
     border: 1px solid;
-    width: 286px;
+    width: 336px;
     background: #00416B;
     color: #fff;
     padding: 17px 0px;
@@ -293,7 +296,7 @@ font-family:otfPlain ;
     content: "";
     width: 14px;
     height: 14px;
-    right: 91%;
+    right: 91.3%;
     margin-top: 9px;
     border: 1px solid #fff;
 }
@@ -309,7 +312,7 @@ font-family:otfPlain ;
  .arrow-drop-name,
 .arrow-drop{
     position: absolute;
-    right: 256px;
+    right: 298px;
     top: 25px;
 }
 }
@@ -378,8 +381,24 @@ font-family:otfPlain ;
         margin-right: 0;
         margin-left: 0;
     }
-  }
 
+
+  
+
+    .ltr .serarch .second {
+        margin-right: 30px;
+    }
+
+    .ltr .search-div{
+        margin-right: -87px;
+    }
+
+    .ltr .btnSearch button {
+     margin-left: -81px;
+     width: 285px;    
+    }
+
+}
 
   @media (max-width:428px) {
     .dropdwon-menu ul {
@@ -410,4 +429,21 @@ font-family:otfPlain ;
       .arrow-drop-name, .arrow-drop{
           right:330px
       }
+
+
+      .ltr .search-div {
+        margin-right:-6%;
+    }
+
+
+    .serarch div{
+        width: 85vw;
+    }
+
+
+    .ltr .btnSearch button {
+        margin-left: 13%;
+        width: 53vw;
+      
+    }
   }

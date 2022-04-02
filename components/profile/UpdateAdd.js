@@ -147,32 +147,32 @@ const  handelSubmit=(e)=>{
          <h3>{addAdsOb.add2}</h3>
          <input type="text" maxLength={12} className="sign-mail" placeholder={addAdsOb.add2} value={phoneNumber} tabIndex={2} onChange={e=>setPhoneNumber(e.target.value)}/>
      </div>
-     <div className="sign-input profile-category mail " id='category-list' >
+     <div className="sign-input profile-category mail " id='category-list'     style={{ position: "relative" }} >
          <h3>{addAdsOb.add3}</h3>
          <input type="text" className="sign-mail" placeholder={addAdsOb.add3}   tabIndex={3} id='category-list' value={category} onChange={e=>setCategory(e.target.value)} onClick={(e)=>{
              setShwoListCategory(!showListCategory)
              setShwoListType(false)
              setShowListNames(false)
          }} />
-         <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon' />
+         <img src="/assets/img/Stroke 1.svg" alt="" className='add-type-arrow'  />
 
          <ul className="dropdown-category"  style={{
            display: !showListCategory ?'none':""
          }}  >
-            <li  id='1' onClick={(e)=>{
-               setType_id(e.target.id)
+            <li id='1' onClick={(e) => {
+                  setType_id(e.target.id)
 
-              setCategory('ايجار')
-            }} className={`category-item ${category==="ايجار" ? 'active-category':""}`} value='ايجار
-                          '>ايجار</li>
-            <li id='2' className={`category-item ${category==="بيع" ? 'active-category':""}`}  value='بيع'
-               onClick={(e)=>{
-                setType_id(e.target.id)
-              setCategory('بيع')
-            }} >بيع</li>
+                  setCategory( (route.locale=='ar'? "ايجار":"rent"))
+                }} className={`category-item ${category === (route.locale == 'ar' ? "ايجار" : "rent") ? 'active-category' : ""}`}
+                  value={(route.locale == 'ar' ? "ايجار" : "rent")}>{route.locale=='ar'? "ايجار":"rent"}</li>
+                <li id='2' className={`category-item ${category ===(route.locale=='ar'? "بيع":"selling")? 'active-category' : ""}`} value={(route.locale=='ar'? "يع":"selling")}
+                  onClick={(e) => {
+                    setType_id(e.target.id)
+                    setCategory( (route.locale=='ar'? "بيع":"selling"))
+                  }} >{route.locale == 'ar' ? "بيع" : "selling"}</li>
          </ul>
      </div>
-     <div className="sign-input addAdds-type" id='type-list'>
+     <div className="sign-input addAdds-type" id='type-list'     style={{ position: "relative" }}>
          <h3>{addAdsOb.add4}</h3>
          <input type="text" className="sign-mail" placeholder={addAdsOb.add4}  tabIndex={3}  id='type-list' value={typeEstat}
          onChange={e=>setTypeEstat(e.target.value)}
@@ -183,7 +183,7 @@ const  handelSubmit=(e)=>{
           
          }}/>
          
-        <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon' />
+        <img src="/assets/img/Stroke 1.svg" alt="" className='city-add-arrow' />
       {
         <ul className="dropdown-typeList" id='type-list' style={{
           display: !showListType ?'none':""
@@ -215,7 +215,8 @@ const  handelSubmit=(e)=>{
          </ul>
       }
      </div>
-     <div className="sign-input  addAdds-region" id='city-list' >
+            <div className="sign-input  addAdds-region" id='city-list'
+              style={{ position: "relative" }} >
          <h3>{addAdsOb.add5}</h3>
          <input type="text" className="sign-mail" placeholder={addAdsOb.add5}   value={city} tabIndex={3}   id='city-list'
          onChange={e=>setCity(e.target.value)}
@@ -225,7 +226,7 @@ const  handelSubmit=(e)=>{
              setShwoListCategory(false)
          
          }}/>
-        <img src="/assets/img/Stroke 1.svg" alt="" className='category-icon type-icon city' />
+        <img src="/assets/img/Stroke 1.svg" alt=""className='catergory-add-arrow' />
       {
         <ul className="dropdown-typeList" id='city-list' style={{
           display: !showListNames ?'none':""
@@ -264,7 +265,8 @@ const  handelSubmit=(e)=>{
      </div>
      <div className="sign-input  addAdds-auto-num">
          <h3>{addAdsOb.add9}</h3>
-         <input type="text" className="sign-mail" placeholder={addAdsOb.add9} value={autoNum} tabIndex={3} onChange={e=>setAutoNum(e.target.value)}/>
+              <input type="text" className="sign-mail" placeholder={addAdsOb.add9}
+                value={autoNum} tabIndex={3} onChange={e => setAutoNum(e.target.value)} />
      </div>
      <div className="sign-input  addAdds-disc">
          <h3>{addAdsOb.add10}</h3>

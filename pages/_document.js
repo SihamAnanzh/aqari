@@ -44,7 +44,7 @@ class MyDocument extends Document {
           />
                <meta name="description" content="" />
         </Head>
-        <body id='body' className={this.state.lang === "en" ? "ltr" : "rtl"}>
+        <body id='body' >
           <Main />
           <NextScript />
         </body>

@@ -48,20 +48,53 @@ const SearchResult = (props) => {
   let fo1 = t('home:footer')
 
   //adds section
-  let ad1 = t('home:ads-1')
-  let ad2 = t('home:ads-2')
-  let ad3 = t('home:ads-3')
-  let ad4 = t('home:ads-4')
-  let ad5 = t('home:ads-5')
+ //addads
+ let add1 = t('add-ads:ad-1')
+ let add2 = t('add-ads:ad-2')
+ let add3 = t('add-ads:ad-3')
+ let add4 = t('add-ads:ad-4')
+ let add5 = t('add-ads:ad-5')
+ let add6 = t('add-ads:ad-6')
+ let add7 = t('add-ads:ad-7')
+ let add8 = t('add-ads:ad-8')
+ let add9 = t('add-ads:ad-9')
+ let add10 = t('add-ads:ad-10')
+ let add11 = t('add-ads:ad-11')
+ let add12 = t('add-ads:ad-12')
+ let add13 = t('add-ads:add-13')
+ let edit = t('home:edit')
 
-  let adsOb = {
-    ad1,
-    ad2,
-    ad3,
-    ad4,
-    ad5
+ //add-sh
+ let adSh1 = t('add-ads:ad-sh-1')
+ let adSh2 = t('add-ads:ad-sh-2')
+ let adSh3 = t('add-ads:ad-sh-3')
+ let adBtn = t('add-ads:add-btn')
+
+
+  
+
+  let addAdsOb = {
+    add1, add2, add3, add4,
+    add5, add6, add7, add8,
+    add9, add10, add11, add12, adSh1,
+    adSh2, adSh3, adBtn, add13, edit,hour,priceCode
   }
 
+    //adds section
+    let ad1 = t('home:ads-1')
+    let ad2 = t('home:ads-2')
+    let ad3 = t('home:ads-3')
+    let premium = t('home:premium')
+    let hour = t('home:hour')
+    let priceCode=t('home:priceCode')
+    let adsOb = {
+      ad1,
+      ad2,
+      ad3,
+      premium,
+      hour,
+      priceCode
+    }
 
   return (
     <>
@@ -74,7 +107,7 @@ const SearchResult = (props) => {
           filterCtx.addsResults.ads &&
           filterCtx.addsResults.ads.length == 0 ?
           <NoResults navOb={navOb} fo1={fo1} adsOb={adsOb} /> :
-          <SearchResultComponents navOb={navOb} fo1={fo1} adsOb={adsOb} />
+          <SearchResultComponents  navOb={navOb} addAdsOb={addAdsOb} fo1={fo1} adsOb={adsOb} />
       }
     </>
   )
@@ -85,5 +118,5 @@ export default SearchResult
 
 
 export async function getServerSideProps({ locale }) {
-  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp'])) } }
+  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp','add-ads'])) } }
 }

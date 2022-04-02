@@ -6,7 +6,6 @@ import axios from 'axios'
 
 const Adds = ({premuimAdds,latestData,ads,premium,adsOb}) => {
 const [visible,setVisible]=useState(5)
-  console.log(latestData);
 const loadMoreHandler=()=>{
 
   setVisible(pre=>pre+5)
@@ -17,13 +16,13 @@ const loadMoreHandler=()=>{
          {
            premuimAdds&& premuimAdds.map((premiumAddsData,index)=>(
            
-              <PremuimAdd singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.add_id} add_id={premiumAddsData.add_id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
+              <PremuimAdd  adsOb={adsOb} singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.add_id} add_id={premiumAddsData.add_id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
 
          ))
          }
             {
            premium&& premium.map((premiumAddsData)=>(
-          <PremuimAdd singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.add_id} add_id={premiumAddsData.add_id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
+          <PremuimAdd   adsOb={adsOb} singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.add_id} add_id={premiumAddsData.add_id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
 
          ))
          }
@@ -32,13 +31,13 @@ const loadMoreHandler=()=>{
            <h1 className='premium-title'>{adsOb.ad2}</h1>
            {
          latestData&&latestData.slice(0,visible).map((addsData)=>(
-          <Add singleEstate={addsData.singleEstatData}  add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
+          <Add  adsOb={adsOb} singleEstate={addsData.singleEstatData}  add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
 
          ))
          }
          {
-         ads&& ads.slice(0,2).map((addsData)=>(
-          <Add singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.images}/>
+         ads&& ads.slice(0,visible).map((addsData)=>(
+          <Add   adsOb={adsOb} singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.images}/>
 
          ))
          }
@@ -53,7 +52,7 @@ const loadMoreHandler=()=>{
             <img src='/assets/img/+btn.svg' style={{
               width: '20px',
               height: '20px',
-              marginRight:'5px',
+              marginRight:'12px',
               marginTop:'8px',
               cursor:'pointer'
             }}/>

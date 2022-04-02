@@ -15,14 +15,12 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     const session = useSession()
     const [rememberME, setRememberMe] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-    const [wrongPassword, setWrongPassword] = useState(true);
     const [email, setEmail] = useState('')
     const [password, setPassowrd] = useState('')
-    const [showWrongMessage, setShowWrongPassword] = useState(false)
-    const [wrongEmail, setWrongEmail] = useState(false)
-    const [click, setClick] = useState(false)
+    const [showWrongMessage, setShowWrongPassword] = useState(true)
+    const [messateError, setMessageError] = useState('')
     const route = useRouter()
-    const authCtx = useContext(AuthContext)
+    const { callbackurl } = route.query;
     const handleChnage = (e) => {
         return e.target.value
     }
@@ -38,31 +36,29 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
 
 
-    // signIn("cridentioanl", {username : '', password: ''})
-    // const handleSubmit = () => {
-    //     password !== "" && email !== "" ? (
-    //         axios.post('https://stagingapi.aqarifinder.com/api/user/login', { email, password })
-    //             .then(res => {
 
-    //                 res.data.status.code === 401 ? setWrongPassword(false) : (
-    //                     console.log(res),
-    //                     authCtx.login(res.data.results.token, res.data.results.id),
-    //                     authCtx.premiumAdd = res.data.results.premium_ads_left,
-    //                     route.replace('/profile')
 
-    //                 )
-
-    //             }).catch(err => console.log(err))
-    //     ) : alert('الرجاء تعبئة جميع الحقول')
-
-    //     // signIn("credentials", { username: email, password: password })
-    // }
-
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const res = await signIn('aqari-login-auth', {
+            redirect: false,
+            username: e.target.username.value,
+            password: e.target.password.value,
+            callbackUrl: `${callbackurl}`,
+        });
+        if (res?.error) {
+            setShowWrongPassword(false);
+            // setMessageError(res.error)
+        }
+        else {
+            setShowWrongPassword(true);
+            if (res.url) route.push(res.url);
+        }
+    }
 
 
     const handelRemember = () => {
-        console.log(cookies.Name);
-        setRememberMe(!rememberME),
+     
             rememberME ? (
                 cookies.Name = "",
                 cookies.Password = "",
@@ -81,44 +77,39 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     }
     return (
         <div className="signin-contanier">
-
-            <form method="post" action="/api/auth/callback/aqari-login-auth">
+    
+            <form method="post" action="/api/auth/callback/aqari-login-auth" onSubmit={async (e) => await handleLogin(e)}>
                 <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 
                 <div className="inputs-group">
                     <div className="sign-input">
-                        <div className="sign">
-                            <h2 style={{ marginRight: "17px" }}>{sginOb.sn1}</h2>
+                        <div className="sign entry">
+                            <h2>{sginOb.sn1}</h2>
                         </div>
                     </div>
                     <div className="sign-input mail">
                         <h3>{sginOb.sn2}</h3>
-                        <input style={{
-                            border: wrongEmail && '2px solid red'
-                        }}
+                        <input
                             id='username'
                             name='username'
                             type="email"
                             className="sign-mail"
                             required
                             placeholder={sginOb.sn2} tabIndex={1} autoFocus onChange={e => {
-                            setEmail(handleChnage(e))
-                            setWrongPassword(true)
-                        }}
+                                setEmail(handleChnage(e))
+                                setShowWrongPassword(true)
+                            }}
                         />
                     </div>
                     <div className="sign-input password">
                         <h3>{sginOb.sn3}</h3>
-                        <input id='passwrod' style={{
-                            border: showWrongMessage && '2px solid red'
-                        }}
+                        <input id='passwrod'
                             name='password' type={showPassword ? "text" : "password"} className="sign-password" placeholder={sginOb.sn3} tabIndex={2} onChange={e => {
                                 setPassowrd(handleChnage(e))
-                                setWrongPassword(true)
-                                setShowWrongPassword(false)
+                                setShowWrongPassword(true)
                             }} />
                         <span className='passwrod-icon' onClick={() => setShowPassword(!showPassword)}>
-                            <img src={`assets/img/${showPassword ? "showPassword" : "hidePassword"}.svg`} alt="" style={{
+                            <img src={`/assets/img/${showPassword ? "showPassword" : "hidePassword"}.svg`} alt="" style={{
                                 cursor: 'pointer'
                             }} />
                         </span>
@@ -131,18 +122,18 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     <div style={{
                         PaddingBottom: '15px'
                     }}>
-                        {/* <span className="error-message" style={{
-                            display: `${wrongPassword ? 'none' : ""}`,
+                        <span className="error-message" style={{
+                            display: `${showWrongMessage ? 'none' : ""}`,
                             marginRight: '-13px',
                             paddingBottom: "9px"
                         }}>
-                            <img src="assets/img/Error.svg" alt="" style={{
+                            <img src="/assets/img/Error.svg" alt="" style={{
 
                                 paddingLeft: "4px",
 
                             }} />
                             {sginOb.sn9}
-                        </span> */}
+                        </span>
                         <Link href="/signIN/forgetPasswrod">
                             {sginOb.sn4}
                         </Link>
@@ -150,7 +141,8 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
                     <span onClick={handelRemember} >
 
-                        <span className='remember-word' onClick={() => setRememberMe(!rememberME)} >
+                        <span className='remember-word'
+                          >
                             {/* <span style={{
                      display:"block"
                  }}></span> */}
@@ -160,7 +152,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
                 </div>
                 <div>
-                    <button type="submit" className='sign-btn' style={{
+                    <button type='submit' className='sign-btn' style={{
                         outline: 'none',
                         border: 'none'
                     }}> {sginOb.sn1}</button>

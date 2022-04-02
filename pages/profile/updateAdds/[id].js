@@ -108,9 +108,10 @@ const Update = ({ updateData }) => {
 
   const session = useSession({
     required: true,
-    onUnauthenticated() {
-      signIn()
-    }
+
+      onUnauthenticated() {
+        route.push(`/signIN?callbackurl=${route.asPath}`)
+      }
   })
 
   return (

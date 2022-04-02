@@ -53,13 +53,17 @@ const MyFavorite = () => {
   let ad1 = t('home:ads-1')
   let ad2 = t('home:ads-2')
   let ad3 = t('home:ads-3')
-
+  let premium = t('home:premium')
+  let hour = t('home:hour')
+  let priceCode=t('home:priceCode')
   let adsOb = {
     ad1,
     ad2,
-    ad3
+    ad3,
+    premium,
+    hour,
+    priceCode
   }
-
 
 
   //profile
@@ -80,7 +84,7 @@ const MyFavorite = () => {
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      signIn()
+      route.push(`/signIN?callbackurl=${route.asPath}`)
     }
   })
   return (
@@ -96,7 +100,7 @@ const MyFavorite = () => {
           <div className='profile-container'>
             <h1 className="profile-heading">{pro1}</h1>
             <SubNav proOb={proOb} />
-            <MyFav />
+            <MyFav adsOb={ adsOb}/>
           </div>
           <Footer fo1={fo1} />
         </>

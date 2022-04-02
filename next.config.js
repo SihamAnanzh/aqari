@@ -7,7 +7,7 @@ const nextConfig = {
 
 }
 
-process.env.NEXTAUTH_URL= 'https://akarii-demo.herokuapp.com/';
+// process.env.NEXTAUTH_URL= 'https://akarii-demo.herokuapp.com/';
 
 module.exports = {
   i18n: {

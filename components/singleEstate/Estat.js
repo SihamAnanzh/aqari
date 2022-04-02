@@ -71,7 +71,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
     <>
 
       <div className='estat-conianer'>
-        <div className="imgSliderAdd" style={{position:'relative'}}>
+        <div className="imgSliderAdd" style={{position:'relative',direction:"rtl"}}>
           {withImg && <Slideshow
             setOverlay={setOverlay}
             imgs={data.images}
@@ -109,17 +109,19 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
                 padding: '5px',
                 cursor: 'pointer'
               }}><Link href={
-                `/profile/updateAdds/${data.add_id}`
+                {
+                    pathname: `/profile/updateAdds/${data.add_id}`,
+                  query:`/${data.title.trim().replace(' ', '-')}`
 
-              }
-              //  as={`/profile/updateAdds/${data.title.trim().replace(' ', '-')}`}
+              }}
+               
 
               >{addAdsOb.edit}</Link></h4>}
 
           </div>
           <div className="data">
             <div className='data-time'>
-              <img src='/assets/img/time-estat.svg' width={8.63} height={8.63} />4 ساعة</div>
+              <img src='/assets/img/time-estat.svg' width={8.63} height={8.63} />4 {addAdsOb.hour}</div>
             <div className='data-views'>
               <img src='/assets/img/view2-01 (2).svg' width={12.47} height={7.95} />
 
@@ -136,16 +138,37 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           <div className="first-line">
             <div className="city estat-deatils">
               <span className="att">{addAdsOb.add5}</span>
-
+              <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                marginTop:"8px"
+                }}/>              
+                
+                </span>
               <span>{data.city}</span>
             </div>
             <div className="space estat-deatils">
               <span className="att">{addAdsOb.add6}</span>
-              <span> متر <span>{data.space}</span></span>
+              <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                marginTop:"8px"
+                }}/>              
+                
+                </span>
+              <span><span>{data.space}</span> {route.locale=="ar"?"متر":"meter"}</span>
 
             </div>
             <div className="destination estat-deatils">
               <span className="att">{addAdsOb.add8}</span>
+              <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                  marginTop: "8px",
+                zIndex:'10'
+                }}/>              
+                
+                </span>
               <span>{data.interface}</span>
             </div>
 
@@ -153,11 +176,29 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           <div className="second-line">
             <div className="price estat-deatils">
               <span className="att">{addAdsOb.add7}</span>
-              <span> د.ك <span>{data.price}</span></span>
+              <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                  marginTop: "8px",
+                  zIndex:'10'
+                
+                }}/>              
+                
+                </span>
+              <span><span>{data.price}</span> {addAdsOb.priceCode}</span>
 
             </div>
             <div className="automated-number estat-deatils">
               <span className="att">{addAdsOb.add9}</span>
+              <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                  marginTop: "8px",
+                  zIndex:'10'
+                
+                }}/>              
+                
+                </span>
               <span className='autom-value'>{data.autoNumber}</span>
 
             </div>
@@ -169,26 +210,72 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
 
           <div className="city estat-deatils">
             <span className="att">{addAdsOb.add5}</span>
-
+            <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                marginTop: "8px",
+                zIndex:'10'
+                
+                }}/>              
+                
+                </span>
             <span>{data.city}</span>
           </div>
           <div className="space estat-deatils">
             <span className="att">{addAdsOb.add6}</span>
-            <span> متر <span>{data.space}</span></span>
+            <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                marginTop: "8px",
+                zIndex:'10'
+                
+                }}/>              
+                
+                </span>
+            <span><span>{data.space}</span>{route.locale=="ar"?"متر":"meter"}</span>
 
           </div>
           <div className="destination estat-deatils">
             <span className="att">{addAdsOb.add8}</span>
+            <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                marginTop: "8px",
+                zIndex:'10'
+                
+                }}/>              
+                
+                </span>
             <span>{data.interface}</span>
           </div>
 
           <div className="price estat-deatils">
             <span className="att">{addAdsOb.add7}</span>
-            <span> د.ك <span>{data.price}</span></span>
+            <span className=''>
+              <img src='/assets/img/bar.svg' style={{
+                  height: "28px",
+                marginTop: "8px",
+                zIndex:'10'
+                
+                }}/>              
+                
+                </span>
+            <span>{addAdsOb.priceCode}<span>{data.price}</span></span>
 
           </div>
           <div className="automated-number estat-deatils">
             <span className="att">{addAdsOb.add9}</span>
+            <span className=''>
+              <img src='/assets/img/bar.svg'
+                style={{
+                  height: "28px",
+                  marginTop: "8px",
+                  zIndex: '10',
+                  paddingRight:"30px"
+                
+                }}/>              
+              
+                </span>
             <span className='autom-value'>{data.autoNumber}</span>
           </div>
 
