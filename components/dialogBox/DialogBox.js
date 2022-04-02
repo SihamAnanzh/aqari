@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
+import { useRouter } from 'next/dist/client/router'
 
-const DialogBox = ({message}) => {
+const DialogBox = ({ message }) => {
+  const route=useRouter()
   return (
     <div className='box'>
         <div className="icon-box">
@@ -10,20 +12,20 @@ const DialogBox = ({message}) => {
             }}/>
         </div>
         <div className="content-box">
-            <p>
-        من فضلك تفقد بريدك الالكتروني لإعادة تعيين كلمة المرور
+        <p>
+          {route.locale=='ar'?"من فضلك تفقد بريدك الالكتروني لإعادة تعيين كلمة المرور":"Please check your email to reset your password"}
         </p>
         </div>
         <div className="box-btns">
            
               <div className="box-btn signUp-btn">
-              <Link href='/signIN/forgetPasswrod/confirmPassword'>اغلاق</Link>
+          <Link href='/signIN/forgetPasswrod/confirmPassword'>{route.locale=='ar'?"اغلاق":"close"}</Link>
               </div>
               <div className="box-btn">
-            <div  onClick={()=>console.log(res)}>إعادة الإرسال</div>
+          <div onClick={() => console.log(res)}>{route.locale=='ar'?"إعادة الإرسال":"resend email"}</div>
             </div>
-        </div>
-    </div>
+      </div>
+      </div>
   )
 }
 

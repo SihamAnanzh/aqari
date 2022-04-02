@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-const PackgeBox = ({setShowDialogiBox,showDialogBoxn,count}) => {
+import { useRouter } from 'next/router'
+const PackgeBox = ({ setShowDialogiBox, showDialogBoxn, count }) => {
+    const route=useRouter()
   return (
     <div className='box' style={{
         top:"82%"
@@ -11,8 +13,9 @@ const PackgeBox = ({setShowDialogiBox,showDialogBoxn,count}) => {
             }}/>
         </div>
         <div className="content-box">
-            <p>{`تبقى لديك اعلان مميز عدد ${count} هل ترغب بالاستمرار ؟ 
-`}
+              <p>{route.locale == 'ar' ? `تبقى لديك اعلان مميز عدد ${count} هل ترغب بالاستمرار ؟` : 
+                  `You still have ${count} premium ads ? Do you want to continue?`
+                }
             </p>
         </div>
         <div className="box-btns">

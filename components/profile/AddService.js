@@ -138,7 +138,8 @@ const AddService = ({ serviceOb }) => {
     let formData;
     !disable && (
       title == '' || desc == '' || price == '' || phoneNumber == " " || files.length == 0 ?
-        swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning')
+      swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('تحذير', 'Fill all field please', 'warning'))
+
         :
         (
           formData = new FormData(),
@@ -162,13 +163,17 @@ const AddService = ({ serviceOb }) => {
             data: formData,
           })
             .then((response) => {
-              response.data.status.code == 200 && swal("تهانينا", 'تمت إضافة الخدمة بنجاح', 'success')
+              response.data.status.code == 200 && swal(route.locale == 'ar'?
+                ("تهانينا", 'تمت إضافة الخدمة بنجاح', 'success'):
+                ("'well done", 'Serivce Added Successfully', 'success'))
+
               route.replace('/profile/mySerivces')
             })
             .catch((response) => {
 
-              swal("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
-            })
+              swal(route.locale == 'ar' ? ("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+              : ("You can not add at the moment", 'try later', 'error')
+               )             })
 
         )
 

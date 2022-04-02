@@ -65,7 +65,8 @@ console.log(imageOne);
         addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum
         == "" || phoneNumber ==undefined || imageOne==undefined || imageTwo==undefined || imageThree==undefined ||
         imageFour==undefined ?
-          swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning') : (
+        swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('تحذير', 'Fill all field please', 'warning'))
+        : (
             setFiles([imageOne, imageTwo, imageThree, imageFour]),
 
             formData = new FormData(),
@@ -97,13 +98,16 @@ console.log(imageOne);
               data: formData,
             })
               .then((response) => {
-                response.data.status.code == 200 && swal("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success')
+                response.data.status.code == 200 && swal(route.locale == 'ar' ?
+                  ("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success'):("'well done", 'Ad Added Successfully', 'success'))
                 route.replace('/profile/myAdds')
 
               })
-              .catch((response) => {
-                swal("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
-              })
+            .catch((response) => {
+              swal(route.locale == 'ar' ? ("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+              : ("You can not add at the moment", 'try later', 'error')
+               ) }
+            )
 
           )
       )

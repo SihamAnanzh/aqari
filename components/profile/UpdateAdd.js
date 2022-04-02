@@ -44,7 +44,7 @@ const  handelSubmit=(e)=>{
 
     let data;
   addTitle == ''|| desc == ''|| space =="" || front ==''|| price == ''|| autoNum ==""||phoneNumber == " "?
-  swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):
+  swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('تحذير', 'Fill all field please', 'warning')):
   (
 
       data={
@@ -75,14 +75,20 @@ const  handelSubmit=(e)=>{
         .then( (response) =>{
           console.log(response);
     
-        response.data.status.code == 200&&  (swal("تهانينا",'تمت تعديل الإعلان بنجاح','success'),
-          route.replace('/profile/myAdds'))
+          response.data.status.code == 200 &&
+          (
+            swal(route.locale == 'ar' ? ("تهانينا", 'تمت تعديل الإعلان بنجاح', 'success') :
+              ("well done", 'Ad updated Successfully', 'success')),
+              route.replace('/profile/myAdds')
+          
+            )  
       
         })
         .catch( (response)=> {
           console.log(response);
-           swal("لا يمكنك التعديل في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
-        })
+          swal(route.locale == 'ar' ? ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+          : ("You can not edit at the moment", 'try later', 'error')
+          )        })
         
   )
    

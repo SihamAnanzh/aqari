@@ -96,7 +96,7 @@ const UpdateService = ({updateData,serviceOb}) => {
         let formData;
         title == '' || desc == '' || price == '' || phoneNumber == " ",
           whatsPhone == "" ?
-        swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning')     
+          swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('تحذير', 'Fill all field please', 'warning'))
           :
           (
             formData=new FormData(),
@@ -119,13 +119,15 @@ const UpdateService = ({updateData,serviceOb}) => {
               data: formData,
             })
               .then( (response) =>{
-                         response.data.status.code == 200&& swal("تهانينا",'تمت تعديل الخدمة بنجاح','success')
+                         response.data.status.code == 200&& swal(route.locale == 'ar' ? ("تهانينا", 'تمت تعديل الإعلان بنجاح', 'success') :
+                         ("well done", 'Serivce updated Successfully', 'success')),
                          route.replace('/profile/mySerivces')
               })
               .catch( (response)=> {
         
-                swal("لا يمكنك التعديل في الوقت الحالي",'الرجاء المحاولة في وقت لاحق','error')
-              })
+                swal(route.locale == 'ar' ? ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+                : ("You can not edit  at the moment", 'try later', 'error')
+                 )               })
     
           )
       

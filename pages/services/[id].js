@@ -13,6 +13,7 @@ const SingleServices = ({ data }) => {
   const [withImg, setWithImg] = useState(false)
   const [overlay, setOverlay] = useState(false)
   let { t } = useTranslation();
+  const route=useRouter()
 
 
   useEffect(() => {

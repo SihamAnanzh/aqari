@@ -13,7 +13,7 @@ import Head from 'next/head';
 const Update = ({ updateData }) => {
   const authCtx = useContext(AuthContext)
   let { t } = useTranslation();
-
+const route=useRouter()
   // translations
 
   //nav

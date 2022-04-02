@@ -29,7 +29,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
 
   useEffect(() => {
     session.data != null && session.data.xyz.sub == data.user_id ? setUserAdd(true) : setUserAdd(false)
-  }, [data.user_id])
+  }, [])
 
 
   const toggleFavAdds = () => {

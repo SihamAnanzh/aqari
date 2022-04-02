@@ -21,10 +21,10 @@ export const ContactUs = ({navOb,fo1,contactOB}) => {
     },[clear])
    const  handleClick=()=>{
        name ==''||email==""||phone==''||message==""?
-       swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning')
+       swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('warning', 'Fill all field please', 'warning'))
 
        :axios.post('https://stagingapi.aqarifinder.com/api/contact_us/create',{name, email,message, phone}).then(res=>{
-        swal("شكرا للتواصل",'تم ارسال الرسالة بنجاح','success')
+        swal(route.locale=='ar'?("شكرا للتواصل",'تم ارسال الرسالة بنجاح','success'):("Done",'message sent successfully','success'))
         route.reload()
   setClear(true)
        })

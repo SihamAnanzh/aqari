@@ -18,7 +18,7 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
 
   useEffect(() => {
     session.data != null && session.data.xyz.sub == data.user_id ? setUserAdd(true) : setUserAdd(false)
-  }, [data.user_id])
+  }, [])
 
 
   const toggleFavAdds = () => {
