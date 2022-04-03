@@ -288,8 +288,10 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           <SimpleMap2 getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat} />
         </div>
         <div className='contact-estate'>
-          <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' /></span><a style={{ textDecoration: "none", color: "#fff", fontFamily: "fangsong" }} href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>0787012409</a></div>
-          <div className='phone' style={{ fontFamily: "fangsong" }}><span className='address-phone'><img src='/assets/img/phone.svg' /></span>{data.phone}</div>
+          <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' />
+          </span><a style={{ textDecoration: "none", color: "#fff", fontFamily: "fangsong" }} href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>0787012409</a></div>
+          <div className='phone' style={{ fontFamily: "fangsong" }}><span className='address-phone'>
+            <img src='/assets/img/phone.svg' /></span>{data.phone}</div>
         </div>
       </div>
 

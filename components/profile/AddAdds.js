@@ -448,7 +448,7 @@ console.log(imageOne);
 
                 <a style={{
                   textDecoration: "none"
-                }} href={`${showDialogBox && authCtx.premiumAdd == 0 ? ' /packges' : "#"}`} target='_blank'>
+                }} href={`${showDialogBox && authCtx.premiumAdd == 0 ? ' /packages' : "#"}`} target='_blank'>
                   <img src={`/assets/img/${!checkedAdd ? 'emptyCheck' : 'fullCheck'}.svg`} alt="" />
                   <span>{addAdsOb.adSh1}</span>
                 </a>

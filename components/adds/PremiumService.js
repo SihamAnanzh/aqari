@@ -43,8 +43,11 @@ console.log(props);
             </div>
             <div className="contact-prem secondAdd">
 
-                <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' /></span>{props.whatsApp}</div>
-                <div className='phone'><span className='address-phone'><img src='/assets/img/phone.svg' /></span>{props.phone}</div>
+                      <div className='whatsApp'>
+                          <span className='whatsApp-icon'>
+                              <img src='/assets/img/whatsApp.svg' /></span>{props.whatsApp}</div>
+                      <div className='phone'><span className='address-phone'><img src='/assets/img/phone.svg' />
+                      </span>{props.phone}</div>
 
             </div>
         </div>

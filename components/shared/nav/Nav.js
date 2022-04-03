@@ -56,9 +56,9 @@ const Nav = ({ logo, icon, navOb }) => {
                                 {navOb.nav2}</span></Link>
 
                         </li> */}
-                        <li className={`${route.asPath === "/packges" ? "activeNav" : ""}`}>
+                        <li className={`${route.asPath === "/packages" ? "activeNav" : ""}`}>
                             <Link href="/packges" className='main-nav-item'><span
-                                className={`${route.asPath === "/packges" ? "active" : ""}`}
+                                className={`${route.asPath === "/packages" ? "active" : ""}`}
                             >{navOb.nav3}</span></Link>
 
                         </li>

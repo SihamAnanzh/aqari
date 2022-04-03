@@ -42,9 +42,11 @@ const PremuimAdd = (props) => {
                         {props.disc.length > 150 ? props.disc.substr(0, 150 - 1) + "..." : props.disc}
                     </div>
                     <div className="contact-prem secondAdd">
-                    <div className='phone'><span className='address-phone'><img src='/assets/img/phone.svg' /></span>{props.phone}</div>
+                        <div className='phone'>
+                            <span className='address-phone'><img src='/assets/img/phone.svg' /></span>{props.phone}</div>
 
-                        <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' /></span>{props.whatsApp}</div>
+                        <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' />
+                        </span>{props.whatsApp}</div>
 
                     </div>
                 </div>

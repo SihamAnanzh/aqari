@@ -10,10 +10,31 @@ const Packge = (props) => {
     const route = useRouter()
     let formData = new FormData()
     formData.append('package_id', props.packgeId)
-    formData.append('callbackurl','https://www.google.jo/')
+    formData.append('callbackurl','https://akarii-demo.herokuapp.com/packages/')
+    let formDataTow = new formData()
+    formDataTow.append('package_id', props.packgeId)
 
 
 
+    useEffect(() => {
+        console.log(route.query);
+        route.query.paymentId &&
+            (
+                axios({
+                    method: "post",
+                    url: "https://stagingapi.aqarifinder.com/api//user/package/purchase/${route.query.paymentId}",
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        'Authorization': session.data != null ? session.data.id : route.replace('/signIN')
+                    },
+                    data: formDataTow
+
+                }).then((res) => {
+            console.log(res);
+          })
+    
+          )
+      },[])
     
 
     const handleClick = () => {

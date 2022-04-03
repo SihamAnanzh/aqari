@@ -153,7 +153,7 @@ let newestٍervice=t('home:newestٍervice')
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      route.push(`/signIN?callbackurl=${route.asPath}`)
+      route.push(`/signIN?callbackurl=${window.origin}`);
     }
   })
 

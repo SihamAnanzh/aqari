@@ -40,7 +40,7 @@ const SignIN = ({ csrfToken, providers }) => {
   const authCxt = useContext(AuthContext)
   const route = useRouter()
   // translations
-  console.log(session);
+  console.log();
   //nav
   let nav1 = t('home:nav-1')
   let nav2 = t('home:nav-2')
