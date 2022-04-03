@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
@@ -11,7 +11,7 @@ const Packge = (props) => {
     let formData = new FormData()
     formData.append('package_id', props.packgeId)
     formData.append('callbackurl','https://akarii-demo.herokuapp.com/packages/')
-    let formDataTow = new formData()
+    let formDataTow = new FormData()
     formDataTow.append('package_id', props.packgeId)
 
 

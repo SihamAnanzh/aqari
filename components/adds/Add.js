@@ -4,7 +4,7 @@ import React from 'react'
 const Add = (props) => {
   console.log(props);
   return (
-    <Link href={{
+    <Link  style={{textDecoration:'none'}}  href={{
       pathname: `/advertises/${props.add_id}`,
       query:`title=${props.title.trim().replace(' ',"-")}`
     }}>  

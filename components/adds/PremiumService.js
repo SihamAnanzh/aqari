@@ -4,7 +4,7 @@ import Link from 'next/link'
 const PremiumService = (props) => {
 console.log(props);
   return (
-           <Link href={{
+           <Link  style={{textDecoration:'none'}}  href={{
             pathname: `/services/${props.id}`,
             query:`title=${props.title.trim().replace(' ',"-")}`
         }}>

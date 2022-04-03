@@ -3,7 +3,7 @@ import React from 'react'
 
 const PremuimAdd = (props) => {
     return (
-        <Link href={{
+        <Link style={{textDecoration:'none'}} href={{
             pathname: `/advertises/${props.add_id}`,
             query:`title=${props.title.trim().replace(' ',"-")}`
         }}>

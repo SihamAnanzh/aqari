@@ -35,7 +35,7 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
 
     </li> */}
                 <li className={`${route.asPath === "/packages" ? "activeNavFall" : ""}`}>
-                    <Link href="/packges" className='main-nav-item'><span
+                    <Link href="/packages" className='main-nav-item'><span
                         className={`${route.asPath === "/packages" ? "active" : ""}`}
                     >
                         <img src="/assets/img/packegIcon-nav.svg" alt="" />
