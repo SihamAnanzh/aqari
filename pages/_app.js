@@ -8,9 +8,10 @@ import { useRouter } from "next/router";
 import { appWithTranslation } from "next-i18next";
 import { TranslateContext, TranslateProvider } from '../stores/translate-context'
 
+
 function MyApp({
   Component,
-  pageProps
+  pageProps,name
 }) {
 
   const router = useRouter();
@@ -42,6 +43,9 @@ function MyApp({
 
 
   return (
+    <>
+  
+ 
     <SessionProvider session={pageProps.session}>
       <FliterProvider>
         <AuthContextProvider>
@@ -55,7 +59,8 @@ function MyApp({
         </AuthContextProvider>
       </FliterProvider>
 
-    </SessionProvider>
+      </SessionProvider>
+      </>
   )
 }
 

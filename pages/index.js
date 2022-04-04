@@ -11,8 +11,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSession, getSession } from 'next-auth/react'
 import Head from "next/head";
 import { useRouter } from 'next/router'
+import FACEBOOK_PIXEL_1 from '../components/Pixle/facebook/pixel-1'
 
-const Index = ({ prem, latest, services, Request }) => {
+const Index = ({ prem, latest, services, Request,name }) => {
   const [premuimAdds, setPremuimAdds] = useState([])
   const [latestData, setLeastestAdd] = useState([])
   const route=useRouter()
@@ -214,6 +215,8 @@ const Index = ({ prem, latest, services, Request }) => {
     <>
     
       <Head>
+
+    
         <title>{route.locale == "ar"?"عقاري":"akariFinder"}</title>
         <meta name="description" content={premuimAdds.map((add) => {
           let content = add.disc + ","
