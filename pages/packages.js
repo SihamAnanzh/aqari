@@ -5,7 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import BackBtn from '../components/backBtn';
+import BackBtn from '../components/BackBtn';
 
 
 const PackgesAdd = ({ data }) => {
