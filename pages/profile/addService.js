@@ -9,6 +9,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
+import BackBtn from '../../components/BackBtn';
 const Service = () => {
 
   const authCtx = useContext(AuthContext)
@@ -115,6 +116,7 @@ const Service = () => {
             <SubNav proOb={proOb} />
             <AddService serviceOb={serviceOb} />
           </div>
+          <BackBtn/>
           <Footer />
         </>
       }

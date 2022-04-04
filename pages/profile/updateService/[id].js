@@ -10,6 +10,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import BackBtn from '../../../components/BackBtn';
 
 const Update = ({ updateData }) => {
 
@@ -135,6 +136,7 @@ const Update = ({ updateData }) => {
           <SubNav proOb={proOb} />
           <UpdateService updateData={updateData} serviceOb={serviceOb} />
         </div>
+        <BackBtn/>
         <Footer fo1={fo1} />
       </>
 

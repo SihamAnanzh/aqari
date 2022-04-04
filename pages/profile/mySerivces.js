@@ -10,6 +10,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
+import BackBtn from '../../components/BackBtn';
 
 
 const ProfileService = () => {
@@ -171,6 +172,7 @@ let newestٍervice=t('home:newestٍervice')
             <h1 className="profile-heading">{pro1}</h1>
             <SubNav proOb={proOb} />
           <MyService serviceData={serviceData} adsOb={adsOb} />
+          <BackBtn/>
           </div>
           <Footer fo1={fo1}/>
         </>

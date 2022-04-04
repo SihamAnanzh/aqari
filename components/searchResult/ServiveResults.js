@@ -5,6 +5,7 @@ import Nav from '../shared/nav/Nav'
 import Add from '../adds/Add'
 import { FilterContext } from '../../stores/filter';
 import { TranslateContext } from '../../stores/translate-context'
+import BackBtn from '../BackBtn'
 
 const ServiveResults = ({navOb,adsOb, fo1}) => {
     const [latestData,setLeastestAdd]=useState([])
@@ -68,7 +69,8 @@ const ServiveResults = ({navOb,adsOb, fo1}) => {
           <span className="end-results">
      {adsOb.ad5}
           </span>
-    </div>
+      </div>
+      <BackBtn/>
       <Footer fo1={fo1}/>
     </div>  )
 }

@@ -9,6 +9,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
+import BackBtn from '../../components/BackBtn';
 const MyFavorite = () => {
   const authCtx = useContext(AuthContext)
   const route = useRouter()
@@ -102,6 +103,7 @@ const MyFavorite = () => {
             <SubNav proOb={proOb} />
             <MyFav adsOb={ adsOb}/>
           </div>
+          <BackBtn/>
           <Footer fo1={fo1} />
         </>
 

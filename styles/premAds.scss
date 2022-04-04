@@ -324,7 +324,7 @@ margin-right: 10px;
 }
 
 .ltr .prem-word {
-    left: 94.3%;
+    left: 85.3%;
 }
 
 .ad-contanier .detials{
@@ -351,9 +351,12 @@ margin-right: 10px;
 
     .info-prem{
         width: 231px;
+        align-items: center;
     }
     .ad-contanier .info-prem {
         width: 451px;
+        align-items: center;
+
     }
     .ad-contanier .desc-prem {
         width: 550px;
@@ -378,10 +381,62 @@ margin-right: 10px;
         display: none;
     }
     
-    .contact-prem.secondAdd{
+    .ltr .contact-prem.secondAdd{
         display: flex;
         margin-top: 12px;
+        width: 100%;
+        justify-content: space-between;
+
+        .phone,.whatsApp{
+            margin-right: unset;
+            margin-left: unset;
+            width: 157px;
+        }
     }
+    .contact-prem.secondAdd{
+        // display: flex;
+        // margin-top: 12px;
+        // width: 100%;
+        // justify-content: space-between;
+        display: flex;
+        margin-top: 14px;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+
+        .phone,.whatsApp{
+            margin-right: unset;
+            margin-left: unset;
+            width: 157px;
+        }
+    }
+
+.contact-prem.secondAdd.serv{
+    display: flex;
+    margin-top: 14px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+     margin-right: 10px;
+    .phone,.whatsApp{
+        margin-right: unset;
+        margin-left: unset;
+        width: 157px;
+    }
+}
+
+.ltr .contact-prem.secondAdd.serv{
+    display: flex;
+    margin-top: 14px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  margin-right: 10px;
+    .phone,.whatsApp{
+        margin-right: unset;
+        margin-left: unset;
+   
+    }}
 
     .prem-contanier {
         width: 568px;
@@ -608,7 +663,7 @@ width: 187px;
             }
             h1{
             text-align: left;
-        margin-left:24px
+          margin-left:3%
     }
 
         .prem-contanier .prem-word{
@@ -620,15 +675,15 @@ width: 187px;
 
 
 
-        .ltr .contact-prem .phone span{
-         margin-right: 3px;        }
-        .ltr .contact-prem .whatsApp span{
+        // .ltr .contact-prem .phone span{
+        //  margin-right: 3px;        }
+        // .ltr .contact-prem .whatsApp span{
 
-           margin-right: 4px;
-        }
+        //    margin-right: 4px;
+        // }
 
         .ltr .ad-second .detials{
-          width:154px
+          width:155px
         }
 
       
@@ -643,26 +698,26 @@ width: 187px;
             width: 158px;
         }
 
-        .contact-prem .phone {
+        // .contact-prem .phone {
 
-            width: 167px;
-            height: 29px;
-            background-color: $main-color;
-              border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: otfPlain;
-            font-size: 20px;
-            margin-right: 8px;
-            .address-phone img{
-                width: 16px;
-                height: 15px;
-                margin-left: 10px;
-                margin-top: 6px;
-            }
+        //     width: 167px;
+        //     height: 29px;
+        //     background-color: $main-color;
+        //       border-radius: 5px;
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        //     font-family: otfPlain;
+        //     font-size: 20px;
+        //     margin-right: 8px;
+        //     .address-phone img{
+        //         width: 16px;
+        //         height: 15px;
+        //         margin-left: 10px;
+        //         margin-top: 6px;
+        //     }
             
-        }
+        // }
 
     
  

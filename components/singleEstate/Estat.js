@@ -7,7 +7,7 @@ import SimpleMap2 from '../map/phone-map'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
-
+import { ArrowBack } from '@mui/icons-material'
 
 const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const [addToFav, setAddtoFav] = useState(data.isFav)
@@ -70,7 +70,9 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   return (
     <>
 
-      <div className='estat-conianer'>
+      <div className='estat-conianer' onTouchMoveCapture={(e)=>console.log(e)} style={{
+          paddingTop:!withImg&&"5%"
+      }}>
         <div className="imgSliderAdd" style={{position:'relative',direction:"rtl"}}>
           {withImg && <Slideshow
             setOverlay={setOverlay}
@@ -88,7 +90,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
               <h3 className="estat-name">{data.title}</h3>
               <h5 className="estate-address" >
                 <img src="/assets/img/location.svg" alt="" />
-                {data.address}
+                {data.address.charAt(0).toUpperCase() + data.address.slice(1)}
               </h5>
             </div>
             {!userAdd ?
@@ -97,18 +99,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
                   <img src="/assets/img/emptyHearrt.svg" alt="" />
                 }
 
-              </div> : <h4 className='editAdd' style={{
-                width: '103px',
-                height: '35px',
-                background: "#00416B",
-                color: '#fff',
-                fontFamily: 'otfPlain',
-                textAlign: 'center',
-                fontSize: "20px",
-                borderRadius: '10px',
-                padding: '5px',
-                cursor: 'pointer'
-              }}><Link href={
+              </div> : <h4 className='editAdd' ><Link href={
                 {
                     pathname: `/profile/updateAdds/${data.add_id}`,
                   query:`/${data.title.trim().replace(' ', '-')}`
@@ -156,7 +147,12 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
                 }}/>              
                 
                 </span>
-              <span><span>{data.space}</span> {route.locale=="ar"?"متر":"meter"}</span>
+              <span>
+                
+                <span>{data.space}
+                </span>
+                {route.locale == "ar" ? "متر" : "meter"}
+              </span>
 
             </div>
             <div className="destination estat-deatils">
@@ -232,7 +228,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
                 }}/>              
                 
                 </span>
-            <span><span>{data.space}</span>{route.locale=="ar"?"متر":"meter"}</span>
+            <span><span>{data.space}</span> {route.locale=="ar"?"متر":"meter"}</span>
 
           </div>
           <div className="destination estat-deatils">
@@ -260,7 +256,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
                 }}/>              
                 
                 </span>
-            <span>{addAdsOb.priceCode}<span>{data.price}</span></span>
+            <span>{data.price}<span> {addAdsOb.priceCode} </span></span>
 
           </div>
           <div className="automated-number estat-deatils">
@@ -289,12 +285,14 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
         </div>
         <div className='contact-estate'>
           <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' />
-          </span><a style={{ textDecoration: "none", color: "#fff", fontFamily: "fangsong" }} href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>0787012409</a></div>
-          <div className='phone' style={{ fontFamily: "fangsong" }}><span className='address-phone'>
+          </span>
+            <a style={{ textDecoration: "none", color: "#fff" }}
+              href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>{data.whatsApp}</a>
+          </div>
+          <div className='phone' ><span className='address-phone'>
             <img src='/assets/img/phone.svg' /></span>{data.phone}</div>
         </div>
       </div>
-
     </>
   )
 }

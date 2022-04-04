@@ -1,8 +1,8 @@
-.sppiner-container{
+.sppiner-container,.bg img{
 width: 100vw;
 height: 100vh;
 padding: 0;
-margin-left: -20px;
+// margin-left: -20px;
 overflow: hidden;
 }
 
@@ -44,6 +44,34 @@ width: 301px;
         }
 }
 
+.second-loader{
+    display: none;
+
+}
+.second-loader .bg img{
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+
+}
+
+
+
+
+@media (max-width:1020px) {
+    .first-loader{
+        display: none;
+    }
+
+    .second-loader{
+        display: block;
+    }
+    
+}
 
 @media (max-width:482px) {
 

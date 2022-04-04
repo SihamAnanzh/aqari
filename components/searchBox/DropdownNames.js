@@ -110,9 +110,10 @@ console.log(item);
                 {items.map((item)=>(
                     <li className='list-item'  key={item.id}  id={item.id} onClick={(e)=>
                        
-                        
-                        {
+                       
 
+                        { 
+                
                             // let indexRegion=regionsId.findIndex((el)=>el===item.id)
                             // if(indexRegion == -1){
                             //     let newArray=[...regionsId]
@@ -137,7 +138,8 @@ console.log(item);
                             setRegionsId(pre=>[...pre,item.id])
                                setSelection(pre=>[...pre,item.title])
                                setSelectItems(pre=>[...pre,selectInfo])
-                                AddActiveClass(e.target.id)
+                               AddActiveClass(e.target.id)
+                               setOpen(false)
                             //  let regionId=regionsId.findIndex((el)=>el===item.id)
                             //   regionId == -1 && setRegionsId(pre=>[...pre,item.id])
                             //     console.log(index);

@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head'
+import BackBtn from '../../components/BackBtn'
 
 
 const SingleServices = ({ data }) => {
@@ -134,7 +135,8 @@ const SingleServices = ({ data }) => {
       </Head>
       <Nav navOb={navOb} />
       <Banner content={content} />
-      <Service  addAdsOb={addAdsOb} withImg={withImg} data={data} setOverlay={setOverlay} priceWrod={priceWrod} />
+      <Service addAdsOb={addAdsOb} withImg={withImg} data={data} setOverlay={setOverlay} priceWrod={priceWrod} />
+      <BackBtn/>
       <Footer fo1={fo1} />
     </div>
   )

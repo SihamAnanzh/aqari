@@ -10,6 +10,7 @@ import { AuthContext } from '../../stores/auth-context'
 import { getSession } from 'next-auth/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import BackBtn from '../../components/BackBtn'
 
 
 const SingleEstate = ({ data }) => {
@@ -122,6 +123,7 @@ const route=useRouter()
       <Nav navOb={navOb} />
       <Banner content={content} bn={bn} />
       <Estat withImg={withImg} data={data} setOverlay={setOverlay} adsOb={adsOb} addAdsOb={addAdsOb} />
+      <BackBtn/>
       <Footer fo1={fo1} />
     </div>
   )
@@ -130,13 +132,24 @@ const route=useRouter()
 }
 
 
+
+
 export default SingleEstate;
+function sleep(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
+
 
 export async function getServerSideProps(context) {
   let data;
   let { locale } = context
   const { id } = context.params;
   let session = getSession(context)
+  await sleep(2000);
+ 
 
   if (id) {
     await axios.get(`https://stagingapi.aqarifinder.com/api/ads/${id}`, { headers: { 'Authorization': session.data != null ? session.data.id : null, 'lang': locale } }).then((res) => {

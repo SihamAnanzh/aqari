@@ -8,7 +8,8 @@ const Loader = ({}) => {
 
 
   return (
-    <div className='sppiner-container'>
+    <>
+        <div className='sppiner-container first-loader'>
         <video muted autoPlay loop  style={{
             zIndex:'-1',
             position:"fixed"
@@ -23,6 +24,19 @@ const Loader = ({}) => {
         </div>
 
     </div>
+    <div className='sppiner-container second-loader'>
+        <div className="bg">
+          <img src="/assets/img/bg.png" alt=""  style={{objectFit:'cover'}}/>
+          </div>
+        <img src='/assets/img/Aqare-Finder-Logo-Png.png' className='img-sppiner' />
+        <div className="spinners">
+        <ClipLoader  color='#fff' loading='true'  size={100} />
+
+        </div>
+
+    </div>
+    </>
+ 
   )
 }
 

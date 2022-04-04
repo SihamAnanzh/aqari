@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from 'next/router'
 import Head from 'next/head';
+import BackBtn from '../components/BackBtn';
 
 const Contactus = () => {
   const route = useRouter()
@@ -60,6 +61,7 @@ const Contactus = () => {
         <title>{route.locale == 'ar' ? 'تواصل معنا' : "Contact Us"}</title>
       </Head>
       <ContactUs navOb={navOb} fo1={fo1} contactOB={contactOb} />
+      <BackBtn/>
     </>
   )
 }

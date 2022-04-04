@@ -5,6 +5,7 @@ import Nav from '../shared/nav/Nav'
 import Add from '../adds/Add'
 import { FilterContext } from '../../stores/filter';
 import { TranslateContext } from '../../stores/translate-context';
+import BackBtn from '../BackBtn'
 
 
 const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
@@ -138,6 +139,7 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
         <span className="end-results">{adsOb.ad4}
         </span>
       </div>
+      <BackBtn/>
       <Footer fo1={fo1} />
     </div>
   )

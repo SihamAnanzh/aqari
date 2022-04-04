@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 import { getCookieParser } from 'next/dist/server/api-utils'
 import { signIn, useSession, } from 'next-auth/react';
 import { Button } from '@mui/material'
+import BackBtn from '../BackBtn'
 
 
 
@@ -194,6 +195,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
                 </span>
             </div>
+            <BackBtn/>
         </div>
     )
 }

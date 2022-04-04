@@ -60,7 +60,9 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
 
   return (
 
-    <div className='estat-conianer'>
+    <div className='estat-conianer' style={{
+      paddingTop:!withImg&&"5%"
+  }}>
       <div className="imgSliderAdd" style={{ position: 'relative', direction: "rtl" }}>
         {withImg && <Slideshow
           setOverlay={setOverlay}
@@ -76,53 +78,17 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
             <h3 className="estat-name">{data.title}</h3>
             <h5 className="estate-address" >
               <img src="/assets/img/location.svg" alt="" />
-              {data.address}
+              {data.address.charAt(0).toUpperCase() + data.address.slice(1)}
             </h5>
           </div>
-          {/* {!userAdd ? 
-                  <div className="fav-estat" onClick={toggleFavAdds}>
-                {addToFav?  <img src="/assets/img/fav-icon.svg" alt="" />:
-                  <img src="/assets/img/emptyHearrt.svg" alt="" />
-                }
-                
-              </div>: <h4 className='editAdd'  style={{
-                width:'103px',
-                height:'35px',
-                background:"#00416B",
-                color:'#fff',
-                fontFamily:'otfPlain',
-                textAlign:'center',
-                fontSize:"18px",
-                borderRadius:'10px',
-                padding:'5px',
-                cursor:'pointer'
-              }}><Link  
-     
-              href={{
-                pathname:`/profile/updateService/${data.add_id}`,
-                query:data.id
-            }}
-                     
-              // as={'/profile/updateService/'+ data.title.trim().replace(' ', '-') + "/" + data.id}
-              >تعديل</Link></h4> } */}
+         
           {userAdd ?
             <div className="fav-estat" onClick={toggleFavAdds}>
               {addToFav ? <img src="/assets/img/fav-icon.svg" alt="" /> :
                 <img src="/assets/img/emptyHearrt.svg" alt="" />
               }
 
-            </div> : <h4 className='editAdd' style={{
-              width: '103px',
-              height: '35px',
-              background: "#00416B",
-              color: '#fff',
-              fontFamily: 'otfPlain',
-              textAlign: 'center',
-              fontSize: "20px",
-              borderRadius: '10px',
-              padding: '5px',
-              cursor: 'pointer'
-            }}><Link href={
+            </div> : <h4 className='editAdd'><Link href={
               `/profile/updateService/${data.add_id}`
 
             }

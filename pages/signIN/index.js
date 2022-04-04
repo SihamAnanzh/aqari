@@ -9,7 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../stores/auth-context';
 import Head from 'next/head';
-
+import BackBtn from '../../components/BackBtn'
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);

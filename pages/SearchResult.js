@@ -6,6 +6,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import BackBtn from '../components/BackBtn';
 
 const SearchResult = (props) => {
   const filterCtx = useContext(FilterContext)
@@ -107,7 +108,8 @@ const SearchResult = (props) => {
           filterCtx.addsResults.ads &&
           filterCtx.addsResults.ads.length == 0 ?
           <NoResults navOb={navOb} fo1={fo1} adsOb={adsOb} /> :
-          <SearchResultComponents  navOb={navOb} addAdsOb={addAdsOb} fo1={fo1} adsOb={adsOb} />
+          <SearchResultComponents navOb={navOb} addAdsOb={addAdsOb} fo1={fo1} adsOb={adsOb} />
+        
       }
     </>
   )

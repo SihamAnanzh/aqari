@@ -4,7 +4,7 @@ import Footer from '../shared/footer/Footer'
 import axios from 'axios'
 import swal from 'sweetalert';
 import { useRouter } from 'next/router';
-
+import BackBtn from '../BackBtn'
 export const ContactUs = ({navOb,fo1,contactOB}) => {
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
@@ -24,7 +24,13 @@ export const ContactUs = ({navOb,fo1,contactOB}) => {
        swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('warning', 'Fill all field please', 'warning'))
 
        :axios.post('https://stagingapi.aqarifinder.com/api/contact_us/create',{name, email,message, phone}).then(res=>{
-        swal(route.locale=='ar'?("شكرا للتواصل",'تم ارسال الرسالة بنجاح','success'):("Done",'message sent successfully','success'))
+           swal(route.locale == 'ar' ?
+               ("شكرا للتواصل",
+                   "تم ارسال الرسالة بنجاح"
+                   , 'success') :
+               ("Done",
+                   'message sent successfully',
+                   'success'))
         route.reload()
   setClear(true)
        })
@@ -61,7 +67,9 @@ export const ContactUs = ({navOb,fo1,contactOB}) => {
          <div className="send-btn-contact" tabIndex={5} onClick={handleClick}>
          {contactOB.send}
          </div>
-        </div>
+          </div>
+          <BackBtn/>
+
     <Footer fo1={fo1}/>
     </>
   )

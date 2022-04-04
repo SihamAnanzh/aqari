@@ -9,6 +9,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
+import BackBtn from '../../components/BackBtn';
 const Adds = () => {
   const session = useSession({
     required: true,
@@ -129,6 +130,7 @@ let pic=t('add-service:pic')
             <SubNav proOb={proOb} />
             <AddAdds addAdsOb={addAdsOb} />
           </div>
+          <BackBtn/>
           <Footer fo1={fo1} />
         </>
       }

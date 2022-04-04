@@ -10,6 +10,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head';
+import BackBtn from '../../../components/BackBtn';
 const Update = ({ updateData }) => {
   const authCtx = useContext(AuthContext)
   let { t } = useTranslation();
@@ -134,6 +135,7 @@ const route=useRouter()
         <SubNav proOb={proOb} />
         <UpdateAdd updateData={updateData} addAdsOb={addAdsOb} />
       </div>
+      <BackBtn/>
       <Footer />
     </>
 

@@ -10,6 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSession, getSession, signIn } from 'next-auth/react';
 import Loader from 'react-spinners/SyncLoader';
 import Head from 'next/head';
+import BackBtn from '../../components/BackBtn';
 
 const Index = ()=> {
   let { t } = useTranslation();
@@ -120,6 +121,7 @@ const Index = ()=> {
             <SubNav proOb={proOb} />
             <MyProfile sginOb={sginOb} />
           </div>
+          <BackBtn/>  
           <Footer fo1={fo1} />
         </>
       }

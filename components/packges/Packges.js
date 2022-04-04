@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Nav from '../shared/nav/Nav'
 import Packge from './Packge'
 import Footer from '../shared/footer/Footer'
+import BackBtn from '../BackBtn'
 const Packges = ({ data, fo1, navOb }) => {
   const [packageData, setPacakgeData] = useState([])
 
@@ -46,6 +47,7 @@ const Packges = ({ data, fo1, navOb }) => {
 
         </div>
       </div>
+      <BackBtn/>
       <Footer fo1={fo1} />
     </>
   )
