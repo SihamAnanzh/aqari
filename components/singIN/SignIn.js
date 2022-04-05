@@ -14,7 +14,7 @@ import BackBtn from '../BackBtn'
 export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     const [cookies, setCookie, removeCookie] = useCookies(['user']);
     const session = useSession()
-    const [rememberME, setRememberMe] = useState(false)
+    const [rememberME, setRememberMe] = useState(         cookies.Name !== '' ||cookies.Name!==undefined ?false:true)
     const [showPassword, setShowPassword] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassowrd] = useState('')
@@ -22,19 +22,17 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     const [messateError, setMessageError] = useState('')
     const route = useRouter()
     const { callbackurl } = route.query;
+    
     const handleChnage = (e) => {
         return e.target.value
     }
 
 
     useEffect(() => {
-        cookies.Name !== "" && setEmail(cookies.Name)
-        cookies.Password !== "" && setPassowrd(cookies.Password)
-        cookies.Name !== "" && setRememberMe(true)
-
-
+        cookies.Name !== '' ||cookies.Name!==undefined ?setEmail(''):setEmail(cookies.Name)
+         cookies.Name !== ''&& cookies.Name!==undefined  ?setPassowrd(''): setPassowrd(cookies.Password)
+     console.log(cookies.Name);
     }, [])
-
 
 
 
@@ -59,20 +57,23 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
 
     const handelRemember = () => {
-     
-            rememberME ? (
-                cookies.Name = "",
-                cookies.Password = "",
-                setRememberMe(false)
-            )
+       
+setRememberMe(!rememberME)        
+   cookies.Name == '' ||cookies.Name==undefined ? (
+            
+               removeCookie(['user'])
+
+            // setCookie('Name', "", { path: '/' }),
+            // setCookie('Password', "", { path: '/' }),       
+                 )
                 :
                 (
 
                     setCookie('Name', email, { path: '/' }),
                     setCookie('Password', password, { path: '/' }),
-                    setRememberMe(true)
 
-                )
+            )
+        
 
 
     }
@@ -91,6 +92,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     <div className="sign-input mail">
                         <h3>{sginOb.sn2}</h3>
                         <input
+                            value={email}
                             id='username'
                             name='username'
                             type="email"
@@ -105,7 +107,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     <div className="sign-input password">
                         <h3>{sginOb.sn3}</h3>
                         <input id='passwrod'
-                            name='password' type={showPassword ? "text" : "password"} className="sign-password" placeholder={sginOb.sn3} tabIndex={2} onChange={e => {
+                            name='password' value={password} type={showPassword ? "text" : "password"} className="sign-password" placeholder={sginOb.sn3} tabIndex={2} onChange={e => {
                                 setPassowrd(handleChnage(e))
                                 setShowWrongPassword(true)
                             }} />
@@ -148,7 +150,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                      display:"block"
                  }}></span> */}
                             {sginOb.sn5}</span>
-                        <img src={`/assets/img/${!rememberME ? 'checked.svg' : "unChecked.svg"}`} alt="" />
+                        <img src={`/assets/img/${rememberME ? 'checked.svg' : "unChecked.svg"}`} alt="" />
                     </span>
 
                 </div>
@@ -159,7 +161,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     }}> {sginOb.sn1}</button>
                 </div>
             </form>
-            <div className="social-sign">
+            <div className="social-sign" style={{cursor:"pointer"}}>
                 <p>{sginOb.sn6}</p>
                 <ul className="social-icon">
                     {Object.values(providers).filter(q => q.type !== 'credentials').map((provider) => (

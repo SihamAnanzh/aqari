@@ -172,7 +172,6 @@ let newestٍervice=t('home:newestٍervice')
             <h1 className="profile-heading">{pro1}</h1>
             <SubNav proOb={proOb} />
           <MyService serviceData={serviceData} adsOb={adsOb} />
-          <BackBtn/>
           </div>
           <Footer fo1={fo1}/>
         </>

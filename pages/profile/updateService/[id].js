@@ -136,7 +136,6 @@ const Update = ({ updateData }) => {
           <SubNav proOb={proOb} />
           <UpdateService updateData={updateData} serviceOb={serviceOb} />
         </div>
-        <BackBtn/>
         <Footer fo1={fo1} />
       </>
 

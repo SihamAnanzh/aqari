@@ -135,7 +135,6 @@ const route=useRouter()
         <SubNav proOb={proOb} />
         <UpdateAdd updateData={updateData} addAdsOb={addAdsOb} />
       </div>
-      <BackBtn/>
       <Footer />
     </>
 

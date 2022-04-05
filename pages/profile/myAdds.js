@@ -106,7 +106,6 @@ const ProfileAdd = () => {
             <SubNav proOb={proOb} />
             <MyAdds adsOb={adsOb} />
           </div>
-          <BackBtn/>
           <Footer fo1={fo1} />
         </>
       }</>

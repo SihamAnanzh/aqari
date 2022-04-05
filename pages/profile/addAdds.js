@@ -130,7 +130,6 @@ let pic=t('add-service:pic')
             <SubNav proOb={proOb} />
             <AddAdds addAdsOb={addAdsOb} />
           </div>
-          <BackBtn/>
           <Footer fo1={fo1} />
         </>
       }

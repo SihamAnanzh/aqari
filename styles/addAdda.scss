@@ -173,6 +173,12 @@ position: relative;
  
    }
 
+   .ltr .catergory-add-arrow, .ltr .add-type-arrow, .ltr .city-add-arrow {
+    position: absolute;
+    left: 91%;
+    bottom: 29px;
+}
+
 }
 
 // @media (max-width:800px) {
@@ -195,7 +201,7 @@ position: relative;
         margin: 10px auto;
     }
     .ltr .catergory-add-arrow, .ltr .add-type-arrow, .ltr .city-add-arrow {
-        left: 87%;
+        left: 80%;
     }
     
 }

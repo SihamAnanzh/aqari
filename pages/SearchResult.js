@@ -87,14 +87,16 @@ const SearchResult = (props) => {
     let ad3 = t('home:ads-3')
     let premium = t('home:premium')
     let hour = t('home:hour')
-    let priceCode=t('home:priceCode')
+  let priceCode = t('home:priceCode')
+  let noResults=t('home:ads-5')
     let adsOb = {
       ad1,
       ad2,
       ad3,
       premium,
       hour,
-      priceCode
+      priceCode,
+      noResults
     }
 
   return (

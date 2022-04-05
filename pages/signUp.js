@@ -67,7 +67,6 @@ const route=useRouter()
       </Head>
       <Nav navOb={navOb} />
       <SignUpComponents sginUpOb={sginUpOb} providers={providers} csrfToken={csrfToken} />
-      <BackBtn/>  
       <Footer fo1={fo1} />
     </div>
   )

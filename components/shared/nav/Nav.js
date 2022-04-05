@@ -6,7 +6,8 @@ import FallBackNav from './FallBackNav'
 import { AuthContext } from '../../../stores/auth-context'
 import axios from 'axios';
 import { useSession, signOut } from 'next-auth/react';
-const Nav = ({ logo, icon, navOb }) => {
+import BackBtn from '../../BackBtn';
+const Nav = ({ logo, icon, navOb,homePage }) => {
     const [showLang, setShowLang] = useState(false)
     const [showAddMenu, setAddMenu] = useState(false)
     const [showNav, setShowNav] = useState(false)
@@ -16,12 +17,13 @@ const Nav = ({ logo, icon, navOb }) => {
     const session = useSession()
     const [iconTwo, setIconTwo] = useState(true)
     const route = useRouter()
+
+
     Nav.handleClickOutside = () => {
         setAddMenu(false)
         setShowLang(false)
+     console.log('click');
     }
-
-
 
 
     return (
@@ -99,7 +101,7 @@ const Nav = ({ logo, icon, navOb }) => {
                             justifyContent: "center",
                             alignItems: "center",
                             borderRadius: "10px",
-                            marginRight:'10px',
+                            marginRight:route.locale=='en'?"33px":"10px",
                             marginLeft:route.locale== 'ar'&&'56px'
 
                         }}>
@@ -115,17 +117,17 @@ const Nav = ({ logo, icon, navOb }) => {
                             </Link>
                         </li>
                         <li style={{
-                            marginRight: route.locale == 'en' ? '-20px':'-46px', 
+                            marginRight: route.locale == 'en' ? '-12px':'-64px', 
                             background: showLang ? "#00416b" : "#fff",
                             width:route.locale=='ar'? '127.87px':"166px",
-                             marginLeft:route.locale =='ar'?'20px':"-8px",
+                            marginLeft:route.locale =='en'?'-32px':"15px",
                             height: '50.72px',
                             paddingLeft:showLang&&"0"
                         }}
                             className={`add-adds-menu ${showLang ? "show" : ""}`} >
                             {/* className={`select-lang-menu ${showLang ? "active" : ""}`} */}
                             <span style={{
-                                fontSize:route.locale=="en"?"20":"22px",
+                                fontSize:route.locale=="en"?"20":"24px",
                                 color: showLang ? "#fff" : '#00416B', 
                                 marginRight: 'unset',
                                 marginLeft: 'unset',
@@ -251,7 +253,7 @@ const Nav = ({ logo, icon, navOb }) => {
                 </div>
                 : ""
             }
-
+{!homePage&&<BackBtn/>}
         </>
     )
 }

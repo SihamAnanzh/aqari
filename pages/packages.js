@@ -68,7 +68,6 @@ const PackgesAdd = ({ data }) => {
         })} />
       </Head>
       <Packges data={data.results} navOb={navOb} fo1={fo1} />
-      <BackBtn/>
     </div>
   )
 }

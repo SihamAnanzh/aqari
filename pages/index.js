@@ -229,7 +229,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
 
         })} />
       </Head>
-      <Nav navOb={navOb} />
+      <Nav navOb={navOb} homePage={true}/>
       <Banner bn={bn} />
       <MainSection searchOb={searchOb} />
       <Adds latestData={latestData} premuimAdds={premuimAdds} adsOb={adsOb} />

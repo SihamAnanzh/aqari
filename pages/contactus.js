@@ -61,7 +61,6 @@ const Contactus = () => {
         <title>{route.locale == 'ar' ? 'تواصل معنا' : "Contact Us"}</title>
       </Head>
       <ContactUs navOb={navOb} fo1={fo1} contactOB={contactOb} />
-      <BackBtn/>
     </>
   )
 }

@@ -58,14 +58,21 @@ const route=useRouter()
   let ad4 = t('home:ads-4')
   let ad5 = t('home:ads-5')
   let ad6 = t('home:ads-6')
+  let hour = t('home:hour')
 
+  let priceCode = t('home:priceCode')
+  let noResults=t('home:ads-5')
   let adsOb = {
     ad1,
     ad2,
     ad3,
     ad4,
     ad5,
-    ad6
+    ad6,
+    priceCode,
+    hour,
+    noResults
+    
   }
 
   return (

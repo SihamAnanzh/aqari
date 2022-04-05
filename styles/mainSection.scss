@@ -36,10 +36,16 @@ box-shadow: 0px 0px 6px 3px rgb(1 1 1 / 30%);
     font-weight: 600;
 }
 
+.action:hover{
+    background-color: #EDAA43;
+    color: #fff;
+}
 .actions.showBox{
 height: 273px;
 padding-top: 20px;
 }
+
+
 .actions .acitveAction{
     background-color: $second-color;
     color: #ffff;
@@ -263,6 +269,10 @@ font-family:otfPlain ;
 
 }
 
+
+
+
+
 @media (max-width:1600px) {
 
      .second {
@@ -386,7 +396,7 @@ font-family:otfPlain ;
   
 
     .ltr .serarch .second {
-        margin-right: 30px;
+        margin-right: 34px;
     }
 
     .ltr .search-div{
@@ -398,8 +408,43 @@ font-family:otfPlain ;
      width: 285px;    
     }
 
+       
+  .actions-contaier{
+    .actions{
+      margin-top: 0;
+
+      width: 100%;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+   
+       
+    }
+  }
+
+  .ltr .actions-contaier .actions{
+    padding-right: 121px;
 }
 
+}
+
+@media (max-width:800px) {
+
+    .ltr .actions-contaier .actions{
+        padding-right: 92px;
+        padding-left: 10px;    }
+
+    
+}
+
+@media (max-width:500px) {
+    .ltr .actions-contaier .actions{
+        padding-right: 23px;
+        padding-left: 10px;    }
+    
+}
   @media (max-width:428px) {
     .dropdwon-menu ul {
         width: 85vw;
@@ -446,4 +491,69 @@ font-family:otfPlain ;
         width: 53vw;
       
     }
+    .ltr .actions-contaier .actions{
+        padding-right: 12px;
+        padding-left: 10px;    }
+  
   }
+
+
+  @media (max-width:380px) {
+      .search-div,
+      .ltr .search-div {
+         margin-right:unset;
+          margin-left: unset;
+          padding-left: unset;
+          padding-right: unset;
+      }
+      .serarch div{
+          width: 75vw;
+      }
+      .serarch .first,.serarch .second,
+      .ltr .serarch .second,.ltr .first {
+        margin-right:unset;
+        margin-left: unset;     
+        padding-left: unset;
+        padding-right: unset; 
+        width: 75vw;
+        
+    }
+    .dropdwon-menu ul {
+        width: 75vw;
+    }
+
+    .arrow-drop-name, .arrow-drop {
+        right: 89%;
+    }
+    
+    
+  }
+
+
+//   @media (max-width:370px) {
+       
+//     .actions-contaier{
+//       .actions{
+//         margin-top: 0;
+//         width: 50%;
+//         flex-direction: column;
+//         height: 70vw;      
+//         margin-right: 0;
+//         padding-left: unset;
+//         padding-right: unset;
+//         margin-left: unset;
+//       }
+    
+  
+//     }
+  
+//     .service{
+//       margin-right: 0;
+//       padding-left: unset;
+//       padding-right: unset;
+//       margin-left: unset;
+//     }
+//     .actions div{
+//       margin-top: 5px;
+//     }
+//     }

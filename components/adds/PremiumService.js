@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 const PremiumService = (props) => {
-console.log(props);
+console.log(props.adsOb);
   return (
  
 
@@ -30,7 +30,7 @@ console.log(props);
                         <img src='/assets/img/location-gray.svg' />
                     {props.address}</div>
                 <div className="detials">
-                    <span className='price'><span className='number'>{props.price}</span>{props.adsOb.priceCode}</span>
+                    <span className='price'><span className='number'>{props.price}</span>{props.priceCode}</span>
                     <span className='time'><span className='number'><span className='address-time-icon'>
                         <img src='/assets/img/address-hour.svg' />
                     </span>{props.time}</span>{props.adsOb.hour}</span>

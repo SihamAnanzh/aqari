@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../../stores/auth-context';
 import { useSession, signOut } from 'next-auth/react';
+import onClickOutside from 'react-onclickoutside';
+import BackBtn from '../../BackBtn';
 
 const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
     const route = useRouter()
@@ -10,6 +12,16 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
     const [login, setLogin] = useState(false)
     const session = useSession()
     const authCtx = useContext(AuthContext)
+
+    
+  
+    FallBackNav.handleClickOutside = () => {
+        setMvoeArrow(false)
+        setShowNav(false)
+        console.log('click');
+    }
+
+    
     return (
 
         <div className='drop-nav-container'>
@@ -161,4 +173,9 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
     )
 }
 
-export default FallBackNav
+
+const clickOutsideConfig = {
+    handleClickOutside: () => FallBackNav.handleClickOutside,
+  };
+  
+  export default onClickOutside(FallBackNav, clickOutsideConfig);

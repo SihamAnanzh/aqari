@@ -8,7 +8,7 @@ const Add = (props) => {
       pathname: `/advertises/${props.add_id}`,
       query:`title=${props.title.trim().replace(' ',"-")}`
     }}>  
-      <div>
+      <>
       <div className="prem-contanier ad-contanier ad-main">
         <div className="img-prem">
           <img src={props.singleEstate.images[0] && props.singleEstate.images[0].logo_url} alt={props.title} />
@@ -66,7 +66,7 @@ const Add = (props) => {
             </div>
         
         </div>
-        </div>
+        </>
     </Link>
   )
 }

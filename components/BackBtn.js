@@ -12,21 +12,22 @@ const BackBtn = () => {
     return (
         <div className="backBtn">
         <div onClick={handelClick} className='' style={{
-            width: '36px',
-            height: '36px',
+            width: '32px',
+            height: '32px',
             borderRadius: "50%",
             background: '#EDAA43',
             color: '#fff',
-            position: 'fixed',
-            bottom: "7%",
-            left: route.locale=="en"?'22px':'353px',
+            position: 'absolute',
+            top: "16%",
+            left:'22px',
             display: 'flex',
             justifyContent: 'center',
             alignItems:"center",
-            cursor:"pointer"
+            cursor: "pointer",
+            zIndex:"10"
             
         }}>
-            {route.locale == "en" ? <ArrowBack /> : <ArrowForward />}
+            <ArrowBack />
         </div>
         </div>
     )

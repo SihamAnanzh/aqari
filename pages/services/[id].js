@@ -8,6 +8,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head'
 import BackBtn from '../../components/BackBtn'
+import { useRouter } from 'next/router'
 
 
 const SingleServices = ({ data }) => {
@@ -136,7 +137,6 @@ const SingleServices = ({ data }) => {
       <Nav navOb={navOb} />
       <Banner content={content} />
       <Service addAdsOb={addAdsOb} withImg={withImg} data={data} setOverlay={setOverlay} priceWrod={priceWrod} />
-      <BackBtn/>
       <Footer fo1={fo1} />
     </div>
   )

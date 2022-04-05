@@ -22,19 +22,19 @@ const AddAdds = ({ addAdsOb }) => {
   const [imageSrc, setImageSrc] = useState([])
   const [disable, setdisable] = useState(true)
   const [showDialogBox, setShowDialogiBox] = useState(false)
-  const [addTitle, setAddTitle] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const [addTitle, setAddTitle] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
   const [category, setCategory] = useState('')
   const [typeEstat, setTypeEstat] = useState('')
   const [city, setCity] = useState('')
-  const [space, setSpace] = useState('')
-  const [price, setPrice] = useState('')
-  const [front, setFront] = useState('')
-  const [autoNum, setAutoNum] = useState('')
-  const [desc, setDesc] = useState('')
+  const [space, setSpace] = useState("")
+  const [price, setPrice] = useState("")
+  const [front, setFront] = useState("")
+  const [autoNum, setAutoNum] = useState("")
+  const [desc, setDesc] = useState("")
   const [files, setFiles] = useState([])
-  const [lat, setLat] = useState('')
-  const [lng, setLng] = useState('')
+  const [lat, setLat] = useState(adsDataLocal!==undefined?adsDataLocal.lat:"")
+  const [lng, setLng] = useState(adsDataLocal!==undefined?adsDataLocal.lng:"")
   const [imageOne, setImageOne] = useState()
   const [imageTwo, setImageTwo] = useState()
   const [imageThree, setImageThree] = useState()
@@ -43,6 +43,11 @@ const AddAdds = ({ addAdsOb }) => {
   const [items, setItem] = useState([])
   const [imgList, setImgList] = useState([{}])
   const [isPremium, setIspremium] = useState(false)
+  const [PAl, setPAL] = useState()
+  const [paymentId, setPaymentId] = useState()
+  const [adsDataLocal,setAdsDataLoage]=useState()
+  const session = useSession()
+  const [server,setServer]=useState()
   //ids for api
   const [type_id, setType_id] = useState('')
   const [category_id, setCategory_id] = useState('')
@@ -56,20 +61,23 @@ const AddAdds = ({ addAdsOb }) => {
 
   }, [imageFour, imageOne, imageThree, imageTwo])
 
+  let formData;
+formData = new FormData()
 
-console.log(imageOne);
   const handelSubmit = (e) => {
-    let formData;
     !disable &&
       (
-        addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum
+        addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum == ""||lat ==""||lng==" "
         == "" || phoneNumber ==undefined || imageOne==undefined || imageTwo==undefined || imageThree==undefined ||
-        imageFour==undefined ?
-        swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('تحذير', 'Fill all field please', 'warning'))
+        imageFour == undefined ?
+        (
+          route.locale =='ar'&& swal( 'تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
+          route.locale =='en'&& swal('Fill all field please', 'warning', 'warning')
+        )
+      
         : (
             setFiles([imageOne, imageTwo, imageThree, imageFour]),
 
-            formData = new FormData(),
             formData.append('title', addTitle),
             formData.append('desc', desc),
             formData.append('area', space),
@@ -97,17 +105,23 @@ console.log(imageOne);
               headers: { "Content-Type": "multipart/form-data", 'Authorization': session.data.id },
               data: formData,
             })
-              .then((response) => {
-                response.data.status.code == 200 && swal(route.locale == 'ar' ?
-                  ("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success'):("'well done", 'Ad Added Successfully', 'success'))
+            .then((response) => {
+              console.log(response);
+
+                response.data.status.code == 200 &&
+                  (
+                    route.locale == 'ar' && swal("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success'),
+                    route.locale == 'en' && ("'well done", 'Ad Added Successfully', 'success')
+                    )
                 route.replace('/profile/myAdds')
 
               })
-            .catch((response) => {
-              swal(route.locale == 'ar' ? ("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
-              : ("You can not add at the moment", 'try later', 'error')
-               ) }
-            )
+            // .catch((response) => {
+            //   console.log(response);
+            //   route.locale =='ar'&&("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+            //   route.locale=='en'&&("You can not add at the moment", 'try later', 'error')
+            //     }
+            // )
 
           )
       )
@@ -115,6 +129,129 @@ console.log(imageOne);
   }
 
 
+
+
+
+
+  useEffect(() => {
+    axios.get('https://stagingapi.aqarifinder.com/api/user/profile').then((res) => {
+      setPAL(res.data.results.premium_ads_left)
+    })
+
+    setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info'))) 
+    console.log(adsDataLocal);
+    setAddTitle(adsDataLocal&&adsDataLocal.addTitle)
+    setAutoNum(adsDataLocal&&adsDataLocal.autoNum)
+    setDesc(adsDataLocal&&adsDataLocal.desc)
+    setFront(adsDataLocal&&adsDataLocal.front)
+    setLat(adsDataLocal&&adsDataLocal.lat)
+    setLng(adsDataLocal&&adsDataLocal.lng)
+    setPhoneNumber(adsDataLocal&&adsDataLocal.phoneNumber)
+    setPrice(adsDataLocal&&adsDataLocal.price)
+    setSpace(adsDataLocal&&adsDataLocal.space)
+
+    console.log(adsDataLocal&&adsDataLocal.addTitle);
+
+
+  }, [])
+  
+
+  
+
+  useEffect(() => {
+
+
+    typeof window !== "undefined" &&
+      (
+       setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info'))),
+      setAddTitle(adsDataLocal&&adsDataLocal.addTitle),
+      setAutoNum(adsDataLocal&&adsDataLocal.autoNum),
+      setDesc(adsDataLocal&&adsDataLocal.desc),
+      setFront(adsDataLocal&&adsDataLocal.front),
+      setLat(adsDataLocal&&adsDataLocal.lat),
+      setLng(adsDataLocal&&adsDataLocal.lng),
+      setPhoneNumber(adsDataLocal&&adsDataLocal.phoneNumber),
+      setPrice(adsDataLocal&&adsDataLocal.price),
+      setSpace(adsDataLocal && adsDataLocal.space),
+      console.log(adsDataLocal)
+      
+      )
+
+    
+      
+      
+  },[])
+   
+  
+
+
+  useEffect(() => {
+    console.log(route.query.paymentID);
+    paymentId !== undefined && (
+      axios.post(`https://stagingapi.aqarifinder.com/user/package/purchase/${paymentId}`).then(res => {
+        console.log(res);
+        //res is success then go back to the add ads and then get locla data and post them in form and compilete the excute
+          
+      })
+
+
+    )
+  },[route])
+
+  const handleClickPremium = () => {
+    let ads;
+      let formTow = new FormData()
+
+    PAl !== 0 ?
+      (
+      (
+          addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum ==""||
+          lat == ""
+          || lng == " "||
+          phoneNumber == undefined ||
+          imageOne == undefined ||
+          imageTwo == undefined ||
+          imageThree == undefined ||
+         imageFour == undefined
+      )?(
+            console.log('123'),
+            route.locale =='ar'&& swal( 'تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
+            route.locale =='en'&& swal('Fill all field please', 'warning', 'warning')
+        ) : (
+            formTow.append('package_id', '1'),
+            formTow.append('callbackurl', 'www.google.com'),
+            ads = {
+              addTitle, desc, space, front, price, autoNum, lat, lng, phoneNumber, img1, imageTwo, imageThree, imageFour,
+              type_id, region_id,
+              category_id,
+         
+              
+            },
+            setCheckedAdd(!checkedAdd),
+            setShowDialogiBox(!showDialogBox),
+            localStorage.setItem('ads-info', JSON.stringify(ads)),
+            axios({
+              method: "post",
+              url: 'https://stagingapi.aqarifinder.com/api/user/package/get_link',
+              headers: { "Content-Type": "multipart/form-data", 'Authorization': session.data.id },
+              data: formTow,
+            }).then((res) => {
+              route.push(res.data.paumentUL)
+           console.log();
+            })
+        )
+      ):""
+    
+    
+    
+}
+
+
+
+
+
+
+  
   useEffect(() => {
     setShowDialogiBox(showDialogBox)
   }, [showDialogBox])
@@ -147,6 +284,13 @@ console.log(imageOne);
 
       })
   }, [])
+
+
+
+
+
+
+
 
 
 
@@ -188,13 +332,21 @@ console.log(imageOne);
               <ul className="dropdown-category" style={{
                 display: !showListCategory ? 'none' : ""
               }}  >
-                <li id='1' onClick={(e) => {
-                  setType_id(e.target.id)
+                <li id='1' style={{
+                  paddingLeft: route.locale == 'en' ? '10px':"0",
+                  paddingRight:route.locale =='en'?'10px':'0'
 
+                }} onClick={(e) => {
+                  setType_id(e.target.id)
+        
                   setCategory( (route.locale=='ar'? "ايجار":"rent"))
                 }} className={`category-item ${category === (route.locale == 'ar' ? "ايجار" : "rent") ? 'active-category' : ""}`}
                   value={(route.locale == 'ar' ? "ايجار" : "rent")}>{route.locale=='ar'? "ايجار":"rent"}</li>
-                <li id='2' className={`category-item ${category ===(route.locale=='ar'? "بيع":"selling")? 'active-category' : ""}`} value={(route.locale=='ar'? "يع":"selling")}
+                <li id='2'  style={{
+                  paddingLeft: route.locale == 'en' ? '10px':"0",
+                  paddingRight:route.locale =='ar'?'10px':'0'
+
+                }}  className={`category-item ${category ===(route.locale=='ar'? "بيع":"selling")? 'active-category' : ""}`} value={(route.locale=='ar'? "يع":"selling")}
                   onClick={(e) => {
                     setType_id(e.target.id)
                     setCategory( (route.locale=='ar'? "بيع":"selling"))
@@ -440,18 +592,17 @@ console.log(imageOne);
 
             <div className="checksbox" style={{ cursor: 'pointer' }}>
               <div className="premium-add chack-groub" onClick={() => {
-                setCheckedAdd(!checkedAdd)
-                setShowDialogiBox(!showDialogBox)
+           
+                handleClickPremium()
 
               }}>
-                {showDialogBox && authCtx.premiumAdd > 0 && <PackgeBox setShowDialogiBox={setShowDialogiBox} showDialogBox={showDialogBox} count={authCtx.premiumAdd} />}
-
-                <a style={{
-                  textDecoration: "none"
-                }} href={`${showDialogBox && authCtx.premiumAdd == 0 ? ' /packages' : "#"}`} target='_blank'>
+                {showDialogBox && PAl >0 && <PackgeBox setShowDialogiBox={setShowDialogiBox}
+                  showDialogBox={showDialogBox} count={PAl} />}
+                   
+             
                   <img src={`/assets/img/${!checkedAdd ? 'emptyCheck' : 'fullCheck'}.svg`} alt="" />
                   <span>{addAdsOb.adSh1}</span>
-                </a>
+              
 
 
               </div>

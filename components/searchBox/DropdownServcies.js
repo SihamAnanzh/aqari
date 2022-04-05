@@ -74,7 +74,9 @@ const DropdownServcies = ({items=[], title, setSelectItem}) => {
                 {items.map((item)=>(
                     <li className='list-item' key={item.id} id={item.id} onClick={()=>
                         {
-                            toggleAcitveElement(item.id)
+                        toggleAcitveElement(item.id)
+                        setOpen(false)
+
 
                             let selectInfo= {
                                 value:item.title,

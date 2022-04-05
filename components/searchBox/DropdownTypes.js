@@ -70,7 +70,7 @@ const DropdownTypes = ({items=[], subTitle,title}) => {
                     <li className='list-item' key={item.id} id={item.id} onClick={(e)=>
                         {
                             toggleAcitveElement(item.id)
-
+                               setOpen(false)
                             let selectInfo= {
                                 value:item.title,
                                 id:item.id

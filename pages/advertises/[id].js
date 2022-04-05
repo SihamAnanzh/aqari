@@ -123,7 +123,6 @@ const route=useRouter()
       <Nav navOb={navOb} />
       <Banner content={content} bn={bn} />
       <Estat withImg={withImg} data={data} setOverlay={setOverlay} adsOb={adsOb} addAdsOb={addAdsOb} />
-      <BackBtn/>
       <Footer fo1={fo1} />
     </div>
   )

@@ -8,7 +8,7 @@ const NoResults = ({ navOb, adsOb, fo1 }) => {
         <div className='noResults'>
           <img src="/assets/img/noResults.svg" alt="" />
           <h2 className='noResults-heading'>
-          {adsOb.ad5}
+          {adsOb.noResults}
         </h2>
         </div>
         <Footer fo1={fo1} />

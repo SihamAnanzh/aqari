@@ -14,6 +14,8 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
     const [matching, setMaching] = useState(true)
     const [phone, setPhone] = useState('')
     const authCtx = useContext(AuthContext)
+    const [checkedConditions, setCheckedConditions] = useState(false)
+
     const [wrongEmail, setwrongEmail] = useState(false)
     const route = useRouter()
     const handleChnage = (e) => {
@@ -29,6 +31,11 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
         if (password === confirmPassword) {
             swal('wrong password')
             return;
+        }
+        if (!checkedConditions) {
+            route.locale=='en'&& swal('Fill in the fields please')
+            route.locale=='ar'&&swal('املأ الحقول من فضلك')
+            return
         }
         const response = await axios.post('https://stagingapi.aqarifinder.com/api/user/register', { email, name, password, phone })
         if (response && response.data.status.code === 200) {
@@ -92,12 +99,28 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                     </div>
 
                 </div>
+                <div className="conditions chack-groub" style={{ cursor: 'pointer' ,marginTop:"20px"}} onClick={() => {
+                setCheckedConditions(!checkedConditions)
+       
+              }}>
+                <img src={`/assets/img/${!checkedConditions ? 'emptyCheck' : 'fullCheck'}.svg`} alt="" />
+                    <a href='#' target='_blank' style={{
+                        color: "#00416b",
+                        textDecoration:"underline",
+                        fontFamily: "otfPlain",
+                        fontWeight:"400",
+                        fontSize: '18px', paddingLeft: route.locale == 'en' ? '10px' : "0",
+                        paddingRight: route.locale =='ar'?'10px':'0'
+                    }}>{route.locale == "ar" ? "الموافقة على الشروط والقواعد وسياسية الخصوصية" :
+                        "Agree to the terms, rules and privacy policy"}</a>
 
+              </div>
                 <button type='submit' className="sign-btn" style={{ outline: 'none', border: "none" }}>
                     {sginUpOb.su6}
                 </button>
+               
             </form>
-            <div className="social-sign">
+            <div className="social-sign" style={{cursor:"pointer"}}>
                 <p>{sginUpOb.su7}</p>
 
                 <ul className="social-icon" style={{
@@ -115,7 +138,7 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
 
                     ))}
                 </ul>
-
+               
             </div>
         </div>
     )

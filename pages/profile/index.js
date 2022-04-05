@@ -121,7 +121,6 @@ const Index = ()=> {
             <SubNav proOb={proOb} />
             <MyProfile sginOb={sginOb} />
           </div>
-          <BackBtn/>  
           <Footer fo1={fo1} />
         </>
       }

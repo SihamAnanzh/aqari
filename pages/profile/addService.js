@@ -116,7 +116,6 @@ const Service = () => {
             <SubNav proOb={proOb} />
             <AddService serviceOb={serviceOb} />
           </div>
-          <BackBtn/>
           <Footer />
         </>
       }

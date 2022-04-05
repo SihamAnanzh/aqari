@@ -6,7 +6,11 @@ const PremuimAdd = (props) => {
 
     return (
 
-        <div className="prem-contanier">
+        <Link href={{
+            pathname: `/advertises/${props.add_id}`,
+            query: `title=${props.title.trim().replace(' ', "-")}`
+        }} >
+            <div className="prem-contanier">
             <div className="first-prem">
                 <Link href={{
                     pathname: `/advertises/${props.add_id}`,
@@ -87,8 +91,9 @@ const PremuimAdd = (props) => {
 
                 </div>
             </div>
-            <span className='prem-word'>{props.adsOb.premium}</span>
-        </div>
+                <span className='prem-word'>{props.adsOb.premium}</span>
+                </div>
+        </Link>
 
     )
 }

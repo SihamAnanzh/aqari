@@ -112,6 +112,7 @@ cursor: pointer;
      padding: 5px 10px;
      margin-right: 29px;
      padding-left: 20px;
+     padding-right: 20px;
      margin-bottom: 20px;
      display: flex;
      justify-content: space-between;
@@ -356,7 +357,71 @@ display: none;
     .estat-deatils {
         font-size: 17px;
     }
+
+    .estat-deatils{
+        width: 175px;
+        height: 47px;
+        background-color: #E6ECEF;
+        color: #00416B;
+        font-size: 15px;
+        border-radius: 10px;
+        padding: 5px 10px;
+        margin-right: 29px;
+        padding-left: 20px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: otfPlain;
+        font-weight: 600;
+        text-align: right;
+        }
+
+
+        .automated-number {
+            width: 283px;
+            grid-area: phone;
+            margin-right: 80px;
+        }
+    
+        .estat-deatils .att {
+            font-size: 17px;
+        }
+    
+        .estat-address h5 img{
+            width: 12px;
+            height: 12px;
+        }
+    
+        .estat-address h3{
+            font-size: 25px;
+        }
+    
+        .estat-address h5{
+            font-size: 16px;
+        }
+        .estat-origin{
+            display: none;
+        }
+    
+    .estat-fallback{
+        display: grid;
+        grid-template-areas: 
+                "city        spa"
+                "price       desti"
+                "phone       phone";
+    
+        justify-content: center;
+        align-items: center;
+        }
 }
+
+
+
+
+
+
+
 .update-slider{
     display: none;
   }
@@ -395,60 +460,60 @@ display: none;
     }
  
 
-    .estat-deatils{
-    width: 175px;
-    height: 47px;
-    background-color: #E6ECEF;
-    color: #00416B;
-    font-size: 15px;
-    border-radius: 10px;
-    padding: 5px 10px;
-    margin-right: 29px;
-    padding-left: 20px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: otfPlain;
-    font-weight: 600;
-    text-align: right;
-    }
+    // .estat-deatils{
+    // width: 175px;
+    // height: 47px;
+    // background-color: #E6ECEF;
+    // color: #00416B;
+    // font-size: 15px;
+    // border-radius: 10px;
+    // padding: 5px 10px;
+    // margin-right: 29px;
+    // padding-left: 20px;
+    // margin-bottom: 10px;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // font-family: otfPlain;
+    // font-weight: 600;
+    // text-align: right;
+    // }
 
-    .automated-number {
-        width: 235px;
-    }
+    // .automated-number {
+    //     width: 235px;
+    // }
 
-    .estat-deatils .att {
-        font-size: 17px;
-    }
+    // .estat-deatils .att {
+    //     font-size: 17px;
+    // }
 
-    .estat-address h5 img{
-        width: 12px;
-        height: 12px;
-    }
+    // .estat-address h5 img{
+    //     width: 12px;
+    //     height: 12px;
+    // }
 
-    .estat-address h3{
-        font-size: 25px;
-    }
+    // .estat-address h3{
+    //     font-size: 25px;
+    // }
 
-    .estat-address h5{
-        font-size: 16px;
-    }
-    .estat-origin{
-        display: none;
-    }
+    // .estat-address h5{
+    //     font-size: 16px;
+    // }
+    // .estat-origin{
+    //     display: none;
+    // }
 
     
-    .estat-fallback{
-        display: grid;
-        grid-template-areas: 
-                "city        spa"
-                "price       desti"
-                "phone  phone";
+    // .estat-fallback{
+    //     display: grid;
+    //     grid-template-areas: 
+    //             "city        spa"
+    //             "price       desti"
+    //             "phone  phone";
     
-        justify-content: center;
-        align-items: center;
-        }
+    //     justify-content: center;
+    //     align-items: center;
+    //     }
 
 
 }
@@ -626,4 +691,28 @@ display: none;
         height: 40vh;
     }
     
+}
+
+@media (max-width:380px) {
+//     .estat-fallback{
+//         grid-template-areas:
+//         "city"
+//          "spa"
+//         "price"
+//         "desti"
+//         "phone";
+//     }
+// }
+
+.estat-fallback{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.automated-number{
+flex-direction: column;
+height: 110px;
+}
 }

@@ -290,7 +290,12 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
               href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>{data.whatsApp}</a>
           </div>
           <div className='phone' ><span className='address-phone'>
-            <img src='/assets/img/phone.svg' /></span>{data.phone}</div>
+            <img src='/assets/img/phone.svg' /></span>
+            <a   style={{textDecoration:"none", color:"#fff"}} href={`tel:+962${data.phone}`}>
+            {data.phone}
+
+            </a>
+          </div>
         </div>
       </div>
     </>

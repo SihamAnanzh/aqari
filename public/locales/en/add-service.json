@@ -1,11 +1,11 @@
-{"service-title":"عنوان الخدمة",
-    "phone":"رقم الهاتف",
-    "serviceType":"نوع الخدمة",
-    "whatsaap":"رقم الواتس اب",
-    "city":"المنطقة",
-    "serivceDetails":"تفاصيل الخدمة",
-    "pic":"صور",
-    "tearmAndCondition":"موافق على الشروط والقواعد",
-    "price":"السعر"
+{"service-title":"Title",
+    "phone":"phone",
+    "serviceType":"service Type",
+    "whatsaap":"whatsaap",
+    "city":"city",
+    "serivceDetails":"serivce Details",
+    "pic":"pic",
+    "tearmAndCondition":"Agree to the terms, rules and privacy policy",
+    "price":"price"
 
 }

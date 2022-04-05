@@ -103,7 +103,6 @@ const MyFavorite = () => {
             <SubNav proOb={proOb} />
             <MyFav adsOb={ adsOb}/>
           </div>
-          <BackBtn/>
           <Footer fo1={fo1} />
         </>
 
