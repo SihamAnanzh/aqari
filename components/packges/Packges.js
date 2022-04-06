@@ -19,7 +19,7 @@ const Packges = ({ data, fo1, navOb }) => {
         packgeId: data.packages.length !== 0 && data.packages[0].id,
         packageTitle: data.packages.title,
         currencyTitle: data.packages.length !== 0 && data.packages[0].currency.title,
-        currencyCode: data.packages.length !== 0 && data.packages[0].currency.code,
+        currencyCode: data.packages.length !== 0 && data.packages[0].currency.title,
         price: data.packages.length !== 0 && data.packages[0].price
 
 
@@ -39,15 +39,13 @@ const Packges = ({ data, fo1, navOb }) => {
 
           {
             packageData.map((pack) => (
-              
-              <Packge key={pack.id} packgeId={pack.packgeId} btn={navOb.pa2} price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId} />
+                pack.id!==3&&<Packge key={pack.id} packgeId={pack.packgeId} btn={navOb.pa2} price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId} />
 
             ))
           }
 
         </div>
       </div>
-      <BackBtn/>
       <Footer fo1={fo1} />
     </>
   )

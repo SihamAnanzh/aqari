@@ -53,7 +53,7 @@ const DropdownTypes = ({items=[], subTitle,title}) => {
             </span>
         <p className='placeholder cityName' style={{
     fontSize:`${selection.value !== undefined ?"18px":""}`,
-    color:`${selection.value !== undefined?"#EDAA43":""}`
+    color:`${selection.value !== undefined?"#00416B":""}`
 }} >  {
               
  

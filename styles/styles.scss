@@ -84,10 +84,57 @@ body{
 
   .backBtn{
     display: none;
+
+    .back{
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgb(237, 170, 67);
+      color: rgb(255, 255, 255);
+      position: absolute;
+      left: 2%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 10;
+      top: 16%,
+    }
+
+
   }
 
   @media (max-width:450px) {
     .backBtn{
       display: block;
+    .back{
+     top:16%
+      
     }
+ 
+
+  .ltr .phone {
+    margin-right: 28px;
+
+
   }
+
+  
+
+
+}
+}
+
+@media (max-width:380px) {
+  .backBtn{
+    display: block;
+  .back{
+   top:20%
+    
+  }
+
+
+
+
+}
+}

@@ -31,9 +31,11 @@ console.log(props.adsOb);
                     {props.address}</div>
                 <div className="detials">
                     <span className='price'><span className='number'>{props.price}</span>{props.priceCode}</span>
-                    <span className='time'><span className='number'><span className='address-time-icon'>
+                          <span className='time'><span className='number'>
+                              <span className='address-time-icon'>
                         <img src='/assets/img/address-hour.svg' />
-                    </span>{props.time}</span>{props.adsOb.hour}</span>
+                              </span>
+                              {props.time}</span></span>
                     <span className='views'><span className='address-views-icon'>
                         <img src='/assets/img/view.svg' />
                     </span>

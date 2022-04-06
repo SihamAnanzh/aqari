@@ -7,10 +7,13 @@ import SimpleMap from '../map/MapAdds'
 import swal from 'sweetalert';
 import { useRouter } from 'next/router'
 import { signIn, useSession } from 'next-auth/react'
+import { useCookies } from 'react-cookie';
 
-
+import FileBase64 from 'react-file-base64';
 const AddAdds = ({ addAdsOb }) => {
   const route = useRouter()
+  const [cookies, setCookie, removeCookie] = useCookies(['images']);
+
   const authCtx = useContext(AuthContext)
   const [showListCategory, setShwoListCategory] = useState(false)
   const [showListType, setShwoListType] = useState(false)
@@ -33,21 +36,26 @@ const AddAdds = ({ addAdsOb }) => {
   const [autoNum, setAutoNum] = useState("")
   const [desc, setDesc] = useState("")
   const [files, setFiles] = useState([])
-  const [lat, setLat] = useState(adsDataLocal!==undefined?adsDataLocal.lat:"")
-  const [lng, setLng] = useState(adsDataLocal!==undefined?adsDataLocal.lng:"")
+  const [lat, setLat] = useState(adsDataLocal !== undefined ? adsDataLocal.lat : "")
+  const [lng, setLng] = useState(adsDataLocal !== undefined ? adsDataLocal.lng : "")
   const [imageOne, setImageOne] = useState()
   const [imageTwo, setImageTwo] = useState()
   const [imageThree, setImageThree] = useState()
   const [imageFour, setImageFour] = useState()
+  const [imageOneB6, setImageOneB6] = useState()
+  const [imageTwoB6, setImageTwoB6] = useState()
+  const [imageThreeB6, setImageThreeB6] = useState()
+  const [imageFourB6, setImageFourB6] = useState()
   const [regions, setRegions] = useState([])
   const [items, setItem] = useState([])
   const [imgList, setImgList] = useState([{}])
   const [isPremium, setIspremium] = useState(false)
   const [PAl, setPAL] = useState()
   const [paymentId, setPaymentId] = useState()
-  const [adsDataLocal,setAdsDataLoage]=useState()
+  const [adsDataLocal, setAdsDataLoage] = useState()
   const session = useSession()
-  const [server,setServer]=useState()
+  const [server, setServer] = useState()
+
   //ids for api
   const [type_id, setType_id] = useState('')
   const [category_id, setCategory_id] = useState('')
@@ -55,27 +63,25 @@ const AddAdds = ({ addAdsOb }) => {
 
 
 
-  useEffect(() => {
-    setFiles([imageOne, imageTwo, imageThree, imageFour])
-    console.log(imageOne == '' ? 'true' : "false");
 
-  }, [imageFour, imageOne, imageThree, imageTwo])
 
   let formData;
-formData = new FormData()
+  formData = new FormData()
 
   const handelSubmit = (e) => {
+    console.log(addTitle);
     !disable &&
       (
-        addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum == ""||lat ==""||lng==" "
-        == "" || phoneNumber ==undefined || imageOne==undefined || imageTwo==undefined || imageThree==undefined ||
-        imageFour == undefined ?
-        (
-          route.locale =='ar'&& swal( 'تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
-          route.locale =='en'&& swal('Fill all field please', 'warning', 'warning')
-        )
-      
-        : (
+        addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum == ""
+          || lat == "" || lng == " "
+          || phoneNumber == " " || imageOne == undefined || imageTwo == undefined || imageThree == undefined ||
+          imageFour == undefined ?
+          (
+            route.locale == 'ar' && swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
+            route.locale == 'en' && swal('warning', 'Fill all the field please', 'warning')
+          )
+
+          : (
             setFiles([imageOne, imageTwo, imageThree, imageFour]),
 
             formData.append('title', addTitle),
@@ -105,14 +111,14 @@ formData = new FormData()
               headers: { "Content-Type": "multipart/form-data", 'Authorization': session.data.id },
               data: formData,
             })
-            .then((response) => {
-              console.log(response);
+              .then((response) => {
+                console.log(response);
 
                 response.data.status.code == 200 &&
                   (
                     route.locale == 'ar' && swal("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success'),
                     route.locale == 'en' && ("'well done", 'Ad Added Successfully', 'success')
-                    )
+                  )
                 route.replace('/profile/myAdds')
 
               })
@@ -128,6 +134,24 @@ formData = new FormData()
 
   }
 
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      file !== undefined && fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+
+    });
+
+
+  };
+
 
 
 
@@ -138,120 +162,131 @@ formData = new FormData()
       setPAL(res.data.results.premium_ads_left)
     })
 
-    setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info'))) 
+    setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info')))
     console.log(adsDataLocal);
-    setAddTitle(adsDataLocal&&adsDataLocal.addTitle)
-    setAutoNum(adsDataLocal&&adsDataLocal.autoNum)
-    setDesc(adsDataLocal&&adsDataLocal.desc)
-    setFront(adsDataLocal&&adsDataLocal.front)
-    setLat(adsDataLocal&&adsDataLocal.lat)
-    setLng(adsDataLocal&&adsDataLocal.lng)
-    setPhoneNumber(adsDataLocal&&adsDataLocal.phoneNumber)
-    setPrice(adsDataLocal&&adsDataLocal.price)
-    setSpace(adsDataLocal&&adsDataLocal.space)
+    setAddTitle(adsDataLocal && adsDataLocal.addTitle)
+    setAutoNum(adsDataLocal && adsDataLocal.autoNum)
+    setDesc(adsDataLocal && adsDataLocal.desc)
+    setFront(adsDataLocal && adsDataLocal.front)
+    setLat(adsDataLocal && adsDataLocal.lat)
+    setLng(adsDataLocal && adsDataLocal.lng)
+    setPhoneNumber(adsDataLocal && adsDataLocal.phoneNumber)
+    setPrice(adsDataLocal && adsDataLocal.price)
+    setSpace(adsDataLocal && adsDataLocal.space)
 
-    console.log(adsDataLocal&&adsDataLocal.addTitle);
+    console.log(adsDataLocal && adsDataLocal.addTitle);
+
+
 
 
   }, [])
-  
-
-  
-
-  useEffect(() => {
 
 
-    typeof window !== "undefined" &&
-      (
-       setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info'))),
-      setAddTitle(adsDataLocal&&adsDataLocal.addTitle),
-      setAutoNum(adsDataLocal&&adsDataLocal.autoNum),
-      setDesc(adsDataLocal&&adsDataLocal.desc),
-      setFront(adsDataLocal&&adsDataLocal.front),
-      setLat(adsDataLocal&&adsDataLocal.lat),
-      setLng(adsDataLocal&&adsDataLocal.lng),
-      setPhoneNumber(adsDataLocal&&adsDataLocal.phoneNumber),
-      setPrice(adsDataLocal&&adsDataLocal.price),
-      setSpace(adsDataLocal && adsDataLocal.space),
-      console.log(adsDataLocal)
-      
-      )
-
-    
-      
-      
-  },[])
-   
-  
 
 
-  useEffect(() => {
-    console.log(route.query.paymentID);
-    paymentId !== undefined && (
-      axios.post(`https://stagingapi.aqarifinder.com/user/package/purchase/${paymentId}`).then(res => {
-        console.log(res);
-        //res is success then go back to the add ads and then get locla data and post them in form and compilete the excute
-          
-      })
+  // useEffect(() => {
 
 
-    )
-  },[route])
+  //   typeof window !== "undefined" &&
+  //     (
+  //      setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info'))),
+  //     setAddTitle(adsDataLocal&&adsDataLocal.addTitle),
+  //     setAutoNum(adsDataLocal&&adsDataLocal.autoNum),
+  //     setDesc(adsDataLocal&&adsDataLocal.desc),
+  //     setFront(adsDataLocal&&adsDataLocal.front),
+  //     setLat(adsDataLocal&&adsDataLocal.lat),
+  //     setLng(adsDataLocal&&adsDataLocal.lng),
+  //     setPhoneNumber(adsDataLocal&&adsDataLocal.phoneNumber),
+  //     setPrice(adsDataLocal&&adsDataLocal.price),
+  //     setSpace(adsDataLocal && adsDataLocal.space),
+  //     console.log(adsDataLocal)
+
+  //     )
+
+
+
+
+  // },[])
+
+
+
+
+
+  // useEffect(() => {
+  //   console.log(route.query.paymentID);
+  //   paymentId !== undefined && (
+  //     axios.post(`https://stagingapi.aqarifinder.com/user/package/purchase/${paymentId}`).then(res => {
+  //       console.log(res);
+  //       //res is success then go back to the add ads and then get locla data and post them in form and compilete the excute
+
+  //     })
+
+
+  //   )
+  // },[route])
 
   const handleClickPremium = () => {
     let ads;
+    convertBase64(imageOne).then(res => setImageOneB6(res))
+    convertBase64(imageTwo).then(res => setImageThreeB6(res))
+    convertBase64(imageThree).then(res => setImageTwoB6(res))
+    convertBase64(imageFour).then(res => setImageFourB6(res))
+    console.log(imageOneB6);
+          localStorage.setItem('ads-info', (imageOneB6))
+
       let formTow = new FormData()
 
-    PAl !== 0 ?
-      (
-      (
-          addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum ==""||
-          lat == ""
-          || lng == " "||
-          phoneNumber == undefined ||
-          imageOne == undefined ||
-          imageTwo == undefined ||
-          imageThree == undefined ||
-         imageFour == undefined
-      )?(
-            console.log('123'),
-            route.locale =='ar'&& swal( 'تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
-            route.locale =='en'&& swal('Fill all field please', 'warning', 'warning')
-        ) : (
-            formTow.append('package_id', '1'),
-            formTow.append('callbackurl', 'www.google.com'),
-            ads = {
-              addTitle, desc, space, front, price, autoNum, lat, lng, phoneNumber, img1, imageTwo, imageThree, imageFour,
-              type_id, region_id,
-              category_id,
-         
-              
-            },
-            setCheckedAdd(!checkedAdd),
-            setShowDialogiBox(!showDialogBox),
-            localStorage.setItem('ads-info', JSON.stringify(ads)),
-            axios({
-              method: "post",
-              url: 'https://stagingapi.aqarifinder.com/api/user/package/get_link',
-              headers: { "Content-Type": "multipart/form-data", 'Authorization': session.data.id },
-              data: formTow,
-            }).then((res) => {
-              route.push(res.data.paumentUL)
-           console.log();
-            })
-        )
-      ):""
-    
-    
-    
-}
+    // PAl !== 0 ?
+    //   (
+    //     (
+    //       addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum == "" ||
+    //       lat == ""
+    //       || lng == " " ||
+    //       phoneNumber == undefined ||
+    //       imageOne == undefined ||
+    //       imageTwo == undefined ||
+    //       imageThree == undefined ||
+    //       imageFour == undefined
+    //     ) ? (
+    //       console.log('123'),
+    //       route.locale == 'ar' && swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
+    //       route.locale == 'en' && swal('Fill all field please', 'warning', 'warning')
+    //     ) : (
+    //       formTow.append('package_id', '1'),
+    //       formTow.append('callbackurl', 'www.google.com'),
+    //       ads = {
+    //         addTitle, desc, space, front, price, autoNum, lat, lng, phoneNumber, imageOneB6,
+    //         imageTwoB6, imageThreeB6, imageFourB6,
+    //         type_id, region_id,
+    //         category_id,
+
+
+    //       },
+    //       setCheckedAdd(!checkedAdd),
+    //       setShowDialogiBox(!showDialogBox),
+    //       localStorage.setItem('ads-info', JSON.stringify(ads)),
+    //       axios({
+    //         method: "post",
+    //         url: 'https://stagingapi.aqarifinder.com/api/user/package/get_link',
+    //         headers: { "Content-Type": "multipart/form-data", 'Authorization': session.data.id },
+    //         data: formTow,
+    //       }).then((res) => {
+    //         // route.push(res.data.paumentUL)
+    //         console.log(res);
+    //       })
+    //     )
+    //   ) : ""
+
+
+
+  }
 
 
 
 
 
 
-  
+
   useEffect(() => {
     setShowDialogiBox(showDialogBox)
   }, [showDialogBox])
@@ -333,29 +368,29 @@ formData = new FormData()
                 display: !showListCategory ? 'none' : ""
               }}  >
                 <li id='1' style={{
-                  paddingLeft: route.locale == 'en' ? '10px':"0",
-                  paddingRight:route.locale =='en'?'10px':'0'
+                  paddingLeft: route.locale == 'en' ? '10px' : "0",
+                  paddingRight: route.locale == 'ar' ? '10px' : '0'
 
                 }} onClick={(e) => {
                   setType_id(e.target.id)
-        
-                  setCategory( (route.locale=='ar'? "ايجار":"rent"))
-                }} className={`category-item ${category === (route.locale == 'ar' ? "ايجار" : "rent") ? 'active-category' : ""}`}
-                  value={(route.locale == 'ar' ? "ايجار" : "rent")}>{route.locale=='ar'? "ايجار":"rent"}</li>
-                <li id='2'  style={{
-                  paddingLeft: route.locale == 'en' ? '10px':"0",
-                  paddingRight:route.locale =='ar'?'10px':'0'
 
-                }}  className={`category-item ${category ===(route.locale=='ar'? "بيع":"selling")? 'active-category' : ""}`} value={(route.locale=='ar'? "يع":"selling")}
+                  setCategory((route.locale == 'ar' ? "ايجار" : "rent"))
+                }} className={`category-item ${category === (route.locale == 'ar' ? "ايجار" : "rent") ? 'active-category' : ""}`}
+                  value={(route.locale == 'ar' ? "ايجار" : "rent")}>{route.locale == 'ar' ? "ايجار" : "rent"}</li>
+                <li id='2' style={{
+                  paddingLeft: route.locale == 'en' ? '10px' : "0",
+                  paddingRight: route.locale == 'ar' ? '10px' : '0'
+
+                }} className={`category-item ${category === (route.locale == 'ar' ? "بيع" : "selling") ? 'active-category' : ""}`} value={(route.locale == 'ar' ? "يع" : "selling")}
                   onClick={(e) => {
                     setType_id(e.target.id)
-                    setCategory( (route.locale=='ar'? "بيع":"selling"))
+                    setCategory((route.locale == 'ar' ? "بيع" : "selling"))
                   }} >{route.locale == 'ar' ? "بيع" : "selling"}</li>
               </ul>
             </div>
             <div className="sign-input addAdds-type" id='type-list'
               style={{ position: "relative" }}
->
+            >
               <h3>{addAdsOb.add4}</h3>
               <input type="text" className="sign-mail" placeholder={addAdsOb.add4} tabIndex={3} id='type-list' value={typeEstat}
                 onChange={e => setTypeEstat(e.target.value)}
@@ -399,7 +434,7 @@ formData = new FormData()
             </div>
             <div className="sign-input  addAdds-region" id='city-list'
               style={{ position: "relative" }}
- >
+            >
               <h3>{addAdsOb.add5}</h3>
               <input type="text" className="sign-mail" placeholder={addAdsOb.add5} value={city} tabIndex={3} id='city-list'
                 onChange={e => setCity(e.target.value)}
@@ -585,6 +620,7 @@ formData = new FormData()
             <div className="sign-input  addAdds-auto-num">
               <h3>{addAdsOb.add12}</h3>
               <div className="map-adds">
+
                 <SimpleMap getLat={setLat} getLng={setLng} />
               </div>
             </div>
@@ -592,17 +628,17 @@ formData = new FormData()
 
             <div className="checksbox" style={{ cursor: 'pointer' }}>
               <div className="premium-add chack-groub" onClick={() => {
-           
+
                 handleClickPremium()
 
               }}>
-                {showDialogBox && PAl >0 && <PackgeBox setShowDialogiBox={setShowDialogiBox}
+                {showDialogBox && PAl > 0 && <PackgeBox setShowDialogiBox={setShowDialogiBox}
                   showDialogBox={showDialogBox} count={PAl} />}
-                   
-             
-                  <img src={`/assets/img/${!checkedAdd ? 'emptyCheck' : 'fullCheck'}.svg`} alt="" />
-                  <span>{addAdsOb.adSh1}</span>
-              
+
+
+                <img src={`/assets/img/${!checkedAdd ? 'emptyCheck' : 'fullCheck'}.svg`} alt="" />
+                <span>{addAdsOb.adSh1}</span>
+
 
 
               </div>

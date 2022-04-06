@@ -112,7 +112,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           </div>
           <div className="data">
             <div className='data-time'>
-              <img src='/assets/img/time-estat.svg' width={8.63} height={8.63} />4 {addAdsOb.hour}</div>
+              <img src='/assets/img/time-estat.svg' width={8.63} height={8.63} />{data.time}</div>
             <div className='data-views'>
               <img src='/assets/img/view2-01 (2).svg' width={12.47} height={7.95} />
 
@@ -207,25 +207,25 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           <div className="city estat-deatils">
             <span className="att">{addAdsOb.add5}</span>
             <span className=''>
-              <img src='/assets/img/bar.svg' style={{
+              {/* <img src='/assets/img/bar.svg' style={{
                   height: "28px",
                 marginTop: "8px",
                 zIndex:'10'
                 
                 }}/>              
-                
+                 */}
                 </span>
             <span>{data.city}</span>
           </div>
           <div className="space estat-deatils">
             <span className="att">{addAdsOb.add6}</span>
             <span className=''>
-              <img src='/assets/img/bar.svg' style={{
+              {/* <img src='/assets/img/bar.svg' style={{
                   height: "28px",
                 marginTop: "8px",
                 zIndex:'10'
                 
-                }}/>              
+                }}/>               */}
                 
                 </span>
             <span><span>{data.space}</span> {route.locale=="ar"?"متر":"meter"}</span>
@@ -234,13 +234,13 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           <div className="destination estat-deatils">
             <span className="att">{addAdsOb.add8}</span>
             <span className=''>
-              <img src='/assets/img/bar.svg' style={{
+              {/* <img src='/assets/img/bar.svg' style={{
                   height: "28px",
                 marginTop: "8px",
                 zIndex:'10'
                 
                 }}/>              
-                
+                 */}
                 </span>
             <span>{data.interface}</span>
           </div>
@@ -248,21 +248,21 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           <div className="price estat-deatils">
             <span className="att">{addAdsOb.add7}</span>
             <span className=''>
-              <img src='/assets/img/bar.svg' style={{
+              {/* <img src='/assets/img/bar.svg' style={{
                   height: "28px",
                 marginTop: "8px",
                 zIndex:'10'
                 
-                }}/>              
+                }}/>               */}
                 
                 </span>
             <span>{data.price}<span> {addAdsOb.priceCode} </span></span>
 
           </div>
-          <div className="automated-number estat-deatils">
+          <div className=" estat-deatils">
             <span className="att">{addAdsOb.add9}</span>
             <span className=''>
-              <img src='/assets/img/bar.svg'
+              {/* <img src='/assets/img/bar.svg'
                 style={{
                   height: "28px",
                   marginTop: "8px",
@@ -270,9 +270,9 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
                   paddingRight:"30px"
                 
                 }}/>              
-              
+               */}
                 </span>
-            <span className='autom-value'>{data.autoNumber}</span>
+            <span className=''>{data.autoNumber}</span>
           </div>
 
         </div>

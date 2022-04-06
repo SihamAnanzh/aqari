@@ -95,7 +95,7 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
                 <p className='placeholder cityName' style={{
 
                     fontSize: `${selection.length > 0 ? "16px" : ""}`,
-                    color: `${selection.length > 0 ? "#EDAA43" : ""}`
+                    color: `${selection.length > 0 ? "#00416B" : ""}`
                 }}>
 
 

@@ -11,22 +11,7 @@ const BackBtn = () => {
 
     return (
         <div className="backBtn">
-        <div onClick={handelClick} className='' style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: "50%",
-            background: '#EDAA43',
-            color: '#fff',
-            position: 'absolute',
-            top: "16%",
-            left:'22px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems:"center",
-            cursor: "pointer",
-            zIndex:"10"
-            
-        }}>
+        <div onClick={handelClick} className='back' >
             <ArrowBack />
         </div>
         </div>

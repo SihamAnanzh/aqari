@@ -91,14 +91,14 @@ const Index = ({ prem, latest, services, Request,name }) => {
   let ad2 = t('home:ads-2')
   let ad3 = t('home:ads-3')
   let premium = t('home:premium')
-  let hour = t('home:hour')
+  let day = t('home:day')
   let priceCode=t('home:priceCode')
   let adsOb = {
     ad1,
     ad2,
     ad3,
     premium,
-    hour,
+    day,
     priceCode
   }
 
@@ -113,7 +113,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
         title: adds.title,
         address: adds.region.country.title + " " + adds.region.title,
         price: adds.price,
-        time: '4',
+        time: adds.issue_date_string.slice(0,5),
         views: adds.view_count,
         whatsApp: adds.whatsapp,
         phone: adds.phone,
@@ -138,7 +138,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
           lat: adds.lat,
           lng: adds.lng,
           views: adds.view_count,
-          time: '4',
+          time: adds.issue_date_string.slice(0,5),
           user_id: adds.user_id,
           regionId: adds.region_id,
           is_premium: adds.is_premium,
@@ -151,6 +151,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
 
         }
       }
+      console.log(data.time);
       setPremuimAdds(pre => [...pre, data])
 
     })
@@ -165,7 +166,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
         title: adds.title,
         address: adds.region.country.title + " " + adds.region.title,
         price: adds.price,
-        time: '4',
+        time: adds.issue_date_string.slice(0,5),
         views: adds.view_count,
         whatsApp: adds.whatsapp,
         phone: adds.phone,
@@ -190,7 +191,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
           lat: adds.lat,
           lng: adds.lng,
           views: adds.view_count,
-          time: '4',
+          time: adds.issue_date_string.slice(0,5),
           user_id: adds.user_id,
           regionId: adds.region_id,
           is_premium: adds.is_premium,

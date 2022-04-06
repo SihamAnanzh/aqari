@@ -520,15 +520,47 @@
             margin-left: 10px;
         }
         
-    .signin-contanier .sign {
-   
-            h2{
-         
-                margin-left: 282%;
+    
+
+    .signin-contanier .sign h2 {
+        margin-left: 170%;
+
         
-            }
-    } 
+    }
+
+    .signin-contanier{
+        .conditions.chack-groub{
+margin-right: 33px;
+        }
+    }
 
     .signin-contanier .sign.entry h2 {margin-left: 200%;}
+
+
+
+}
+
+
+@media (max-width:380px) {
+
+
+    .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn {
+        margin-right: 11px;
+        height: 62px;
+        font-size: 18px;
+        width: 331px;
+        margin-top: 10px;
+    }
+    .ltr .signin-contanier .sign h2 {
+        margin-left: -132%;
+    }
+    
+    .signin-contanier .sign h2 {
+        margin-left: 149%;
+    }
+
+    .ltr .signin-contanier .sign.entry h2 {
+        margin-left: -231%;
+    }
 
 }

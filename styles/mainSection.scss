@@ -499,12 +499,16 @@ font-family:otfPlain ;
 
 
   @media (max-width:380px) {
-      .search-div,
-      .ltr .search-div {
-         margin-right:unset;
-          margin-left: unset;
-          padding-left: unset;
-          padding-right: unset;
+  
+      .search-div, .ltr .search-div {
+        margin-right: 8px;
+        margin-left: unset;
+        padding-left: unset;
+        padding-right: unset;
+    }
+      .btnSearch button{
+          width: 70vw;
+          margin-right: -20px;
       }
       .serarch div{
           width: 75vw;

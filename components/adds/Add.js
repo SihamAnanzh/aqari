@@ -4,11 +4,12 @@ import React from 'react'
 const Add = (props) => {
   console.log(props);
   return (
+    <>
     <Link  style={{textDecoration:'none'}}  href={{
       pathname: `/advertises/${props.add_id}`,
       query:`title=${props.title.trim().replace(' ',"-")}`
     }}>  
-      <>
+    
       <div className="prem-contanier ad-contanier ad-main">
         <div className="img-prem">
           <img src={props.singleEstate.images[0] && props.singleEstate.images[0].logo_url} alt={props.title} />
@@ -30,14 +31,21 @@ const Add = (props) => {
                 <span className='number'>{props.price}</span>
                 {props.adsOb.priceCode}
               </span>
-                  <span className='time'><span className='number'><span className='address-time-icon'>
+                  <span className='time'><span className='number'>
+                    <span className='address-time-icon'>
                                 <img src='/assets/img/address-hour.svg' />
-              </span>{props.time}</span>{props.adsOb.hour}</span>
+              </span>{props.time}</span></span>
         </div>
          </div>
    
          
-      </div>
+        </div>
+            
+      </Link>
+        <Link  style={{textDecoration:'none'}}  href={{
+      pathname: `/advertises/${props.add_id}`,
+      query:`title=${props.title.trim().replace(' ',"-")}`
+    }}>
       <div className="prem-contanier ad-contanier ad-second">
        
           <div className="first-prem">
@@ -58,7 +66,7 @@ const Add = (props) => {
             <span className='number'>{props.price}</span>{props.adsOb.priceCode}</span>
                   <span className='time'><span className='number'><span className='address-time-icon'>
                                 <img src='/assets/img/address-hour.svg' />
-              </span>{props.time}</span>{props.adsOb.hour}</span>
+              </span>{props.time}</span></span>
         </div>
          </div>
          <div className="desc-prem  ">
@@ -66,8 +74,9 @@ const Add = (props) => {
             </div>
         
         </div>
-        </>
-    </Link>
+       
+      </Link>
+      </>
   )
 }
 

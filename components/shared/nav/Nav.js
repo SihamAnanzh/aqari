@@ -101,8 +101,8 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                             justifyContent: "center",
                             alignItems: "center",
                             borderRadius: "10px",
-                            marginRight:route.locale=='en'?"33px":"10px",
-                            marginLeft:route.locale== 'ar'&&'56px'
+                            marginRight: route.locale == 'en' ? route.asPath !== '/pofile' ? "33px" : "-8px" :"10px",
+                            marginLeft:route.locale== 'ar'&& route.asPath !=='/pofile'?"67px":'56px'
 
                         }}>
                             <Link href='/profile' className='second-nav-item'><span

@@ -6,10 +6,10 @@ const PremuimAdd = (props) => {
 
     return (
 
-        <Link href={{
-            pathname: `/advertises/${props.add_id}`,
-            query: `title=${props.title.trim().replace(' ', "-")}`
-        }} >
+        // <Link href={{
+        //     pathname: `/advertises/${props.add_id}`,
+        //     query: `title=${props.title.trim().replace(' ', "-")}`
+        // }} >
             <div className="prem-contanier">
             <div className="first-prem">
                 <Link href={{
@@ -34,9 +34,11 @@ const PremuimAdd = (props) => {
                             {props.address}</div>
                         <div className="detials">
                             <span className='price'><span className='number'>{props.price}</span>{props.adsOb.priceCode}</span>
-                            <span className='time'><span className='number'><span className='address-time-icon'>
+                                <span className='time'><span className='number'>
+                                    <span className='address-time-icon'>
                                 <img src='/assets/img/address-hour.svg' />
-                            </span>{props.time}</span>{props.adsOb.hour}</span>
+                            </span>
+                            {props.time}</span></span>
                             <span className='views'><span className='address-views-icon'>
                                 <img src='/assets/img/view.svg' />
                             </span>
@@ -93,7 +95,7 @@ const PremuimAdd = (props) => {
             </div>
                 <span className='prem-word'>{props.adsOb.premium}</span>
                 </div>
-        </Link>
+        // </Link>
 
     )
 }

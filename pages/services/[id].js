@@ -155,7 +155,7 @@ export async function getServerSideProps(context) {
         description: res.data.results.description,
         phone: res.data.results.phone,
         price: res.data.results.price,
-        time: "4",
+        time: res.data.results.issue_date_string.slice(0,5),
         title: res.data.results.title,
         user_id: res.data.results.user_id,
         views: res.data.results.view_count,

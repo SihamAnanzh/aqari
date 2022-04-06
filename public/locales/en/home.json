@@ -29,6 +29,8 @@
     "premium":"premium",
     "priceCode":"KWD",
     "edit":"edit",
-    "hour":"hour"
+    "day":"day",
+    "error":"الرجاء المحاولة في وقت لاحق"
+
     
 }

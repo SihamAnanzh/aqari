@@ -170,7 +170,7 @@ export async function getServerSideProps(context) {
         regionId: res.data.results.region.id,
         regionsString: res.data.results.region.title,
         space: res.data.results.area,
-        time: "4",
+        time: res.data.results.issue_date_string.slice(0,5),
         title: res.data.results.title,
         user_id: res.data.results.user_id,
         views: res.data.results.view_count,
