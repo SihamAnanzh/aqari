@@ -14,10 +14,11 @@ import BackBtn from '../BackBtn'
 export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     const [cookies, setCookie, removeCookie] = useCookies(['user']);
     const session = useSession()
-    const [rememberME, setRememberMe] = useState(         cookies.Name !== '' ||cookies.Name!==undefined ?false:true)
+    const [rememberME, setRememberMe] = useState(cookies.Name?cookies.Name== ''?false:true:false)
     const [showPassword, setShowPassword] = useState(false)
-    const [email, setEmail] = useState('')
-    const [password, setPassowrd] = useState('')
+    const [email, setEmail] = useState(cookies.Name?cookies.Name!==" "?cookies.Name:"":"")
+    const [password, setPassowrd] = useState(cookies.Password?cookies.Password
+        !==""?cookies.Password:"":"")
     const [showWrongMessage, setShowWrongPassword] = useState(true)
     const [messateError, setMessageError] = useState('')
     const route = useRouter()
@@ -28,11 +29,13 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     }
 
 
-    useEffect(() => {
-        cookies.Name !== '' ||cookies.Name!==undefined ?setEmail(''):setEmail(cookies.Name)
-         cookies.Name !== ''&& cookies.Name!==undefined  ?setPassowrd(''): setPassowrd(cookies.Password)
-     console.log(cookies.Name);
-    }, [])
+    // useEffect(() => {
+    //    setEmail(cookies.Name)
+    //      setPassowrd(cookies.Password)
+    //     console.log(cookies.Name);
+        
+
+    // }, [])
 
 
 
@@ -58,21 +61,14 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
     const handelRemember = () => {
        
-setRememberMe(!rememberME)        
-   cookies.Name == '' ||cookies.Name==undefined ? (
-            
-               removeCookie(['user'])
-
-            // setCookie('Name', "", { path: '/' }),
-            // setCookie('Password', "", { path: '/' }),       
-                 )
-                :
-                (
-
-                    setCookie('Name', email, { path: '/' }),
-                    setCookie('Password', password, { path: '/' }),
-
-            )
+        rememberME ? (
+            (setCookie('Name', '', { path: '/' }),
+                setCookie('Password', '', { path: '/' }),
+                setRememberMe(false))
+        )
+            :(setCookie('Name', email, { path: '/' }),
+                setCookie('Password', password, { path: '/' }),
+                setRememberMe(true))
         
 
 

@@ -306,7 +306,7 @@ font-family:otfPlain ;
     content: "";
     width: 14px;
     height: 14px;
-    right: 91.3%;
+    right: 91%;
     margin-top: 9px;
     border: 1px solid #fff;
 }
@@ -331,7 +331,6 @@ font-family:otfPlain ;
     .actions{
         width: 90vw;
        flex-wrap: wrap;
-       min-width: 400px;
 
         .action{
             width: 25vw;
@@ -343,29 +342,31 @@ font-family:otfPlain ;
         height: 353px;
     }
     .serarch{
+ 
         flex-direction: column;
         margin: 10px auto;
         justify-content: center;
+        width: 100%;
         align-items: center;
 
         .first{
-        padding-left: 10px;
-        margin-right: 55px;
+        padding-left: 0;
+        margin-right: 0;
         margin-left: 0;
         padding-right: 0;
         margin-top: 10px;
-        width: 364px;
+        width: 83%;
          
         }
 
         .second{
             padding-left: 0;
-            margin-right: 55px;
+            margin-right: 0;
             margin-left: 0;
             padding-right: 0;
             margin-top: 20px;
             margin-bottom: 20px;
-            width: 364px;
+            width: 83%;
 
         }
     }
@@ -395,143 +396,200 @@ font-family:otfPlain ;
 
   
 
-    .ltr .serarch .second {
-        margin-right: 34px;
-    }
+    // .ltr .serarch .second {
+    //     margin-right: 34px;
+    // }
 
-    .ltr .search-div{
-        margin-right: -87px;
-    }
+    // .ltr .search-div{
+    //     margin-right: -87px;
+    // }
 
-    .ltr .btnSearch button {
-     margin-left: -81px;
-     width: 285px;    
-    }
+    // .ltr .btnSearch button {
+    //  margin-left: -81px;
+    //  width: 285px;    
+    // }
 
        
   .actions-contaier{
     .actions{
       margin-top: 0;
-
       width: 100%;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-   
+      margin-right: unset;
+      margin-left: im;
+      margin-left: unset;
+      padding-right: unset;
+      padding-right: unset;
+      padding-top: 19px;
+  
        
     }
   }
 
-  .ltr .actions-contaier .actions{
-    padding-right: 121px;
-}
+
+//   .ltr .actions-contaier .actions{
+//     padding-right: 121px;
+// }
 
 }
 
-@media (max-width:800px) {
+// @media (max-width:800px) {
 
-    .ltr .actions-contaier .actions{
-        padding-right: 92px;
-        padding-left: 10px;    }
+//     .ltr .actions-contaier .actions{
+//         padding-right: 92px;
+//         padding-left: 10px;    }
 
     
-}
+// }
 
 @media (max-width:500px) {
-    .ltr .actions-contaier .actions{
-        padding-right: 23px;
-        padding-left: 10px;    }
+    .actions .action {
+        width: 25vw;
+        font-size: 22px;
+        min-width: 15vw;
+    }
+
+    .serachContainer.btnSearch
+    {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-div{
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .actions .action {
+        height:48px;
+        margin-top: 13px;
+    }
+
+    .ltr .actions-contaier {
+        width: fit-content;
+    }
+    .actions-contaier {
+        width: 100%;
+    }
+
     
 }
-  @media (max-width:428px) {
-    .dropdwon-menu ul {
-        width: 85vw;
-        z-index: 1000;
-        position: absolute;
-    }
 
-      .actions{
-          .action{
-              width:114px;
-              height: 47px;
-              font-size:24px    
-                  }
-      }
 
-      .btnSearch button{
-          width:364px;
-          height:62px;
-          font-size:24px
-      }
-      .dropdwon-menu{
-          width:364px;
-          margin-right: -27px;
+//   @media (max-width:428px) {
+//     .dropdwon-menu ul {
+//         width: 85vw;
+//         z-index: 1000;
+//         position: absolute;
+//     }
+
+//       .actions{
+//           .action{
+//               width:114px;
+//               height: 47px;
+//               font-size:24px    
+//                   }
+//       }
+
+//       .btnSearch button{
+//           width:364px;
+//           height:62px;
+//           font-size:24px
+//       }
+//       .ltr .dropdwon-menu{
+//           width:364px;
+//           margin-right: -27px;
        
-      }
-
-      .arrow-drop-name, .arrow-drop{
-          right:323px
-      }
-
-
-      .ltr .search-div {
-        margin-right:-6%;
-    }
+//       }
+//       .dropdwon-menu {
+//         width: 364px;
+//         margin-right: -20px;
+//     }
+//       .arrow-drop-name, .arrow-drop{
+//           right:90%
+//       }
 
 
-    .serarch div{
-        width: 85vw;
-    }
+//       .ltr .search-div {
+//         margin-right:-13%;
+//     }
 
 
-    .ltr .btnSearch button {
-        margin-left: 13%;
-        width: 53vw;
+//     .serarch div{
+//         width: 85vw;
+//     }
+
+
+//     .ltr .btnSearch button {
+//         margin-left: 13%;
+//         width: 53vw;
       
-    }
-    .ltr .actions-contaier .actions{
-        padding-right: 12px;
-        padding-left: 10px;    }
+//     }
+
+//      .btnSearch button {
+//         margin-right: 13%;
+//         width: 53vw;
+//     }
+//     // .ltr .actions-contaier .actions{
+//     //     padding-right: 12px;
+//     //     padding-left: 10px;    }
   
-  }
+//         .ltr .actions-contaier .actions {
+//             padding-right: 32px;
+//             padding-left: 0;
+//         }
+//          .actions-contaier .actions {
+//             padding-right: 2px;
+//             padding-left: 0;
+//         }
+// .actions{
+//     height: 118px;
+// }
+//   }
 
 
-  @media (max-width:380px) {
+//   @media (max-width:380px) {
   
-      .search-div, .ltr .search-div {
-        margin-right: 8px;
-        margin-left: unset;
-        padding-left: unset;
-        padding-right: unset;
-    }
-      .btnSearch button{
-          width: 70vw;
-          margin-right: -20px;
-      }
-      .serarch div{
-          width: 75vw;
-      }
-      .serarch .first,.serarch .second,
-      .ltr .serarch .second,.ltr .first {
-        margin-right:unset;
-        margin-left: unset;     
-        padding-left: unset;
-        padding-right: unset; 
-        width: 75vw;
+//       .search-div, .ltr .search-div {
+//         margin-right: 8px;
+//         margin-left: unset;
+//         padding-left: unset;
+//         padding-right: unset;
+//     }
+//       .btnSearch button{
+//           width: 70vw;
+//           margin-right: -20px;
+//       }
+//       .serarch div{
+//           width: 75vw;
+//       }
+//       .serarch .first,.serarch .second,
+//       .ltr .serarch .second,.ltr .first {
+//         margin-right:unset;
+//         margin-left: unset;     
+//         padding-left: unset;
+//         padding-right: unset; 
+//         width: 75vw;
         
-    }
-    .dropdwon-menu ul {
-        width: 75vw;
-    }
+//     }
+//     .dropdwon-menu ul {
+//         width: 75vw;
+//     }
 
-    .arrow-drop-name, .arrow-drop {
-        right: 89%;
-    }
+//     .arrow-drop-name, .arrow-drop {
+//         right: 89%;
+//     }
     
     
-  }
+//   }
 
 
 //   @media (max-width:370px) {

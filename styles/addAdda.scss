@@ -153,14 +153,6 @@ position: relative;
 }
 
 
-@media (max-width:428px) {
-    .uploadedImage .img-submite {
-        width: 150px;
-        height: 134px;
-        margin: 5px;
-        margin-right: 30px;
-    }
-}
 
 
 @media (max-width:950px) {
@@ -193,7 +185,22 @@ position: relative;
     
 // }
 
+@media (max-width:608px) {
+    .ltr .catergory-add-arrow, .ltr .add-type-arrow, .ltr .city-add-arrow{
+        left: 82%;
+    }
+}
+
+
+
 @media (max-width:428px) {
+    .uploadedImage .img-submite {
+        width: 150px;
+        height: 134px;
+        margin: 5px;
+        margin-right: 30px;
+    }
+
     .profile-tab .checksbox {
         display: flex;
     
@@ -201,7 +208,7 @@ position: relative;
         margin: 10px auto;
     }
     .ltr .catergory-add-arrow, .ltr .add-type-arrow, .ltr .city-add-arrow {
-        left: 80%;
+        left: 87%;
     }
     
 }

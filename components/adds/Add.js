@@ -57,11 +57,18 @@ const Add = (props) => {
             <div className="address">
               <img src='/assets/img/location-gray.svg' />
               {props.address}</div>
+              <div className="detials detials-second-regular">
          
+                  <span className='time'><span className='number'><span className='address-time-icon'>
+                                <img src='/assets/img/address-hour.svg' />
+                </span>{props.time}</span></span>
+                <span className='price'>
+            <span className='number'>{props.price}</span>{props.adsOb.priceCode}</span>
+        </div>
             
           </div>
           
-        <div className="detials">
+        <div className="detials detials-main-regular">
           <span className='price'>
             <span className='number'>{props.price}</span>{props.adsOb.priceCode}</span>
                   <span className='time'><span className='number'><span className='address-time-icon'>

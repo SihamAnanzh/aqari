@@ -320,9 +320,9 @@ margin-right: 10px;
     
 }
 
-.ltr .contact-prem .whatsApp .whatsApp-icon img{
-    margin-right: 10px;
-}
+// .ltr .contact-prem .whatsApp .whatsApp-icon img{
+//     margin-right: 10px;
+// }
 
 
 
@@ -385,61 +385,60 @@ margin-right: 10px;
         display: none;
     }
     
-    .ltr .contact-prem.secondAdd{
-        display: flex;
-        margin-top: 12px;
-        width: 100%;
-        justify-content: space-evenly;
+    // .ltr .contact-prem.secondAdd{
+    //     display: flex;
+    //     margin-top: 12px;
+    //     width: 100%;
+    //     justify-content: space-evenly;
 
-        .phone,.whatsApp{
-            margin-right: unset;
-            margin-left: unset;
-            width: 157px;
-        }
-    }
+    //     .phone,.whatsApp{
+    //         margin-right: unset;
+    //         margin-left: unset;
+    //         width: 157px;
+    //     }
+    // }
     .contact-prem.secondAdd{
-        // display: flex;
-        // margin-top: 12px;
-        // width: 100%;
-        // justify-content: space-between;
+     
         display: flex;
         margin-top: 14px;
         width: 100%;
         align-items: center;
-        justify-content: space-evenly;
-
-        .phone,.whatsApp{
-            margin-right: unset;
-            margin-left: unset;
-            width: 157px;
-        }
+        justify-content: flex-start;
+           &> div{
+               margin-left: 5px;
+           }
+        // .phone,.whatsApp{
+        //     margin-right: unset;
+        //     margin-left: unset;
+        //     width: 157px;
+        // }
     }
 
-.contact-prem.secondAdd.serv{
-    display: flex;
-    margin-top: 14px;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-     margin-right: 10px;
-    .phone,.whatsApp{
-        margin-right: unset;
-        margin-left: unset;
-        width: 157px;
-    }
-}
+// .contact-prem.secondAdd.serv{
+//     display: flex;
+//     margin-top: 14px;
+//     width: 100%;
+//     align-items: center;
+//     justify-content: space-between;
+//      margin-right: 10px;
+//     .phone,.whatsApp{
+//         margin-right: unset;
+//         margin-left: unset;
+//         width: 157px;
+//     }
+// }
 
-.ltr .contact-prem.secondAdd.serv{
-    display: flex;
-    margin-top: 14px;
-    align-items: center;
-    justify-content: space-between;
-  margin-right: 10px;
-    .phone,.whatsApp{
-        margin-right: unset;
-        margin-left: unset;
+// .ltr .contact-prem.secondAdd.serv{
+//     display: flex;
+//     margin-top: 14px;
+//     align-items: center;
+//     justify-content: space-between;
+//   margin-right: 10px;
+//     .phone,.whatsApp{
+//         margin-right: unset;
+//         margin-left: unset;
    
-    }}
+//     }}
 
     .prem-contanier {
         width: 568px;
@@ -472,12 +471,12 @@ margin-right: 10px;
     left: 91%;
 
 }
-.ltr .contact-prem.secondAdd {
-    display: flex;
-    margin-top: 12px;
-    width: 90%;
-    justify-content: space-between;
-}
+// .ltr .contact-prem.secondAdd {
+//     display: flex;
+//     margin-top: 12px;
+//     width: 90%;
+//     justify-content: space-between;
+// }
 }
 
 
@@ -547,14 +546,7 @@ width: 187px;
 }
 
 .ltr .ad-contanier .detials{
-    // display: flex; 
-    // align-items: flex-start;
-    // color: #737373;
-    // font-size: 12px;
-    // margin-top: -51px;
-    // width: 166px;
-    // margin-right: -37px;
-    // margin-left: -26px;
+  
 
     display: flex;
     align-items: flex-start;
@@ -583,23 +575,32 @@ width: 187px;
 
 }
 
-.ltr .contact-prem.secondAdd {
-    display: flex;
-    margin-top: 12px;
-    width: 330px;
-    justify-content: space-between;
+// .ltr .contact-prem.secondAdd {
+//     display: flex;
+//     margin-top: 12px;
+//     width: 330px;
+//     justify-content: space-between;
+// }
+
 }
 
+
+
+.ad-second .detials.detials-second-regular{
+    display: none;
+}
+.ad-second .detials.detials-main-regular{
+    display: flex;
 }
 
 
 @media (max-width:482px) {
 
     .adds-container{
-        width: 50vw;
+       width: 100%;
         h1{
             font-size: 22px;
-            margin-right: -52px;
+            margin-right: 5%;
         }
     }
      .prem-contanier{
@@ -628,7 +629,7 @@ width: 187px;
 
         h1{
             font-size: 20px;
-            margin-right:-25%;
+            margin-right:5%;
         }
         .address{
             font-size: 12px;
@@ -672,8 +673,16 @@ width: 187px;
      
     }
     .ad-main{display: none;}
-      
+   
 
+    .ad-second .detials.detials-second-regular{
+        display: flex;
+    }
+    .ad-second .detials.detials-main-regular{
+        display: none;
+    }
+
+    
     .info-prem .detials{
         .phone{
             width:16px;
@@ -716,7 +725,7 @@ width: 187px;
             }
             h1{
             text-align: left;
-          margin-left:-21%
+          margin-left:4%
     }
 
         .prem-contanier .prem-word{
@@ -728,24 +737,34 @@ width: 187px;
 
 
 
-        // .ltr .contact-prem .phone span{
-        //  margin-right: 3px;        }
-        // .ltr .contact-prem .whatsApp span{
-
-        //    margin-right: 4px;
-        // }
-
+            .contact-prem.secondAdd{
+                justify-content: space-evenly;
+            }
         .ltr .ad-second .detials{
-          width:155px
+          width:110px;
+          margin-right: unset;
+          margin-left: unset;
+
         }
 
-      
+        .ad-contanier .detials span, .ad-contanier .detials .number{
+            margin-right: 1px;
+          margin-left: 1px;
+
+        }
+        .ltr .adds-container .ad-contanier .detials .price, .ltr .adds-container .ad-contanier
+         .detials .time, .ltr .adds-container .ad-contanier .detials .views {
+            margin-right: 1px;
+            margin-left: 1px;
+  
+         }
+
         
 
 
-        .ltr .second-prem{
-            width: 70vw;
-        }
+        // .ltr .second-prem{
+        //     width: 70vw;
+        // }
 
         .ltr .ad-contanier .info-prem {
             width: 158px;
@@ -772,88 +791,153 @@ width: 187px;
             
         // }
 
-        .ltr .ad-contanier .detials{
-            display: flex; 
-            align-items: flex-start;
-            color: #737373;
-            font-size: 12px;
-            margin-top: -3px;
-            width: 166px;
-            margin-right: -37px;
-            margin-left: -13px;
-            // display: flex;
-            // align-items: flex-start;
-            // color: #737373;
-            // font-size: 12px;
-            // margin-top: -1px;
-            // width: 166px;
-            // margin-right: 168px;
-            // margin-left: 7px;
+        // .ltr .ad-contanier .detials{
+        //     display: flex; 
+        //     align-items: flex-start;
+        //     color: #737373;
+        //     font-size: 12px;
+        //     margin-top: -3px;
+        //     width: 166px;
+        //     margin-right: -37px;
+        //     margin-left: -13px;
+          
+        // }
+
+
+        .ad-second .detials.detials-second-regular{
+            display: flex;
+    margin-right: -7px;
+    margin-left: unset;
+    margin-top: -9px;
+    justify-content: space-between;
         }
- 
+
+        .ltr  .ad-second .detials.detials-second-regular{
+            display: flex;
+            margin-right: unset;
+            margin-left: -5px;
+            margin-top: -9px;
+            justify-content: space-between;
+
+        }
+
+        .ad-contanier .detials .time, .ad-contanier .detials .price {
+            margin-left: unset;
+            margin-right: unset;
+        }
+
+
+        .ad-second .detials{
+            width: 110px;
+        }
+        .ad-contanier{
+            height: 124px;
+        }
+        .ad-contanier .img-prem img, .ad-contanier .img-prem {
+            width: 67px;
+            height: 67px;
+        }
+
+        .ltr .ad-second .detials .time, .ad-second .ad-contanier .detials .price{
+            margin-left: unset;
+            margin-right: unset;
+            padding-left: unset;
+            padding-right: unset;
+
+        }
+
+
+
+        .contact-prem .phone .address-phone img,
+        .contact-prem .whatsApp .whatsApp-icon img{
+            width: 15px;
+            height: 15px;
+            margin-left: 0;
+            margin-top: 6px;
+        }
+
+        .contact-prem .whatsApp .whatsApp-icon img{
+            width: 18px;
+            height: 18px;
+        }
+
+        .contact-prem.secondAdd .phone, .contact-prem.secondAdd .whatsApp{
+            margin-right: unset;
+            margin-left: unset;
+            width: 132px;
+            padding: unset;
+            padding-right: unset;
+            padding-left: unset;
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 17px;
+        
+        }
+
+
 }
 
 
-@media(max-width:380px){
-    .adds-btn{
-    width:69px
-    }
+// @media(max-width:380px){
+//     .adds-btn{
+//     width:69px
+//     }
 
-    .prem-contanier {
-        width: 316px;
-        height: 230px;
-    }
+//     .prem-contanier {
+//         width: 316px;
+//         height: 230px;
+//     }
 
-    .contact-prem.secondAdd .phone, .contact-prem.secondAdd .whatsApp {
-        margin-right: unset;
-        margin-left: unset;
-        width: 130px;    
-        font-size: 18px;
+//     .contact-prem.secondAdd .phone, .contact-prem.secondAdd .whatsApp {
+//         margin-right: unset;
+//         margin-left: unset;
+//         width: 130px;    
+//         font-size: 18px;
             
-           .address-phone a,.whatsApp a{
-            margin-bottom: 4px;
-           }
-    }
-    .ad-contanier {
-        height: 100px;
-    }
+//            .address-phone a,.whatsApp a{
+//             margin-bottom: 4px;
+//            }
+//     }
+//     .ad-contanier {
+//         height: 100px;
+//     }
 
 
-    .ad-second .detials {
-        width: 144px;
-        margin-top: -4px;
-        margin-right: -52px;
-    }
+//     .ad-second .detials {
+//         width: 144px;
+//         margin-top: -4px;
+//         margin-right: -52px;
+//     }
 
-    .actions-contaier{
-        width: 95vw;
-    }
+//     .actions-contaier{
+//         width: 95vw;
+//     }
 
-    .ltr .actions-contaier{
-        width: 111vw;
-    }
+//     .ltr .actions-contaier{
+//         width: 111vw;
+//     }
 
-    .ltr .contact-prem.secondAdd {
-        justify-content: space-between;
-        display: flex;
-        margin-top: 12px;
-        width: 290px;
-        justify-content: x;
-    }
+//     .ltr .contact-prem.secondAdd {
+//         justify-content: space-between;
+//         display: flex;
+//         margin-top: 12px;
+//         width: 290px;
+//         justify-content: x;
+//     }
 
-    .ltr .contact-prem.secondAdd .phone, .ltr .contact-prem.secondAdd .whatsApp {
-        margin-right: unset;
-        margin-left: unset;
-        width: 141px;
-    }
+//     .ltr .contact-prem.secondAdd .phone, .ltr .contact-prem.secondAdd .whatsApp {
+//         margin-right: unset;
+//         margin-left: unset;
+//         width: 141px;
+//     }
 
 
-    .ltr .ad-contanier .detials{
-        margin-left: -51px;
-    }
+//     .ltr .ad-contanier .detials{
+//         margin-left: -51px;
+//     }
 
-    .ltr .actions-contaier .actions {
-        padding-right: 53px;
-        padding-left: 12px;
-    }
-}
+//     .ltr .actions-contaier .actions {
+//         padding-right: 53px;
+//         padding-left: 12px;
+//     }
+// }

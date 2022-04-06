@@ -157,29 +157,29 @@ const AddAdds = ({ addAdsOb }) => {
 
 
 
-  useEffect(() => {
-    axios.get('https://stagingapi.aqarifinder.com/api/user/profile').then((res) => {
-      setPAL(res.data.results.premium_ads_left)
-    })
+  // useEffect(() => {
+  //   axios.get('https://stagingapi.aqarifinder.com/api/user/profile').then((res) => {
+  //     setPAL(res.data.results.premium_ads_left)
+  //   })
 
-    setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info')))
-    console.log(adsDataLocal);
-    setAddTitle(adsDataLocal && adsDataLocal.addTitle)
-    setAutoNum(adsDataLocal && adsDataLocal.autoNum)
-    setDesc(adsDataLocal && adsDataLocal.desc)
-    setFront(adsDataLocal && adsDataLocal.front)
-    setLat(adsDataLocal && adsDataLocal.lat)
-    setLng(adsDataLocal && adsDataLocal.lng)
-    setPhoneNumber(adsDataLocal && adsDataLocal.phoneNumber)
-    setPrice(adsDataLocal && adsDataLocal.price)
-    setSpace(adsDataLocal && adsDataLocal.space)
+  //   setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info')))
+  //   console.log(adsDataLocal);
+  //   setAddTitle(adsDataLocal && adsDataLocal.addTitle)
+  //   setAutoNum(adsDataLocal && adsDataLocal.autoNum)
+  //   setDesc(adsDataLocal && adsDataLocal.desc)
+  //   setFront(adsDataLocal && adsDataLocal.front)
+  //   setLat(adsDataLocal && adsDataLocal.lat)
+  //   setLng(adsDataLocal && adsDataLocal.lng)
+  //   setPhoneNumber(adsDataLocal && adsDataLocal.phoneNumber)
+  //   setPrice(adsDataLocal && adsDataLocal.price)
+  //   setSpace(adsDataLocal && adsDataLocal.space)
 
-    console.log(adsDataLocal && adsDataLocal.addTitle);
-
-
+  //   console.log(adsDataLocal && adsDataLocal.addTitle);
 
 
-  }, [])
+
+
+  // }, [])
 
 
 

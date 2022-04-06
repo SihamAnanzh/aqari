@@ -98,7 +98,7 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                             }} />
                     </div>
 
-                </div>
+             
                 <div className="conditions chack-groub" style={{ cursor: 'pointer' ,marginTop:"20px"}} onClick={() => {
                 setCheckedConditions(!checkedConditions)
        
@@ -114,10 +114,13 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                     }}>{route.locale == "ar" ? "الموافقة على الشروط والقواعد وسياسية الخصوصية" :
                         "Agree to the terms, rules and privacy policy"}</a>
 
-              </div>
-                <button type='submit' className="sign-btn" style={{ outline: 'none', border: "none" }}>
+                </div>
+                <div className="sign-input">
+                <button type='submit' className="sign-btn" style={{ outline: 'none', border: "none",fontSize:'22px',fontFamily:"otfPlain" }}>
                     {sginUpOb.su6}
                 </button>
+                </div>
+                </div>
                
             </form>
             <div className="social-sign" style={{cursor:"pointer"}}>

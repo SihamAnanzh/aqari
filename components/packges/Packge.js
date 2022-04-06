@@ -10,7 +10,7 @@ const Packge = (props) => {
     const route = useRouter()
     let formData = new FormData()
     formData.append('package_id', props.packgeId)
-    formData.append('callbackurl','https://akarii-demo.herokuapp.com/packages/')
+    formData.append('callbackurl','https://akarii-demo.herokuapp.com/')
     let formDataTow = new FormData()
     formDataTow.append('package_id', props.packgeId)
 

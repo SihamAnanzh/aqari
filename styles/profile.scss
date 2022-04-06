@@ -308,11 +308,15 @@ background-color: $second-color;
 @media (max-width:930px) {
     
      
-    .profile-container .profile-heading{
-        align-self: center;
-        padding-right: 0;
+     .profile-container .profile-heading{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
     
   }
+
+
     .profile-tab .profile-group input {
         width: 70vw;
         position: relative;
@@ -408,6 +412,26 @@ background-color: $second-color;
 
 @media (max-width:781px) {
 
+    .profile-container{
+        width: 100%;
+        padding: 0;
+
+    }
+
+    
+    .profile-container .profile-heading,.ltr .profile-container .profile-heading{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 53px auto;
+    
+    }
+
+    .profile-container .profile-heading,.ltr .profile-container .profile-heading{
+        padding-left: unset;
+        padding-right: unset;
+    }
 
     .profile-heading,
     .addAdds-tab-container .addAdds-heading h3{
@@ -538,15 +562,40 @@ background-color: $second-color;
 
 @media (max-width:448px) {
    
-       
+          .profile-container{
+            background-color: #f2f5f7;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 53px 13px;
+            flex-direction: column;
+            position: relative;
+          }
      
      
     .profile-container .profile-heading{
             margin-bottom: unset;
             align-self: center;
             padding-right: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         
       }
+
+      .ltr .profile-container .profile-heading{
+        margin-bottom: unset;
+        align-self: center;
+        padding-right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+  }
 
       .addAdds-tab-container .addAdds-group input,
 
@@ -615,7 +664,7 @@ background-color: $second-color;
     .addAdds-tab-container .map-adds
     {
         margin-top: 6px;
-        margin-right: 27px;
+        margin-right: 0;
     }
 
     .profile-tab .checksbox .chack-groub span{
@@ -629,7 +678,7 @@ background-color: $second-color;
     .profile-tab .checksbox .chack-groub,
      .profile-tab .checksbox .chack-groub:last-child
     {
-        margin-right: -86px;
+        margin-right: 0;
     }
 
     .office-heading-paragraph {
@@ -650,6 +699,14 @@ background-color: $second-color;
 
     .ltr .profile-container .profile-heading {
         margin-left: 0;
+    }
+
+    .addAdds-tab-container textarea {
+        margin-right: 0;
+    }
+
+    .signin-contanier.addAdds-tab-container .checksbox {
+        width: 100%;
     }
 }
 
