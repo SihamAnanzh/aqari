@@ -435,6 +435,14 @@ font-family:otfPlain ;
 //     padding-right: 121px;
 // }
 
+
+.btnSearch button {
+    margin-right: 23px;
+    margin-left: 0;
+    width: 324px;
+}
+
+
 }
 
 // @media (max-width:800px) {
@@ -478,6 +486,15 @@ font-family:otfPlain ;
     }
     .actions-contaier {
         width: 100%;
+    }
+
+    .serarch {
+        width: 89%;
+    }
+    .btnSearch button {
+        width: 70vw;
+        margin-right: 0;
+    margin-left: 0;
     }
 
     
@@ -619,3 +636,27 @@ font-family:otfPlain ;
 //       margin-top: 5px;
 //     }
 //     }
+
+
+
+@media (max-wdith:482px) {
+    .btnSearch button {
+        width: 76vw;
+        margin-right: 15px;
+        margin-left: 0;
+    }
+    
+    
+}
+
+@media (max-width:380px) {
+    .serarch{
+        width: 100%;
+    }
+    .btnSearch button {
+        width: 85vw;
+        margin-right: 4px;
+        margin-left: 0;
+    }
+    
+}

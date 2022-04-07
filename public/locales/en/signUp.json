@@ -1,9 +1,9 @@
 {
-    "reg-1": "The name",
-    "reg-2": "E-mail",
-    "reg-3": "phone number",
-    "reg-4": "The password",
-    "reg-5": "password confirmation",
-    "reg-6": "Sign Up",
-    "reg-7": "Don't have an account with us?"
+  "reg-1": "Name",
+  "reg-2": "E-mail Address",
+  "reg-3": "Phone number",
+  "reg-4": "Password",
+  "reg-5": "Confirm password",
+  "reg-6": "Sign-up",
+  "reg-7": "Or you can sign-up through "
 }

@@ -1,11 +1,13 @@
-{"service-title":"Title",
-    "phone":"phone",
-    "serviceType":"service Type",
-    "whatsaap":"whatsaap",
-    "city":"city",
-    "serivceDetails":"serivce Details",
-    "pic":"pic",
-    "tearmAndCondition":"Agree to the terms, rules and privacy policy",
-    "price":"price"
-
+{
+  "service-title": "Service address",
+  "phone": "Phone number",
+  "serviceType": "Service type",
+  "whatsaap": "Whatsapp number",
+  "city": "Region",
+  "serivceDetails": "Service details",
+  "pic": "Images",
+  "tearmAndCondition": "Agree to the terms and conditions",
+  "price": "Price",
+  "edit": "Update",
+  "add": "Add"
 }

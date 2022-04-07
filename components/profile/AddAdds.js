@@ -134,23 +134,6 @@ const AddAdds = ({ addAdsOb }) => {
 
   }
 
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      file !== undefined && fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-
-    });
-
-
-  };
 
 
 
@@ -162,17 +145,6 @@ const AddAdds = ({ addAdsOb }) => {
   //     setPAL(res.data.results.premium_ads_left)
   //   })
 
-  //   setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info')))
-  //   console.log(adsDataLocal);
-  //   setAddTitle(adsDataLocal && adsDataLocal.addTitle)
-  //   setAutoNum(adsDataLocal && adsDataLocal.autoNum)
-  //   setDesc(adsDataLocal && adsDataLocal.desc)
-  //   setFront(adsDataLocal && adsDataLocal.front)
-  //   setLat(adsDataLocal && adsDataLocal.lat)
-  //   setLng(adsDataLocal && adsDataLocal.lng)
-  //   setPhoneNumber(adsDataLocal && adsDataLocal.phoneNumber)
-  //   setPrice(adsDataLocal && adsDataLocal.price)
-  //   setSpace(adsDataLocal && adsDataLocal.space)
 
   //   console.log(adsDataLocal && adsDataLocal.addTitle);
 
@@ -227,13 +199,7 @@ const AddAdds = ({ addAdsOb }) => {
 
   const handleClickPremium = () => {
     let ads;
-    convertBase64(imageOne).then(res => setImageOneB6(res))
-    convertBase64(imageTwo).then(res => setImageThreeB6(res))
-    convertBase64(imageThree).then(res => setImageTwoB6(res))
-    convertBase64(imageFour).then(res => setImageFourB6(res))
-    console.log(imageOneB6);
-          localStorage.setItem('ads-info', (imageOneB6))
-
+    
       let formTow = new FormData()
 
     // PAl !== 0 ?
@@ -331,7 +297,7 @@ const AddAdds = ({ addAdsOb }) => {
 
 
   return (
-    <div>
+  
 
       <div className='profile-tab' id='profile-tab' onClick={(e) => {
 
@@ -669,7 +635,7 @@ const AddAdds = ({ addAdsOb }) => {
           </div>
         </div>
       </div>
-    </div>
+   
   )
 }
 

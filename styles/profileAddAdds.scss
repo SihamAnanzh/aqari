@@ -133,6 +133,23 @@ height: 100%;
     padding-bottom: 12px;
     }
 
+    .addAdds-tab-container {
+        width: 70%;
+        height: 100%;
+           display: flex;
+        padding-left: 600px;
+    padding-right: 600px}
+
+          
+
+           .addAdds-tab-container .addAdds-group input,
+           .addAdds-tab-container textarea{
+               width: 70vw;
+           }
+
+
+
+
 }
 
 @media (max-width:428px) {
@@ -190,7 +207,13 @@ height: 100%;
        }
    }
 
-
+   .addAdds-tab-container {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    padding-left: 0;
+    padding-right: 0;
+}
 
    
 }

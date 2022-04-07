@@ -591,15 +591,18 @@
     }
 
     .ltr .signin-contanier .sign h2 {
-        margin-left: 10%;
+        margin-left: 0%;
     }
     
     .signin-contanier .sign h2 {
-        margin-left: 149%;
+        margin-left: 10%;
+        margin-right: 10%;
     }
 
     .ltr .signin-contanier .sign.entry h2 {
         margin-left: 10%;
+        margin-right: 10%;
+
     }
 
     .ltr .sign-input.signUp {
@@ -625,7 +628,7 @@
         margin-right: 11px;
         height: 62px;
         font-size: 18px;
-        width: 331px;
+        width: 90vw;
     }
     .ltr .signin-contanier .sign h2 {
         margin-left: 10%;
@@ -646,11 +649,21 @@
     }
 
     .signin-contanier .inputs-group,.ltr .signin-contanier .inputs-group{
-        width: 88%;
+        width: 92vw;
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
     
+    }
+
+
+    .signin-contanier .sign h2 {
+        margin-left: 10%;
+        margin-right: 22%;
+    }
+
+    .signin-contanier {
+        width: 100vw;
     }
 
 }

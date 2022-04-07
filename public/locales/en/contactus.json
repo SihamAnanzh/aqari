@@ -1,10 +1,9 @@
 {
-    "callUs":"  اتصل بنا",
-    "paragaph":"الرجاء تعبئة النموذج وسوف نقوم بالرد عليك بأقرب وقت",
-    "email":"البريد الإلكتروني",
-    "phone":"رقم الهاتف",
-    "message":"الرسالة",
-    "send":"ارسال",
-    "name":"الاسم"
-
+  "phone": "Phone number",
+  "callUs": "Call Us",
+  "paragaph": "Please fill out the form and you will be answered as soon as possible",
+  "email": "E-mail Address",
+  "message": "Message",
+  "send": "Send",
+  "name": "Name"
 }

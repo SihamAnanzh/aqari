@@ -1,8 +1,12 @@
 import { Facebook, Instagram, Twitter } from '@mui/icons-material'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
+const Footer = ({ fo1 }) =>
+{
+  const route = useRouter()
+  
 
-const Footer = ({fo1}) => {
   return (
     <div className='footer'>
       {/* <Link href='/contactus'>
@@ -12,17 +16,17 @@ const Footer = ({fo1}) => {
       <div className="footer-container">
         <div className="first">
         <div className="links">
-          <Link href='/contactUs'><a  style={{textDecoration:"none",color:"#fff"}}>- Contact Us</a></Link>
-          <Link href='/contactUs'><a style={{textDecoration:"none",color:"#fff"}}>- Privacy Policy</a></Link>
-          <Link href='/contactUs'><a style={{textDecoration:"none",color:"#fff"}}>- Terms & Conditions </a></Link>
+            <Link href='/contactus'><a style={{ textDecoration: "none", color: "#fff" }}>- {route.locale=='en'?"Contact Us":"اتصل بنا"}</a></Link>
+            <Link href='/'><a style={{ textDecoration: "none", color: "#fff" }}>- {route.locale=='en'?'Privacy Policy':"سياسة الخصوصية"}</a></Link>
+            <Link href='/'><a style={{ textDecoration: "none", color: "#fff" }}>- { route.locale=='en'?"Terms & Conditions":"الشروط والقواعد"} </a></Link>
 
         
 
           </div>
           <div className="category">
-          <div className="categ">- Rent</div>
-          <div className="categ">- Salling</div>
-          <div className="categ">- Services</div>
+            <div className="categ">- {route.locale=='en'?"Rent":"إيجار"}</div>
+            <div className="categ">- { route.locale=='en'?'Salling':'بيع'}</div>
+            <div className="categ">- { route.locale=='en'?"Services":"خدمات"}</div>
 
         </div>
         <div className="socail">
@@ -33,7 +37,9 @@ const Footer = ({fo1}) => {
         </div>
        
         <div className="second-fotter">
-           All rights reserved © AqariFinder 2022
+          {route.locale == 'en' ?
+            "All rights reserved © AqariFinder 2022" :
+            "جميع الحقوق محفوظة © عقاري 2022"}
         </div>
       </div>
     </div>

@@ -193,7 +193,6 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
                 </span>
             </div>
-            <BackBtn/>
         </div>
     )
 }

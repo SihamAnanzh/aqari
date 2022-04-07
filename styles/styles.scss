@@ -84,7 +84,7 @@ body{
 
   .backBtn{
     display: none;
-
+    position: relative;
     .back{
       width: 32px;
       height: 32px;
@@ -92,13 +92,14 @@ body{
       background: rgb(237, 170, 67);
       color: rgb(255, 255, 255);
       position: absolute;
-      left: 2%;
+      left: 1%;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       z-index: 10;
-      top: 16%,
+      // top: 15%,
+    
     }
 
 
@@ -108,7 +109,7 @@ body{
     .backBtn{
       display: block;
     .back{
-     top:16%
+     top:15%
       
     }
  
@@ -125,83 +126,9 @@ body{
 }
 }
 
-@media (max-width:430px) {
-  .backBtn{
-    display: block;
-  .back{
-   top:15.3%
-    
-  }
-
-
-.ltr .phone {
-  margin-right: 28px;
-
-
-}
 
 
 
 
-}
-}
 
 
-@media (max-width:400px) {
-  .backBtn{
-    display: block;
-  .back{
-   top:22%
-    
-  }
-
-
-.ltr .phone {
-  margin-right: 28px;
-
-
-}
-
-
-
-
-}
-}
-
-
-@media (max-width:414px) {
-  .backBtn{
-    display: block;
-  .back{
-   top:16%
-    
-  }
-
-
-.ltr .phone {
-  margin-right: 28px;
-
-
-}
-
-
-
-
-}
-}
-
-
-
-@media (max-width:380px) {
-  .backBtn{
-    display: block;
-  .back{
-   top:20%
-    
-  }
-
-
-
-
-}
-}

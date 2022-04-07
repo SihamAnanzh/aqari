@@ -26,10 +26,14 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
 
 
     const handleSubmit = async (e) => {
+        
+        
         e.preventDefault();
         console.log('click');
-        if (password === confirmPassword) {
-            swal('wrong password')
+        if (password !== confirmPassword) {
+            route.locale == 'ar' && swal('تحذير', 'كلمة السر غير متطابقة','warning')
+            route.locale=='en'&&swal('warning','password does not match','warning')
+
             return;
         }
         if (!checkedConditions) {
@@ -46,12 +50,18 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                 callbackUrl: `/`,
             });
             if (res?.error) {
+                console.log(response);
+
                 swal(response.data.status.message)
             }
             else {
+                console.log(response);
+
                 if (res.url) route.push(res.url);
             }
         } else {
+            console.log(response);
+
             swal(response.data.status.message)
         }
     }
@@ -104,7 +114,7 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
        
               }}>
                 <img src={`/assets/img/${!checkedConditions ? 'emptyCheck' : 'fullCheck'}.svg`} alt="" />
-                    <a href='#' target='_blank' style={{
+                    <a href='' target='_blank' style={{
                         color: "#00416b",
                         textDecoration:"underline",
                         fontFamily: "otfPlain",
@@ -115,7 +125,8 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                         "Agree to the terms, rules and privacy policy"}</a>
 
                 </div>
-                <div className="sign-input">
+                    <div className="sign-input">
+                        
                 <button type='submit' className="sign-btn" style={{ outline: 'none', border: "none",fontSize:'22px',fontFamily:"otfPlain" }}>
                     {sginUpOb.su6}
                 </button>
