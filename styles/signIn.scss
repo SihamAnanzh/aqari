@@ -241,28 +241,37 @@
     } 
 
     .signin-contanier .sign.entry h2 {
-        margin-left: 331%;
+        margin-left: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-right: unset;
+        margin-left: unset;
     }
     
     
 
-    .ltr  .signin-contanier .sign.entry {
+    // .ltr  .signin-contanier .sign.entry {
    
-        h2{
+    //     h2{
      
-            margin-left: -320%;
+    //         margin-left: -357%;
     
-        }
+    //     }
 
 
-} 
+
 
 
 .ltr  .signin-contanier .sign {
    
     h2{
- 
-        margin-left: -210%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-right: unset;
+        margin-left: unset;
+        // margin-left: -210%;
 
     }
 }    
@@ -274,13 +283,13 @@
     .signin-contanier .sign-input input,
     .signin-contanier .forget-passwrod,
     .signin-contanier .sign-btn{
-        width: 70vw;
+        width: 38vw;
     }
     .signin-contanier .password img {
-        right: 455px;
+        right: 86%;
     }
     .ltr .signin-contanier .password img {
-        left: 455px;
+        left: 86%;
     }
 
     .signin-contanier .goSignUp{
@@ -298,6 +307,17 @@
         font-weight: normal;
 
     } 
+
+    .signin-contanier .inputs-group,.signin-contanier .sign{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;    }
+    
+    .signin-contanier .inputs-group {
+        width: 100%;
+    }
+
+
 }
 
 
@@ -318,6 +338,12 @@
     
         }
 }    
+
+.signin-contanier .sign-input input,
+.signin-contanier .forget-passwrod,
+.signin-contanier .sign-btn{
+    width: 70vw;
+}
 
 
 }
@@ -369,6 +395,10 @@
     }
 
 
+    .ltr .signin-contanier .sign.entry h2 {
+        margin-left: -227%;
+    }
+    
 
 }
 @media (max-width:428px) {
