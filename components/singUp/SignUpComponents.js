@@ -61,7 +61,7 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
             <form method="post" onSubmit={handleSubmit}>
 
                 <div className="inputs-group">
-                    <div className="sign-input ">
+                    <div className="sign-input signUp">
                         <div className="sign">
                             <h2>{sginUpOb.su6}</h2>
                         </div>

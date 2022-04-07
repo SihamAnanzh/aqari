@@ -423,7 +423,7 @@
         margin-left: -159%;
     }
     .ltr .signin-contanier .sign.entry h2 {
-        margin-left: -255%;
+        margin-left: 10%;
     }
 
     .signin-contanier h3 {
@@ -565,7 +565,8 @@
     }
      .signin-contanier{
         .conditions.chack-groub{
-      width: 80%;
+      width: 84%;
+      margin-right: 22px;
 
         }
     }
@@ -588,6 +589,33 @@
         }
 
     }
+
+    .ltr .signin-contanier .sign h2 {
+        margin-left: 10%;
+    }
+    
+    .signin-contanier .sign h2 {
+        margin-left: 149%;
+    }
+
+    .ltr .signin-contanier .sign.entry h2 {
+        margin-left: 10%;
+    }
+
+    .ltr .sign-input.signUp {
+        width: 100%;
+      
+    
+    }
+
+    .signin-contanier .inputs-group,.ltr .signin-contanier .inputs-group{
+        width: 93%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    
+    }
+
 }
 
 @media (max-width:380px) {
@@ -600,7 +628,7 @@
         width: 331px;
     }
     .ltr .signin-contanier .sign h2 {
-        margin-left: -132%;
+        margin-left: 10%;
     }
     
     .signin-contanier .sign h2 {
@@ -608,7 +636,21 @@
     }
 
     .ltr .signin-contanier .sign.entry h2 {
-        margin-left: -231%;
+        margin-left: 10%;
+    }
+
+    .ltr .sign-input.signUp {
+        width: 100%;
+      
+    
+    }
+
+    .signin-contanier .inputs-group,.ltr .signin-contanier .inputs-group{
+        width: 88%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    
     }
 
 }
