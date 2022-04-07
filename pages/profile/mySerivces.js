@@ -115,7 +115,8 @@ let newestٍervice=t('home:newestٍervice')
         images: adds.images.length > 0 ? adds.images.logo_url : '/assets/img/home.jpg',
         title: adds.title,
         price: adds.price,
-        time: '4',
+        time: adds.issue_date_string.slice(0,5),
+
         views: adds.view_count,
         whatsApp: adds.whatsapp,
         phone: adds.phone,
@@ -132,7 +133,8 @@ let newestٍervice=t('home:newestٍervice')
           phone: adds.phone,
           whatsApp: adds.whatsapp,
           views: adds.view_count,
-          time: '4',
+          time: adds.issue_date_string.slice(0,5),
+
           user_id: adds.user_id,
           regionsString: adds.regions_string,
           serviceTypeString: adds.service_type.title,

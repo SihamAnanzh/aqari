@@ -41,7 +41,8 @@ images:adds.images.length >0?adds.images:'/assets/img/home.jpg',
 title:adds.title,
 address:adds.region.country.title+" " + adds.region.title,
 price:adds.price,
-time:'4',
+time: adds.issue_date_string.slice(0,5),
+
 views:adds.view_count,
 whatsApp:adds.whatsapp,
 phone:adds.phone,
@@ -64,7 +65,8 @@ whatsApp:adds.whatsapp,
 lat:adds.lat,
 lng:adds.lng,
 views:adds.view_count,
-time:'4',
+time: adds.issue_date_string.slice(0,5),
+
 user_id:adds.user_id,
 
 }

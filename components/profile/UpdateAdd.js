@@ -57,8 +57,8 @@ const  handelSubmit=(e)=>{
        price: Number(price) ,
        currency_id:  1,    
        auto_number:autoNum,
-       lat: lat, 
-       lng: lng,
+       lat: `'${lat}'`, 
+       lng: `'${lng}'`,
        phone: phoneNumber,
        whatsapp: phoneNumber,
        is_premium: showDialogBox,
@@ -82,12 +82,17 @@ const  handelSubmit=(e)=>{
               route.replace('/profile/myAdds')
           
             )  
+           response.data.status.code==500&&swal(route.locale == 'ar' ?
+           ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+         :  swal("You can not edit at the moment", 'try later', 'error')
+         )        
       
         })
         .catch( (response)=> {
           console.log(response);
-          swal(route.locale == 'ar' ? ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
-          : ("You can not edit at the moment", 'try later', 'error')
+          swal(route.locale == 'ar' ?
+            ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+          :  swal("You can not edit at the moment", 'try later', 'error')
           )        })
         
   )

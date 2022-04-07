@@ -7,8 +7,9 @@
     align-items: center;
     flex-direction: column;
     padding-top: 60px;
-    padding-right: 600px;
-    padding-left: 600px;
+    // padding-right: 600px;
+    // padding-left: 600px;
+    margin:0px auto;
     .sign{
             align-self: flex-start;
       
@@ -223,9 +224,17 @@
     }
 } 
 
+
+.sign-input.submit-logo button, .signin-contanier .sign-btn{
+    font-weight: 600;
+    font-family: otfPlain;
+
+}
+
 @media (max-width:1700px) {
     .signin-contanier{
         height: 100%;
+        padding-bottom:30px;
     }
 
     .forget-password-contanier{
@@ -280,11 +289,7 @@
         font-size: 25px;
     }
  
-    .signin-contanier .sign-input input,
-    .signin-contanier .forget-passwrod,
-    .signin-contanier .sign-btn{
-        width: 38vw;
-    }
+  
     .signin-contanier .password img {
         right: 86%;
     }
@@ -322,13 +327,13 @@
 
 
 @media (max-width:1120px) {
-    .signin-contanier {
-        padding: 50px;
-        padding-top: 60px;
-        width: 100vw;
-        padding-left: 100px;
-        padding-right: 100px;
-    }
+    // .signin-contanier {
+    //     padding: 50px;
+    //     padding-top: 60px;
+    //     width: 100vw;
+    //     padding-left: 100px;
+    //     padding-right: 100px;
+    // }
 
     .signin-contanier .sign {
    
@@ -339,11 +344,11 @@
         }
 }    
 
-.signin-contanier .sign-input input,
-.signin-contanier .forget-passwrod,
-.signin-contanier .sign-btn{
-    width: 70vw;
-}
+// .signin-contanier .sign-input input,
+// .signin-contanier .forget-passwrod,
+// .signin-contanier .sign-btn{
+//     width: 80vw;
+// }
 
 
 }
@@ -351,16 +356,21 @@
 
 @media (max-width:520px) {
     .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn{
-        width: 89vw;
-    }
-    .signin-contanier .sign{
-        margin-right: unset;
-    }
+    margin-right: 20px;
+    height: 62px;
+    font-size: 18px;
+    width: 364px;
+    margin-top: 1px;
+}
+  
+    // .signin-contanier .sign{
+    //     margin-right: unset;
+    // }
 
-    .signin-contanier{
-        padding-left: 42px;
-        padding-right: 20px;
-    }
+    // .signin-contanier{
+    //     padding-left: 42px;
+    //     padding-right: 20px;
+    // }
 
     .signin-contanier .password img{
         right: 86%;
@@ -377,17 +387,9 @@
     }
     .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn
     {
-        margin-right: 25px;
+        margin-right: 0;
     }
-    .signin-contanier .sign {
-   
-            h2{
-              
-                margin-left: 174%
-        
-            }
-    }    
-
+  
     
 
     .signin-contanier .forget-passwrod a {
@@ -395,10 +397,10 @@
     }
 
 
-    .ltr .signin-contanier .sign.entry h2 {
-        margin-left: -227%;
-    }
-    
+    // }
+    // .addAdds-tab-container .addAdds-group input {
+    //     width: 89vw;
+    // }
 
 }
 @media (max-width:428px) {
@@ -438,7 +440,8 @@
         margin-right: -7px;
           }
 
-    .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, 
+    .signin-contanier .sign-input input,
+     .signin-contanier .forget-passwrod, 
     .signin-contanier .sign-btn {
         margin-right: 20px;
         height: 62px;
@@ -542,7 +545,7 @@
 
 
         .ltr .signin-contanier .forget-passwrod span{
-            margin-right: 3px;
+            margin-right: 7px;
         }
 
 
@@ -580,7 +583,8 @@
             margin-right: 0;
         }
 
-        .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn{
+        .signin-contanier .sign-input input, 
+        .signin-contanier .forget-passwrod, .signin-contanier .sign-btn{
             margin-right: 0;
         }
 
@@ -596,12 +600,12 @@
     
     .signin-contanier .sign h2 {
         margin-left: 10%;
-        margin-right: 10%;
+        margin-right: 37%;
     }
 
     .ltr .signin-contanier .sign.entry h2 {
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-left: 0%;
+        margin-right: 0%;
 
     }
 
@@ -611,12 +615,28 @@
     
     }
 
-    .signin-contanier .inputs-group,.ltr .signin-contanier .inputs-group{
-        width: 93%;
+    .signin-contanier .inputs-group,
+    .ltr .signin-contanier .inputs-group{
+        width: 99%;
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
     
+    }
+
+    .profile-tab .sign-input.submit-logo button,
+     .profile-tab .signin-contanier .sign-btn{
+        margin-right: 8px;
+    }
+
+    .signin-contanier .sign-input.signUP.sign h2{
+        margin-left: 10%;
+        margin-right: 10%;
+        justify-content: flex-start;
+        width: 100vw;
+        align-items: flex-start;
+        
+        
     }
 
 }
@@ -624,7 +644,8 @@
 @media (max-width:380px) {
 
 
-    .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn {
+    .signin-contanier .sign-input input, 
+    .signin-contanier .forget-passwrod, .signin-contanier .sign-btn {
         margin-right: 11px;
         height: 62px;
         font-size: 18px;
@@ -639,7 +660,7 @@
     }
 
     .ltr .signin-contanier .sign.entry h2 {
-        margin-left: 10%;
+        margin-left: 0%;
     }
 
     .ltr .sign-input.signUp {
@@ -648,13 +669,13 @@
     
     }
 
-    .signin-contanier .inputs-group,.ltr .signin-contanier .inputs-group{
-        width: 92vw;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
+    // .signin-contanier .inputs-group,.ltr .signin-contanier .inputs-group{
+    //     width: 92vw;
+    //     display: flex;
+    //     justify-content: flex-start;
+    //     align-items: flex-start;
     
-    }
+    // }
 
 
     .signin-contanier .sign h2 {
