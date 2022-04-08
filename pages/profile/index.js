@@ -15,6 +15,25 @@ import BackBtn from '../../components/BackBtn';
 const Index = ()=> {
   let { t } = useTranslation();
   const route = useRouter()
+
+  
+
+
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      // route.push(`/signIN?callbackurl=${window.origin}`);
+      route.push(`/signIN?callbackurl=${route.asPath}`)
+
+    }
+  });
+
+  useEffect(() => {
+    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
+  },[])
+
+
+  
   // translations
 
   //nav
@@ -96,13 +115,6 @@ const Index = ()=> {
   }
 
 
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push('/signIN')
-    }
-  });
 
 
 
@@ -110,22 +122,28 @@ const Index = ()=> {
 
   return (
     <>
-      {
-        session &&
+
+      {session&&
         <>
-           <Head>
+          <Head>
           <title>{route.locale == "ar" ? "الملف الشخصي" : "my profile"}</title>
         </Head>
-          <Nav navOb={navOb} />
-          <div className='profile-container'>
-            <h1 className="profile-heading">{pro1}</h1>
-            <SubNav proOb={proOb} />
-            <MyProfile sginOb={sginOb} />
-          </div>
-          <Footer fo1={fo1} />
+        <Nav navOb={navOb} />
+        <div className='profile-container'>
+          <h1 className="profile-heading">{pro1}</h1>
+          <SubNav proOb={proOb} />
+          <MyProfile sginOb={sginOb} />
+        </div>
+        <Footer fo1={fo1} />
         </>
       }
-    </>
+        
+        
+      
+        </>
+     
+             
+ 
 
   )
 }
@@ -141,7 +159,16 @@ export default Index
 
 export async function getServerSideProps(context) {
   let { locale } = context
+    const session = await getSession(context);
 
+    // if (!session) {
+     
+    //     context.res.writeHead(303, { Location: `/signIN?callbackurl=${window.origin}`});
+    //     context.res.redirect(`/signIN?callbackurl=${window.origin}`, 303);
+    //     context.res.end();
+    // }
+   
+  
 
 
   return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'profile'])) } }

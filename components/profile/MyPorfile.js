@@ -17,7 +17,7 @@ useEffect(()=>{
   axios.get('https://stagingapi.aqarifinder.com/api/user/profile',{
     headers: {
       "lang":route.locale ,
-      "Authorization":session.data.xyz.id
+      "Authorization":session.data.id
        },
 
   }).then(res=>{

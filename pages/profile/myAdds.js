@@ -97,7 +97,7 @@ const ProfileAdd = () => {
 
     <>
       {
-        // session.data != null &&
+        session.data != null &&
         <>
            <Head>
           <title>{route.locale == "ar" ? "إعلاناتي" : "My Ads"}</title>

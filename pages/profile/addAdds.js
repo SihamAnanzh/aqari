@@ -14,7 +14,8 @@ const Adds = () => {
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      route.push(`/signIN?callbackurl=${window.origin}`);
+      // route.push(`/signIN?callbackurl=${window.origin}`);
+      route.push('/singIN')
     }
   });
   const authCtx = useContext(AuthContext)
