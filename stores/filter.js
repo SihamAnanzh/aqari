@@ -11,7 +11,14 @@ export const FilterContext=createContext({
     setSerivceResutls:()=>{},
     setTypeId:()=>{},
     setSerivceId:()=>{},
-    setRegionsId:()=>{}
+    setRegionsId: () => { },
+    areaName: '',
+    typeName: '',
+    type:()=>{},
+    setRentValue: () => { },
+    setAreaStringName: () => { },
+    serviceString: '',
+    setSrviceString:()=>{}
 
 
 })
@@ -23,13 +30,22 @@ const [serivceId,setSerivceId]=useState('')
 const [regionsId,setRegionsId]=useState([])
 const [sResults,setServics]=useState([])
 const [aResults,setAdds]=useState([])
+const [rent, setRent] = useState()
+const [areaName, setAreaName] = useState('')
+const[typeName,setTypeName]=useState('')
+const[serviceString,setServiceString]=useState('')
 
+    
 const setType=(t)=>setTypeId(t)
 const setSerivce=(t)=>setSerivceId(t)
 const setSResutls=(t)=>setServics(t)
 const setAResults=(t)=>setAdds(t)
-const setRegions=(t)=>setRegionsId(t)
+    const setRegions = (t) => setRegionsId(t)
+    const setService = (t) => setServiceString(t)
 
+    const setAreaStringName = (t) => setAreaName(t)
+    const Rent = (t) => setRent(t)
+const type=(t)=>typeName(t)
 const FilterContextValue={
     type_id:typeId,
     serivce_id:serivceId,
@@ -41,7 +57,16 @@ const FilterContextValue={
     setSerivceResutls:setSResutls,
     setAddsSResutls:setAResults,
     addsResults:aResults,
-    rent:false
+    rent: rent,
+    areaName: areaName,
+    typeName: typeName,
+    setAreaStringName,
+    RentValue: rent,
+    setRentValue:setRent,
+    type:setTypeName,
+    serviceString: serviceString,
+    setSrviceString:setService
+    
  
 }
 

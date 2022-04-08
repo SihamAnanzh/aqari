@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState ,useEffect} from 'react'
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import swal from 'sweetalert';
 
 const Packge = (props) => {
     const [showPackgeDetail, setShwoPackgeDetail] = useState(false)
@@ -10,7 +11,7 @@ const Packge = (props) => {
     const route = useRouter()
     let formData = new FormData()
     formData.append('package_id', props.packgeId)
-    formData.append('callbackurl','https://akarii-demo.herokuapp.com/')
+    formData.append('callbackurl','https://akarii-demo.herokuapp.com/packages')
     let formDataTow = new FormData()
     formDataTow.append('package_id', props.packgeId)
 
@@ -30,7 +31,8 @@ const Packge = (props) => {
                     data: formDataTow
 
                 }).then((res) => {
-            console.log(res);
+                    console.log(res);
+                    swal(res.data.status.message)
           })
     
           )

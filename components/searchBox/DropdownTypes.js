@@ -31,6 +31,13 @@ const DropdownTypes = ({items=[], subTitle,title}) => {
   
     }
  
+    
+    useEffect(() => {
+
+
+        filterCtx.type(selection.value)
+    }, [selection]);
+
   
     return (
      <div className='dropdwon-menu'>

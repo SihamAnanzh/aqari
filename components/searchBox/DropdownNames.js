@@ -41,7 +41,8 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
 
         filterCtx.setRegionsId(regionsId)
         console.log(regionsId);
-    }, [regionsId]);
+        filterCtx.setAreaStringName([...selection])
+    }, [selection]);
 
 
 

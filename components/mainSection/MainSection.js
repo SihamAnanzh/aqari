@@ -64,6 +64,7 @@ const MainSection = ({ searchOb }) => {
               console.log(res.data.results);
               filterCtx.setAddsSResutls(res.data.results)
               filterCtx.setSerivceId('')
+              filterCtx.setRentValue(true)
               route.replace('/SearchResult')
 
             }) :
@@ -80,7 +81,7 @@ const MainSection = ({ searchOb }) => {
               console.log(res.data);
               filterCtx.setAddsSResutls(res.data.results)
               filterCtx.setSerivceId('')
-              filterCtx.rent = false
+              filterCtx.setRentValue(false)
               route.replace('/SearchResult')
 
             })

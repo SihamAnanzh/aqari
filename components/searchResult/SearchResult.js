@@ -6,6 +6,7 @@ import Add from '../adds/Add'
 import { FilterContext } from '../../stores/filter';
 import { TranslateContext } from '../../stores/translate-context';
 import BackBtn from '../BackBtn'
+import { useRouter } from 'next/router'
 
 
 const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
@@ -13,8 +14,9 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
   const [latestData, setLeastestAdd] = useState([])
   const filterCtx = useContext(FilterContext)
   const [visible, setVisible] = useState(5)
-  const loadMoreHandler = () => {
+  const route=useRouter()
 
+  const loadMoreHandler = () => {
     setVisible(pre => pre + 5)
   }
   useEffect(() => {
@@ -111,14 +113,24 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
   }, [])
 
 
+useEffect(()=>{
 
+  console.log(filterCtx);
+},[])
 
 
   return (
     <div className='results-container'>
       <Nav navOb={navOb} />
       <div className='results'>
-        {/* <h2 className='results-heading'>{`منازل ${!filterCtx.rent?'للإيجار':'للبيع'} في حولي`}</h2> */}
+        <h2 className='results-heading'>
+          {`${filterCtx.typeName}
+           ${!filterCtx.rent ?
+             route.locale == 'ar' ? 'للإيجار ': "Rent" :
+             route.locale=='ar'?'للبيع':"Selling"}
+            ${route.locale == 'ar'?"في":"in"}
+             ${[...filterCtx.areaName]}`}
+            </h2>
         {premuimAdds.length !== 0 &&
           <div className="premium-adds-results">
             <h1 className='premium-title'>{adsOb.ad1}</h1>
