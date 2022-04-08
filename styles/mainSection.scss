@@ -346,7 +346,7 @@ font-family:otfPlain ;
         flex-direction: column;
         margin: 10px auto;
         justify-content: center;
-        width: 100%;
+       
         align-items: center;
 
         .first{
@@ -355,7 +355,7 @@ font-family:otfPlain ;
         margin-left: 0;
         padding-right: 0;
         margin-top: 10px;
-        width: 83%;
+        width: 100%;
          
         }
 
@@ -366,7 +366,7 @@ font-family:otfPlain ;
             padding-right: 0;
             margin-top: 20px;
             margin-bottom: 20px;
-            width: 83%;
+            width: 100%;
 
         }
     }
@@ -436,8 +436,13 @@ font-family:otfPlain ;
 // }
 
 
-.btnSearch button {
+.ltr .btnSearch button {
     margin-right: 23px;
+    margin-left: 0;
+    width: 324px;
+}
+.btnSearch button {
+    margin-right: 2px;
     margin-left: 0;
     width: 324px;
 }
@@ -488,11 +493,11 @@ font-family:otfPlain ;
         width: 100%;
     }
 
-    .serarch {
-        width: 89%;
+    .serarch .second ,.serarch .first{
+        width:76vw;
     }
     .btnSearch button {
-        width: 70vw;
+        width: 73vw;
         margin-right: 0;
     margin-left: 0;
     }
@@ -501,112 +506,125 @@ font-family:otfPlain ;
 }
 
 
-//   @media (max-width:428px) {
-//     .dropdwon-menu ul {
-//         width: 85vw;
-//         z-index: 1000;
-//         position: absolute;
-//     }
+  @media (max-width:428px) {
+    .dropdwon-menu ul {
+        width: 85vw;
+        z-index: 1000;
+        position: absolute;
+    }
 
-//       .actions{
-//           .action{
-//               width:114px;
-//               height: 47px;
-//               font-size:24px    
-//                   }
-//       }
+      .actions{
+          .action{
+              width:114px;
+              height: 47px;
+              font-size:24px    
+                  }
+      }
 
-//       .btnSearch button{
-//           width:364px;
-//           height:62px;
-//           font-size:24px
-//       }
-//       .ltr .dropdwon-menu{
-//           width:364px;
-//           margin-right: -27px;
+      .btnSearch button{
+          width:364px;
+          height:62px;
+          font-size:24px
+      }
+      .ltr .dropdwon-menu{
+          width:364px;
+          margin-right: -27px;
        
-//       }
-//       .dropdwon-menu {
-//         width: 364px;
-//         margin-right: -20px;
-//     }
-//       .arrow-drop-name, .arrow-drop{
-//           right:90%
-//       }
+      }
+      .dropdwon-menu {
+        width: 364px;
+        margin-right: -20px;
+    }
+      .arrow-drop-name, .arrow-drop{
+          right:90%
+      }
 
 
-//       .ltr .search-div {
-//         margin-right:-13%;
-//     }
+      .ltr .search-div {
+        margin-right:-13%;
+    }
 
 
-//     .serarch div{
-//         width: 85vw;
-//     }
+    .serarch div{
+        width: 85vw;
+    }
 
 
-//     .ltr .btnSearch button {
-//         margin-left: 13%;
-//         width: 53vw;
+    .ltr .btnSearch button {
+        margin-right: 16%;
+        width: 100%;
       
-//     }
+    }
 
-//      .btnSearch button {
-//         margin-right: 13%;
-//         width: 53vw;
-//     }
-//     // .ltr .actions-contaier .actions{
-//     //     padding-right: 12px;
-//     //     padding-left: 10px;    }
+     .btnSearch button {
+        margin-right: 0;
+        width: 100%;
+    }
+    // .ltr .actions-contaier .actions{
+    //     padding-right: 12px;
+    //     padding-left: 10px;    }
   
-//         .ltr .actions-contaier .actions {
-//             padding-right: 32px;
-//             padding-left: 0;
-//         }
-//          .actions-contaier .actions {
-//             padding-right: 2px;
-//             padding-left: 0;
-//         }
-// .actions{
-//     height: 118px;
-// }
-//   }
+        .ltr .actions-contaier .actions {
+            padding-right: 32px;
+            padding-left: 0;
+        }
+         .actions-contaier .actions {
+            padding-right: 2px;
+            padding-left: 0;
+        }
+.actions{
+    height: 118px;
+}
 
 
-//   @media (max-width:380px) {
+.serarch .second, .serarch .first{
+    width: 100%;
+}
+  }
+
+
+  @media (max-width:400px) {
   
-//       .search-div, .ltr .search-div {
-//         margin-right: 8px;
-//         margin-left: unset;
-//         padding-left: unset;
-//         padding-right: unset;
-//     }
-//       .btnSearch button{
-//           width: 70vw;
-//           margin-right: -20px;
-//       }
-//       .serarch div{
-//           width: 75vw;
-//       }
-//       .serarch .first,.serarch .second,
-//       .ltr .serarch .second,.ltr .first {
-//         margin-right:unset;
-//         margin-left: unset;     
-//         padding-left: unset;
-//         padding-right: unset; 
-//         width: 75vw;
+      .search-div, .ltr .search-div {
+        margin-right: 8px;
+        margin-left: unset;
+        padding-left: unset;
+        padding-right: unset;
+    }
+      .btnSearch button{
+        width: 326px;
+        height: 62px;
+        font-size: 24px;
+
+      }
+
+
+      .serarch .first,.serarch .second,
+      .ltr .serarch .second,.ltr .first {
+        margin-right:unset;
+        margin-left: unset;     
+        padding-left: unset;
+        padding-right: unset; 
+        width: 99vw;
         
-//     }
-//     .dropdwon-menu ul {
-//         width: 75vw;
-//     }
+    }
+    .dropdwon-menu ul {
+        width: 75vw;
+    }
 
-//     .arrow-drop-name, .arrow-drop {
-//         right: 89%;
-//     }
+    .arrow-drop-name, .arrow-drop {
+        right: 89%;
+    }
+    .serarch .second, .serarch .first {
+    width: 98%;
+}
     
-    
-//   }
+.ltr .btnSearch button {
+    margin-right: 2px;
+    width: 74%;
+  }
+
+}
 
 
 //   @media (max-width:370px) {
@@ -639,15 +657,15 @@ font-family:otfPlain ;
 
 
 
-@media (max-wdith:482px) {
-    .btnSearch button {
-        width: 76vw;
-        margin-right: 15px;
-        margin-left: 0;
-    }
+// @media (max-wdith:482px) {
+//     .btnSearch button {
+//         width: 76vw;
+//         margin-right: 15px;
+//         margin-left: 0;
+//     }
     
     
-}
+// }
 
 @media (max-width:380px) {
     .serarch{

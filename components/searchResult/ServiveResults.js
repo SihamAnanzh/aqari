@@ -24,7 +24,8 @@ const ServiveResults = ({navOb,adsOb, fo1}) => {
       title:adds.title,
       address:adds.service_type.title,
       price:adds.price,
-      time:'4',
+      time: adds.issue_date_string.slice(0,5),
+
       views:adds.view_count,
       whatsApp:adds.whatsapp,
       phone:adds.phone,
@@ -38,7 +39,8 @@ const ServiveResults = ({navOb,adsOb, fo1}) => {
       price:adds.price,
       phone:adds.phone,
       whatsApp:adds.whatsapp,
-      time:'4',
+      time: adds.issue_date_string.slice(0,5),
+
       user_id:adds.user_id,
       
       }

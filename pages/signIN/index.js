@@ -16,9 +16,9 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   const { locale } = context
   if (session) {
-    // context.res.writeHead(303, { Location: `/profile?callbackurl=${window.origin}` });
-    // context.res.redirect(`/profile?callbackurl=${window.origin}` , 303);
-    // context.res.end();
+    context.res.writeHead(303, { Location: `/profile` });
+    context.res.redirect(`/profile` , 303);
+    context.res.end();
   }
   return {
     props: {
@@ -28,6 +28,7 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
 
 
 
@@ -84,30 +85,19 @@ const SignIN = ({ csrfToken, providers }) => {
   let sginOb = {
     sn1, sn2, sn3, sn4, sn5, sn6, sn7, sn8, sn9
   }
-  useEffect(()=>{
-    session.data==null&&route.push(`/profile?callbackurl=${window.origin}`)
-  },[])
-  
-  
+
   
 
   return (
     <div>
-      {session.data != null &&
-        (
-        <>
-          <Head>
-          <title>{route.locale == 'ar'?"تسجيل دخول":"sign in"}</title>
-          <meta name="description" content="" />
-        </Head>
-        <Nav navOb={navOb} />
-        <SignInComponent csrfToken={csrfToken} providers={providers} sginOb={sginOb} />
-          <Footer fo1={fo1} />
-          </>
-      )
       
-      }
-        
+         <Head>
+        <title>{route.locale == 'ar'?"تسجيل دخول":"sign in"}</title>
+        <meta name="description" content="" />
+      </Head>
+      <Nav navOb={navOb} />
+      <SignInComponent csrfToken={csrfToken} providers={providers} sginOb={sginOb} />
+      <Footer fo1={fo1} />
     </div>
   )
 }

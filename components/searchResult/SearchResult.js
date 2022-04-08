@@ -26,7 +26,8 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
         title: adds.title,
         address: adds.region.country.title + " " + adds.region.title,
         price: adds.price,
-        time: '4',
+        time: adds.issue_date_string.slice(0,5),
+
         views: adds.view_count,
         whatsApp: adds.whatsapp,
         phone: adds.phone,
@@ -49,7 +50,8 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
           lat: adds.lat,
           lng: adds.lng,
           views: adds.view_count,
-          time: '4',
+          time: adds.issue_date_string.slice(0,5),
+
           user_id: adds.user_id,
 
         }
@@ -70,7 +72,8 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
         title: adds.title,
         address: adds.region.country.title + " " + adds.region.title,
         price: adds.price,
-        time: '4',
+        time: adds.issue_date_string.slice(0,5),
+
         views: adds.view_count,
         whatsApp: adds.whatsapp,
         phone: adds.phone,
@@ -93,7 +96,8 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
           lat: adds.lat,
           lng: adds.lng,
           views: adds.view_count,
-          time: '4',
+          time: adds.issue_date_string.slice(0,5),
+
           user_id: adds.user_id,
 
         }
