@@ -34,12 +34,25 @@ const Index = () => {
     nav10,
     nav11
   }
+  //footer
+  let fo1 = t('home:footer')
+  //singin
+  let continueWrod =t('signin:continue')
+  let sn2 = t('signin:sign-2')
+  let sn3 = t('signin:sign-3')
+  let sn4 = t('signin:sign-4')
+  let newPasswrod = ('signin:newPasswrod')
+  let reset=t('signin:reset')
+
+  let sginOb = {
+    sn2, sn3, sn4,continueWrod,newPasswrod,reset
+  }
 
 
   return (
     <>
       <Nav navOb={navOb} />
-      <ConfirmPasswrod />
+      <ConfirmPasswrod sginOb={ sginOb}/>
       <Footer fo1={fo1} />
     </>
   )

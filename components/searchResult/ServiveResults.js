@@ -59,7 +59,11 @@ const ServiveResults = ({navOb,adsOb, fo1}) => {
     <Nav navOb={navOb}/>
     <div className='results'>    
         <div className="adds-results">
-        <h1 className='premium-title'>{adsOb.ad6}</h1>
+          <h1 className='premium-title'>{adsOb.ad6}
+          {`${filterCtx.typeName} 
+            ${route.locale == 'ar'?"في":"in"}
+             ${[...filterCtx.areaName]}`}
+            </h1>
         {
        latestData&&latestData.map((premiumAddsData)=>(
         <PremiumService singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.id} id={premiumAddsData.id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>

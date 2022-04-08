@@ -10,5 +10,11 @@
   "sign-9": "E-mail address or password is/are incorrect",
   "sign-10": "Name",
   "sign-11": "Phone number",
-  "sign-12": "Save"
+  "sign-12": "Save",
+  "continue":"Continue",
+  "reset": "Reset password",
+   "newPassword": "New password",
+   "premiumAds":"Feature this Ad",
+   "closeBtn":"Close"
+
 }

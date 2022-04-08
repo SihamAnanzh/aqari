@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState ,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import swal from 'sweetalert';
@@ -11,14 +11,14 @@ const Packge = (props) => {
     const route = useRouter()
     let formData = new FormData()
     formData.append('package_id', props.packgeId)
-    formData.append('callbackurl','https://akarii-demo.herokuapp.com/packages')
+    formData.append('callbackurl', 'https://akarii-demo.herokuapp.com/packages')
     let formDataTow = new FormData()
     formDataTow.append('package_id', props.packgeId)
 
 
 
     useEffect(() => {
-        console.log(route.query.paymentId+"rtoue.query");
+        console.log(route.query.paymentId + "rtoue.query");
         route.query.paymentId &&
             (
                 axios({
@@ -33,31 +33,31 @@ const Packge = (props) => {
                 }).then((res) => {
                     console.log(res);
                     swal(res.data.status.message)
-          })
-    
-          )
-      },[])
-    
+                })
+
+            )
+    }, [])
+
 
     const handleClick = () => {
-      
-            session.data != null ?
-                (
-                    axios({
-                        method: "post",
-                        url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
-                        headers: {
-                            "Content-Type": "multipart/form-data",
-                            'Authorization': session.data != null ? session.data.id : route.replace('/signIN')
-                        },
-                        data: formData
 
-                    }).then((res) => {
-                    
-                        res.data.status.code ==200&&route.replace(res.data.results.data.paymentURL)
-                        console.log(res.data.results.data.paymentURL);
-                    })
-                ) : route.replace('/signIN')
+        session.data != null ?
+            (
+                axios({
+                    method: "post",
+                    url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        'Authorization': session.data != null ? session.data.id : route.replace('/signIN')
+                    },
+                    data: formData
+
+                }).then((res) => {
+
+                    res.data.status.code == 200 && route.replace(res.data.results.data.paymentURL)
+                    console.log(res.data.results.data.paymentURL);
+                })
+            ) : route.replace('/signIN')
 
     }
 
@@ -101,9 +101,10 @@ const Packge = (props) => {
                 }}>
 
                     <div className="single-packge">
-                        <h3>اجعل إعلانك مميز</h3>
+                        <h3>{props.sginOb.premiumAda}</h3>
                         <img className='packge-img' src={props.logo} alt="" />
-                        <button className='btn-packge' onClick={() => setShwoPackgeDetail(!showPackgeDetail)}>إغلاق</button>
+                        <button className='btn-packge'
+                            onClick={() => setShwoPackgeDetail(!showPackgeDetail)}>{props.sginOb.closeBtn}</button>
                     </div>
                 </div>
             }

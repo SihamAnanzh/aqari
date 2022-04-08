@@ -2,7 +2,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import React ,{useState}from 'react'
 import DialogBox from '../dialogBox/DialogBox';
-const ForgetPasswrod = () => {
+const ForgetPasswrod = ({sginOb}) => {
     const [showDialog, setShowDialog] = useState(false);
     const [email,setEmail]=useState('')
     const [message,setMessage]=useState('')
@@ -15,27 +15,27 @@ const ForgetPasswrod = () => {
       ).then(()=>setShowDialog(true))
     }
   return (
-    <div className="signin-contanier forget-password-contanier">
-        <div className="sign">
-            <h2 >نسيت كلمة السر</h2>
+    <div className="signin-contanier forget-contanier">
+        <div className="forget-heading">
+        <h2 >{sginOb.sn4}</h2>
         </div>
-        <div className="inputs-group">
-           <div className="sign-input mail">
+        <div className="forget-input">
+           <div className="forget-input-contanier ">
                <h3 style={{
                    paddingBottom:"10px"
-               }}>البريد الإلكتروني</h3>
-               <input type="text" className="sign-mail" placeholder='البريد الإلكتروني'  onChange={e=>setEmail(e.target.value)}/>
+          }}>{sginOb.sn2}</h3>
+               <input type="text" className="sign-mail" placeholder={sginOb.sn2}  onChange={e=>setEmail(e.target.value)}/>
            </div>
         
         </div>
 
      
-        <div className="sign-btn" onClick={()=>{
+        <div className="forget-btn" onClick={()=>{
           handleClick()
       
         }}>
 
-        استمرار
+        {sginOb.continueWrod}
         </div>
            {
              showDialog && <DialogBox message={message}/>

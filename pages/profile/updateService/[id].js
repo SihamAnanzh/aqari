@@ -17,8 +17,11 @@ const Update = ({ updateData }) => {
   const authCtx = useContext(AuthContext)
   let { t } = useTranslation();
   const route = useRouter()
+const session=useSession()
 
-
+useEffect(() => {
+  session.data==null&&route.push('/signIN')
+}, [])
 
   // translations
 
@@ -148,11 +151,11 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
 
   const session = getSession(context)
-  if (session.data == null) {
-    context.res.writeHead(303, { Location: "/signIN" });
-    context.res.redirect("/signIN", 303);
-    context.res.end();
-  }
+  // if (session.data == null) {
+  //   context.res.writeHead(303, { Location: "/signIN" });
+  //   context.res.redirect("/signIN", 303);
+  //   context.res.end();
+  // }
   if (id) {
     await axios.get(`https://stagingapi.aqarifinder.com/api/services/${id}`, { headers: { 'lang': locale } }).then((res) => {
 console.log(res.data.results);

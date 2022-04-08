@@ -49,7 +49,17 @@ const PackgesAdd = ({ data }) => {
   //footer
   let fo1 = t('home:footer')
 
+ //singin
+ let closeBtn =t('signin:closeBtn')
+ let premiumAds = t('signin:premiumAds')
 
+
+
+ let sginOb = {
+  closeBtn,premiumAds
+ }
+
+ 
 
 
   return (
@@ -67,7 +77,7 @@ const PackgesAdd = ({ data }) => {
 
         })} />
       </Head>
-      <Packges data={data.results} navOb={navOb} fo1={fo1} />
+      <Packges sginOb={sginOb} data={data.results} navOb={navOb} fo1={fo1} />
     </div>
   )
 }

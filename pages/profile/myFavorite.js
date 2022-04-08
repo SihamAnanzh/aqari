@@ -7,13 +7,18 @@ import { useRouter } from 'next/router';
 import MyFav from '../../components/profile/MyFav';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { signIn, useSession } from 'next-auth/react';
+import { signIn, useSession,getSession } from 'next-auth/react';
 import Head from 'next/head';
 import BackBtn from '../../components/BackBtn';
 const MyFavorite = () => {
   const authCtx = useContext(AuthContext)
   const route = useRouter()
   let { t } = useTranslation();
+const session=useSession()
+  
+  useEffect(() => {
+    session.data==null&&route.push('/signIN')
+  }, [])
 
   // translations
 
@@ -115,10 +120,10 @@ export default MyFavorite
 export async function getServerSideProps(context) {
   const { locale }=context
   const session = getSession(context)
-  if (session.data == null) {
-    context.res.writeHead(303, { Location: "/signIN" });
-    context.res.redirect("/signIN", 303);
-    context.res.end();
-  }
+  // if (session.data == null) {
+  //   context.res.writeHead(303, { Location: "/signIN" });
+  //   context.res.redirect("/signIN", 303);
+  //   context.res.end();
+  // }
   return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'profile'])) } }
 }

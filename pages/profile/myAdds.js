@@ -16,6 +16,13 @@ const ProfileAdd = () => {
   const authCtx = useContext(AuthContext)
   const route = useRouter()
   let { t } = useTranslation();
+  const session = useSession()
+  
+  
+  useEffect(() => {
+    session.data==null&&route.push('/signIN')
+  }, [])
+
 
   // translations
 
@@ -116,10 +123,10 @@ export default ProfileAdd
 export async function getServerSideProps(context) {
   const { locale }=context
   const session = getSession(context)
-  if (session.data == null) {
-    context.res.writeHead(303, { Location: "/signIN" });
-    context.res.redirect("/signIN", 303);
-    context.res.end();
-  }
+  // if (session.data == null) {
+  //   context.res.writeHead(303, { Location: "/signIN" });
+  //   context.res.redirect("/signIN", 303);
+  //   context.res.end();
+  // }
   return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'profile'])) } }
 }

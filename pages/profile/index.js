@@ -15,7 +15,7 @@ import BackBtn from '../../components/BackBtn';
 const Index = ()=> {
   let { t } = useTranslation();
   const route = useRouter()
-
+const session=useSession()
   
 
 
@@ -28,9 +28,9 @@ const Index = ()=> {
   //   }
   // });
 
-  // useEffect(() => {
-  //   session.data ==null&&route.push(`/signIN`)
-  // },[])
+  useEffect(() => {
+    session.data ==null&&route.push(`/signIN?callbackurl=${window.origin}`)
+  },[])
 
 
   
@@ -123,7 +123,7 @@ const Index = ()=> {
   return (
     <>
 
-      {session != null &&
+      {session.data != null &&
         <>
           <Head>
           <title>{route.locale == "ar" ? "الملف الشخصي" : "my profile"}</title>
@@ -161,12 +161,7 @@ export async function getServerSideProps(context) {
   let { locale } = context
     const session = await getSession(context);
 
-    if (!session) {
-     
-        context.res.writeHead(303, { Location: `/signIN`});
-        context.res.redirect(`/signIN`, 303);
-        context.res.end();
-    }
+ 
    
   
 

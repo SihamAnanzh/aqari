@@ -3,7 +3,7 @@ import Nav from '../shared/nav/Nav'
 import Packge from './Packge'
 import Footer from '../shared/footer/Footer'
 import BackBtn from '../BackBtn'
-const Packges = ({ data, fo1, navOb }) => {
+const Packges = ({ data, fo1, navOb ,sginOb}) => {
   const [packageData, setPacakgeData] = useState([])
 
 
@@ -39,7 +39,7 @@ const Packges = ({ data, fo1, navOb }) => {
 
           {
             packageData.map((pack) => (
-                pack.id!==3&&<Packge key={pack.id} packgeId={pack.packgeId} btn={navOb.pa2} price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId} />
+                pack.id!==3&&<Packge sginOb={sginOb} key={pack.id} packgeId={pack.packgeId} btn={navOb.pa2} price={pack.price} logo={pack.logo} currencyTitle={pack.currencyTitle} titleOne={pack.titleOne} titleTwo={pack.titleTwo} currencyId={pack.currencyId} />
 
             ))
           }

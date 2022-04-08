@@ -125,7 +125,7 @@ useEffect(()=>{
       <div className='results'>
         <h2 className='results-heading'>
           {`${filterCtx.typeName}
-           ${!filterCtx.rent ?
+           ${filterCtx.rent ?
              route.locale == 'ar' ? 'للإيجار ': "Rent" :
              route.locale=='ar'?'للبيع':"Selling"}
             ${route.locale == 'ar'?"في":"in"}

@@ -7,7 +7,7 @@ import { AuthContext } from '../../stores/auth-context'
 import { useRouter } from 'next/router';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { signIn, useSession } from 'next-auth/react';
+import { getSession, signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import BackBtn from '../../components/BackBtn';
 const Service = () => {
@@ -15,7 +15,12 @@ const Service = () => {
   const authCtx = useContext(AuthContext)
   const route = useRouter()
   let { t } = useTranslation();
+const session=useSession()
 
+  useEffect(() => {
+    session.data==null&&route.push('/signIN')
+  }, [])
+  
   // translations
 
   //nav
@@ -126,10 +131,10 @@ export default Service
 export async function getServerSideProps(context) {
   const { locale }=context
   const session = getSession(context)
-  if (session.data == null) {
-    context.res.writeHead(303, { Location: "/signIN" });
-    context.res.redirect("/signIN", 303);
-    context.res.end();
-  }
+  // if (session.data == null) {
+  //   context.res.writeHead(303, { Location: "/signIN" });
+  //   context.res.redirect("/signIN", 303);
+  //   context.res.end();
+  // }
   return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'profile', 'add-service'])) } }
 }

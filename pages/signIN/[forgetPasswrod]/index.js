@@ -37,11 +37,26 @@ const Index = () => {
   }
 
 
+  //footer
+  let fo1 = t('home:footer')
+
+  //singin
+  let continueWrod =t('signin:continue')
+  let sn2 = t('signin:sign-2')
+  let sn3 = t('signin:sign-3')
+  let sn4 = t('signin:sign-4')
+ 
+
+  let sginOb = {
+    sn2, sn3, sn4,continueWrod
+  }
+
+  
 
   return (
     <div>
       <Nav navOb={navOb} />
-      <ForgetPasswrod />
+      <ForgetPasswrod sginOb={ sginOb}/>
       <Footer fo1={fo1} />
     </div>
   )
@@ -50,5 +65,5 @@ const Index = () => {
 export default Index
 
 export async function getServerSideProps({ locale }) {
-  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp'])) } }
+  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp','signin'])) } }
 }

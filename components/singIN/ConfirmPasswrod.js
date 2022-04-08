@@ -1,34 +1,36 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import React ,{useState}from 'react'
+import swal from 'sweetalert';
 
-const ConfirmPasswrod = () => {
+const ConfirmPasswrod = ({sginOb}) => {
 const [newPassword, setNewPassword] = useState('');
-
+const route=useRouter()
 
 
 const handelClick=()=>{
-    axios.post('https://stagingapi.aqarifinder.com/api/user/password/reset',{newPassword}).then((res)=>{
+    axios.post('https://stagingapi.aqarifinder.com/api/user/password/reset', { newPassword }).then((res) => {
+        console.log(res);
+        swal(res.data.status.message)
+        route.push('/signIN')
       
     })
     }
   return (
-    <div className="signin-contanier" style={{height:'100vh'}}>
-    <div className="sign">
-        <h2 style={{
-            fontFamily:'otfPlain',
-            marginRight:"-14px"
-        }
-        }>إعادة تعيين كلمة السر</h2>
+    <div className="signin-contanier forget-contanier">
+    <div className='forget-heading'>
+        <h2 >{sginOb.reset}</h2>
     </div>
-    <div className="inputs-group">
-       <div className="sign-input mail">
+    <div className="forget-input">
+       <div className="forget-input-contanier">
            <h3 style={{
                paddingBottom:"10px"
-           }}>كلمة السر الجديدة</h3>
-           <input type="text" className="sign-mail" placeholder='كلمة السر الجديدة' onChange={e=>setNewPassword(e.target.value)}/>
+                  }}>{sginOb.newPasswrod}</h3>
+                  <input type="text" className="sign-mail"
+                      placeholder={sginOb.newPasswrod} onChange={e => setNewPassword(e.target.value)} />
        </div>
-       <div className="sign-btn" onClick={handelClick}>
-       استمرار
+       <div className="forget-btn" onClick={handelClick}>
+{sginOb.continueWrod}
         </div>
     </div>
     </div>
