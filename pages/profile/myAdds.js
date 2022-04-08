@@ -87,7 +87,9 @@ const ProfileAdd = () => {
   const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      route.push(`/signIN?callbackurl=${window.origin}`);
+      // route.push(`/signIN?callbackurl=${window.origin}`);
+      route.push('/signIN')
+
     }
   });
   return (
