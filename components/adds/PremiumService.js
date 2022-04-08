@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 const PremiumService = (props) => {
-console.log(props.adsOb);
+console.log(props);
   return (
  
 
@@ -19,6 +19,7 @@ console.log(props.adsOb);
               </div>
               </Link>
       
+              
                <Link  href={{
             pathname: `/services/${props.id}`,
             query:`title=${props.title.trim().replace(' ',"-")}`
@@ -28,12 +29,12 @@ console.log(props.adsOb);
                 <div className="address">
                   
                         <img src='/assets/img/location-gray.svg' />
-                    {props.address}</div>
+                    {props.singleEstate.address}</div>
                 <div className="detials">
-                    <span className='price'><span className='number'>{props.price}</span>{props.priceCode}</span>
+                    <span className='price'><span className='number'>{props.price}</span>{props.adsOb.priceCode}</span>
                           <span className='time'><span className='number'>
-                              <span className='address-time-icon'>
-                        <img src='/assets/img/address-hour.svg' />
+                              <span className='address-time-icon'> 
+                         <img src='/assets/img/address-hour.svg' />
                               </span>
                               {props.time}</span></span>
                     <span className='views'><span className='address-views-icon'>

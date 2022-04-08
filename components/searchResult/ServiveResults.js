@@ -6,11 +6,13 @@ import Add from '../adds/Add'
 import { FilterContext } from '../../stores/filter';
 import { TranslateContext } from '../../stores/translate-context'
 import BackBtn from '../BackBtn'
+import {useRouter} from 'next/router'
 
 const ServiveResults = ({navOb,adsOb, fo1}) => {
     const [latestData,setLeastestAdd]=useState([])
     const filterCtx=useContext(FilterContext)
     const tranCtx=useContext(TranslateContext)
+    const route=useRouter()
      console.log(navOb);
     useEffect(()=>{
 
@@ -60,13 +62,20 @@ const ServiveResults = ({navOb,adsOb, fo1}) => {
     <div className='results'>    
         <div className="adds-results">
           <h1 className='premium-title'>{adsOb.ad6}
-          {`${filterCtx.typeName} 
+          {`${filterCtx.serviceString} 
             ${route.locale == 'ar'?"في":"in"}
              ${[...filterCtx.areaName]}`}
             </h1>
         {
        latestData&&latestData.map((premiumAddsData)=>(
-        <PremiumService singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.id} id={premiumAddsData.id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
+         <PremiumService adsOb={adsOb}
+           singleEstate={premiumAddsData.singleEstatData}
+           key={premiumAddsData.id} id={premiumAddsData.id}
+           img={premiumAddsData.img} title={premiumAddsData.title}
+           address={premiumAddsData.address} price={premiumAddsData.price}
+           time={premiumAddsData.time} views={premiumAddsData.views}
+           whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone}
+           disc={premiumAddsData.disc} />
 
        ))
        }

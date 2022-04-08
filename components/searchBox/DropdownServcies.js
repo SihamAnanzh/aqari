@@ -36,7 +36,7 @@ const DropdownServcies = ({items=[], title, setSelectItem}) => {
   useEffect(() => {
 
     
-    filterCtx.setSrviceString(selection.value )
+    filterCtx.setSrviceString(selection.value)
 }, [selection]);
 
     

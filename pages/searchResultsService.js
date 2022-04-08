@@ -51,28 +51,24 @@ const route=useRouter()
   //footer
   let fo1 = t('home:footer')
 
-  //adds section
-  let ad1 = t('home:ads-1')
-  let ad2 = t('home:ads-2')
-  let ad3 = t('home:ads-3')
-  let ad4 = t('home:ads-4')
-  let ad5 = t('home:ads-5')
-  let ad6 = t('home:ads-6')
-  let hour = t('home:hour')
-
+ 
+    //adds section
+    let ad1 = t('home:ads-1')
+    let ad2 = t('home:ads-2')
+    let ad3 = t('home:ads-3')
+    let premium = t('home:premium')
+    let hour = t('home:hour')
   let priceCode = t('home:priceCode')
-  let noResults=t('home:ads-5')
-  let adsOb = {
-    ad1,
-    ad2,
-    ad3,
-    ad4,
-    ad5,
-    ad6,
-    priceCode,
-    hour,
-    noResults
-    
+  let noResults = t('home:ads-5')
+  
+    let adsOb = {
+      ad1,
+      ad2,
+      ad3,
+      premium,
+      hour,
+      priceCode,
+      noResults
   }
 
   return (

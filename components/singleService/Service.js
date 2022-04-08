@@ -9,7 +9,6 @@ import axios from 'axios'
 
 const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
   const [addToFav, setAddtoFav] = useState(data.isFav)
-  const authCtx = useContext(AuthContext)
   const [userAdd, setUserAdd] = useState(false)
   const [allInfo, setAllInfo] = useState({})
   const route = useRouter()
@@ -19,8 +18,6 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
   useEffect(() => {
     session.data != null && session.data.xyz.sub == data.user_id ? setUserAdd(true) : setUserAdd(false)
   }, [])
-
-
   const toggleFavAdds = () => {
     session.data != null ?
       (
@@ -57,7 +54,6 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
 
 
 
-
   return (
 
     <div className='estat-conianer' style={{
@@ -82,17 +78,19 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
             </h5>
           </div>
          
-          {userAdd ?
-            <div className="fav-estat" onClick={toggleFavAdds}>
-              {addToFav ? <img src="/assets/img/fav-icon.svg" alt="" /> :
-                <img src="/assets/img/emptyHearrt.svg" alt="" />
-              }
+          {!userAdd ?
+              <div className="fav-estat" onClick={toggleFavAdds}>
+                {addToFav ? <img src="/assets/img/fav-icon.svg" alt="" /> :
+                  <img src="/assets/img/emptyHearrt.svg" alt="" />
+                }
 
-            </div> : <h4 className='editAdd'><Link href={
-              `/profile/updateService/${data.add_id}`
+              </div> : <h4 className='editAdd' ><Link href={
+                {
+                    pathname: `/profile/updateAdds/${data.add_id}`,
+                  query:`/${data.title.trim().replace(' ', '-')}`
 
-            }
-            //  as={`/profile/updateAdds/${data.title.trim().replace(' ', '-')}`}
+              }}
+               
 
               >{addAdsOb.edit}</Link></h4>}
 

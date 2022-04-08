@@ -20,12 +20,13 @@ const PackgeBox = ({ setShowDialogiBox, showDialogBoxn, count }) => {
         </div>
         <div className="box-btns">
            
-              <div className="box-btn signUp-btn"  onClick={()=>setShowDialogiBox(false)}>
-              {/* <Link href='/'>استمرار</Link> */}
-              استمرار
+              <div className="box-btn signUp-btn"
+                  onClick={() => setShowDialogiBox(false)}>
+                  {/* <Link href='/'>استمرار</Link> */}
+                  {route.locale=='ar'?"استمرار":"Continue"}
               </div>
               <div className="box-btn">
-            <div  onClick={()=>setShowDialogiBox(true)}>الغاء</div>
+                  <div onClick={() => setShowDialogiBox(true)}>{route.locale=='ar'?'إلغاء':"Cancel"}</div>
             </div>
         </div>
     </div>

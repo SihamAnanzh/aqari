@@ -11,7 +11,7 @@ import { ArrowBack } from '@mui/icons-material'
 
 const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const [addToFav, setAddtoFav] = useState(data.isFav)
-  const authCtx = useContext(AuthContext)
+
   const [userAdd, setUserAdd] = useState(false)
   const route = useRouter()
   const [allInfo, setAllInfo] = useState({})
