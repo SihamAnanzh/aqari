@@ -88,10 +88,15 @@ const ProfileAdd = () => {
     required: true,
     onUnauthenticated() {
       // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push('/signIN')
+      route.push(`/signIN?callbackurl=${route.asPath}`)
 
     }
   });
+
+  useEffect(() => {
+    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
+  },[])
+
   return (
 
 

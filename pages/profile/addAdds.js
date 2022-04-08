@@ -11,13 +11,19 @@ import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import BackBtn from '../../components/BackBtn';
 const Adds = () => {
-  const session = useSession({
+  const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
       // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push('/singIN')
+      route.push(`/signIN?callbackurl=${route.asPath}`)
+
     }
   });
+
+  useEffect(() => {
+    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
+  }, [])
+  
   const authCtx = useContext(AuthContext)
   const route = useRouter()
   let { t } = useTranslation();

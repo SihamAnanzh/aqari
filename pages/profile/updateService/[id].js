@@ -17,14 +17,26 @@ const Update = ({ updateData }) => {
   const authCtx = useContext(AuthContext)
   let { t } = useTranslation();
   const route = useRouter()
-  const session = useSession({
+  // const session = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     // route.push(`/signIN?callbackurl=${window.origin}`);
+  //     route.push('/signIN')
+
+  //   }
+  // })
+  const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
       // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push('/signIN')
+      route.push(`/signIN?callbackurl=${route.asPath}`)
 
     }
-  })
+  });
+
+  useEffect(() => {
+    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
+  },[])
 
 
   // translations

@@ -18,7 +18,7 @@ const Packge = (props) => {
 
 
     useEffect(() => {
-        console.log(route.query);
+        console.log(route.query.paymentId+"rtoue.query");
         route.query.paymentId &&
             (
                 axios({

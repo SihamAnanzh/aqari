@@ -153,13 +153,27 @@ let newestٍervice=t('home:newestٍervice')
   }, [services])
 
   
-  const session = useSession({
+  // const session = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     // route.push(`/signIN?callbackurl=${window.origin}`);
+  //     route.push('/signIN')
+  //   }
+  // })
+
+  const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
       // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push('/signIN')
+      route.push(`/signIN?callbackurl=${route.asPath}`)
+
     }
-  })
+  });
+
+  useEffect(() => {
+    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
+  },[])
+
 
   return (
     <>
