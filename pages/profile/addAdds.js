@@ -11,18 +11,9 @@ import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import BackBtn from '../../components/BackBtn';
 const Adds = () => {
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push(`/signIN?callbackurl=${route.asPath}`)
+  const session=useSession()
 
-    }
-  });
 
-  useEffect(() => {
-    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
-  }, [])
   
   const authCtx = useContext(AuthContext)
   const route = useRouter()
@@ -151,7 +142,14 @@ export default Adds
 
 
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps(context) {
+  const { locale }=context
+  const session = getSession(context)
+  if (session.data == null) {
+    context.res.writeHead(303, { Location: "/signIN" });
+    context.res.redirect("/signIN", 303);
+    context.res.end();
+  }
   return { props: { ...(await serverSideTranslations(locale, ['home', 'signin','add-service', 'add-ads', 'profile'])) } }
 }
 

@@ -29,13 +29,13 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     }
 
 
-    // useEffect(() => {
-    //    setEmail(cookies.Name)
-    //      setPassowrd(cookies.Password)
-    //     console.log(cookies.Name);
+    useEffect(() => {
+       setEmail(cookies.Name)
+         setPassowrd(cookies.Password)
+        console.log(cookies.Name);
         
 
-    // }, [])
+    }, [])
 
 
 
@@ -162,7 +162,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                 <ul className="social-icon">
                     {Object.values(providers).filter(q => q.type !== 'credentials').map((provider) => (
 
-                        <li key={provider.name} onClick={() => {
+                        <li style={{cursor:"pointer"}} key={provider.name} onClick={() => {
                             signIn(provider.id)
 
 

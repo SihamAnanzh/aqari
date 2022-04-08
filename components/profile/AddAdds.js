@@ -36,6 +36,7 @@ const AddAdds = ({ addAdsOb }) => {
   const [autoNum, setAutoNum] = useState("")
   const [desc, setDesc] = useState("")
   const [files, setFiles] = useState([])
+  const [adsDataLocal, setAdsDataLoale] = useState()
   const [lat, setLat] = useState(adsDataLocal !== undefined ? adsDataLocal.lat : "")
   const [lng, setLng] = useState(adsDataLocal !== undefined ? adsDataLocal.lng : "")
   const [imageOne, setImageOne] = useState()
@@ -52,7 +53,7 @@ const AddAdds = ({ addAdsOb }) => {
   const [isPremium, setIspremium] = useState(false)
   const [PAl, setPAL] = useState()
   const [paymentId, setPaymentId] = useState()
-  const [adsDataLocal, setAdsDataLoage] = useState()
+
   const session = useSession()
   const [server, setServer] = useState()
 

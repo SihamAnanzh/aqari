@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { signIn, useSession } from 'next-auth/react';
+import { getSession, signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import BackBtn from '../../components/BackBtn';
 
@@ -84,18 +84,7 @@ const ProfileAdd = () => {
   let proOb = {
     pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8
   }
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push(`/signIN?callbackurl=${route.asPath}`)
-
-    }
-  });
-
-  useEffect(() => {
-    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
-  },[])
+  
 
   return (
 
@@ -124,6 +113,13 @@ const ProfileAdd = () => {
 export default ProfileAdd
 
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps(context) {
+  const { locale }=context
+  const session = getSession(context)
+  if (session.data == null) {
+    context.res.writeHead(303, { Location: "/signIN" });
+    context.res.redirect("/signIN", 303);
+    context.res.end();
+  }
   return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'profile'])) } }
 }

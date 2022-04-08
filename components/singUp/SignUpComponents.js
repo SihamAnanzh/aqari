@@ -141,7 +141,7 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                     marginBottom: "40px"
                 }}>
                     {Object.values(providers).filter(q => q.type !== 'credentials').map((provider) => (
-                        <li key={provider.name} onClick={() => {
+                        <li style={{cursor:"pointer"}} key={provider.name} onClick={() => {
                             signIn(provider.id)
                         }}>
                             {provider.name == 'Google' && <img src="/assets/img/google-icon.svg" alt="" />}

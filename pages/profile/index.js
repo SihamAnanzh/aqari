@@ -19,18 +19,18 @@ const Index = ()=> {
   
 
 
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push(`/signIN?callbackurl=${route.asPath}`)
+  // const { data: session } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     // route.push(`/signIN?callbackurl=${window.origin}`);
+  //     route.push(`/signIN?callbackurl=${route.asPath}`)
 
-    }
-  });
+  //   }
+  // });
 
-  useEffect(() => {
-    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
-  },[])
+  // useEffect(() => {
+  //   session.data ==null&&route.push(`/signIN`)
+  // },[])
 
 
   
@@ -123,7 +123,7 @@ const Index = ()=> {
   return (
     <>
 
-      {session&&
+      {session != null &&
         <>
           <Head>
           <title>{route.locale == "ar" ? "الملف الشخصي" : "my profile"}</title>
@@ -161,12 +161,12 @@ export async function getServerSideProps(context) {
   let { locale } = context
     const session = await getSession(context);
 
-    // if (!session) {
+    if (!session) {
      
-    //     context.res.writeHead(303, { Location: `/signIN?callbackurl=${window.origin}`});
-    //     context.res.redirect(`/signIN?callbackurl=${window.origin}`, 303);
-    //     context.res.end();
-    // }
+        context.res.writeHead(303, { Location: `/signIN`});
+        context.res.redirect(`/signIN`, 303);
+        context.res.end();
+    }
    
   
 

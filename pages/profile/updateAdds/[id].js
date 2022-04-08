@@ -6,7 +6,7 @@ import { AuthContext } from '../../../stores/auth-context';
 import { useRouter } from 'next/router';
 import SubNav from '../../../components/profile/SubNav'
 import axios from 'axios';
-import { signIn, useSession } from 'next-auth/react';
+import { getSession, signIn, useSession } from 'next-auth/react';
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head';
@@ -106,18 +106,7 @@ const route=useRouter()
     add1, add2, add3, add4, add5, add6, add7, add8, add9, add10, add11, add12, adSh1, adSh2, adSh3, adBtn, add13, edit
   }
 
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push(`/signIN?callbackurl=${route.asPath}`)
 
-    }
-  });
-
-  useEffect(() => {
-    !session&&route.push(`/signIN?callbackurl=${route.asPath}`)
-  },[])
   return (
 
 
@@ -154,6 +143,12 @@ export default Update
 export async function getServerSideProps(context) {
   let updateData;
   const { locale } = context
+  const session = getSession(context)
+  if (session.data == null) {
+    context.res.writeHead(303, { Location: "/signIN" });
+    context.res.redirect("/signIN", 303);
+    context.res.end();
+  }
   const { id } = context.params;
   if (id) {
     await axios.get(`https://stagingapi.aqarifinder.com/api/ads/${id}`, { headers: { 'lang': locale } }).then((res) => {

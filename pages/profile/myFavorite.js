@@ -82,14 +82,7 @@ const MyFavorite = () => {
     pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8
   }
 
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      // route.push(`/signIN?callbackurl=${window.origin}`);
-      route.push('/signIN')
-
-    }
-  })
+ 
   return (
     <>
 
@@ -119,6 +112,13 @@ const MyFavorite = () => {
 export default MyFavorite
 
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps(context) {
+  const { locale }=context
+  const session = getSession(context)
+  if (session.data == null) {
+    context.res.writeHead(303, { Location: "/signIN" });
+    context.res.redirect("/signIN", 303);
+    context.res.end();
+  }
   return { props: { ...(await serverSideTranslations(locale, ['home', 'signin', 'profile'])) } }
 }
