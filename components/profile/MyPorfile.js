@@ -20,7 +20,9 @@ useEffect(()=>{
       "Authorization":session.data.id
        },
 
-  }).then(res=>{
+  }).then(res => {
+
+    console.log(res);
   const {name, email,phone}= res.data.results
       setName(name)
       setEmail(email)
@@ -37,7 +39,8 @@ const session=useSession()
 
  const handleSubmit=()=>{
  let data ={name, email , phone}
- axios.post('https://stagingapi.aqarifinder.com/api/user/update',{...data},{headers:{'Authorization':session.data.xyz.id}})
+   axios.post('https://stagingapi.aqarifinder.com/api/user/update', { ...data },
+     { headers: { 'Authorization': session.data.xyz.jti } })
    .then(res => { 
     swal(route.locale=='ar'?'تم تعديل بنجاح':"profile updated successfully")
   })

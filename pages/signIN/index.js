@@ -15,11 +15,19 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
   const providers = await getProviders();
   const { locale } = context
+  // if (session) {
+  //     context.res.writeHead(303, { Location: "/" });
+  //     context.res.redirect("/", 303);
+  //     context.res.end();
+  // }
+
   if (session) {
-      context.res.writeHead(303, { Location: "/" });
-      context.res.redirect("/", 303);
-      context.res.end();
-  }
+    context.res.writeHead(303, { Location: "/" });
+    if (context.res) {
+        context.res.redirect("/", 303);
+    }
+    context.res.end();
+}
   return {
     props: {
       csrfToken: await getCsrfToken(context),

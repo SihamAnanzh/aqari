@@ -15,7 +15,7 @@ import BackBtn from '../../components/BackBtn';
 const Index = ()=> {
   let { t } = useTranslation();
   const route = useRouter()
-const session=useSession()
+// const session=useSession()
   
 
 
@@ -28,9 +28,17 @@ const session=useSession()
   //   }
   // });
 
-  useEffect(() => {
-    session.data ==null&&route.push('/signIN')
-  },[])
+  // useEffect(() => {
+  //   session.data ==null&&route.push('/signIN')
+  // },[])
+
+
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      route.push(`/signIN?callbackurl=${route.asPath}`);
+    }
+  });
 
 
   
@@ -116,6 +124,9 @@ const session=useSession()
 
 
 
+  if (!session) {
+    return (<></>);
+  }
 
 
 
@@ -123,7 +134,7 @@ const session=useSession()
   return (
     <>
 
-      {session.data != null &&
+      {/* {session.data != null && */}
         <>
           <Head>
           <title>{route.locale == "ar" ? "الملف الشخصي" : "my profile"}</title>
@@ -136,7 +147,7 @@ const session=useSession()
         </div>
         <Footer fo1={fo1} />
         </>
-      }
+      {/* } */}
         
         
       
