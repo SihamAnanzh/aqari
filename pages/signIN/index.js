@@ -86,19 +86,28 @@ const SignIN = ({ csrfToken, providers }) => {
     sn1, sn2, sn3, sn4, sn5, sn6, sn7, sn8, sn9
   }
 
+  // useEffect(() => {
+  //   session.data !== null && route.push('/profile')
+  //  }
+  //   , [])
   
 
 
   return (
     <div>
-      
-         <Head>
+      {
+        session.data == null &&
+        <>
+        <Head>
         <title>{route.locale == 'ar'?"تسجيل دخول":"sign in"}</title>
         <meta name="description" content="" />
       </Head>
       <Nav navOb={navOb} />
       <SignInComponent csrfToken={csrfToken} providers={providers} sginOb={sginOb} />
       <Footer fo1={fo1} />
+        </>
+      }
+       
     </div>
   )
 }

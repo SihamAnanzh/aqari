@@ -29,7 +29,7 @@ const session=useSession()
   // });
 
   useEffect(() => {
-    session.data ==null&&route.push(`/signIN?callbackurl=${window.origin}`)
+    session.data ==null&&route.push('/signIN')
   },[])
 
 

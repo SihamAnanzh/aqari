@@ -270,7 +270,9 @@ font-family:otfPlain ;
 }
 
 
-
+ .ltr .profile-tab .dropdown-typeList li span{
+    padding-right: 7px;
+}
 
 
 @media (max-width:1600px) {
@@ -609,7 +611,7 @@ font-family:otfPlain ;
         
     }
     .dropdwon-menu ul {
-        width: 75vw;
+        width: 96vw;
     }
 
     .arrow-drop-name, .arrow-drop {

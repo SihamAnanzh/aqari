@@ -87,9 +87,16 @@ export default PackgesAdd
 
 
 export async function getServerSideProps({ locale }) {
+  let data;
+  await axios.get('https://stagingapi.aqarifinder.com/api/package/list',
+    {
+      headers:
+        { lang: locale }
+    })
+    .then((res)=>{data=res.data})
 
-  const res = await fetch('https://stagingapi.aqarifinder.com/api/package/list', { headers: { lang: locale } })
-  const data = await res.json()
+
+ 
 
 
   return { props: { data, ...(await serverSideTranslations(locale, ['home', 'packages'])) } }

@@ -722,3 +722,13 @@ background-color: $second-color;
 }
 
 
+@media (max-width:380px) {
+    .addAdds-tab-container .addAdds-group input,
+     .profile-tab .profile-group input,
+     .profile-tab .map-adds,
+    .addAdds-tab-container textarea{
+        width: 91vw;
+    }
+    
+}
+

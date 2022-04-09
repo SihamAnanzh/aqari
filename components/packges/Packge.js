@@ -33,6 +33,7 @@ const Packge = (props) => {
                 }).then((res) => {
                     console.log(res);
                     swal(res.data.status.message)
+                    swal(res.results)
                 })
 
             )
