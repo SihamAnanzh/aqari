@@ -259,7 +259,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
             <span>{data.price}<span> {addAdsOb.priceCode} </span></span>
 
           </div>
-          <div className=" estat-deatils">
+          <div className=" estat-deatils auto">
             <span className="att">{addAdsOb.add9}</span>
             <span className=''>
               {/* <img src='/assets/img/bar.svg'

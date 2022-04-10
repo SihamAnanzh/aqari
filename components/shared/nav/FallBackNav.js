@@ -5,6 +5,7 @@ import { AuthContext } from '../../../stores/auth-context';
 import { useSession, signOut } from 'next-auth/react';
 import onClickOutside from 'react-onclickoutside';
 import BackBtn from '../../BackBtn';
+import axios from 'axios';
 
 const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
     const route = useRouter()
@@ -13,31 +14,34 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
     const session = useSession()
     const authCtx = useContext(AuthContext)
 
-    
-  
+
+
     FallBackNav.handleClickOutside = () => {
         setMvoeArrow(false)
         setShowNav(false)
         console.log('click');
     }
 
-    
+
     return (
 
         <div className='drop-nav-container'>
             <ul className='fallBack-drop-nav' style={{
                 height: switchlang ? "452px" : "402px",
             }}>
+                <Link href="/" className='main-nav-item'>
 
-                <li className={`${route.asPath === "/" ? "activeNavFall" : ""}`}>
+                    <li className={`${route.asPath === "/" ? "activeNavFall" : ""}`}>
+                        <span
+                            className={`${route.asPath === "/" ? "active" : ""}`}
+                        >
 
-                    <Link href="/" className='main-nav-item'><span
-                        className={`${route.asPath === "/" ? "active" : ""}`}
-                    >
-                        <img src="/assets/img/main-nav.svg" alt="" />
-                        {navOb.nav1}</span></Link>
+                            <img src="/assets/img/main-nav.svg" alt="" />
+                            {navOb.nav1}</span>
+                    </li>
+                </Link>
 
-                </li>
+
                 {/* <li className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "activeNavFall" : ""}`}>
         <Link href="/offices" className='main-nav-item'><span
             className={`${route.asPath === "/offices" || route.asPath === 'offices/singleOffec' ? "active" : ""}`}
@@ -46,15 +50,18 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
 {navOb.nav2}</span></Link>
 
     </li> */}
-                <li className={`${route.asPath === "/packages" ? "activeNavFall" : ""}`}>
-                    <Link href="/packages" className='main-nav-item'><span
+                  <Link style={{ cursor:'pointer'}} href="/packages" className='main-nav-item'>
+                <li style={{ cursor:'pointer'}} className={`${route.asPath === "/packages" ? "activeNavFall" : ""}`}>
+                  
+                        <span
                         className={`${route.asPath === "/packages" ? "active" : ""}`}
                     >
                         <img src="/assets/img/packegIcon-nav.svg" alt="" />
 
-                        {navOb.nav3}</span></Link>
+                        {navOb.nav3}</span>
 
-                </li>
+                    </li>
+                    </Link>
                 <li onClick={() => {
                     setMvoeArrow(!movearrow)
                     setSwitchLang(!switchlang)
@@ -95,7 +102,7 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
 
                                 ))
                             } */}
-                        <Link Link style={{ textDecoration: "none" }} href={route.asPath}
+                        <Link Link style={{ textDecoration: "none", cursor:'pointer' }} href={route.asPath}
                             locale='en'>
                             <a className='fall-lang' style={{
                                 textDecoration: "none",
@@ -115,9 +122,9 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
                             <a className='fall-nav' style={{
                                 textDecoration: "none",
                                 fontSize: '15px',
-                                paddingTop:'11px'
+                                paddingTop: '11px'
                             }}>
-                                <li style={{ textDecoration: "none",fontSize:"16px" }}>
+                                <li style={{ textDecoration: "none", fontSize: "16px" }}>
                                     عربي
                                 </li>
                             </a>
@@ -126,30 +133,58 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
                     </ul>
                 </li>
 
-
-                <li className={`${route.asPath === "/signIN" ? "activeNavFall" : ""}`} onClick={() => setLogin(true)}>
-                    <Link href={session.data ? "/profile" : "/signIN"} className='main-nav-item'><span
+                <Link href={session.data?"/profile":"/signIN"} className='main-nav-item'>
+                    <li className={`${route.asPath === "/signIN" ? "activeNavFall" : ""}`}
+                        onClick={() => setLogin(true)}>
+                   
+                        <span
                         className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
                     >
                         {session.data ? <img src='/assets/img/profile-nav.svg' /> : ""}
-                        {session.data ? navOb.nav7 : navOb.nav4}</span></Link>
+                        {session.data ? navOb.nav7 : navOb.nav4}</span>
 
-                </li>
+                    </li>
+                    </Link>
 
-                <li className={`${route.asPath === "/signUp" ? "activeNavFall" : ""}`}>
+                {
+                    session.data ?
+                        
+                            <li   onClick={() => {
+
+                                if (session.data) {
+                                    axios.post('https://stagingapi.aqarifinder.com/api/user/logout',
+                                        { headers: { 'Authorization': session.data.id } })
+                                
+                                    signOut()
+                                }
+                        }}
+                            className={`${route.asPath === "/signUp" ? "activeNavFall" : ""}`}>
+                            <div className='main-nav-item'><span
+                            className={`${route.asPath === "/signUp" ? "active" : ""}`}
+                           
+
+                        >
+                            <img src='/assets/img/Log out.svg' />
+
+                            {navOb.nav6}</span></div>
+                        </li> :
+                         <Link href="/signUp" className='main-nav-item'><span
+                         className={`${route.asPath === "/signUp" ? "active" : ""}`}
+                        >
+                            <li>
+                            {navOb.nav5}
+                            </li>
+                         </span>
+                        </Link>
+                        
+                   
+                }
+                {/* <li className={`${route.asPath === "/signUp" ? "activeNavFall" : ""}`}>
                     {session.data ?
                         <div className='main-nav-item'><span
                             className={`${route.asPath === "/signUp" ? "active" : ""}`}
-                            onClick={() => {
-
-                                if (session) {
-                                    axios.post('https://stagingapi.aqarifinder.com/api/user/logout',
-                                            { headers: { 'Authorization': session.data.id } })
-
-                                    signOut()
-                                }
-                            }}
+                           
 
                         >
                             <img src='/assets/img/Log out.svg' />
@@ -163,7 +198,7 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
 
 
 
-                </li>
+                </li> */}
 
 
             </ul>
@@ -179,6 +214,6 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
 
 const clickOutsideConfig = {
     handleClickOutside: () => FallBackNav.handleClickOutside,
-  };
-  
-  export default onClickOutside(FallBackNav, clickOutsideConfig);
+};
+
+export default onClickOutside(FallBackNav, clickOutsideConfig);

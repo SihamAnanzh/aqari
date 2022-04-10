@@ -17,8 +17,8 @@ const Footer = ({ fo1 }) =>
         <div className="first">
         <div className="links">
             <Link href='/contactus'><a style={{ textDecoration: "none", color: "#fff" }}>- {route.locale=='en'?"Contact Us":"اتصل بنا"}</a></Link>
-            <Link href='/'><a style={{ textDecoration: "none", color: "#fff" }}>- {route.locale=='en'?'Privacy Policy':"سياسة الخصوصية"}</a></Link>
-            <Link href='/'><a style={{ textDecoration: "none", color: "#fff" }}>- { route.locale=='en'?"Terms & Conditions":"الشروط والقواعد"} </a></Link>
+            <Link href='/privacy'><a style={{ textDecoration: "none", color: "#fff" }}>- {route.locale=='en'?'Privacy Policy':"سياسة الخصوصية"}</a></Link>
+            <Link href='/terms'><a style={{ textDecoration: "none", color: "#fff" }}>- { route.locale=='en'?"Terms & Conditions":"الشروط والقواعد"} </a></Link>
 
         
 

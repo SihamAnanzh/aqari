@@ -7,7 +7,7 @@ import { AuthContext } from '../../../stores/auth-context'
 import axios from 'axios';
 import { useSession, signOut } from 'next-auth/react';
 import BackBtn from '../../BackBtn';
-const Nav = ({ logo, icon, navOb,homePage }) => {
+const Nav = ({ logo, icon, navOb, homePage }) => {
     const [showLang, setShowLang] = useState(false)
     const [showAddMenu, setAddMenu] = useState(false)
     const [showNav, setShowNav] = useState(false)
@@ -22,7 +22,7 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
     Nav.handleClickOutside = () => {
         setAddMenu(false)
         setShowLang(false)
-     console.log('click');
+        console.log('click');
     }
 
 
@@ -65,7 +65,7 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
 
                         </li>
                         <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
-                            <Link href={"/signIN"} className='main-nav-item'>
+                            <Link href="/signIN" className='main-nav-item'>
                                 <span
                                     className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
@@ -83,7 +83,7 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                                         className={`${route.asPath === "/signUp" ? "active" : ""}`}
                                         onClick={() => {
                                             axios.post('https://stagingapi.aqarifinder.com/api/user/logout',
-                                            { headers: { 'Authorization': session.data.id } })
+                                                { headers: { 'Authorization': session.data.id } })
                                             signOut()
                                         }}
                                     >{navOb.nav6}</span></div>
@@ -97,14 +97,14 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                     <ul className='second-nav-items'>
                         <li style={{
                             height: "50px",
-                            width: route.locale == 'en' ?'170px': "200px",
+                            width: route.locale == 'en' ? '170px' : "200px",
                             backgroundColor: route.asPath === "/profile" ? "#00416B" : "",
                             display: 'flex',
                             justifyContent: "center",
                             alignItems: "center",
                             borderRadius: "10px",
-                            marginRight: route.locale == 'en' ? route.asPath !== '/pofile' ? "33px" : "-8px" :"10px",
-                            marginLeft:route.locale== 'ar'&& route.asPath !=='/pofile'?"67px":'56px'
+                            marginRight: route.locale == 'en' ? route.asPath !== '/pofile' ? "33px" : "-8px" : "10px",
+                            marginLeft: route.locale == 'ar' && route.asPath !== '/pofile' ? "67px" : '56px'
 
                         }}>
                             <Link href='/profile' className='second-nav-item'><span
@@ -119,21 +119,21 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                             </Link>
                         </li>
                         <li style={{
-                            marginRight: route.locale == 'en' ? '-12px':'-64px', 
+                            marginRight: route.locale == 'en' ? '-12px' : '-64px',
                             background: showLang ? "#00416b" : "#fff",
-                            width:route.locale=='ar'? '127.87px':"166px",
-                            marginLeft:route.locale =='en'?'-32px':"15px",
+                            width: route.locale == 'ar' ? '127.87px' : "166px",
+                            marginLeft: route.locale == 'en' ? '-24px' : "15px",
                             height: '50.72px',
-                            paddingLeft:showLang&&"0"
+                            paddingLeft: showLang && "0"
                         }}
                             className={`add-adds-menu ${showLang ? "show" : ""}`} >
                             {/* className={`select-lang-menu ${showLang ? "active" : ""}`} */}
                             <span style={{
-                                fontSize:route.locale=="en"?"20":"24px",
-                                color: showLang ? "#fff" : '#00416B', 
+                                fontSize: route.locale == "en" ? "20" : "24px",
+                                color: showLang ? "#fff" : '#00416B',
                                 marginRight: 'unset',
                                 marginLeft: 'unset',
-                                margin:"unset"
+                                margin: "unset"
                             }} className={`lang-title ${showLang ? "active" : ""}`} onClick={() => {
                                 setAddMenu(false)
                                 setShowLang(!showLang)
@@ -142,7 +142,7 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                                 <img src={`/assets/img/${showLang ? 'Arrow - Left 2.svg' : 'Stroke 1.svg'}`} /> {navOb.nav8}</span>
 
                             <ul className={`select-lang-items ${!showLang ? 'hidden' : 'showMenu'}`}
-                                   >
+                            >
                                 <li><Link href={route.asPath} locale='en'><a style={{ textDecoration: "none", color: "#fff" }}>English</a></Link></li>
                                 <li><Link href={route.asPath} locale='ar'><a style={{ textDecoration: "none", color: "#fff" }}>عربي</a></Link></li>
                             </ul>
@@ -156,7 +156,7 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                                     }} src={icon ? icon : '/assets/img/+.png'} /></div>
                                 <Link href="/profile/addAdds" className='add-adds-item'><span style={{
                                     marginLeft: '22px',
-                                    marginRight:'19px'
+                                    marginRight: '19px'
                                 }}>
                                     <span className='add-adds-tilte shortcutNav' >{navOb.nav9}
                                     </span>
@@ -171,7 +171,7 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                                     </li> */}
                                     <li style={{
                                         marginLeft: '0',
-                                        paddingRight: route.locale=='en'?"46px":"18px"
+                                        paddingRight: route.locale == 'en' ? "46px" : "18px"
                                     }}>
                                         <Link href="/profile/addService" className='add-adds-item'>
                                             <span className='shortcutNav'>{navOb.nav10}</span>
@@ -255,7 +255,7 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                 </div>
                 : ""
             }
-{!homePage&&<BackBtn/>}
+            {!homePage && <BackBtn />}
         </>
     )
 }

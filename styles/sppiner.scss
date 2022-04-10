@@ -65,7 +65,9 @@ width: 301px;
 @media (max-width:1020px) {
     .first-loader{
         display: none;
+        visibility: hidden;
     }
+
 
     .second-loader{
         display: block;

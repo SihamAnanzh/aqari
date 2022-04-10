@@ -7,7 +7,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { getCsrfToken, signIn, getSession, providers, useSession, getProviders, signOut } from 'next-auth/react';
-import BackBtn from '../components/BackBtn'
 const SignUp = ({ csrfToken, providers }) => {
 const route=useRouter()
   let { t } = useTranslation();

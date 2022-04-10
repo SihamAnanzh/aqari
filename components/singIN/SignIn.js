@@ -75,7 +75,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     }
     return (
         <div className="signin-contanier">
-    
+          {/* <div className="signin"> */}
             <form method="post" action="/api/auth/callback/aqari-login-auth" onSubmit={async (e) => await handleLogin(e)}>
                 <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 
@@ -191,7 +191,8 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     <Link href="/signUp">{sginOb.sn8}</Link>
 
                 </span>
-            </div>
+                </div>
+                {/* </div> */}
         </div>
     )
 }

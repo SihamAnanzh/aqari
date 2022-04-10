@@ -162,6 +162,9 @@ background-color: $second-color;
     top: 73%;
     z-index: 2;
 }
+
+
+
 @media (max-width:1600px) {
     .profile-heading{
         padding-right:40px
@@ -572,6 +575,7 @@ background-color: $second-color;
             position: relative;
             width: 90vw;
             height: 62px;
+            font-size: 20px;
         
     }
         .addAdds-tab-container textarea{
@@ -615,13 +619,13 @@ background-color: $second-color;
         margin-bottom: 5px;
     }
 
-    .signin-contanier .sign-btn {
+    // .signin-contanier .sign-btn {
 
-        font-size: 20px;
-        height: 62px;
-        margin-right: 21px;
-        margin-bottom: 5px;
-    }
+    //     font-size: 20px;
+    //     height: 62px;
+    //     margin-right: 21px;
+    //     margin-bottom: 5px;
+    // }
 
     .office-heading-paragraph{
         width: 90vw;
@@ -686,7 +690,7 @@ background-color: $second-color;
         width: 100%;
     }
 
-    .ltr .add-service-stroke-category{
+      .ltr .add-service-stroke-city, .ltr .add-service-stroke-category{
         left: 89%;
     }
 
@@ -697,20 +701,4 @@ background-color: $second-color;
 }
 
 
-@media (max-width:380px) {
-    .addAdds-tab-container .addAdds-group input,
-     .profile-tab .profile-group input,
-     .profile-tab .map-adds,
-    .addAdds-tab-container textarea,
-    .profile-tab .dropdown-typeList, .profile-tab 
-    .dropdown-category, .profile-tab .dropdown-typeList {
- 
-        width: 96vw;
-    }
-
-    .signin-contanier .sign-input input {
-        font-size: 24px;
-    }
-    
-}
 
