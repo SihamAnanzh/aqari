@@ -30,15 +30,15 @@ const loadMoreHandler=()=>{
 
            <h1 className='premium-title'>{adsOb.ad2}</h1>
            {
-         latestData&&latestData.slice(0,visible).map((addsData)=>(
-          <Add  adsOb={adsOb} singleEstate={addsData.singleEstatData}  add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
+        latestData && latestData.slice(0, visible).map((addsData) => (
+          addsData.add_id !='22' ||addsData.add_id !=='21'&& <Add  adsOb={adsOb} singleEstate={addsData.singleEstatData}  add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.img}/>
 
          ))
          }
          {
-         ads&& ads.slice(0,visible).map((addsData)=>(
-          <Add   adsOb={adsOb} singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.images}/>
-
+        ads && ads.slice(0, visible).map((addsData) => (
+          addsData.add_id !='22' ||addsData.add_id !=='21'&&<Add   adsOb={adsOb} singleEstate={addsData.singleEstatData} add_id={addsData.add_id} key={addsData.add_id} disc={addsData.disc} time={addsData.time} price={addsData.price} address={addsData.address} title={addsData.title} img={addsData.images}/>
+ 
          ))
          }
       

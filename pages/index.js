@@ -216,8 +216,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
   return (
 
     <>
-    <Loader/>
-      {/* <Head>
+      <Head>
 
     
         <title>{route.locale == "ar"?"عقاري":"akariFinder"}</title>
@@ -236,7 +235,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
       <Banner bn={bn} />
       <MainSection searchOb={searchOb} />
       <Adds latestData={latestData} premuimAdds={premuimAdds} adsOb={adsOb} />
-      <Footer  fo1={fo1} /> */}
+      <Footer  fo1={fo1} />
 
     </>
   )

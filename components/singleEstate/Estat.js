@@ -16,7 +16,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const route = useRouter()
   const [allInfo, setAllInfo] = useState({})
   const [lat, setLat] = useState('')
-  const [lng, setLng] = useState()
+  const [lng, setLng] = useState('')
 
   useEffect(() => {
     setLat(data.lat)
