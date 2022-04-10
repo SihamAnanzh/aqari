@@ -44,7 +44,7 @@ const Packge = (props) => {
                 })
       
             )
-       }, [route,session])
+       }, [route])
         
        
 

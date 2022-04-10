@@ -144,6 +144,9 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
                             onClick={() => {
 
                                 if (session) {
+                                    axios.post('https://stagingapi.aqarifinder.com/api/user/logout',
+                                            { headers: { 'Authorization': session.data.id } })
+
                                     signOut()
                                 }
                             }}

@@ -82,6 +82,8 @@ const Nav = ({ logo, icon, navOb,homePage }) => {
                                     <div className='main-nav-item'><span style={{ cursor: 'pointer' }}
                                         className={`${route.asPath === "/signUp" ? "active" : ""}`}
                                         onClick={() => {
+                                            axios.post('https://stagingapi.aqarifinder.com/api/user/logout',
+                                            { headers: { 'Authorization': session.data.id } })
                                             signOut()
                                         }}
                                     >{navOb.nav6}</span></div>
