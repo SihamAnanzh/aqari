@@ -38,6 +38,8 @@ const Packge = (props) => {
                     console.log(`https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,)
                     console.log(res);
                     swal(res.data.status.message)
+                    console.log(session);
+
                 
                 })
       
