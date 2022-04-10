@@ -59,6 +59,31 @@ const PackgesAdd = ({ data }) => {
   closeBtn,premiumAds
  }
 
+
+  
+ useEffect(() => {
+  console.log(route.query.paymentId + "rtoue.query");
+  route.query.paymentId &&
+      (
+          axios({
+              method: "post",
+              url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+              headers: {
+                  "Content-Type": "multipart/form-data",
+                  'Authorization': session.data != null ? session.data.id : route.push('/signIN')
+              },
+              // data: formDataTow
+
+          }).then((res) => {
+              console.log(`https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,)
+              console.log(res);
+              swal(res.data.status.message)
+          
+          })
+
+      )
+ }, [])
+  
  
 
 
