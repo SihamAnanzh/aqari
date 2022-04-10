@@ -31,6 +31,7 @@ const Packge = (props) => {
                     data: formDataTow
 
                 }).then((res) => {
+                    console.log(`https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,)
                     console.log(res);
                     swal(res.data.status.message)
                     swal(res.results)

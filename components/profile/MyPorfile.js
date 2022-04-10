@@ -41,8 +41,8 @@ const session=useSession()
  let data ={name, email , phone}
    axios.post('https://stagingapi.aqarifinder.com/api/user/update', { ...data },
      { headers: { 'Authorization': session.data.xyz.jti } })
-   .then(res => { 
-    swal(route.locale=='ar'?'تم تعديل بنجاح':"profile updated successfully")
+     .then(res => { 
+     res.data.status.code ==200&& swal(route.locale=='ar'?'تم تعديل بنجاح':"profile updated successfully")
   })
 
  } 
@@ -72,7 +72,7 @@ const session=useSession()
 
     </div>
 
-    <div className="sign-btn" onClick={handleSubmit}>
+    <div className="sign-btn" onClick={handleSubmit} style={{marginRight:'0'}}>
     {props.sginOb.sn12}
     </div>
 

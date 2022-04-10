@@ -250,7 +250,7 @@ font-family:otfPlain ;
     }
 
     .dropdwon-menu li::after{
-        right: 25px;
+        right: 23px;
     }
 
 
@@ -264,7 +264,7 @@ font-family:otfPlain ;
     }
 
     .dropdwon-menu li::before{
-        right: 8.3%;
+        right: 27px;
     }
 
 }
@@ -393,23 +393,11 @@ font-family:otfPlain ;
     .btnSearch button{
         margin-right: 0;
         margin-left: 0;
+        width: 324px;
     }
 
 
   
-
-    // .ltr .serarch .second {
-    //     margin-right: 34px;
-    // }
-
-    // .ltr .search-div{
-    //     margin-right: -87px;
-    // }
-
-    // .ltr .btnSearch button {
-    //  margin-left: -81px;
-    //  width: 285px;    
-    // }
 
        
   .actions-contaier{
@@ -426,257 +414,29 @@ font-family:otfPlain ;
       margin-left: unset;
       padding-right: unset;
       padding-right: unset;
-      padding-top: 19px;
+      padding-top: 29px;
   
        
     }
   }
 
 
-//   .ltr .actions-contaier .actions{
-//     padding-right: 121px;
-// }
 
-
-.ltr .btnSearch button {
-    margin-right: 23px;
-    margin-left: 0;
-    width: 324px;
-}
-.btnSearch button {
-    margin-right: 2px;
-    margin-left: 0;
-    width: 324px;
-}
 
 
 }
 
-// @media (max-width:800px) {
-
-//     .ltr .actions-contaier .actions{
-//         padding-right: 92px;
-//         padding-left: 10px;    }
-
-    
-// }
-
-@media (max-width:500px) {
-    .actions .action {
-        width: 25vw;
-        font-size: 22px;
-        min-width: 15vw;
-    }
-
-    .serachContainer.btnSearch
-    {
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .search-div{
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .actions .action {
-        height:48px;
-        margin-top: 13px;
-    }
-
-    .ltr .actions-contaier {
-        width: fit-content;
-    }
-    .actions-contaier {
-        width: 100%;
-    }
-
-    .serarch .second ,.serarch .first{
-        width:76vw;
-    }
-    .btnSearch button {
-        width: 73vw;
-        margin-right: 0;
-    margin-left: 0;
-    }
-
-    
-}
 
 
   @media (max-width:428px) {
-    .dropdwon-menu ul {
-        width: 85vw;
-        z-index: 1000;
-        position: absolute;
-    }
 
       .actions{
           .action{
               width:114px;
-              height: 47px;
+              height: 49px;
               font-size:24px    
                   }
       }
 
-      .btnSearch button{
-          width:364px;
-          height:62px;
-          font-size:24px
-      }
-      .ltr .dropdwon-menu{
-          width:364px;
-          margin-right: -27px;
-       
-      }
-      .dropdwon-menu {
-        width: 364px;
-        margin-right: -20px;
-    }
-      .arrow-drop-name, .arrow-drop{
-          right:90%
-      }
-
-
-      .ltr .search-div {
-        margin-right:-13%;
-    }
-
-
-    .serarch div{
-        width: 85vw;
-    }
-
-
-    .ltr .btnSearch button {
-        margin-right: 16%;
-        width: 100%;
-      
-    }
-
-     .btnSearch button {
-        margin-right: 0;
-        width: 100%;
-    }
-    // .ltr .actions-contaier .actions{
-    //     padding-right: 12px;
-    //     padding-left: 10px;    }
   
-        .ltr .actions-contaier .actions {
-            padding-right: 32px;
-            padding-left: 0;
-        }
-         .actions-contaier .actions {
-            padding-right: 2px;
-            padding-left: 0;
-        }
-.actions{
-    height: 118px;
-}
-
-
-.serarch .second, .serarch .first{
-    width: 100%;
-}
-  }
-
-
-  @media (max-width:400px) {
-  
-      .search-div, .ltr .search-div {
-        margin-right: 8px;
-        margin-left: unset;
-        padding-left: unset;
-        padding-right: unset;
     }
-      .btnSearch button{
-        width: 326px;
-        height: 62px;
-        font-size: 24px;
-
-      }
-
-
-      .serarch .first,.serarch .second,
-      .ltr .serarch .second,.ltr .first {
-        margin-right:unset;
-        margin-left: unset;     
-        padding-left: unset;
-        padding-right: unset; 
-        width: 99vw;
-        
-    }
-    .dropdwon-menu ul {
-        width: 96vw;
-    }
-
-    .arrow-drop-name, .arrow-drop {
-        right: 89%;
-    }
-    .serarch .second, .serarch .first {
-    width: 98%;
-}
-    
-.ltr .btnSearch button {
-    margin-right: 2px;
-    width: 74%;
-  }
-
-}
-
-
-//   @media (max-width:370px) {
-       
-//     .actions-contaier{
-//       .actions{
-//         margin-top: 0;
-//         width: 50%;
-//         flex-direction: column;
-//         height: 70vw;      
-//         margin-right: 0;
-//         padding-left: unset;
-//         padding-right: unset;
-//         margin-left: unset;
-//       }
-    
-  
-//     }
-  
-//     .service{
-//       margin-right: 0;
-//       padding-left: unset;
-//       padding-right: unset;
-//       margin-left: unset;
-//     }
-//     .actions div{
-//       margin-top: 5px;
-//     }
-//     }
-
-
-
-// @media (max-wdith:482px) {
-//     .btnSearch button {
-//         width: 76vw;
-//         margin-right: 15px;
-//         margin-left: 0;
-//     }
-    
-    
-// }
-
-@media (max-width:380px) {
-    .serarch{
-        width: 100%;
-    }
-    .btnSearch button {
-        width: 85vw;
-        margin-right: 4px;
-        margin-left: 0;
-    }
-    
-}

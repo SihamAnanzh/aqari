@@ -319,12 +319,12 @@ background-color: $second-color;
 
 
     .profile-tab .profile-group input {
-        width: 90vw;
+        width: 70vw;
         position: relative;
     }
 
     .addAdds-tab-container .addAdds-group input{
-        width: 90vw;
+        width: 70vw;
         position: relative;
     }
 
@@ -343,13 +343,13 @@ background-color: $second-color;
     }
 
     .addAdds-tab-container textarea{
-        width: 88vw;
+        width: 70vw;
     }
 
    
     .profile-tab .dropdown-typeList,
     .profile-tab .dropdown-category, .profile-tab .dropdown-typeList{
-        width: 88vw;
+        width: 70vw;
     
 
     }
@@ -405,158 +405,125 @@ background-color: $second-color;
            
         }
     }
+
+    .profile-tab .dropdown-typeList, .profile-tab .dropdown-category, .profile-tab .dropdown-typeList{
+        width: 70vw;
+    }
+
+    .profile-tab .profile-tab-container {
+        padding-right: 0;
+    }
 }
 
 
 
+@media (max-width:730px) {
     
-// }
+     
+    .profile-container .profile-heading{
+       width: 100%;
+       display: flex;
+       justify-content: flex-start;
+       align-items: flex-start;
+   
+ }
 
-// @media (max-width:781px) {
 
-//     .profile-container{
-//         width: 100%;
-//         padding: 0;
+   .profile-tab .profile-group input {
+       width: 90vw;
+       position: relative;
+   }
 
-//     }
+   .addAdds-tab-container .addAdds-group input{
+       width: 90vw;
+       position: relative;
+   }
 
+
+   .sign-input.submit-logo button{
+       width: 70vw;
     
-//     .profile-container .profile-heading,.ltr .profile-container .profile-heading{
-//         width: 100%;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         margin: 53px auto;
-    
-//     }
+   }
+     
+   .profile-tab 
+   .checksbox .chack-groub {
+      margin-right: 0;             
+   }
+   .profile-tab .checksbox .chack-groub:last-child{
+       margin-right: 0;
+   }
 
-//     .profile-container .profile-heading,.ltr .profile-container .profile-heading{
-//         padding-left: unset;
-//         padding-right: unset;
-//     }
+   .addAdds-tab-container textarea{
+       width: 90vw;
+   }
 
-//     .profile-heading,
-//     .addAdds-tab-container .addAdds-heading h3{
-//         padding-right: unset;
-//         align-self: center;
-//         margin-bottom: 16px;
-//     }
-
-//     .profile-tab .category-icon {
-//         left: 18.5%;
-//         z-index: 3;
-//         top: 29.4%;
-
-
-
-
-//     } 
-
-//     .profile-tab .type-icon
-//     {
-//         left: 18.5%;
-//         top:34.2%
-
-//     }.profile-tab .type-icon.city {
-//         left: 18.5%;
-//         top: 38.9%;
-
-
-       
-//     }
-
-//     .ltr .profile-tab 
-//     {
-//         .category-icon {
-//             z-index: 3;
-//             top:  25.1%
-    
-    
-//         } 
-    
-//         .type-icon
-//         {
-//             top: 29.5%
-    
-    
-//         } .type-icon.city {
-    
-//             top: 33.8%
-    
-    
-           
-//         }
-//     }
-
-    
-    
-// }
-
-
-
-// @media (max-width:609px) {
   
-    
+   .profile-tab .dropdown-typeList,
+   .profile-tab .dropdown-category, .profile-tab .dropdown-typeList{
+       width: 90vw;
+   
 
-    
-//     .profile-tab .category-icon {
-//         top:30.5%
-
-
-
-//     } 
-
-//     .profile-tab .type-icon
-//     {
-//         top:35.1%
-
-//     }.profile-tab .type-icon.city {
-//         top: 39.7%
+   }
 
 
-       
-//     }
-// }
+   .addAdds-tab-container .addAdds-heading{
+       align-self: center;
+   }
+
+
+   .profile-tab .category-icon {
+       left: 18.5%;
+       z-index: 3;
+       top:  29.0%
+
+
+   } 
+
+    .profile-tab .type-icon
+   {
+       left: 18.5%;
+       top: 33.9%;
+
+
+   }.profile-tab .type-icon.city {
+       left: 18.5%;
+       top: 38.4%;
+
+
+      
+   }
+
+
+   .ltr .profile-tab 
+   {
+       .category-icon {
+           z-index: 3;
+           top:  28.1%
+   
+   
+       } 
+   
+       .type-icon
+       {
+           top: 32.5%
+   
+   
+       } .type-icon.city {
+   
+           top: 36.8%
+   
+   
+          
+       }
+   }
+
+
+   
+}
 
 
 
 
-// @media (max-width:578px) {
-  
-    
-
-    
-//     .profile-tab .category-icon {
-//         position: absolute;
-//         top: 28.1%;
-
-
-
-//     } 
-
-//     .profile-tab .type-icon
-//     {
-//         top:32.4%
-
-//     }.profile-tab .type-icon.city {
-//         top: 36.5%
-
-
-       
-//     }
-
-//     .ltr .add-service-stroke-city,  .ltr .add-service-stroke-category{
-//         position: absolute;
-//         top: 75%;
-//         left: 80%;
-//     }
-//     .ltr .add-service-stroke-category{
-//         top: 73%;
-//         z-index: 2;
-//     }
-    
-
-// }
 
 
 
@@ -603,18 +570,18 @@ background-color: $second-color;
 
       .profile-tab .profile-group input {
             position: relative;
-            width: 80vw;
+            width: 90vw;
             height: 62px;
         
     }
         .addAdds-tab-container textarea{
-            width: 80vw;
+            width: 90vw;
             font-size: 20px;
             margin-right: 27px;
         }
 
     .profile-tab .map-adds {
-        width: 80vw;
+        width: 90vw;
 
     }
 
@@ -632,19 +599,27 @@ background-color: $second-color;
 
     .profile-tab .dropdown-typeList, .profile-tab 
     .dropdown-category, .profile-tab .dropdown-typeList {
-        width: 80vw;
-        margin-right: 20px;
+        width: 90vw;
+        margin-right: 0;
         position: absolute;
         z-index: 2;
     }
 
-    .sign-input.submit-logo button,
-    .signin-contanier .sign-btn {
+    .sign-input.submit-logo button
+    {
 
         width: 80vw;
         font-size: 20px;
         height: 62px;
         margin-right: 24px;
+        margin-bottom: 5px;
+    }
+
+    .signin-contanier .sign-btn {
+
+        font-size: 20px;
+        height: 62px;
+        margin-right: 21px;
         margin-bottom: 5px;
     }
 
@@ -726,8 +701,15 @@ background-color: $second-color;
     .addAdds-tab-container .addAdds-group input,
      .profile-tab .profile-group input,
      .profile-tab .map-adds,
-    .addAdds-tab-container textarea{
-        width: 91vw;
+    .addAdds-tab-container textarea,
+    .profile-tab .dropdown-typeList, .profile-tab 
+    .dropdown-category, .profile-tab .dropdown-typeList {
+ 
+        width: 96vw;
+    }
+
+    .signin-contanier .sign-input input {
+        font-size: 24px;
     }
     
 }

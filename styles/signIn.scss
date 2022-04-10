@@ -228,6 +228,7 @@
 .sign-input.submit-logo button, .signin-contanier .sign-btn{
     font-weight: 600;
     font-family: otfPlain;
+    width: 507px;
 
 }
 
@@ -269,6 +270,12 @@
     //     }
 
 
+    .sign-input.submit-logo button, .signin-contanier .sign-btn{
+        font-weight: 600;
+        font-family: otfPlain;
+        width:540px;
+    
+    }
 
 
 
@@ -550,7 +557,7 @@
 
 
         .ltr .sign-btn{
-            margin-left: 10px;
+            margin-left: 0;
         }
         
     
@@ -615,14 +622,14 @@
     
     }
 
-    .signin-contanier .inputs-group,
-    .ltr .signin-contanier .inputs-group{
-        width: 99%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
+    // .signin-contanier .inputs-group,
+    // .ltr .signin-contanier .inputs-group{
+    //     width: 99%;
+    //     display: flex;
+    //     justify-content: flex-start;
+    //     align-items: flex-start;
     
-    }
+    // }
 
     .profile-tab .sign-input.submit-logo button,
      .profile-tab .signin-contanier .sign-btn{
@@ -638,6 +645,8 @@
         
         
     }
+
+    
 
 }
 
