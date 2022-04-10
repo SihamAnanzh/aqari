@@ -99,5 +99,5 @@ export async function getServerSideProps({ locale }) {
  
 
 
-  return { props: { data, ...(await serverSideTranslations(locale, ['home', 'packages'])) } }
+  return { props: { data, ...(await serverSideTranslations(locale, ['home', 'packages','singin'])) } }
 }

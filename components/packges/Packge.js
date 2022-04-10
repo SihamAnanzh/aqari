@@ -24,6 +24,7 @@ const Packge = (props) => {
         console.log(session);
         route.query.paymentId &&
             (
+                session.status == "authenticated"&&
                 axios({
                     method: "post",
                     url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
@@ -41,7 +42,7 @@ const Packge = (props) => {
                 })
       
             )
-       }, [route])
+       }, [route,session])
         
        
 
