@@ -9,7 +9,6 @@ import { Pagination } from "swiper";
 
 function MobileSlider({ imgs }) {
   
-  console.log(imgs);
   return (
     <>
       <Swiper loop pagination={true} modules={[Pagination]} className="mySwiper">

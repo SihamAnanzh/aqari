@@ -9,7 +9,6 @@ const Packges = ({ data, fo1, navOb ,sginOb}) => {
 
   useEffect(() => {
 
-    console.log(data);
     data.map((data) => {
       let datapack = {
         id: data.id,

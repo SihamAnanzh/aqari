@@ -27,7 +27,6 @@ const MainSection = ({ searchOb }) => {
     setShowSearchSelling(false)
     setShowBox(false)
   }
-  console.log(route.locale);
 
   let regions = filterCtx.regions_id
 
@@ -43,7 +42,6 @@ const MainSection = ({ searchOb }) => {
           })
           .then(res => {
 
-            console.log(res.data.results);
             filterCtx.setSerivceResutls(res.data.results)
             route.push('/searchResultsService')
 
@@ -60,8 +58,7 @@ const MainSection = ({ searchOb }) => {
               }
             })
             .then(res => {
-              console.log(filterCtx);
-              console.log(res.data.results);
+              
               filterCtx.setAddsSResutls(res.data.results)
               filterCtx.setSerivceId('')
               filterCtx.setRentValue(true)
@@ -78,7 +75,7 @@ const MainSection = ({ searchOb }) => {
               }
             })
             .then(res => {
-              console.log(res.data);
+            
               filterCtx.setAddsSResutls(res.data.results)
               filterCtx.setSerivceId('')
               filterCtx.setRentValue(false)

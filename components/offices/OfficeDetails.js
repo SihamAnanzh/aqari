@@ -2,7 +2,7 @@ import React from 'react'
 import Adds from '../adds/Adds'
 const OfficeDetails = ({ office, ads, premium,ofOb }) => {
 
-  console.log(office);
+
   return (
     <>
       <div className='headerOffice'>

@@ -35,7 +35,6 @@ function Slider({imgs,setShowImg ,currentInedx,showImg}) {
  
      <>
   <div className={showImg?"overlay":""} id='overlay' onClick={(e)=>{
-    console.log(e.target.id);
     e.target.id !== 'overlay'?
     setShowImg(true):setShowImg(false)
   }}>

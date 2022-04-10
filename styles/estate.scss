@@ -705,6 +705,20 @@ display: none;
 //     }
 // }
 
+
+.contact-estate {
+    width: 100%;
+    justify-content: space-evenly;
+
+
+    }
+
+    .ltr .contact-estate .whatsApp,
+    .contact-estate .whatsApp, .contact-estate .phone{
+        margin-right: unset;
+        margin-left: unset;
+    }
+
 .estat-fallback{
     display: flex;
     flex-direction: column;
@@ -715,5 +729,15 @@ display: none;
 .automated-number{
 flex-direction: column;
 height: 110px;
+}
+
+
+.ltr .contact-estate .whatsApp .whatsApp-icon img{
+    margin-left: -5px;
+}
+
+
+.estat-deatils {
+width: 225px;
 }
 }

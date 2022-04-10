@@ -62,7 +62,6 @@ const PackgesAdd = ({ data }) => {
 
 
 
-
   return (
     <div>
       <Head>

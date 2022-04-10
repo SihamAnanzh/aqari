@@ -162,10 +162,9 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                 <ul className="social-icon">
                     {Object.values(providers).filter(q => q.type !== 'credentials').map((provider) => (
 
-                        <li style={{cursor:"pointer"}} key={provider.name} onClick={() => {
+                        <li style={{ cursor: "pointer" }} key={provider.name} onClick={() => {
                             signIn(provider.id)
-
-
+                             
                         }}>
                             {provider.name == 'Google' && <img src="/assets/img/google-icon.svg" alt="" />}
                             {provider.name == 'Facebook' && <img src="/assets/img/facebook-2.svg" alt="" />}

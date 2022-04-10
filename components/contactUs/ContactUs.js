@@ -68,7 +68,7 @@ export const ContactUs = ({navOb,fo1,contactOB}) => {
          {contactOB.send}
          </div>
           </div>
-          <BackBtn/>
+
 
     <Footer fo1={fo1}/>
     </>

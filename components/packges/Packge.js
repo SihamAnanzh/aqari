@@ -21,6 +21,7 @@ const Packge = (props) => {
   
     useEffect(() => {
         console.log(route.query.paymentId + "rtoue.query");
+        console.log(session);
         route.query.paymentId &&
             (
                 axios({
@@ -28,7 +29,7 @@ const Packge = (props) => {
                     url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
                     headers: {
                         "Content-Type": "multipart/form-data",
-                        'Authorization': session.data != null ? session.data.id : route.push('/signIN')
+                        'Authorization': session.data != null&& session.data.id 
                     },
                     // data: formDataTow
       
@@ -40,7 +41,7 @@ const Packge = (props) => {
                 })
       
             )
-       }, [])
+       }, [route])
         
        
 

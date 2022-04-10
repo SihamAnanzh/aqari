@@ -10,9 +10,10 @@ const [name,setName]=useState('')
 const [email,setEmail]=useState('')
 const [phone,setPhone]=useState('')
 const authCtx=useContext(AuthContext)
-const route=useRouter()
+  const route = useRouter()
+  const session=useSession()
 useEffect(()=>{
-
+console.log(session);
 
   axios.get('https://stagingapi.aqarifinder.com/api/user/profile',{
     headers: {
@@ -33,14 +34,13 @@ useEffect(()=>{
 
 },[])
 
-const session=useSession()
 
 // let userData= session.data !== null && session.data
 
  const handleSubmit=()=>{
  let data ={name, email , phone}
    axios.post('https://stagingapi.aqarifinder.com/api/user/update', { ...data },
-     { headers: { 'Authorization': session.data.xyz.jti } })
+     { headers: { 'Authorization': session.data.id } })
      .then(res => { 
      res.data.status.code ==200&& swal(route.locale=='ar'?'تم تعديل بنجاح':"profile updated successfully")
   })

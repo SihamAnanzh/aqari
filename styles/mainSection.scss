@@ -431,6 +431,7 @@ font-family:otfPlain ;
   @media (max-width:428px) {
 
       .actions{
+        height: 114px;
           .action{
               width:114px;
               height: 49px;
@@ -439,4 +440,17 @@ font-family:otfPlain ;
       }
 
   
+    }
+
+    @media (max-width:380px) 
+    {
+        .actions-contaier .actions{
+            height: 114px;
+            padding-top: 10px;
+
+            .selling{
+                margin-right: 9px;
+            }
+        }
+        
     }

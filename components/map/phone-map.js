@@ -22,8 +22,7 @@ const SimpleMap = ({getLat, getLng , currLat, currLng}) => {
         setLng(ev.lng)
         getLat(ev.lat)
         getLng(ev.lng)
-        console.log("latitide = ", ev.lat)
-        console.log("longitude = ", ev.lng)
+     
       }}
   
     >

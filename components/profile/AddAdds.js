@@ -113,7 +113,6 @@ const AddAdds = ({ addAdsOb }) => {
               data: formData,
             })
               .then((response) => {
-                console.log(response);
 
                 response.data.status.code == 200 &&
                   (

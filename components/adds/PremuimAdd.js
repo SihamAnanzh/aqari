@@ -2,7 +2,6 @@ import Link from 'next/link'
 import React from 'react'
 
 const PremuimAdd = (props) => {
-    console.log(props.img);
 
     return (
 
