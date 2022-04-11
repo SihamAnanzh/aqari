@@ -7,7 +7,7 @@
 
 // }
 
-process.env.NEXTAUTH_URL= 'https://akarii-demo.herokuapp.com/';
+// process.env.NEXTAUTH_URL= 'https://akarii-demo.herokuapp.com/';
 //  process.env.NEXTAUTH_URL= 'http://localhost:3000/';
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
     locales: ["ar","en"]
   },
   env: {
-      endPoint: 'http://localhost:3000/',
+      // endPoint: 'http://localhost:3000/',
       JWT_SECRET: {
           kty: "EC",
           kid: "BwmGsjvRehScmi5OmP0o1fx6_OoFlfYlhjirnlIv-k4",

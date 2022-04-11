@@ -579,7 +579,7 @@ width: 187px;
 
 
 .ltr .prem-word{
-    left: 89%;
+    left: 87%;
 
 }
 
@@ -849,9 +849,10 @@ width: 187px;
        
         }
         .contact-prem.secondAdd.serivce-contact{
-            width: 121%;
+            width: 100%;
             justify-content: space-evenly;
             align-items: center;
+            margin: 10px auto;
         
         
         }
@@ -871,7 +872,7 @@ width: 187px;
 
     .prem-contanier {
         width: 316px;
-        height: 208px;
+        height: 215px;
     }
 
     .contact-prem.secondAdd .phone, .contact-prem.secondAdd .whatsApp {
@@ -928,10 +929,15 @@ width: 187px;
 }
 
 .contact-prem.secondAdd.serivce-contact{
-    width: 113%;
+    width: 100%;
 }
 .ltr .contact-prem.secondAdd.serivce-contact{
-    width:104%
+    width:100%
 }
   
+
+.ltr .prem-word {
+    left: 84%;
+}
+
 }

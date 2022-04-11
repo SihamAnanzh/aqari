@@ -102,7 +102,7 @@ const SingleEstate = ({ data }) => {
   }
 
   useEffect(() => {
-
+console.log(data);
 
     data.images ?
       setWithImg(true) : setWithImg(false)
@@ -130,6 +130,8 @@ const route=useRouter()
 
 
 export default SingleEstate;
+
+
 function sleep(ms) {
   return new Promise(resolve => {
     setTimeout(resolve, ms);
@@ -158,8 +160,8 @@ export async function getServerSideProps(context) {
         desc: res.data.results.desc,
         isFav: res.data.results.is_fav,
         is_premium: res.data.results.is_premium,
-        lat: res.data.results.lat,
-        lng: res.data.results.lng,
+        lat: res.data.results.lat=== 'undefined'?"2.333":res.data.results.lat,
+        lng: res.data.results.lng ==='undefined'?"2.333":res.data.results.lng,
         phone: res.data.results.phone,
         price: res.data.results.price,
         interface: res.data.results.front,

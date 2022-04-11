@@ -47,7 +47,7 @@ object-fit: cover;
 
 .pakges{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   width: 80%;
@@ -530,7 +530,7 @@ width: 109px;}
 
 }
 
-@media (max-width:428px) {
+@media (max-width:435px) {
     .single-packge {
         width: 100vw;
         height: 69vh;
@@ -580,5 +580,17 @@ width: 109px;}
         width: 19px;
         height: 14px;
         top: 88px;
+    }
+}
+
+
+@media (max-width:380px) {
+    .packge{
+        width: 325px;
+    }
+
+    .pakges{
+        width: 100%;
+        justify-content: flex-start;
     }
 }

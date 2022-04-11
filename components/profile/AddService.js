@@ -79,34 +79,7 @@ const AddService = ({ serviceOb }) => {
     let file = e.target.files
     setImageSrc(file[0].name)
   }
-  // const items = [
-  //     {
-  //       id: 1,
-  //       value: 'محركات',
-  //     },
-  //     {
-  //       id: 2,
-  //       value: 'حرف',
-  //     },
-  //     {
-  //       id: 3,
-  //       value: 'تركيب ستالايت',
-  //     },
-  //     {
-  //       id: 4,
-  //       value: 'مكافحة حشرات',
-  //     },{
-  //       id: 5,
-  //       value: 'نقل عفش',
-  //     },{
-  //       id: 6,
-  //       value: 'اصباغ',
-  //     },{
-  //       id: 7,
-  //       value: 'تنظيف',
-  //     }
-  //   ];
-
+ 
 
   useEffect(() => {
     const region = axios.get('https://stagingapi.aqarifinder.com/api/region/list/', {
@@ -165,12 +138,15 @@ const AddService = ({ serviceOb }) => {
             data: formData,
           })
             .then((response) => {
-              response.data.status.code == 200 &&
+              response.data.status.code == 200 ?
                 (               
                 route.locale == 'ar' &&swal("تهانينا", 'تمت إضافة الخدمة بنجاح', 'success'),
-               route.locale=='en'&&("'well done", 'Serivce Added Successfully', 'success'))
+                route.locale == 'en' && ("'well done", 'Serivce Added Successfully', 'success'),
+                route.replace('/profile/mySerivces')
+                ):swal(response.data.results)
+            console.log(response);
 
-              route.replace('/profile/mySerivces')
+             
             })
             .catch((response) => {
               
@@ -225,7 +201,7 @@ const AddService = ({ serviceOb }) => {
                     <li className='list-item profile-list-service' key={item.id} id={`${item.id} serivce-list`} onClick={(e) => {
                       e.target.classList.add('selected')
                       setService(item.title)
-
+                            
                       let selectInfo = {
                         value: item.title,
                         id: item.id
@@ -266,6 +242,7 @@ const AddService = ({ serviceOb }) => {
                   {regions.map((item) => (
                     <li className='list-item' key={item.id} id={item.id} onClick={(e) => {
                       e.target.classList.add('selected')
+                      setShowListNames(false)
                       let indexRegion = regionsId.findIndex((el) => el === item.id)
                       let newArray = [...regionsId]
                       newArray.splice(indexRegion, 1)

@@ -73,7 +73,7 @@ const AddAdds = ({ addAdsOb }) => {
     !disable &&
       (
         addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum == ""
-          || lat == "" || lng == " "
+          || lat == "" || lng == ""
           || phoneNumber == " " || imageOne == undefined || imageTwo == undefined || imageThree == undefined ||
           imageFour == undefined ?
           (
@@ -93,8 +93,8 @@ const AddAdds = ({ addAdsOb }) => {
             formData.append('category_id', category_id),
             formData.append('ad_type_id', type_id),
             formData.append('region_id', region_id),
-            formData.append('lat', lat),
-            formData.append('lng', lng),
+            formData.append('lat',( lat=='undefined'?"2.3333":lat)),
+            formData.append('lng',( lng=='undefiend'?"2.333":lng)),
             formData.append('phone', phoneNumber),
             formData.append('whatsapp', phoneNumber),
             formData.append('is_premium', isPremium),
@@ -112,7 +112,7 @@ const AddAdds = ({ addAdsOb }) => {
               data: formData,
             })
               .then((response) => {
-
+               console.log(response);
                 response.data.status.code == 200 &&
                   (
                     route.locale == 'ar' && swal("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success'),
@@ -445,7 +445,7 @@ const AddAdds = ({ addAdsOb }) => {
                         } />
 
                       <img src="/assets/img/img.svg" alt="" />
-                      <p>{AddAdds.pic} 1</p>
+                      <p>{addAdsOb.pic} 1</p>
                     </div>
 
                     : <div className="" style={{ position: 'relative' }}>
@@ -474,7 +474,7 @@ const AddAdds = ({ addAdsOb }) => {
                         } />
 
                       <img src="/assets/img/img.svg" alt="" />
-                      <p>{AddAdds.pic} 2</p>
+                      <p>{addAdsOb.pic} 2</p>
                     </div>
 
                     : <div className="" style={{ position: 'relative' }}>
@@ -502,7 +502,7 @@ const AddAdds = ({ addAdsOb }) => {
                         } />
 
                       <img src="/assets/img/img.svg" alt="" />
-                      <p>{AddAdds.pic} 3</p>
+                      <p>{addAdsOb.pic} 3</p>
                     </div>
 
                     : <div className="" style={{ position: 'relative' }}>
@@ -530,7 +530,7 @@ const AddAdds = ({ addAdsOb }) => {
                         } />
 
                       <img src="/assets/img/img.svg" alt="" />
-                      <p>{AddAdds.pic} 4</p>
+                      <p>{addAdsOb.pic} 4</p>
                     </div>
 
                     : <div className="" style={{ position: 'relative' }}>

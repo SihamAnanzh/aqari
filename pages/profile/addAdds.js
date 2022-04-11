@@ -11,7 +11,18 @@ import { getSession, signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import BackBtn from '../../components/BackBtn';
 const Adds = () => {
+  // const { data: session } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     route.push(`/signIN?callbackurl=${route.asPath}`);
+  //   }
+  // });
   const session=useSession()
+
+  useEffect(() => {
+    session.data==null&&route.push('/signIN')
+  }, [])
+  
 
 
   
@@ -20,9 +31,9 @@ const Adds = () => {
   let { t } = useTranslation();
 
 
-  useEffect(() => {
-  session.data==null&&route.push('/signIN')
-},[])
+
+  
+
 
   // translations
 

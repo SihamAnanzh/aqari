@@ -36,6 +36,7 @@ const SignIN = ({ csrfToken, providers }) => {
   const route = useRouter()
 
   useEffect(() => {
+    console.log(session);
     session.data !== null && route.push('/')
    }
     , [])

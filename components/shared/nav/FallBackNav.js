@@ -132,7 +132,7 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
                     </ul>
                 </li>
 
-                <Link href={session.data?"/profile":"/signIN"} className='main-nav-item'>
+                <Link href={session.data !=null?"/profile":"/signIN"} className='main-nav-item'>
                     <li className={`${route.asPath === "/signIN" ? "activeNavFall" : ""}`}
                         onClick={() => setLogin(true)}>
                    

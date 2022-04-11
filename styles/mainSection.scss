@@ -457,12 +457,18 @@ font-family:otfPlain ;
          .ltr .search-div{
             padding-right: 0;
             padding-left: 0;
+            width: 86%;
+            margin: 2px auto;
+
+        }
+           
+         .search-div{
+            padding-right: 0;
+            padding-left:0;
+            width: 86%;
+            margin: 2px auto;
         }
 
-        
-         .search-div{
-            padding-right: 15px;
-            padding-left:0;
-        }
+        // .serachContainer.btnSearch,
 
     }
