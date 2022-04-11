@@ -1,0 +1,699 @@
+// .signin-contanier{
+//     width: 100%;
+//     height: 100vh;
+//     background-color: $background-color;
+//     display: flex;
+//     justify-content: flex-start;
+//     align-items: center;
+//     flex-direction: column;
+//     padding-top: 60px;
+//     // padding-right: 600px;
+//     // padding-left: 600px;
+//     margin:0px auto;
+//     .sign{
+//             align-self: flex-start;
+      
+//         h2{
+//             font-size: 28px;
+//             color: $second-color;
+//             margin-right: 10%;
+//             font-family: otfPlain;
+            
+//         }
+    
+//     }
+   
+//     .inputs-group{
+//         display: flex;
+//         justify-content: flex-start;
+//         align-items: center;
+//         flex-direction: column;
+//     }
+
+//     .sign-input input{
+//     width: 540px;
+//     height: 72px;
+//     background-color: $background-color;
+//     padding:15px 15px;
+//     margin-top: 5px;
+//     font-size: 28px;
+//     border: 2px solid $main-color;
+//     color: $main-color;
+//     outline: none;
+//     padding-right: 30px;
+  
+//       border-radius: 10px;
+   
+//     }  
+//     input::placeholder,
+//     textarea::placeholder {
+//         font-size:20px ;
+//         font-family: otfPlain;
+//         font-weight: 600;
+//         color:#9f9f9f
+
+      
+//     }
+
+
+//     input:focus{
+//         border-color: $second-color;
+//     }
+//     input{
+//     color: #00416B;
+//     }
+//     h3{
+//         color: #00416B;
+//         font-size: 28px;
+//         padding-bottom: 5px;
+//         font-family: otfPlain;
+     
+
+//         margin-top: 28px;
+//     }
+    
+
+//     .forget-passwrod{
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//         margin-top: 30px;
+//         width: 545px;
+//         color: $second-color;
+
+//         a{
+//             color: $second-color;
+//             text-decoration: none;
+//             font-size: 20px;
+
+//         }
+
+//         span{
+//             font-size: 20px;
+//             cursor: pointer;
+//  img{
+//      margin-right: 10px;
+//      margin-top: 10px;
+//  }
+//         }
+//     }
+
+
+//     .sign-btn{
+//     width: 540px;
+//     height: 72px;
+//     color: #fff;
+//     background-color: $second-color;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     font-size: 28px;
+//     border-radius: 10px;
+//     cursor: pointer;
+//     margin-top: 40px;
+
+//     }
+ 
+//     .password{
+//         position: relative;
+//         img{
+//             position: absolute;
+//             top: 98px;
+//             right: 483px;
+//         }
+//         cursor: pointer;
+//     }
+        
+
+
+//        .social-sign{
+//            display: flex;
+//            justify-content: center;
+//            flex-direction: column;
+//            align-items: center;
+//             width: 445px;
+//    p{
+//        margin-top: 20px;
+//        margin-bottom: 20px;
+//        color: $second-color;
+//        font-size: 20px;
+//        font-weight: 600;
+//    }
+
+//            .social-icon{
+//                display: flex;
+//                justify-content: center;
+//                align-items: center;
+//                width: 18px;
+//               height: 19px;
+//               margin-bottom: 20px;
+//            }
+
+//            li{
+//                margin-right: 20px;
+//                margin-left: 20px;
+//                margin-top: 20px;
+//                margin-bottom: 20px;
+
+              
+//            }
+//        }
+
+//        .goSignUp{
+//            display: flex;
+//            flex-direction: column;
+//            align-items: center;
+//            justify-content: center;
+//            align-content: space-between;
+//            margin-top: 10px;
+//            font-size: 20px;
+//            color: $second-color;
+//            width: 445px;
+//            margin-bottom:40px;
+//            text-decoration: none;
+              
+//             span{
+//                 font-weight: 600;
+//             }
+//            a{
+//                font-size: 24px;
+//                color: $main-color;
+//                text-decoration: none;
+//                font-family: otfPlain;
+//                font-weight: 600;
+//                margin-top: 8px;
+//            }
+//        }
+
+
+//        .error-message{
+//            font-size: 20px;
+//            color: #FF4848;
+//            display: block;
+//            padding-top: 15px;
+//        }
+// }
+
+
+// .signin-contanier .sign {
+   
+//     h2{
+//         margin-right: unset; 
+//         display: flex;
+//         justify-content: flex-end;
+//            margin-left: 206%;
+    
+
+//     }
+// } 
+
+// .signin-contanier .forget-passwrod span{
+//     margin-right: 2px;
+// }
+
+
+// .ltr .signin-contanier .sign {
+   
+//     h2{
+//         margin-right: unset; 
+//         display: flex;
+//         justify-content: flex-start;
+//            margin-left: -250%;
+    
+
+//     }
+// } 
+
+
+// .sign-input.submit-logo button, .signin-contanier .sign-btn{
+//     font-weight: 600;
+//     font-family: otfPlain;
+//     width: 507px;
+
+// }
+
+// @media (max-width:1700px) {
+//     .signin-contanier{
+//         height: 100%;
+//         padding-bottom:30px;
+//     }
+
+//     .forget-password-contanier{
+//         height: 100vh;
+//     }
+//     .signin-contanier .sign {
+   
+//             h2{
+         
+//                 margin-left: 282%;
+        
+//             }
+//     } 
+
+//     .signin-contanier .sign.entry h2 {
+//         margin-left: 0;
+//         display: flex;
+//         justify-content: flex-start;
+//         align-items: flex-start;
+//         margin-right: unset;
+//         margin-left: unset;
+//     }
+    
+    
+
+//     // .ltr  .signin-contanier .sign.entry {
+   
+//     //     h2{
+     
+//     //         margin-left: -357%;
+    
+//     //     }
+
+
+//     .sign-input.submit-logo button, .signin-contanier .sign-btn{
+//         font-weight: 600;
+//         font-family: otfPlain;
+//         width:540px;
+    
+//     }
+
+
+
+// .ltr  .signin-contanier .sign {
+   
+//     h2{
+//         display: flex;
+//         justify-content: flex-start;
+//         align-items: flex-start;
+//         margin-right: unset;
+//         margin-left: unset;
+//         // margin-left: -210%;
+
+//     }
+// }    
+
+//     .signin-contanier h3{
+//         font-size: 25px;
+//     }
+ 
+  
+//     .signin-contanier .password img {
+//         right: 86%;
+//     }
+//     .ltr .signin-contanier .password img {
+//         left: 86%;
+//     }
+
+//     .signin-contanier .goSignUp{
+//         margin-bottom: 70px;
+//     }
+
+//     .signin-contanier .social-sign .social-icon{
+//         margin-top: 10px;
+//         margin-bottom: 10px;
+//     }
+
+//     input::placeholder{
+//         font-size:5px ;
+//         font-family: otfPlain;
+//         font-weight: normal;
+
+//     } 
+
+//     .signin-contanier .inputs-group,.signin-contanier .sign{
+//         display: flex;
+//         justify-content: flex-start;
+//         align-items: flex-start;    }
+    
+//     .signin-contanier .inputs-group {
+//         width: 100%;
+//     }
+
+
+// }
+
+
+// @media (max-width:1120px) {
+//     // .signin-contanier {
+//     //     padding: 50px;
+//     //     padding-top: 60px;
+//     //     width: 100vw;
+//     //     padding-left: 100px;
+//     //     padding-right: 100px;
+//     // }
+
+//     .signin-contanier .sign {
+   
+//         h2{
+     
+//             margin-left: 274%;
+    
+//         }
+// }    
+
+// // .signin-contanier .sign-input input,
+// // .signin-contanier .forget-passwrod,
+// // .signin-contanier .sign-btn{
+// //     width: 80vw;
+// // }
+
+
+// }
+
+
+// @media (max-width:520px) {
+//     .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn{
+//     margin-right: 20px;
+//     height: 62px;
+//     font-size: 18px;
+//     width: 364px;
+//     margin-top: 1px;
+// }
+  
+//     // .signin-contanier .sign{
+//     //     margin-right: unset;
+//     // }
+
+//     // .signin-contanier{
+//     //     padding-left: 42px;
+//     //     padding-right: 20px;
+//     // }
+
+//     .signin-contanier .password img{
+//         right: 86%;
+//     }
+    
+//     .ltr .signin-contanier .password img{
+//         left: 86%;
+//     }
+
+
+
+//     .signin-contanier h3 {
+//         margin-right: 29px;
+//     }
+//     .signin-contanier .sign-input input, .signin-contanier .forget-passwrod, .signin-contanier .sign-btn
+//     {
+//         margin-right: 0;
+//     }
+  
+    
+
+//     .signin-contanier .forget-passwrod a {
+//         font-size: 15px;
+//     }
+
+
+//     // }
+//     // .addAdds-tab-container .addAdds-group input {
+//     //     width: 89vw;
+//     // }
+
+// }
+// @media (max-width:428px) {
+     
+//     .signin-contanier{
+//         padding-left: 0;
+//         padding-right: 0;
+//         padding: 0;
+//         padding-top:54px;
+//         height: 100%;
+
+
+//         .sign h2{
+              
+//             margin-left: 212%;
+    
+//         }
+//     }
+
+//     .ltr .signin-contanier .sign h2 {
+                
+//         margin-left: -159%;
+//     }
+//     .ltr .signin-contanier .sign.entry h2 {
+//         margin-left: 10%;
+//     }
+
+//     .signin-contanier h3 {
+//         margin-right: 29px;
+//         font-size: 20px;
+//         margin-top: 20px;
+//         padding-top: unset;
+
+//     }
+    
+//     .signin-contanier h3.img-heading{
+//         margin-right: -7px;
+//           }
+
+//     .signin-contanier .sign-input input,
+//      .signin-contanier .forget-passwrod, 
+//     .signin-contanier .sign-btn {
+//         margin-right: 20px;
+//         height: 62px;
+//         font-size: 18px;
+//         width: 364px;
+//         margin-top: 1px;
+//     }
+
+//     .signin-contanier .forget-passwrod a {
+//         color: #EDAA43;
+//         text-decoration: none;
+//         font-size: 14px;
+//     }
+
+//     .signin-contanier .forget-passwrod span {
+//         font-size: 20px;
+//         cursor: pointer;
+//         font-size: 14px;
+//     }
+//     .signin-contanier .social-sign p {
+//         margin-top: 20px;
+//         margin-bottom: 20px;
+//         font-size: 14px;
+//         color: #EDAA43;
+//     }
+
+//     .signin-contanier .goSignUp {
+//         margin-bottom: 70px;
+//         font-size: 14px;
+//         width: 40vw;
+//     }
+    
+//     .signin-contanier .goSignUp a
+//      {
+//          font-size: 14px;
+//      }
+
+//      input::placeholder{
+//         font-size: 15px;
+//     }
+
+
+//     .signin-contanier .social-sign .social-icon {
+//         margin-top: 0px;
+//     margin-bottom: 10px;
+//     width: 16px;
+//     height: 16px;
+//     margin-left: -8px;
+  
+//     }
+
+//     .signin-contanier .social-sign li{
+//         margin-right: 0;
+//         padding-left: unset;
+//     margin-top: 20px;
+//     margin-bottom: 20px;
+//     }
+
+//     .signin-contanier .social-sign{
+//         margin-top: 10px;
+//     }
+
+//     .signin-contanier .forget-passwrod span img{
+//         margin-top: unset;
+//         width: 10px;
+//         margin-right: 5px;    }
+
+
+//         .signin-contanier .sign-btn {
+//             margin-right: 20px;
+//             height: 62px;
+//             font-size: 21px;
+//             width: 364px;
+//             margin-top: 21px
+//         }
+
+
+//         .signin-contanier .social-sign {
+    
+//             display: flex;
+//             justify-content: center;
+//             flex-direction: column;
+//             align-items: center;
+//             width: 70vw;
+//             margin-right: 15px;
+       
+//         }
+
+
+
+//         .signin-contanier .password img {
+//             right: 89%;
+//             top: 86px;
+//         }
+//         .ltr .signin-contanier .password img {
+//             left: 85%;
+//             top: 86px;
+//         }
+
+
+
+
+//         .ltr .signin-contanier .forget-passwrod span{
+//             margin-right: 7px;
+//         }
+
+
+//         .ltr .sign-btn{
+//             margin-left: 0;
+//         }
+        
+    
+
+//     .signin-contanier .sign h2 {
+//         margin-left: 170%;
+
+        
+//     }
+
+//     .ltr .signin-contanier{
+//         .conditions.chack-groub{
+//           width: 92%;
+//         }
+//     }
+//      .signin-contanier{
+//         .conditions.chack-groub{
+//       width: 84%;
+//       margin-right: 22px;
+
+//         }
+//     }
+
+//     .signin-contanier .sign.entry h2 {margin-left: 200%;}
+
+
+
+//     .profile-tab{
+//         .signin-contanier h3{
+//             margin-right: 0;
+//         }
+
+//         .signin-contanier .sign-input input, 
+//         .signin-contanier .forget-passwrod, .signin-contanier .sign-btn{
+//             margin-right: 0;
+//         }
+
+//         .sign-input.submit-logo button, .signin-contanier .sign-btn {
+//             margin-right: 0;
+//         }
+
+//     }
+
+//     .ltr .signin-contanier .sign h2 {
+//         margin-left: 0%;
+//     }
+    
+//     .signin-contanier .sign h2 {
+//         margin-left: 10%;
+//         margin-right: 37%;
+//     }
+
+//     .ltr .signin-contanier .sign.entry h2 {
+//         margin-left: 0%;
+//         margin-right: 0%;
+
+//     }
+
+//     .ltr .sign-input.signUp {
+//         width: 100%;
+      
+    
+//     }
+
+//     // .signin-contanier .inputs-group,
+//     // .ltr .signin-contanier .inputs-group{
+//     //     width: 99%;
+//     //     display: flex;
+//     //     justify-content: flex-start;
+//     //     align-items: flex-start;
+    
+//     // }
+
+//     .profile-tab .sign-input.submit-logo button,
+//      .profile-tab .signin-contanier .sign-btn{
+//         margin-right: 8px;
+//     }
+
+//     .signin-contanier .sign-input.signUP.sign h2{
+//         margin-left: 10%;
+//         margin-right: 10%;
+//         justify-content: flex-start;
+//         width: 100vw;
+//         align-items: flex-start;
+        
+        
+//     }
+
+    
+
+// }
+
+// @media (max-width:380px) {
+
+
+//     .signin-contanier .sign-input input, 
+//     .signin-contanier .forget-passwrod, .signin-contanier .sign-btn {
+//         margin-right: 11px;
+//         height: 62px;
+//         font-size: 18px;
+//         width: 90vw;
+//     }
+//     .ltr .signin-contanier .sign h2 {
+//         margin-left: 10%;
+//     }
+    
+//     .signin-contanier .sign h2 {
+//         margin-left: 149%;
+//     }
+
+//     .ltr .signin-contanier .sign.entry h2 {
+//         margin-left: 0%;
+//     }
+
+//     .ltr .sign-input.signUp {
+//         width: 100%;
+      
+    
+//     }
+
+//     // .signin-contanier .inputs-group,.ltr .signin-contanier .inputs-group{
+//     //     width: 92vw;
+//     //     display: flex;
+//     //     justify-content: flex-start;
+//     //     align-items: flex-start;
+    
+//     // }
+
+
+//     .signin-contanier .sign h2 {
+//         margin-left: 10%;
+//         margin-right: 22%;
+//     }
+
+//     .signin-contanier {
+//         width: 100vw;
+//     }
+
+// }
