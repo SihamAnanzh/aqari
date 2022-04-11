@@ -22,7 +22,6 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
     Nav.handleClickOutside = () => {
         setAddMenu(false)
         setShowLang(false)
-        console.log('click');
     }
 
 
@@ -64,14 +63,16 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                             >{navOb.nav3}</span></Link>
 
                         </li>
+                        <Link href="/signIN" className='main-nav-item'>
+
                         <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
-                            <Link href="/signIN" className='main-nav-item'>
                                 <span
                                     className={`${route.asPath === "/signIN" ? "active" : ""}`}
 
-                                >{navOb.nav4}</span></Link>
+                                >{navOb.nav4}</span>
 
-                        </li>
+                            </li>
+                            </Link>
 
                         <li className={`${route.asPath === "/signUp" ? "activeNav" : ""}`}>
                             {session.data == null ?

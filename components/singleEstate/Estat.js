@@ -19,13 +19,12 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const [lng, setLng] = useState('')
 
   useEffect(() => {
-    setLat(data.lat)
-    setLng(data.lng)
-    console.log(data);
+    data.lat=='undefined'?setLat(2.33666):setLat(data.lat)
+    data.lng=='undefined'?setLat(2.33666):setLat(data.lng)
+
   }, [data])
 
   let session = useSession()
-  console.log(session);
 
   useEffect(() => {
     session.data != null && session.data.xyz.sub == data.user_id ? setUserAdd(true) : setUserAdd(false)
@@ -35,14 +34,14 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const toggleFavAdds = () => {
     session.data != null ?
       (
-        console.log(data.isFav),
+    
         !addToFav ?
           (axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.add_id}`, null, {
             headers: {
               "Authorization": session.data != null ? session.data.id : null
             },
           }).then((res) => {
-            console.log(res);
+           
             setAddtoFav(true);
           })
           )
@@ -54,7 +53,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
               },
 
             }).then((res) => {
-              console.log(res)
+            
               setAddtoFav(false);
             }
             )
@@ -70,7 +69,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   return (
     <>
 
-      <div className='estat-conianer' onTouchMoveCapture={(e)=>console.log(e)} style={{
+      <div className='estat-conianer' style={{
           paddingTop:!withImg&&"5%"
       }}>
         <div className="imgSliderAdd" style={{position:'relative',direction:"rtl"}}>

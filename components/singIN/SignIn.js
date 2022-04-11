@@ -32,7 +32,6 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     useEffect(() => {
        setEmail(cookies.Name)
          setPassowrd(cookies.Password)
-        console.log(cookies.Name);
         
 
     }, [])

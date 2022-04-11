@@ -83,7 +83,6 @@ const DropdownTypes = ({items=[], subTitle,title}) => {
                                 id:item.id
                             }
                             setSelection(selectInfo)
-                            console.log(selectInfo);
                             filterCtx.setTypeId(item.id)
                       
                        }

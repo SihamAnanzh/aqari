@@ -21,14 +21,14 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
   const toggleFavAdds = () => {
     session.data != null ?
       (
-        console.log(data.isFav),
+     
         !addToFav ?
           (axios.post(`https://stagingapi.aqarifinder.com/api/user/ad/fav/add/${data.add_id}`, null, {
             headers: {
               "Authorization": session.data != null ? session.data.id : null
             },
           }).then((res) => {
-            console.log(res);
+        
             setAddtoFav(true);
           })
           )
@@ -40,7 +40,7 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
               },
 
             }).then((res) => {
-              console.log(res)
+           
               setAddtoFav(false);
             }
             )

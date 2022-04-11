@@ -12,7 +12,6 @@ const authCtx=useContext(AuthContext)
 const route=useRouter()
 
 const session=useSession()
-console.log(session.data.xyz);
 
 useEffect(()=>{
 

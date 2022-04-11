@@ -43,7 +43,6 @@ const handleChange=(e)=>{
     setImageUpLoaded(true)
     let file= e.target.files
     setImageSrc(file[0])
-    console.log(file[0]);
 
 }
 

@@ -13,7 +13,6 @@ const ServiveResults = ({navOb,adsOb, fo1}) => {
     const filterCtx=useContext(FilterContext)
     const tranCtx=useContext(TranslateContext)
     const route=useRouter()
-     console.log(navOb);
     useEffect(()=>{
 
       filterCtx.serviceResults&&filterCtx.serviceResults.map((adds)=>{
@@ -52,7 +51,6 @@ const ServiveResults = ({navOb,adsOb, fo1}) => {
 
       
       })
-      console.log(filterCtx.serviceResults);      
       },[])
 
 
@@ -85,9 +83,9 @@ const ServiveResults = ({navOb,adsOb, fo1}) => {
      {adsOb.ad5}
           </span>
       </div>
-      <BackBtn/>
       <Footer fo1={fo1}/>
-    </div>  )
+    </div>
+  )
 }
 
 export default ServiveResults

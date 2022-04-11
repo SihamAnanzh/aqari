@@ -19,7 +19,6 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
     FallBackNav.handleClickOutside = () => {
         setMvoeArrow(false)
         setShowNav(false)
-        console.log('click');
     }
 
 

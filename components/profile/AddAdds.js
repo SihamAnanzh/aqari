@@ -70,7 +70,6 @@ const AddAdds = ({ addAdsOb }) => {
   formData = new FormData()
 
   const handelSubmit = (e) => {
-    console.log(addTitle);
     !disable &&
       (
         addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum == ""
@@ -122,12 +121,7 @@ const AddAdds = ({ addAdsOb }) => {
                 route.replace('/profile/myAdds')
 
               })
-            // .catch((response) => {
-            //   console.log(response);
-            //   route.locale =='ar'&&("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
-            //   route.locale=='en'&&("You can not add at the moment", 'try later', 'error')
-            //     }
-            // )
+        
 
           )
       )
@@ -153,32 +147,6 @@ const AddAdds = ({ addAdsOb }) => {
 
   // }, [])
 
-
-
-
-  // useEffect(() => {
-
-
-  //   typeof window !== "undefined" &&
-  //     (
-  //      setAdsDataLoage(JSON.parse(localStorage.getItem('ads-info'))),
-  //     setAddTitle(adsDataLocal&&adsDataLocal.addTitle),
-  //     setAutoNum(adsDataLocal&&adsDataLocal.autoNum),
-  //     setDesc(adsDataLocal&&adsDataLocal.desc),
-  //     setFront(adsDataLocal&&adsDataLocal.front),
-  //     setLat(adsDataLocal&&adsDataLocal.lat),
-  //     setLng(adsDataLocal&&adsDataLocal.lng),
-  //     setPhoneNumber(adsDataLocal&&adsDataLocal.phoneNumber),
-  //     setPrice(adsDataLocal&&adsDataLocal.price),
-  //     setSpace(adsDataLocal && adsDataLocal.space),
-  //     console.log(adsDataLocal)
-
-  //     )
-
-
-
-
-  // },[])
 
 
 
@@ -265,7 +233,7 @@ const AddAdds = ({ addAdsOb }) => {
       },
     })
       .then(res => {
-        !res.data.status.message == 'OK' ? console.log(res.data) : setRegions(res.data.results)
+        !res.data.status.message == 'OK' ? "" : setRegions(res.data.results)
 
       })
   }, [])
@@ -280,7 +248,7 @@ const AddAdds = ({ addAdsOb }) => {
     })
       .then(res => {
 
-        !res.data.status.message == 'OK' ? console.log(res.data) : setItem(res.data.results)
+        !res.data.status.message == 'OK' ? "" : setItem(res.data.results)
 
 
       })

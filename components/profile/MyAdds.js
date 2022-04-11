@@ -12,7 +12,6 @@ const authCtx=useContext(AuthContext)
 const route=useRouter()
 
   const session = useSession()
-  console.log(session);
   useEffect(()=>{
 
     axios({
@@ -22,14 +21,12 @@ const route=useRouter()
 
     })  .then(res=>{
       setUserData(res.data.results)
-      console.log(res.data.results);
      
 
     })
   }
   ,[])
 
-console.log(userData);
 
   useEffect(()=>{
     userData&&userData.map((adds)=>{

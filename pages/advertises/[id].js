@@ -108,11 +108,7 @@ const SingleEstate = ({ data }) => {
       setWithImg(true) : setWithImg(false)
   }, [])
 const route=useRouter()
-  useEffect(() => {
 
-    console.log(route.query.paymentId);
-  }, [])
-  
   let content = '/assets/img/estate.svg'
   return (
     <div className={`single-estat${overlay ? 'overlay' : ""} `}>

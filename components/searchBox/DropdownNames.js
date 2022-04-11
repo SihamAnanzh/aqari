@@ -21,14 +21,11 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
 
     }
 
-    console.log(title);
 
 
     useEffect(() => {
-        console.log(selectionID);
 
         selectionID.length !== 0 && selectionID.map(item => {
-            console.log(item);
             AddActiveClass(item)
 
         })
@@ -40,7 +37,6 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
     useEffect(() => {
 
         filterCtx.setRegionsId(regionsId)
-        console.log(regionsId);
         filterCtx.setAreaStringName([...selection])
     }, [selection]);
 
@@ -49,7 +45,6 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
 
 
     const AddActiveClass = (id) => {
-        console.log(id);
 
 
         let item = document.getElementById(id)
@@ -62,10 +57,8 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
     }
 
     const removeAcitveCllass = (id) => {
-        console.log(id);
         let item = document.getElementById(id)
         item.classList.remove('selected')
-        console.log(item);
 
 
     }
@@ -124,19 +117,6 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
                                 setShowListNames(!showListNames)
 
 
-                                // let indexRegion=regionsId.findIndex((el)=>el===item.id)
-                                // if(indexRegion == -1){
-                                //     let newArray=[...regionsId]
-                                //     newArray.splice(indexRegion,1)
-
-
-                                // }else{
-                                //     let newArray=[...regionsId]
-                                //     newArray.splice(indexRegion,1)
-                                //        console.log(regionsId);
-                                // }                               
-
-
 
                                 let selectInfo = {
                                     value: item.title,
@@ -153,9 +133,6 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
                                     AddActiveClass(e.target.id)
 
 
-                                    //  let regionId=regionsId.findIndex((el)=>el===item.id)
-                                    //   regionId == -1 && setRegionsId(pre=>[...pre,item.id])
-                                    //     console.log(index);
 
                                 } else {
                                     let newArray = [...selection]
@@ -171,13 +148,11 @@ const DropdownNames = ({ items = [], title, dropTitle, setSelectItem, showSearch
 
 
 
-                                    // setRegionsId(pre=>[...pre,selectInfo.id])
 
 
 
 
                                 }
-                                console.log(regionsId);
 
 
 

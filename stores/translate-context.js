@@ -22,7 +22,6 @@ export  const TranslateProvider=(props)=>{
 
     const navVl=(vl)=>{
         setNav(vl)
-        console.log(vl);
     }
     const adsVl=(vl)=>setAds(vl)
     const foVl=(vl)=>setFooter(vl)

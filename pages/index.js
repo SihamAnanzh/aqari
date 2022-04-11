@@ -79,7 +79,6 @@ const Index = ({ prem, latest, services, Request,name }) => {
     dropSubTitle
     
   }
-  console.log(searchOb);
 
   //footer
   let fo1 = t('home:footer')
@@ -104,7 +103,6 @@ const Index = ({ prem, latest, services, Request,name }) => {
 
 
   useEffect(() => {
-    console.log(prem);
     prem && prem.map((adds) => {
       let data = {
         add_id: adds.id,
@@ -151,8 +149,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
 
         }
       }
-      console.log(data.time);
-      setPremuimAdds(pre => [...pre, data])
+        setPremuimAdds(pre => [...pre, data])
 
     })
   }, [prem])
@@ -245,20 +242,16 @@ export default Index
 
 
 export async function getServerSideProps(context) {
-  // console.log("INSIDE SERVER SIDE", context.req);
   let prem;
   let latest;
   let { locale } = context
   const session = await getSession(context);
-  console.log(session);
   let data = await axios.get('https://stagingapi.aqarifinder.com/api/ads/premium/list?', {
     headers: {
       "lang": locale,
     },
   })
     .then(res => {
-      // console.log(res.data.results);
-      // res.data.status.code === 200 &&console.log('success')
       prem = res.data.results
 
     })
@@ -270,9 +263,7 @@ export async function getServerSideProps(context) {
   })
     .then(res => {
 
-      // res.data.status.code === 200 &&console.log('success')
       latest = res.data.results
-      console.log( locale);
 
 
     })

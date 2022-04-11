@@ -21,7 +21,6 @@ const SingleServices = ({ data }) => {
   useEffect(() => {
     data.images ?
       setWithImg(true) : setWithImg(false)
-    console.log(data);
 
   }, [])
 

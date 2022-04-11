@@ -1313,12 +1313,13 @@ li.active,
 
   @media (max-width:380px) {
     .actions-contaier .actions{
-      padding-right: 17px;
+      padding-right: 32px;
       padding-left: unset;
     }
     .ltr  .actions-contaier .actions{
-      padding-left: 17px;
+      padding-left: 11px;
       padding-right: unset;
    
     }
+
   }

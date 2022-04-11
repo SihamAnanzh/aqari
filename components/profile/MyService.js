@@ -7,7 +7,6 @@ const [latest, setLatest]=useState([])
 const [userData,setUserData]=useState([])
 const authCtx=useContext(AuthContext)
 
-console.log(serviceData);
   return (
 <div className='adds-container' style={{marginTop:"40px"}}>
       <h1 className='premium-title'>{adsOb.newestٍervice}</h1>

@@ -115,7 +115,7 @@ const AddService = ({ serviceOb }) => {
       },
     })
       .then(res => {
-        !res.data.status.message == 'OK' ? console.log(res.data) : setRegions(res.data.results)
+        !res.data.status.message == 'OK' ?"" : setRegions(res.data.results)
 
       })
   }, [])
@@ -128,7 +128,7 @@ const AddService = ({ serviceOb }) => {
       },
     })
       .then(res => {
-        !res.data.status.message == 'OK' ? console.log(res.data) : setSerivces(res.data.results)
+        !res.data.status.message == 'OK' ?"": setSerivces(res.data.results)
       })
   }, [])
 
@@ -140,7 +140,7 @@ const AddService = ({ serviceOb }) => {
       title == '' || desc == '' || price == '' || phoneNumber == " " || files.length == 0 ?
       (
         route.locale =='ar'&& swal( 'تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
-        route.locale =='en'&& swal('Fill all field please', 'warning', 'warning')
+        route.locale =='en'&& swal('warning','Fill all field please',  'warning')
       )
         :
         (
@@ -173,10 +173,11 @@ const AddService = ({ serviceOb }) => {
               route.replace('/profile/mySerivces')
             })
             .catch((response) => {
-   console.log(response);
-              swal(route.locale == 'ar' ? ("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
-              : ("You can not add at the moment", 'try later', 'error')
-               )             })
+              
+              route.locale == 'ar' ?
+                ("لا يمكنك إضافة في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error'):
+                swal( 'try later',"You can not add at the moment", 'error')
+                  })
 
         )
 

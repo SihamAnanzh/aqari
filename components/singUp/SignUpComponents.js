@@ -29,7 +29,6 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
         
         
         e.preventDefault();
-        console.log('click');
         if (password !== confirmPassword) {
             route.locale == 'ar' && swal('تحذير', 'كلمة السر غير متطابقة','warning')
             route.locale=='en'&&swal('warning','password does not match','warning')
@@ -50,17 +49,14 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                 callbackUrl: `/`,
             });
             if (res?.error) {
-                console.log(response);
 
                 swal(response.data.status.message)
             }
             else {
-                console.log(response);
 
                 if (res.url) route.push(res.url);
             }
         } else {
-            console.log(response);
 
             swal(response.data.status.message)
         }

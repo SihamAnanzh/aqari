@@ -72,7 +72,7 @@ const UpdateService = ({updateData,serviceOb}) => {
            },
       })
       .then(res=>{
-        !res.data.status.message == 'OK' ?console.log(res.data):setRegions(res.data.results)
+        !res.data.status.message == 'OK' ? "":setRegions(res.data.results)
     
       })
     },[])
@@ -85,7 +85,7 @@ const UpdateService = ({updateData,serviceOb}) => {
              },
         })
         .then(res=>{
-            !res.data.status.message == 'OK' ?console.log(res.data):setSerivces(res.data.results)
+            !res.data.status.message == 'OK' ?" ":setSerivces(res.data.results)
         })
       },[])
 
@@ -96,7 +96,9 @@ const UpdateService = ({updateData,serviceOb}) => {
         let formData;
         title == '' || desc == '' || price == '' || phoneNumber == " ",
           whatsPhone == "" ?
-          swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('تحذير', 'Fill all field please', 'warning'))
+          swal(route.locale == "ar" ?
+            ('تحذير', 'يرجى تعبئة جميع الحقول', 'warning') :
+            ('تحذير', 'Fill all field please', 'warning'))
           :
           (
             formData=new FormData(),

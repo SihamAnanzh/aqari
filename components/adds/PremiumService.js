@@ -75,7 +75,7 @@ const PremiumService = (props) => {
                       {props.disc.length > 140 ? props.disc.substr(0, 140 - 1) + "..." : props.disc}
                       </div>
           </Link>
-          <div className="contact-prem secondAdd serv">
+          <div className="contact-prem secondAdd serivce-contact">
               <div className='phone'><span className='address-phone'><img src='/assets/img/phone.svg' /></span>
                   <a style={{ textDecoration: "none", color: "#fff"}} href={`tel:+962${props.phone}`}>
                       {props.phone}

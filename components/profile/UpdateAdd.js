@@ -73,7 +73,6 @@ const  handelSubmit=(e)=>{
         data:{...data}
         })
         .then( (response) =>{
-          console.log(response);
     
           response.data.status.code == 200 &&
           (
@@ -89,7 +88,6 @@ const  handelSubmit=(e)=>{
       
         })
         .catch( (response)=> {
-          console.log(response);
           swal(route.locale == 'ar' ?
             ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
           :  swal("You can not edit at the moment", 'try later', 'error')
@@ -113,7 +111,7 @@ const  handelSubmit=(e)=>{
          },
     })
     .then(res=>{
-      !res.data.status.message == 'OK' ?console.log(res.data):setRegions(res.data.results)
+      !res.data.status.message == 'OK' ?"":setRegions(res.data.results)
   
     })
   },[])
@@ -128,7 +126,7 @@ const  handelSubmit=(e)=>{
       })
       .then(res=>{
     
-          !res.data.status.message == 'OK' ?console.log(res.data):setItem(res.data.results)
+          !res.data.status.message == 'OK' ?"":setItem(res.data.results)
      
     
       })

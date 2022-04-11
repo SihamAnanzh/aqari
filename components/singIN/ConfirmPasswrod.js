@@ -10,7 +10,6 @@ const route=useRouter()
 
 const handelClick=()=>{
     axios.post('https://stagingapi.aqarifinder.com/api/user/password/reset', { newPassword }).then((res) => {
-        console.log(res);
         swal(res.data.status.message)
         route.push('/signIN')
       

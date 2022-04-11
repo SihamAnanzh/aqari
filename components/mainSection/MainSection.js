@@ -83,7 +83,8 @@ const MainSection = ({ searchOb }) => {
 
             })
 
-        ) : swal('!Opse', 'Fill in all fields', 'error')
+        ) :  route.locale == "en" ? swal('warning','Fill all field please' ,'warning') :
+             swal('تحذير','يرجى تعبئة جميع الحقول',  'warning')
 
   }
 
@@ -95,7 +96,7 @@ const MainSection = ({ searchOb }) => {
       },
     })
       .then(res => {
-        !res.data.status.message == 'OK' ? console.log(res.data) : setSerivces(res.data.results)
+        !res.data.status.message == 'OK' ? "" : setSerivces(res.data.results)
       })
   }, [])
 
@@ -109,7 +110,7 @@ const MainSection = ({ searchOb }) => {
     })
       .then(res => {
 
-        !res.data.status.message == 'OK' ? console.log(res.data) : setCategory(res.data.results)
+        !res.data.status.message == 'OK' ? "": setCategory(res.data.results)
 
       })
   }, [])
@@ -127,7 +128,7 @@ const MainSection = ({ searchOb }) => {
       },
     })
       .then(res => {
-        !res.data.status.message == 'OK' ? console.log(res.data) : setRegions(res.data.results)
+        !res.data.status.message == 'OK' ?" " : setRegions(res.data.results)
 
       })
   }, [])

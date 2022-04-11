@@ -151,14 +151,9 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
 
   const session = getSession(context)
-  // if (session.data == null) {
-  //   context.res.writeHead(303, { Location: "/signIN" });
-  //   context.res.redirect("/signIN", 303);
-  //   context.res.end();
-  // }
+
   if (id) {
     await axios.get(`https://stagingapi.aqarifinder.com/api/services/${id}`, { headers: { 'lang': locale } }).then((res) => {
-console.log(res.data.results);
       updateData = {
         address: res.data.results.regions_string,
         description: res.data.results.description,

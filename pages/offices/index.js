@@ -61,7 +61,6 @@ let ofOb={
 }
   const [officeList ,setOfficeList]=useState(data)
 
-console.log(data);
 
 
   return (
@@ -79,7 +78,6 @@ export default Index
 export async function getServerSideProps({locale}){
   let data=[]
   await axios.get('https://stagingapi.aqarifinder.com/api/office/list').then(res=>{
-    console.log(res.data.results);
   data=res.data.results})
  
   return { props: {data,...(await serverSideTranslations(locale, ['home','offices']))}}

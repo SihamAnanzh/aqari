@@ -13,7 +13,6 @@ const authCtx=useContext(AuthContext)
   const route = useRouter()
   const session=useSession()
 useEffect(()=>{
-console.log(session);
 
   axios.get('https://stagingapi.aqarifinder.com/api/user/profile',{
     headers: {
@@ -23,7 +22,6 @@ console.log(session);
 
   }).then(res => {
 
-    console.log(res);
   const {name, email,phone}= res.data.results
       setName(name)
       setEmail(email)

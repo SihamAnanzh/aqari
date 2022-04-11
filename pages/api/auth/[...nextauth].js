@@ -87,7 +87,6 @@ export default NextAuth({
         });
         if (response.data.status.code === 200) {
           user.user.token = response.data.results.token;
-          console.log(response);
         }
         else {
           user = undefined;
@@ -109,7 +108,6 @@ export default NextAuth({
     jwt: ({ user, token }) => {
       
       if (user) {
-        console.log(user);
         token.id = user.token
         }
       return token;

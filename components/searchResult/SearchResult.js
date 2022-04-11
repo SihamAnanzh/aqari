@@ -59,7 +59,6 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
         }
       }
       setPremuimAdds(pre => [...pre, data])
-      console.log(premuimAdds);
 
     })
   }, [])
@@ -108,15 +107,10 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
 
     })
 
-    console.log(latestData);
-    console.log(filterCtx.addsResults);
+
   }, [])
 
 
-useEffect(()=>{
-
-  console.log(filterCtx);
-},[])
 
 
   return (
@@ -155,7 +149,6 @@ useEffect(()=>{
         <span className="end-results">{adsOb.ad4}
         </span>
       </div>
-      <BackBtn/>
       <Footer fo1={fo1} />
     </div>
   )

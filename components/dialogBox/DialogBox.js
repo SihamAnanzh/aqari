@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
 import { useRouter } from 'next/dist/client/router'
-
+import axios from 'axios'
+import { useSession } from 'next-auth/react';
 const DialogBox = ({ message }) => {
+  const seesion=useSession()
   const route=useRouter()
   return (
     <div className='box'>
@@ -22,7 +24,12 @@ const DialogBox = ({ message }) => {
           <Link href='/signIN/forgetPasswrod/confirmPassword'>{route.locale=='ar'?"اغلاق":"close"}</Link>
               </div>
               <div className="box-btn">
-          <div onClick={() => console.log(res)}>{route.locale=='ar'?"إعادة الإرسال":"resend email"}</div>
+          <div onClick={() =>
+            axios.post('https://stagingapi.aqarifinder.com/api/user/password/forget', {
+              headers: {
+               'Authorization':seesion.data!=null&&sessionStorage.data.id
+             }})
+              }>{route.locale == 'ar' ? "إعادة الإرسال" : "resend email"}</div>
             </div>
       </div>
       </div>

@@ -608,7 +608,7 @@ width: 187px;
        width: 100%;
         h1{
             font-size: 22px;
-            margin-right: 5%;
+            margin-right: 9%;
         }
     }
      .prem-contanier{
@@ -743,11 +743,6 @@ width: 187px;
             }
 
 
-
-
-            // .contact-prem.secondAdd{
-            //     justify-content: space-evenly;
-            // }
         .ltr .ad-second .detials{
           width:110px;
           margin-right: unset;
@@ -770,46 +765,10 @@ width: 187px;
         
 
 
-        // .ltr .second-prem{
-        //     width: 70vw;
-        // }
 
         .ltr .ad-contanier .info-prem {
             width: 158px;
         }
-
-        // .contact-prem .phone {
-
-        //     width: 167px;
-        //     height: 29px;
-        //     background-color: $main-color;
-        //       border-radius: 5px;
-        //     display: flex;
-        //     justify-content: center;
-        //     align-items: center;
-        //     font-family: otfPlain;
-        //     font-size: 20px;
-        //     margin-right: 8px;
-        //     .address-phone img{
-        //         width: 16px;
-        //         height: 15px;
-        //         margin-left: 10px;
-        //         margin-top: 6px;
-        //     }
-            
-        // }
-
-        // .ltr .ad-contanier .detials{
-        //     display: flex; 
-        //     align-items: flex-start;
-        //     color: #737373;
-        //     font-size: 12px;
-        //     margin-top: -3px;
-        //     width: 166px;
-        //     margin-right: -37px;
-        //     margin-left: -13px;
-          
-        // }
 
 
         .ad-second .detials.detials-second-regular{
@@ -889,71 +848,90 @@ width: 187px;
             margin-right: -4px;
        
         }
+        .contact-prem.secondAdd.serivce-contact{
+            width: 121%;
+            justify-content: space-evenly;
+            align-items: center;
+        
+        
+        }
 
+        .desc-prem
+        {
+            height: 48px;
+        }
 
 }
 
 
-// @media(max-width:380px){
-//     .adds-btn{
-//     width:69px
-//     }
+@media(max-width:380px){
+    .adds-btn{
+    width:69px
+    }
 
-//     .prem-contanier {
-//         width: 316px;
-//         height: 230px;
-//     }
+    .prem-contanier {
+        width: 316px;
+        height: 208px;
+    }
 
-//     .contact-prem.secondAdd .phone, .contact-prem.secondAdd .whatsApp {
-//         margin-right: unset;
-//         margin-left: unset;
-//         width: 130px;    
-//         font-size: 18px;
+    .contact-prem.secondAdd .phone, .contact-prem.secondAdd .whatsApp {
+        margin-right: unset;
+        margin-left: unset;
+        width: 130px;    
+        font-size: 18px;
             
-//            .address-phone a,.whatsApp a{
-//             margin-bottom: 4px;
-//            }
-//     }
-//     .ad-contanier {
-//         height: 100px;
-//     }
+           .address-phone a,.whatsApp a{
+            margin-bottom: 4px;
+           }
+    }
+    .ad-contanier {
+        height: 100px;
+    }
 
 
-//     .ad-second .detials {
-//         width: 144px;
-//         margin-top: -4px;
-//         margin-right: -52px;
-//     }
-
-//     .actions-contaier{
-//         width: 95vw;
-//     }
-
-//     .ltr .actions-contaier{
-//         width: 111vw;
-//     }
-
-//     .ltr .contact-prem.secondAdd {
-//         justify-content: space-between;
-//         display: flex;
-//         margin-top: 12px;
-//         width: 290px;
-//         justify-content: x;
-//     }
-
-//     .ltr .contact-prem.secondAdd .phone, .ltr .contact-prem.secondAdd .whatsApp {
-//         margin-right: unset;
-//         margin-left: unset;
-//         width: 141px;
-//     }
+    .ad-second .detials {
+        width: 144px;
+        margin-top: -4px;
+        margin-right: -52px;
+    }
 
 
-//     .ltr .ad-contanier .detials{
-//         margin-left: -51px;
-//     }
+ 
 
-//     .ltr .actions-contaier .actions {
-//         padding-right: 53px;
-//         padding-left: 12px;
-//     }
-// }
+    .ltr .contact-prem.secondAdd {
+        justify-content: space-between;
+        display: flex;
+        margin-top: 12px;
+        width: 290px;
+        justify-content: x;
+    }
+
+    .ltr .contact-prem.secondAdd .phone, .ltr .contact-prem.secondAdd .whatsApp {
+        margin-right: unset;
+        margin-left: unset;
+        width: 141px;
+    }
+
+
+    .ltr .ad-contanier .detials{
+        margin-left: -51px;
+    }
+
+    .adds-container {
+    width: 83%;
+}
+
+.prem-contanier.ad-contanier.ad-second{
+    height: 135px;
+
+  
+}
+
+.contact-prem.secondAdd.serivce-contact{
+    width: 113%;
+}
+.ltr .contact-prem.secondAdd.serivce-contact{
+    width:104%
+}
+  
+}

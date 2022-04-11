@@ -20,17 +20,14 @@ export const ContactUs = ({navOb,fo1,contactOB}) => {
 
     },[clear])
    const  handleClick=()=>{
-       name ==''||email==""||phone==''||message==""?
-       swal(route.locale=="ar"?('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'):('warning', 'Fill all field please', 'warning'))
+       name == '' || email == "" || phone == '' || message == "" ?
+           route.locale == "en" ? swal('warning','Fill all field please' ,'warning') :
+           swal('تحذير','يرجى تعبئة جميع الحقول',  'warning')
+               
 
        :axios.post('https://stagingapi.aqarifinder.com/api/contact_us/create',{name, email,message, phone}).then(res=>{
-           swal(route.locale == 'ar' ?
-               ("شكرا للتواصل",
-                   "تم ارسال الرسالة بنجاح"
-                   , 'success') :
-               ("Done",
-                   'message sent successfully',
-                   'success'))
+        route.locale == 'ar' ? swal("شكرا للتواصل", "تم ارسال الرسالة بنجاح", 'success') :
+        swal ("Done",'message sent successfully','success')
         route.reload()
   setClear(true)
        })

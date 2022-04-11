@@ -101,13 +101,10 @@ let newestٍervice=t('home:newestٍervice')
       },
     })
       .then(res => {
-        // res.data.status.code === 200 &&console.log()
         setService(res.data.results)
-        console.log(res.data.results);
 
       })
 
-    console.log(serviceData);
 
   }, [])
   useEffect(() => {
