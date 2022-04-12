@@ -25,10 +25,13 @@ const DialogBox = ({ message }) => {
               </div>
               <div className="box-btn">
           <div onClick={() =>
-            axios.post('https://stagingapi.aqarifinder.com/api/user/password/forget', {
-              headers: {
-               'Authorization':seesion.data!=null&&sessionStorage.data.id
-             }})
+               axios.post('https://stagingapi.aqarifinder.com/api/user/password/forget',{email}).then((res)=>{
+               
+                console.log(res);
+              }
+              ).then((res) => {
+                console.log(res);
+              })
               }>{route.locale == 'ar' ? "إعادة الإرسال" : "resend email"}</div>
             </div>
       </div>

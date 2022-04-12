@@ -24,8 +24,8 @@ export const ContactUs = ({navOb,fo1,contactOB}) => {
         
      
        name == '' || email == "" || phone == '' || message == "" ?
-           route.locale == "en" ? swal('warning','Fill all field please' ,'warning') :
-           swal('تنبيه','يرجى تعبئة جميع الحقول',  'warning')
+           route.locale == "en" ? swal('warning','Fill all field please' ,'info') :
+           swal('تنبيه','يرجى تعبئة جميع الحقول',  'info')
                
 
            :

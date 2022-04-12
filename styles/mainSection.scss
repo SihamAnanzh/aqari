@@ -12,12 +12,13 @@ width: 986px;
 height:143px ;
 background-color: #F2F5F7;
 display: flex;
-justify-content: space-evenly;
+justify-content: center;
 align-items: center;
 border-radius: 10px;
 margin-top: -73px;
 flex-wrap: wrap;
 box-shadow: 0px 0px 6px 3px rgb(1 1 1 / 30%);
+padding-top: 20px;
 
 }
 
@@ -34,15 +35,20 @@ box-shadow: 0px 0px 6px 3px rgb(1 1 1 / 30%);
     cursor: pointer;
     font-family: otfPlain;
     font-weight: 600;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
+.search-div{
+    width: 89%;
+}
 .action:hover{
     background-color: #EDAA43;
     color: #fff;
 }
 .actions.showBox{
 height: 273px;
-padding-top: 20px;
+// padding-top: 20px;
 }
 
 
@@ -52,21 +58,13 @@ padding-top: 20px;
 }
 .serarch{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
- cursor: pointer;
+    cursor: pointer;
+    width: 99%;
 }
 
 
-.second{
-    margin-left: -8px;
-    width: 324px;
-    height: 62px;
- }
- .first{
-    margin-left: 31px;
-    padding-right: 32px;
- }
 
 .btnSearch button{
 background-color: $second-color;
@@ -77,8 +75,8 @@ outline: none;
 border: none;
 border-radius: 10px;
 color: #fff;
-margin-left: 41px;
-margin-right: 29px;
+// margin-left: 41px;
+// margin-right: 29px;
 font-family:otfPlain ;
 }
 .dropdwon-menu{
@@ -277,29 +275,22 @@ font-family:otfPlain ;
 
 @media (max-width:1600px) {
 
-     .second {
-        margin-left: 12px;
-        width: 336px;
-        height: 62px;
-     }
- .ltr .second{
-     margin-left: -11px;
- }
+
 .dropdwon-menu {
 
     padding: 10px;
-    width: 336px;
+    width: 320px;
 
 }
 
 .dropdwon-menu ul {
     border: 1px solid;
-    width: 336px;
+    width: 320px;
     background: #00416B;
     color: #fff;
     padding: 17px 0px;
     position: absolute;
-    right: -3px;
+    right: 0;
     border-radius: 10px;
     top: 61px;
 }
@@ -324,14 +315,15 @@ font-family:otfPlain ;
  .arrow-drop-name,
 .arrow-drop{
     position: absolute;
-    right: 298px;
+    right: 90%;
     top: 25px;
 }
 }
 
-@media (max-width:958px) {
+@media (max-width:910px) {
     .actions{
-        width: 90vw;
+        // width: 90vw;
+
        flex-wrap: wrap;
 
         .action{
@@ -341,94 +333,65 @@ font-family:otfPlain ;
     }
 
     .actions.showBox{
-        height: 353px;
+        height: 380px;
     }
+
     .serarch{
- 
         flex-direction: column;
-        margin: 10px auto;
-        justify-content: center;
-       
-        align-items: center;
+    }
 
-        .first{
-        padding-left: 0;
-        margin-right: 0;
-        margin-left: 0;
-        padding-right: 0;
-        margin-top: 10px;
+    .serachContainer.first,
+    .serachContainer.second{
+        margin-bottom: 20px;
         width: 100%;
-         
-        }
-
-        .second{
-            padding-left: 0;
-            margin-right: 0;
-            margin-left: 0;
-            padding-right: 0;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            width: 100%;
-
-        }
-    }
-    .dropdwon-menu li::before {
-        right: 92.3%;
-    }
-    
-    
-    .dropdwon-menu{
-        width: 324px;
-    }
-    .dropdwon-menu ul {
-        width: 327px;
-
-        position: absolute;
-    
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .arrow-drop-name, .arrow-drop{
-        right: 296px;
+    .serachContainer.btnSearch{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      
+
     }
+
     .btnSearch button{
-        margin-right: 0;
-        margin-left: 0;
-        width: 324px;
+        width: 50%;
+    }
+    .dropdwon-menu{
+        width: 50%;
+    }
+    
+    .dropdwon-menu ul{
+        width: 100%;
+    }
+    .actions{
+        width: 100%;
     }
 
 
   
-
-       
-//   .actions-contaier{
-//     .actions{
-//       margin-top: 0;
-//       width: 100%;
-//       border-top-left-radius: 0;
-//       border-top-right-radius: 0;
-//       display: flex;
-//       justify-content: space-evenly;
-//       align-items: center;
-//       margin-right: unset;
-//       margin-left: im;
-//       margin-left: unset;
-//       padding-right: unset;
-//       padding-right: unset;
-//       padding-top: 29px;
-  
-       
-//     }
-//   }
-
 
 
 
 
 }
 
+@media (max-width:700px) {
+    .btnSearch button
+    {
+        width: 70%;
+    }
+    .dropdwon-menu{
+        width: 70%;
+    }
+}
 
 
-  @media (max-width:428px) {
+  @media (max-width:528px) {
 
       .actions{
         height: 114px;
@@ -438,7 +401,12 @@ font-family:otfPlain ;
               font-size:24px    
                   }
       }
-
+      .btnSearch button{
+        width: 90%;
+    }
+    .dropdwon-menu{
+        width: 90%;
+    }
   
     }
 
@@ -454,21 +422,6 @@ font-family:otfPlain ;
             font-size: 20px;
         }
 
-         .ltr .search-div{
-            padding-right: 0;
-            padding-left: 0;
-            width: 86%;
-            margin: 2px auto;
-
-        }
-           
-         .search-div{
-            padding-right: 0;
-            padding-left:0;
-            width: 86%;
-            margin: 2px auto;
-        }
-
-        // .serachContainer.btnSearch,
+        
 
     }

@@ -112,8 +112,8 @@ const AddService = ({ serviceOb }) => {
     !disable && (
       title == '' || desc == '' || price == '' || phoneNumber == " " || files.length == 0 ?
       (
-        route.locale =='ar'&& swal( 'تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
-        route.locale =='en'&& swal('warning','Fill all field please',  'warning')
+        route.locale =='ar'&& swal( 'تحذير', 'يرجى تعبئة جميع الحقول', 'info'),
+        route.locale =='en'&& swal('تنبيه','Fill all field please',  'info')
       )
         :
         (

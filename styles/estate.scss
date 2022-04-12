@@ -6,7 +6,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     font-family: otfPlain;
     padding-bottom: 50px;
     background-color:#F2F5F7;
@@ -156,20 +156,19 @@ cursor: pointer;
     }
 }
 .automated-number{
-
- 
-width: 439px;
+width: 362px;
 height: 47px;
 margin: 5px auto;
 justify-content: space-evenly;
 text-align: center;
 margin-top: 0;
-.autom-value{
-margin-right: 80px;
- }
 
 
 
+
+}
+.ltr .automated-number{
+    width:439px ;
 }
 
 
@@ -194,11 +193,12 @@ border-radius: 20px;
    background-color: #f2f5f7;
     color: #fff;
     display: flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items: center;
+    width: 50%;
  
     .whatsApp {
-        width: 173px;
+        width: 190px;
         height: 41px;
         background-color: $main-color;
         border-radius: 10px;
@@ -207,7 +207,7 @@ border-radius: 20px;
         align-items: center;
         font-family: otfPlain;
         font-size: 20px;
-        margin-left: 30px;
+        // margin-left: 30px;
        
         .whatsApp-icon img{
             width: 21px;
@@ -221,7 +221,7 @@ border-radius: 20px;
     }
    
     .phone{
-        width: 173px;
+        width: 190px;
         height: 41px;
   
         background-color: $main-color;
@@ -244,9 +244,9 @@ border-radius: 20px;
 
  
 }
-.ltr .contact-estate .whatsApp {
-    margin-right: 30px;
-}
+// .ltr .contact-estate .whatsApp {
+//     margin-right: 30px;
+// }
 .swiper-slide {
     text-align: center;
     font-size: 18px;
@@ -416,6 +416,10 @@ display: none;
         justify-content: center;
         align-items: center;
         }
+
+        .contact-estate{
+            width: 80%;
+        }
 }
 
 
@@ -460,63 +464,10 @@ display: none;
     .estat-deatils{
         font-size:17px
     }
- 
 
-    // .estat-deatils{
-    // width: 175px;
-    // height: 47px;
-    // background-color: #E6ECEF;
-    // color: #00416B;
-    // font-size: 15px;
-    // border-radius: 10px;
-    // padding: 5px 10px;
-    // margin-right: 29px;
-    // padding-left: 20px;
-    // margin-bottom: 10px;
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
-    // font-family: otfPlain;
-    // font-weight: 600;
-    // text-align: right;
-    // }
-
-    // .automated-number {
-    //     width: 235px;
-    // }
-
-    // .estat-deatils .att {
-    //     font-size: 17px;
-    // }
-
-    // .estat-address h5 img{
-    //     width: 12px;
-    //     height: 12px;
-    // }
-
-    // .estat-address h3{
-    //     font-size: 25px;
-    // }
-
-    // .estat-address h5{
-    //     font-size: 16px;
-    // }
-    // .estat-origin{
-    //     display: none;
-    // }
-
-    
-    // .estat-fallback{
-    //     display: grid;
-    //     grid-template-areas: 
-    //             "city        spa"
-    //             "price       desti"
-    //             "phone  phone";
-    
-    //     justify-content: center;
-    //     align-items: center;
-    //     }
-
+    .contact-estate{
+        width: 100%;
+    }
 
 }
 
@@ -529,6 +480,21 @@ display: none;
             bottom: -1%;
         }
     }
+
+    .estat-fallback{
+        grid-template-areas:
+        "city"
+         "spa "
+        "price"
+         "desti"
+        "phone";    }
+
+        .contact-estate{
+            justify-content: space-evenly;
+        .whatsApp,.phone{
+            width: 190px;
+        }
+        }
  
 }
 
@@ -646,7 +612,7 @@ display: none;
 
 .contact-estate .whatsApp,
 .contact-estate .phone {
-    width: 155px;
+    width: 160px;
     height: 32px;
     font-size: 18px;
 

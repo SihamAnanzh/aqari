@@ -25,7 +25,8 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   //  ( data.lat ==undefined?setLat('2.2333'): setLat(data.lat))
   //  (data.lng==undefined?setLat('2.2333'): setLng(data.lng))
   
-  
+    setLat('23.333')
+    setLng('23.666')
 
   }, [data])
 
@@ -143,7 +144,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
               <span>{data.city}</span>
             </div>
             <div className="space estat-deatils">
-              <span className="att">{addAdsOb.add6}</span>
+              <span className="att">{addAdsOb.add6} </span>
               <span className=''>
               <img src='/assets/img/bar.svg' style={{
                   height: "28px",
@@ -153,9 +154,9 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
                 </span>
               <span>
                 
-                <span>{data.space}
+                <span>  {data.space}  {' '}
                 </span>
-                {route.locale == "ar" ? "متر" : "meter"}
+                  {route.locale == "ar" ? "متر" : "meter"}
               </span>
 
             </div>

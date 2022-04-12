@@ -6,7 +6,7 @@ const BackBtn = () => {
     const route = useRouter()
 
     const handelClick=()=> {
-        route.back()
+        window.history.back()
     }
 
     return (

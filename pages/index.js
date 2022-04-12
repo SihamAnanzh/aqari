@@ -16,9 +16,14 @@ import FACEBOOK_PIXEL_1 from '../components/Pixle/facebook/pixel-1'
 const Index = ({ prem, latest, services, Request,name }) => {
   const [premuimAdds, setPremuimAdds] = useState([])
   const [latestData, setLeastestAdd] = useState([])
-  const route=useRouter()
-  let { t } = useTranslation();
+  const route = useRouter()
+  // const { locale } = route;
+  let { t,i18n } = useTranslation();
 
+
+  // useEffect(() => {
+  //   i18n.changeLanguage(locale)
+  // },[locale])
   // translations
 
   //nav
@@ -236,7 +241,7 @@ const Index = ({ prem, latest, services, Request,name }) => {
 
         })} />
       </Head>
-      <Nav navOb={navOb} homePage={true}/>
+      <Nav navOb={navOb} homePage={true} />
       <Banner bn={bn} />
       <MainSection searchOb={searchOb} />
       <Adds latestData={latestData} premuimAdds={premuimAdds} adsOb={adsOb} />

@@ -13,8 +13,8 @@ process.env.NEXTAUTH_URL= 'https://akarii-demo.herokuapp.com/';
 module.exports = {
   reactStrictMode: false,
   i18n: {
-    defaultLocale: "ar",
-    locales: ["ar","en"]
+    defaultLocale: "en",
+    locales: ["en","en"]
   },
   env: {
       // endPoint: 'http://localhost:3000/',

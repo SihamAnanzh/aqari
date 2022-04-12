@@ -41,7 +41,7 @@ const Index = () => {
   let sn2 = t('signin:sign-2')
   let sn3 = t('signin:sign-3')
   let sn4 = t('signin:sign-4')
-  let newPasswrod = ('signin:newPasswrod')
+  let newPasswrod = t('signin:newPassword')
   let reset=t('signin:reset')
 
   let sginOb = {
@@ -62,5 +62,5 @@ export default Index
 
 
 export async function getServerSideProps({ locale }) {
-  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp'])) } }
+  return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp','signin'])) } }
 }

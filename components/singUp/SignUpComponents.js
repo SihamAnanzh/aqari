@@ -26,12 +26,41 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
 
 
     const handleSubmit = async (e) => {
+        let nameIn = document.getElementById('name')
+        let emailIn=document.getElementById('email')
+        let phoneIn = document.getElementById('phone')
+        let passwrodIn=document.getElementById('name')
+        let passwrodConfrimIn=document.getElementById('name')
+
+
+        name == "" && email == "" && password == "" && confirmPassword == "" && phone == "" ?
+            (
+                nameIn.classList.add('error-input'),
+                emailIn.classList.add('error-input'),
+                phoneIn.classList.add('error-input'),
+                passwrodIn.classList.add('error-input'),
+                passwrodConfrimIn.classList.add('error-input')
+
+         
+
+            ) : (
+                name == "" && nameIn.classList.add('error-input'),
+                email == "" && emailIn.classList.add('error-input'),
+                password == "" && passwrodIn.classList.add('error-input'),
+                confirmPassword == "" && passwrodConfrimIn.classList.add('error-input'),
+                phone == "" && phoneIn.classList.add('error-input')
+
+
+            )
         
         
         e.preventDefault();
         if (password !== confirmPassword) {
-            route.locale == 'ar' && swal('تحذير', 'كلمة السر غير متطابقة','warning')
-            route.locale=='en'&&swal('warning','password does not match','warning')
+            route.locale == 'ar' && swal('تنبيه', 'كلمة السر غير متطابقة','info')
+            route.locale == 'en' && swal('warning', 'password does not match', 'info')
+             passwrodConfrimIn.classList.add('error-input'),
+              passwrodIn.classList.add('error-input')
+            console.log(passwrodIn);
 
             return;
         }
@@ -42,7 +71,10 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
         }
         if (phone.length < 8 || phone.length < 12) {
             route.locale == 'ar' ? swal("", "رقم الهاتف خاطئ", 'info'):
-            swal("", 'invalid phone number', 'info')
+                swal("", 'invalid phone number', 'info')
+                phoneIn.classList.add('error-input')
+
+            
                
         }
         const response = await axios.post('https://stagingapi.aqarifinder.com/api/user/register', { email, name, password, phone })
@@ -54,10 +86,11 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                 callbackUrl: `/`,
             });
             if (res?.error) {
-
+   console.log(response);
                 swal(response.data.status.message)
             }
             else {
+                console.log(response);
 
                 if (res.url) route.push(res.url);
             }
@@ -79,32 +112,50 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                     </div>
                     <div className="sign-input name">
                         <h3>{sginUpOb.su1}</h3>
-                        <input type="text" className="sign-name" placeholder={sginUpOb.su1} required tabIndex={1} autoFocus onChange={(e) => setName(handleChnage(e))} />
+                        <input type="text" id='name'
+                            className="sign-name" placeholder={sginUpOb.su1} required
+                            tabIndex={1} autoFocus
+                            onChange={(e) => {
+                                setName(handleChnage(e))
+                                e.target.classList.remove('error-input')
+                            }} />
                     </div>
                     <div className="sign-input mail"  >
                         <h3>{sginUpOb.su2}</h3>
-                        <input type="email" required className="sign-mail" placeholder={sginUpOb.su2} tabIndex={2} onChange={(e) => {
+                        <input type="email" id='email' required className="sign-mail"
+                            placeholder={sginUpOb.su2} tabIndex={2} onChange={(e) => {
+                                e.target.classList.remove('error-input')
+
                             setEmail(handleChnage(e))
                         }} />
                         {/* {wrongEmail && <div> البريد الاكتروني غير صحيح</div>} */}
                     </div>
                     <div className="sign-input phone-singup">
                         <h3>{sginUpOb.su3}</h3>
-                        <input type="text" required className="sign-mail" placeholder={sginUpOb.su3} maxLength='12' minLength={3} tabIndex={3} onChange={(e) => setPhone
-                            (handleChnage(e))} />
+                        <input type="text" id='phone' required className="sign-mail"
+                            placeholder={sginUpOb.su3} maxLength='12' minLength={8} tabIndex={3}
+                            onChange={(e) => {
+                                e.target.classList.remove('error-input')
+
+                                setPhone(handleChnage(e))
+                            }} />
                     </div>
                     <div className="sign-input password">
                         <h3>{sginUpOb.su4}</h3>
-                        <input type="password" required className="sign-password" placeholder={sginUpOb.su4} tabIndex={4}
+                        <input type="password" id='password' required className="sign-password" placeholder={sginUpOb.su4} tabIndex={4}
                             onChange={(e) => {
+                                e.target.classList.remove('error-input')
+
                                 setPassowrd(handleChnage(e))
 
                             }} />
                     </div>
                     <div className="sign-input password">
                         <h3>{sginUpOb.su5}</h3>
-                        <input type="password" className="sign-password" required placeholder={sginUpOb.su5}
+                        <input  type="password" id='password' className="sign-password error-input" required placeholder={sginUpOb.su5}
                             onChange={(e) => {
+                                e.target.classList.remove('error-input')
+
                                 setConfirmPassowrd(handleChnage(e))
                             }} />
                     </div>

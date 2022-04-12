@@ -97,8 +97,8 @@ const UpdateService = ({updateData,serviceOb}) => {
         title == '' || desc == '' || price == '' || phoneNumber == " ",
           whatsPhone == "" ?
           swal(route.locale == "ar" ?
-            ('تحذير', 'يرجى تعبئة جميع الحقول', 'warning') :
-            ('تحذير', 'Fill all field please', 'warning'))
+            ('تنبيه', 'يرجى تعبئة جميع الحقول', 'info') :
+            ('warning', 'Fill all field please', 'info'))
           :
           (
             formData=new FormData(),

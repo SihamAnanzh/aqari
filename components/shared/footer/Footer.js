@@ -29,10 +29,17 @@ const Footer = ({ fo1 }) =>
             <div className="categ">- { route.locale=='en'?"Services":"خدمات"}</div>
 
         </div>
-        <div className="socail">
-          <Instagram />
-          <Facebook />
-          <Twitter/>
+          <div className="socail">
+            <a target='_blank' style={{ textDecoration: "none", color: "#fff" }} href="https://www.instagram.com/aqarifinderkw/">
+            <Instagram />
+            </a>
+            <a target='_blank' style={{ textDecoration: "none", color: "#fff" }} href="">
+            <Facebook />
+          </a>
+            <a target='_blank' style={{ textDecoration: "none", color: "#fff" }} href="">
+            <Twitter/>
+        </a>
+         
           </div>
         </div>
        

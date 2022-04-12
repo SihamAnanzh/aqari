@@ -943,7 +943,7 @@ padding-left: 66px;}
     .actions{
       margin-top: 0;
 
-      width: 100%;
+      // width: 100%;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
       display: flex;
@@ -1297,30 +1297,3 @@ li.active,
   }
 
 
-
-  @media (max-width:480px) {
-    .ltr .actions-contaier .actions {
-    
-      padding-left: 5px;
-      padding-right: unset;
-  }
-
-  .actions-contaier .actions{
-    padding-right: 13px;
-    padding-left: unset;
-  }
-  }
-
-  @media (max-width:380px) {
-    .actions-contaier .actions{
-      padding-right: 0;
-      padding-left: unset;
-      padding-top: 20px;
-    }
-    .ltr  .actions-contaier .actions{
-      padding-left: 0;
-      padding-right: unset;
-   
-    }
-
-  }

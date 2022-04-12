@@ -7,6 +7,7 @@ import { AuthContext } from '../../../stores/auth-context'
 import axios from 'axios';
 import { useSession, signOut } from 'next-auth/react';
 import BackBtn from '../../BackBtn';
+import { I18nContext, useTranslation } from 'next-i18next';
 const Nav = ({ logo, icon, navOb, homePage }) => {
     const [showLang, setShowLang] = useState(false)
     const [showAddMenu, setAddMenu] = useState(false)
@@ -17,7 +18,7 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
     const session = useSession()
     const [iconTwo, setIconTwo] = useState(true)
     const route = useRouter()
-
+    const { t, i18n } = useTranslation();
 
     Nav.handleClickOutside = () => {
         setAddMenu(false)
@@ -68,15 +69,15 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                             (
                                 <Link href="/signIN" className='main-nav-item'>
 
-                                <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
+                                    <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
                                         <span
                                             className={`${route.asPath === "/signIN" ? "active" : ""}`}
-        
+
                                         >{navOb.nav4}</span>
-        
+
                                     </li>
                                 </Link>
-                        )
+                            )
                         }
 
                         <li className={`${route.asPath === "/signUp" ? "activeNav" : ""}`}>
@@ -148,9 +149,17 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                                 <img src={`/assets/img/${showLang ? 'Arrow - Left 2.svg' : 'Stroke 1.svg'}`} /> {navOb.nav8}</span>
 
                             <ul className={`select-lang-items ${!showLang ? 'hidden' : 'showMenu'}`}
+
                             >
-                                <li><Link href={route.asPath} locale='en'><a style={{ textDecoration: "none", color: "#fff" }}>English</a></Link></li>
-                                <li><Link href={route.asPath} locale='ar'><a style={{ textDecoration: "none", color: "#fff" }}>عربي</a></Link></li>
+
+                                <li onClick={() => {
+
+                                    i18n.changeLanguage('en')
+                                }}  ><Link href={route.asPath} locale='en'><a style={{ textDecoration: "none", color: "#fff" }}>English</a></Link></li>
+                                <li onClick={() => {
+
+                                    i18n.changeLanguage('en')
+                                }}><Link href={route.asPath} locale='ar'><a style={{ textDecoration: "none", color: "#fff" }}>عربي</a></Link></li>
                             </ul>
                         </li>
                         <li>

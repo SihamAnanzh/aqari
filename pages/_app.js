@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import Loader from '../components/loader/Loader'
 import { FliterProvider } from '../stores/filter';
 import { useRouter } from "next/router";
-import { appWithTranslation } from "next-i18next";
+import { appWithTranslation, useTranslation } from "next-i18next";
 import { TranslateContext, TranslateProvider } from '../stores/translate-context'
 
 
@@ -15,6 +15,7 @@ function MyApp({
 }) {
 
   const router = useRouter();
+
   const [pageLoading, setPageLoading] = useState(false);
 
 
@@ -27,6 +28,10 @@ function MyApp({
 
 
     };
+
+  
+  
+  
 
     router.events.on('routeChangeStart', handleStart);
     router.events.on('routeChangeComplete', handleComplete);

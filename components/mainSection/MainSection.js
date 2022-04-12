@@ -83,8 +83,8 @@ const MainSection = ({ searchOb }) => {
 
             })
 
-        ) :  route.locale == "en" ? swal('warning','Fill all field please' ,'warning') :
-             swal('تحذير','يرجى تعبئة جميع الحقول',  'warning')
+        ) :  route.locale == "en" ? swal('warning','Fill all field please' ,'info') :
+             swal('تنبيه','يرجى تعبئة جميع الحقول',  'warning')
 
   }
 
