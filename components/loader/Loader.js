@@ -10,9 +10,10 @@ const Loader = ({}) => {
   return (
     <>
         <div className='sppiner-container first-loader'>
-        <video muted autoPlay loop  src='/assets/video/111.mp4'  playsInline style={{
+        <video muted autoPlay loop  src='/assets/video/111.mp4'   playsInline style={{
             zIndex:'-1',
-            position:"fixed"
+          position: "fixed",
+            objectFit:"cover"
         
         }}>
            

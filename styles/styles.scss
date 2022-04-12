@@ -73,6 +73,11 @@ body{
     .swal-button.swal-button--confirm{
       background-color:$second-color
     }
+
+    .swal-button.swal-button--confirm:hover{
+      background-color: #fff;
+      color: $main-color;
+    }
 }
 
 @media (max-width:428px) {

@@ -36,12 +36,21 @@ useEffect(()=>{
 // let userData= session.data !== null && session.data
 
  const handleSubmit=()=>{
- let data ={name, email , phone}
-   axios.post('https://stagingapi.aqarifinder.com/api/user/update', { ...data },
-     { headers: { 'Authorization': session.data.id } })
-     .then(res => { 
-     res.data.status.code ==200&& swal(route.locale=='ar'?'تم تعديل بنجاح':"profile updated successfully")
-  })
+   let data = { name, email, phone }
+   phone.length < 8 || phone.length > 12 ?
+
+   (
+    route.locale == 'ar' ? swal("حاول مرة أخرى", "رقم الهاتف خاطئ", 'info') :
+    swal("try again", 'invalid phone number', 'info')
+   ) : (
+    axios.post('https://stagingapi.aqarifinder.com/api/user/update', { ...data },
+    { headers: { 'Authorization': session.data.id } })
+    .then(res => { 
+    res.data.status.code ==200&& swal(route.locale=='ar'?'تم تعديل بنجاح':"profile updated successfully")
+    })
+   )
+  
+  
 
  } 
 

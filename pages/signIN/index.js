@@ -37,7 +37,7 @@ const SignIN = ({ csrfToken, providers }) => {
 
   useEffect(() => {
     console.log(session);
-    session.data !== null && route.push('/')
+    session.data !== null || session.data != undefined && route.push(`${route.asPath}`)
    }
     , [])
   

@@ -114,24 +114,29 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
                     </div>
 
                 </div>
+                <div style={{
+                       display: `${showWrongMessage ? 'none' : ""}`
+                }}
+                >
+                     <span className="error-message" style={{
+                            display: `${showWrongMessage ? 'none' : ""}`,
+                            marginRight:route.locale=="en" ?'-13px':"4px",
+                            paddingBottom: "9px"
+                        }}>
+                            <img src="/assets/img/Error.svg" alt="" style={{
 
+                                paddingRight: "4px",
+
+                            }} />
+                            {sginOb.sn9}
+                        </span>
+                </div>
                 <div className="forget-passwrod" >
 
                     <div style={{
                         PaddingBottom: '15px'
                     }}>
-                        <span className="error-message" style={{
-                            display: `${showWrongMessage ? 'none' : ""}`,
-                            marginRight: '-13px',
-                            paddingBottom: "9px"
-                        }}>
-                            <img src="/assets/img/Error.svg" alt="" style={{
-
-                                paddingLeft: "4px",
-
-                            }} />
-                            {sginOb.sn9}
-                        </span>
+                       
                         <Link href="/signIN/forgetPasswrod">
                             {sginOb.sn4}
                         </Link>

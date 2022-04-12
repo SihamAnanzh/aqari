@@ -63,16 +63,21 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                             >{navOb.nav3}</span></Link>
 
                         </li>
-                        <Link href="/signIN" className='main-nav-item'>
+                        {
+                            session.data == null &&
+                            (
+                                <Link href="/signIN" className='main-nav-item'>
 
-                        <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
-                                <span
-                                    className={`${route.asPath === "/signIN" ? "active" : ""}`}
-
-                                >{navOb.nav4}</span>
-
-                            </li>
-                            </Link>
+                                <li className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}>
+                                        <span
+                                            className={`${route.asPath === "/signIN" ? "active" : ""}`}
+        
+                                        >{navOb.nav4}</span>
+        
+                                    </li>
+                                </Link>
+                        )
+                        }
 
                         <li className={`${route.asPath === "/signUp" ? "activeNav" : ""}`}>
                             {session.data == null ?

@@ -19,9 +19,13 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const [lng, setLng] = useState('')
 
   useEffect(() => {
-    console.log(data );
-    setLat(data.lat)
-    setLat(data.lng)
+    console.log(data);
+    // setLat(parseFloat(hotelLat))
+    // setLng(parseFloat(hotelLng))
+  //  ( data.lat ==undefined?setLat('2.2333'): setLat(data.lat))
+  //  (data.lng==undefined?setLat('2.2333'): setLng(data.lng))
+  
+  
 
   }, [data])
 
