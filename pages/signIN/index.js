@@ -35,11 +35,20 @@ const SignIN = ({ csrfToken, providers }) => {
   const session = useSession();
   const route = useRouter()
 
+
   useEffect(() => {
     console.log(session);
-    session.data !== null || session.data != undefined && route.push('/')
-   }
-    , [])
+  session.data !== null && route.push('/')
+}
+  
+  , [session])
+
+  useEffect(() => {
+      console.log(session);
+    session.data !== null && route.push('/')
+  }
+    
+    , [session])
   
 
   
