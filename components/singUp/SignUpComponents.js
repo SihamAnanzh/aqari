@@ -36,9 +36,14 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
             return;
         }
         if (!checkedConditions) {
-            route.locale=='en'&& swal('Fill in the fields please')
-            route.locale=='ar'&&swal('املأ الحقول من فضلك')
+            route.locale=='ar'&& swal("",'الرجاء الموافقة على الشروط والاحكام',"info")
+            route.locale=='en'&&swal("",'Please agree to the terms and conditions','info')
             return
+        }
+        if (phone.length < 8 || phone.length < 12) {
+            route.locale == 'ar' ? swal("", "رقم الهاتف خاطئ", 'info'):
+            swal("", 'invalid phone number', 'info')
+               
         }
         const response = await axios.post('https://stagingapi.aqarifinder.com/api/user/register', { email, name, password, phone })
         if (response && response.data.status.code === 200) {
@@ -85,7 +90,7 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                     </div>
                     <div className="sign-input phone-singup">
                         <h3>{sginUpOb.su3}</h3>
-                        <input type="text" required className="sign-mail" placeholder={sginUpOb.su3} maxLength='12' minLength={8} tabIndex={3} onChange={(e) => setPhone
+                        <input type="text" required className="sign-mail" placeholder={sginUpOb.su3} maxLength='12' minLength={3} tabIndex={3} onChange={(e) => setPhone
                             (handleChnage(e))} />
                     </div>
                     <div className="sign-input password">
@@ -123,7 +128,7 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                 </div>
                     <div className="sign-input">
                         
-                <button type='submit' className="sign-btn" style={{ outline: 'none', border: "none",fontSize:'22px',fontFamily:"otfPlain" }}>
+                <button type='submit' tabIndex={5} className="sign-btn" style={{ outline: 'none', border: "none",fontSize:'22px',fontFamily:"otfPlain" }}>
                     {sginUpOb.su6}
                 </button>
                 </div>

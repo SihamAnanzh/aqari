@@ -63,6 +63,16 @@ body{
     a{
       text-decoration: none;
     }
+
+    .swal-button-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swal-button.swal-button--confirm{
+      background-color:$second-color
+    }
 }
 
 @media (max-width:428px) {

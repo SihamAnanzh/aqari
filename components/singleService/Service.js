@@ -156,7 +156,11 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
 
 
       <div className='contact-estate'>
-        <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' /></span><a style={{ textDecoration: "none", color: "#fff", fontFamily: "fangsong" }} href={`https://api.whatsapp.com/send/?phone=+9620787012409`} >0787012409</a></div>
+        <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' />
+        </span>
+          <a target='_blank' style={{ textDecoration: "none", color: "#fff", fontFamily: "fangsong" }}
+              href={`https://api.whatsapp.com/send/?phone=+962${data.whatsApp}`}>{data.whatsApp}
+              </a></div>
         <div className='phone' style={{ fontFamily: "fangsong" }}><span className='address-phone'><img src='/assets/img/phone.svg' />
         </span>
           <a style={{textDecoration:"none", color:"#fff"}}  href={`tel:+962${data.phone}`}

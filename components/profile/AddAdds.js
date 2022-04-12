@@ -72,15 +72,21 @@ const AddAdds = ({ addAdsOb }) => {
   const handelSubmit = (e) => {
     !disable &&
       (
-        addTitle == '' || desc == '' || space == "" || front == '' || price == '' || autoNum == ""
+        addTitle == '' || desc == '' || space == ""  || price == '' || autoNum == ""
           || lat == "" || lng == ""
-          || phoneNumber == " " || imageOne == undefined || imageTwo == undefined || imageThree == undefined ||
-          imageFour == undefined ?
+          || phoneNumber == " "  ?
           (
-            route.locale == 'ar' && swal('تحذير', 'يرجى تعبئة جميع الحقول', 'warning'),
-            route.locale == 'en' && swal('warning', 'Fill all the field please', 'warning')
-          )
-
+            route.locale == 'ar' && swal('تنبيه', 'يرجى تعبئة جميع الحقول', 'info'),
+            route.locale == 'en' && swal('تنبيه', 'Fill all the field please', 'info')
+        ) :
+        phoneNumber.length < 8 ?
+          (
+              route.locale == 'ar' ?
+                swal("", "رقم الهاتف خاطئ", 'info') :
+                 swal("", 'invalid phone number', 'info')
+          ) 
+            
+        
           : (
             setFiles([imageOne, imageTwo, imageThree, imageFour]),
 
@@ -93,8 +99,8 @@ const AddAdds = ({ addAdsOb }) => {
             formData.append('category_id', category_id),
             formData.append('ad_type_id', type_id),
             formData.append('region_id', region_id),
-            formData.append('lat',( lat=='undefined'?"2.3333":lat)),
-            formData.append('lng',( lng=='undefiend'?"2.333":lng)),
+            formData.append('lat',lat),
+            formData.append('lng',lng),
             formData.append('phone', phoneNumber),
             formData.append('whatsapp', phoneNumber),
             formData.append('is_premium', isPremium),
@@ -116,9 +122,12 @@ const AddAdds = ({ addAdsOb }) => {
                 response.data.status.code == 200 &&
                   (
                     route.locale == 'ar' && swal("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success'),
-                    route.locale == 'en' && ("'well done", 'Ad Added Successfully', 'success')
+                  route.locale == 'en' && ("'well done", 'Ad Added Successfully', 'success'),
+                  setTimeout(() => {
+                    route.push('/profile/myAdds')
+                  },1000)
                   )
-                route.replace('/profile/myAdds')
+                
 
               })
         

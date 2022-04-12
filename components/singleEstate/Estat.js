@@ -20,8 +20,8 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
 
   useEffect(() => {
     console.log(data );
-    data.lat ==='undefined'?setLat('2.33666'):setLat(data.lat)
-    data.lng ==='undefined'?setLat('2.33666'):setLat(data.lng)
+    setLat(data.lat)
+    setLat(data.lng)
 
   }, [data])
 
@@ -286,8 +286,8 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
         <div className='contact-estate'>
           <div className='whatsApp'><span className='whatsApp-icon'><img src='/assets/img/whatsApp.svg' />
           </span>
-            <a style={{ textDecoration: "none", color: "#fff" }}
-              href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>{data.whatsApp}</a>
+            <a target='_blank' style={{ textDecoration: "none", color: "#fff" }}
+              href={`https://api.whatsapp.com/send/?phone=+962${data.whatsApp}`}>{data.whatsApp}</a>
           </div>
           <div className='phone' ><span className='address-phone'>
             <img src='/assets/img/phone.svg' /></span>

@@ -58,7 +58,7 @@ const PremuimAdd = (props) => {
                     </span>
                         <Link style={{ textDecoration: "none", color: "#fff" }}
                             href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>
-                            <a style={{ textDecoration: "none", color: "#fff" }}>
+                            <a target='_blank' style={{ textDecoration: "none", color: "#fff" }}>
                                 {props.whatsApp}</a></Link>
                     </div>
 
@@ -86,7 +86,7 @@ const PremuimAdd = (props) => {
                     </span>
                         <Link style={{ textDecoration: "none", color: "#fff" }}
                             href={`https://api.whatsapp.com/send/?phone=+9620787012409`}>
-                            <a style={{ textDecoration: "none", color: "#fff" }}>
+                            <a target='_blank' style={{ textDecoration: "none", color: "#fff" }}>
                                 {props.whatsApp}</a></Link>
                     </div>
 

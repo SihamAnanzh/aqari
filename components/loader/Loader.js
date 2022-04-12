@@ -10,12 +10,12 @@ const Loader = ({}) => {
   return (
     <>
         <div className='sppiner-container first-loader'>
-        <video muted autoPlay loop  style={{
+        <video muted autoPlay loop  src='/assets/video/111.mp4'  playsInline style={{
             zIndex:'-1',
             position:"fixed"
         
         }}>
-            <source  src='/assets/video/111.mp4' type='video/mp4' />
+           
         </video>
         <img src='/assets/img/Aqare-Finder-Logo.png' className='img-sppiner' />
         <div className="spinners">
