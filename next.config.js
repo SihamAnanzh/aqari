@@ -14,7 +14,7 @@ module.exports = {
   reactStrictMode: false,
   i18n: {
     defaultLocale: "en",
-    locales: ["en","en"]
+    locales: ["en","ar"]
   },
   env: {
       // endPoint: 'http://localhost:3000/',
@@ -35,7 +35,7 @@ module.exports = {
     //  APPLE_SECRET:"69443FW65R"
     JWT_SECRET:"JWTTOKENSECRET@123",
    APPLE_ID:"com.akari.dominate",
-   APPLE_TEAM_ID:"ananzehsoso@gmail.com",
+  //  APPLE_TEAM_ID:"ananzehsoso@gmail.com",
    APPLE_KEY_ID:"69443FW65R",
   APPLE_PRIVATE_KEY:"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgPneSDBTquqyFIgp21Zqgb4hmPW8nwJvYF0zxj3xOQm+gCgYIKoZIzj0DAQehRANCAARjF/4yatcFRO26KjdRvJdJq7boByM1WKVYR8lEccuY+xAtWtaLapX2rZ4h2FgOcsGhkR5GzoINg/oNkK/pfzoG"
   },
