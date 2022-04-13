@@ -116,7 +116,7 @@ const PremuimService = (props) => {
             <div className="prem-contanier">
             <div className="first-prem">
                 <Link href={{
-                    pathname: `/advertises/${props.add_id}`,
+                    pathname: `/services/${props.add_id}`,
                     query: `title=${props.title.trim().replace(' ', "-")}`
                 }}
                 >
@@ -125,7 +125,7 @@ const PremuimService = (props) => {
                     </div>
                 </Link>
                 <Link href={{
-                    pathname: `/advertises/${props.add_id}`,
+                    pathname: `/services/${props.add_id}`,
                     query: `title=${props.title.trim().replace(' ', "-")}`
                 }}
                 >
