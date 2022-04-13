@@ -9,6 +9,7 @@
 
 process.env.NEXTAUTH_URL= 'https://akarii-demo.herokuapp.com/';
 //  process.env.NEXTAUTH_URL= 'http://localhost:3000/';
+// NEXTAUTH_URL=https://akarii-demo.herokuapp.com/
 
 module.exports = {
   reactStrictMode: false,
@@ -35,7 +36,7 @@ module.exports = {
     //  APPLE_SECRET:"69443FW65R"
     JWT_SECRET:"JWTTOKENSECRET@123",
    APPLE_ID:"com.akari.dominate",
-  //  APPLE_TEAM_ID:"ananzehsoso@gmail.com",
+   APPLE_TEAM_ID:"ananzehsoso@gmail.com",
    APPLE_KEY_ID:"69443FW65R",
   APPLE_PRIVATE_KEY:"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgPneSDBTquqyFIgp21Zqgb4hmPW8nwJvYF0zxj3xOQm+gCgYIKoZIzj0DAQehRANCAARjF/4yatcFRO26KjdRvJdJq7boByM1WKVYR8lEccuY+xAtWtaLapX2rZ4h2FgOcsGhkR5GzoINg/oNkK/pfzoG"
   },

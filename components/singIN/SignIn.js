@@ -42,7 +42,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         const res = await signIn('aqari-login-auth', {
-            redirect: false,
+            redirect: true,
             username: e.target.username.value,
             password: e.target.password.value,
             callbackUrl: `${callbackurl}`,
