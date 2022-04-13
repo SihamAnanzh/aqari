@@ -110,7 +110,7 @@ const AddService = ({ serviceOb }) => {
     setFiles([imageOne, imageTwo, imageThree, imageFour])
     let formData;
     !disable && (
-      title == '' || desc == '' || price == '' || phoneNumber == " " || files.length == 0 ?
+      title == '' || desc == '' || price == '' || phoneNumber == " "  ?
       (
         route.locale =='ar'&& swal( 'تحذير', 'يرجى تعبئة جميع الحقول', 'info'),
         route.locale =='en'&& swal('تنبيه','Fill all field please',  'info')
@@ -140,8 +140,8 @@ const AddService = ({ serviceOb }) => {
             .then((response) => {
               response.data.status.code == 200 ?
                 (               
-                route.locale == 'ar' &&swal("تهانينا", 'تمت إضافة الخدمة بنجاح', 'success'),
-                route.locale == 'en' && ("'well done", 'Serivce Added Successfully', 'success'),
+                route.locale == 'ar' ?swal("تهانينا", 'تمت إضافة الخدمة بنجاح', 'success')
+                : ("'well done", 'Serivce Added Successfully', 'success'),
                 route.replace('/profile/mySerivces')
                 ):swal(response.data.results)
             console.log(response);

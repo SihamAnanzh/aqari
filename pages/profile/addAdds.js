@@ -19,10 +19,22 @@ const Adds = () => {
   // });
   const session=useSession()
 
+
   useEffect(() => {
-    session.data==null&&route.push('/signIN')
-  }, [])
+    console.log(session);
+    if (session.status =='loading') {
+      if (!session) {
+        route.push('/signIN')
+      } else {
+        // maybe go to login page
+        // route.push('/profile')
+      }
+    }
+  }
   
+  , [])
+
+
 
 
   

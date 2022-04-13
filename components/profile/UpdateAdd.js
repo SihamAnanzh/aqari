@@ -76,15 +76,15 @@ const  handelSubmit=(e)=>{
     
           response.data.status.code == 200 &&
           (
-            swal(route.locale == 'ar' ? ("تهانينا", 'تمت تعديل الإعلان بنجاح', 'success') :
-              ("well done", 'Ad updated Successfully', 'success')),
+            route.locale == 'ar' ? swal("تهانينا", 'تمت تعديل الإعلان بنجاح', 'success') :
+            swal("well done", 'Ad updated Successfully', 'success'),
               route.replace('/profile/myAdds')
           
             )  
-           response.data.status.code==500&&swal(route.locale == 'ar' ?
-           ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
-         :  swal("You can not edit at the moment", 'try later', 'error')
-         )        
+          response.data.status.code == 500 && route.locale == 'ar' ?
+            swal("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+         :swal("You can not edit at the moment", 'try later', 'error')
+         
       
         })
         .catch( (response)=> {

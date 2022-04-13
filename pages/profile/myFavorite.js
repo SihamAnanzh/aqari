@@ -14,11 +14,23 @@ const MyFavorite = () => {
   const authCtx = useContext(AuthContext)
   const route = useRouter()
   let { t } = useTranslation();
-const session=useSession()
+  const session = useSession()
   
-  useEffect(() => {
-    session.data==null&&route.push('/signIN')
-  }, [])
+useEffect(() => {
+  console.log(session);
+  if (session.status =='loading') {
+    if (!session) {
+      route.push('/')
+    } else {
+      // maybe go to login page
+      // route.push('/profile')
+    }
+  }
+}
+
+, [])
+
+
 
   // translations
 

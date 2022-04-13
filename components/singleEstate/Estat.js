@@ -20,10 +20,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
 
   useEffect(() => {
     console.log(data);
-    // setLat(parseFloat(hotelLat))
-    // setLng(parseFloat(hotelLng))
-  //  ( data.lat ==undefined?setLat('2.2333'): setLat(data.lat))
-  //  (data.lng==undefined?setLat('2.2333'): setLng(data.lng))
+  
   
     setLat('23.333')
     setLng('23.666')
@@ -283,7 +280,8 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
         </div>
 
         <div className="estat-map map-origin">
-          <SimpleMap getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat} />
+          <SimpleMap getLat={setLat} getLng={setLng} currLng={data.lng.trim().replace("'", "")}
+            currLat={data.lat.trim().replace("'", "")} />
         </div>
         <div className="estat-map map-copy">
           <SimpleMap2 getLat={setLat} getLng={setLng} currLng={data.lng} currLat={data.lat} />

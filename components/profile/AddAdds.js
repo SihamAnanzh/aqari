@@ -9,7 +9,6 @@ import { useRouter } from 'next/router'
 import { signIn, useSession } from 'next-auth/react'
 import { useCookies } from 'react-cookie';
 
-import FileBase64 from 'react-file-base64';
 const AddAdds = ({ addAdsOb }) => {
   const route = useRouter()
   const [cookies, setCookie, removeCookie] = useCookies(['images']);
@@ -65,11 +64,17 @@ const AddAdds = ({ addAdsOb }) => {
 
 
 
+  let formData
 
-  let formData;
-  formData = new FormData()
+
+  useEffect(() => {
+   console.log(imageOne);
+  }, [imageOne]);
+
 
   const handelSubmit = (e) => {
+    setFiles([imageOne, imageTwo, imageThree, imageFour])
+
     !disable &&
       (
         addTitle == '' || desc == '' || space == ""  || price == '' || autoNum == ""
@@ -88,6 +93,8 @@ const AddAdds = ({ addAdsOb }) => {
             
         
           : (
+           
+            formData = new FormData(),
             setFiles([imageOne, imageTwo, imageThree, imageFour]),
 
             formData.append('title', addTitle),
@@ -121,8 +128,8 @@ const AddAdds = ({ addAdsOb }) => {
                console.log(response);
                 response.data.status.code == 200 &&
                   (
-                    route.locale == 'ar' && swal("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success'),
-                  route.locale == 'en' && ("'well done", 'Ad Added Successfully', 'success'),
+                    route.locale == 'ar' ? swal("تهانينا", 'تمت إضافة الإعلان بنجاح', 'success')
+                  : ("'well done", 'Ad Added Successfully', 'success'),
                   setTimeout(() => {
                     route.push('/profile/myAdds')
                   },1000)

@@ -116,8 +116,8 @@ const PremuimService = (props) => {
             <div className="prem-contanier">
             <div className="first-prem">
                 <Link href={{
-                    pathname: `/services/${props.add_id}`,
-                    query:  props.title == undefined ||props.title == ""?props.add_id:`title=${props.title.trim().replace(' ', "-")}`
+                    pathname: `/services/${props.id}`,
+                    // query:  props.title == undefined ||props.title == ""?props.add_id:`title=${props.title.trim().replace(' ', "-")}`
                 }}
                 >
                     <div className="img-prem">
@@ -125,7 +125,7 @@ const PremuimService = (props) => {
                     </div>
                 </Link>
                 <Link href={{
-                    pathname: `/services/${props.add_id}`,
+                    pathname: `/services/${props.id}`,
                     query:  props.title == undefined ||props.title == ""?props.add_id:`title=${props.title.trim().replace(' ', "-")}`
                 }}
                 >
@@ -170,7 +170,7 @@ const PremuimService = (props) => {
             </div>
             <div className="second-prem ">
                 <Link href={{
-                    pathname: `/services/${props.add_id}`,
+                    pathname: `/services/${props.id}`,
                     query:  props.title == undefined ||props.title == ""?props.add_id:`title=${props.title.trim().replace(' ', "-")}`
                 }}
                 >

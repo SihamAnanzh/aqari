@@ -121,15 +121,16 @@ const UpdateService = ({updateData,serviceOb}) => {
               data: formData,
             })
               .then( (response) =>{
-                         response.data.status.code == 200&& swal(route.locale == 'ar' ? ("تهانينا", 'تمت تعديل الإعلان بنجاح', 'success') :
-                         ("well done", 'Serivce updated Successfully', 'success')),
+                response.data.status.code == 200 &&
+                route.locale == 'ar' ?  swal("تهانينا", 'تمت تعديل الإعلان بنجاح', 'success') :
+                swal("well done", 'Serivce updated Successfully', 'success'),
                          route.replace('/profile/mySerivces')
               })
               .catch( (response)=> {
-        
-                swal(route.locale == 'ar' ? ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
-                : ("You can not edit  at the moment", 'try later', 'error')
-                 )               })
+                route.locale == 'ar' ?
+                swal ("لا يمكنك التعديل في الوقت الحالي", 'الرجاء المحاولة في وقت لاحق', 'error')
+                :swal ("You can not edit  at the moment", 'try later', 'error')
+                   })
     
           )
       
