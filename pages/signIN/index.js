@@ -16,6 +16,14 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   const { locale } = context
 
+    
+  if (session && res && session.accessToken) {
+    res.writeHead(302, {
+      Location: callbackUrl,
+    });
+    res.end();
+    return;
+  }
   return {
     props: {
       csrfToken: await getCsrfToken(context),
@@ -36,12 +44,12 @@ const SignIN = ({ csrfToken, providers }) => {
   const route = useRouter()
 
 
-  useEffect(() => {
-    console.log(session);
-  session.data !== null && route.push('/')
-}
+//   useEffect(() => {
+//     console.log(session);
+//   session.data !== null && route.push('/')
+// }
   
-  , [])
+//   , [])
 
 
 
