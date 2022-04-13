@@ -165,16 +165,30 @@ const SignUpComponents = ({ sginUpOb,providers }) => {
                 setCheckedConditions(!checkedConditions)
        
               }}>
-                <img src={`/assets/img/${!checkedConditions ? 'emptyCheck' : 'fullCheck'}.svg`} alt="" />
-                    <a href='' target='_blank' style={{
+                        <img src={`/assets/img/${!checkedConditions ? 'emptyCheck' : 'fullCheck'}.svg`} alt="" />
+                          
+                     
+                        
+                    <span  style={{
                         color: "#00416b",
-                        textDecoration:"underline",
+                      
                         fontFamily: "otfPlain",
                         fontWeight:"400",
                         fontSize: '18px', paddingLeft: route.locale == 'en' ? '10px' : "0",
                         paddingRight: route.locale =='ar'?'10px':'0'
-                    }}>{route.locale == "ar" ? "الموافقة على الشروط والقواعد وسياسية الخصوصية" :
-                        "Agree to the terms, rules and privacy policy"}</a>
+                        }}>
+                            {sginUpOb.su8}{" "}<a  target='_blank' style={{
+                                  color: "#00416b",
+                                  textDecoration:"underline",
+                                  fontFamily: "otfPlain",
+                            }} href={`https://akarii-demo.herokuapp.com/${route.locale}/terms`}
+                            >{sginUpOb.su9}</a>
+                         <a  target='_blank' style={{
+                                color: "#00416b",
+                                textDecoration:"underline",
+                                fontFamily: "otfPlain",
+                            }} href={`https://akarii-demo.herokuapp.com/${route.locale}/privacy`}>{" "} {sginUpOb.su10}</a>
+                        </span>
 
                 </div>
                     <div className="sign-input">

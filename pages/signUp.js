@@ -54,9 +54,12 @@ const route=useRouter()
   let su5 = t('signUp:reg-5')
   let su6 = t('signUp:reg-6')
   let su7 = t('signUp:reg-7')
+  let su8 = t('signUp:reg-8')
+  let su9 = t('signUp:reg-9')
+  let su10 = t('signUp:reg-10')
 
   let sginUpOb = {
-    su1, su2, su3, su4, su5, su6, su7
+    su1, su2, su3, su4, su5, su6, su7,su8,su9,su10
   }
   return (
     <div>

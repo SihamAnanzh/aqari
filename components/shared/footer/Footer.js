@@ -33,12 +33,12 @@ const Footer = ({ fo1 }) =>
             <a target='_blank' style={{ textDecoration: "none", color: "#fff" }} href="https://www.instagram.com/aqarifinderkw/">
             <Instagram />
             </a>
-            <a target='_blank' style={{ textDecoration: "none", color: "#fff" }} href="">
+            {/* <a target='_blank' style={{ textDecoration: "none", color: "#fff" }} href="">
             <Facebook />
           </a>
             <a target='_blank' style={{ textDecoration: "none", color: "#fff" }} href="">
             <Twitter/>
-        </a>
+        </a> */}
          
           </div>
         </div>

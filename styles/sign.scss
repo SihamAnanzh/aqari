@@ -40,11 +40,14 @@
     background-color: $background-color;
     padding:15px 15px;
     margin-top: 5px;
-    font-size: 28px;
+    font-size: 24px;
     border: 2px solid $main-color;
     color: $main-color;
     outline: none;
     padding-right: 30px;
+    font-weight: 400;
+    font-family: otfPlain   ;
+
   
       border-radius: 10px;
    
@@ -271,6 +274,6 @@
 
 
 
-.error-input{
-border: 1px solid red;
-}
+// .error-input{
+// border: 1px solid red;
+// }

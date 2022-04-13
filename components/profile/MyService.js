@@ -11,8 +11,12 @@ const authCtx=useContext(AuthContext)
 <div className='adds-container' style={{marginTop:"40px"}}>
       <h1 className='premium-title'>{adsOb.newestٍervice}</h1>
       {
-       serviceData&&serviceData.map((premiumAddsData)=>(
-        <PremiumService adsOb={adsOb} singleEstate={premiumAddsData.singleEstatData} key={premiumAddsData.id} id={premiumAddsData.id} img={premiumAddsData.img} title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price} time={premiumAddsData.time} views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc}/>
+        serviceData && serviceData.map((premiumAddsData) => (
+          <PremiumService time={premiumAddsData.time} adsOb={adsOb}
+            singleEstate={premiumAddsData.singleEstatData}
+            key={premiumAddsData.id} id={premiumAddsData.id} img={premiumAddsData.img}
+            title={premiumAddsData.title} address={premiumAddsData.address} price={premiumAddsData.price}
+           views={premiumAddsData.views} whatsApp={premiumAddsData.whatsApp} phone={premiumAddsData.phone} disc={premiumAddsData.disc} />
 
        ))
        }

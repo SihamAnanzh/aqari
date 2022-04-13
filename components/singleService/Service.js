@@ -74,7 +74,7 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
             <h3 className="estat-name">{data.title}</h3>
             <h5 className="estate-address" >
               <img src="/assets/img/location.svg" alt="" />
-              {data.address.charAt(0).toUpperCase() + data.address.slice(1)}
+              {data.address}
             </h5>
           </div>
          
@@ -86,7 +86,7 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
 
               </div> : <h4 className='editAdd' ><Link href={
                 {
-                    pathname: `/profile/updateAdds/${data.add_id}`,
+                    pathname: `/profile/updateService/${data.add_id}`,
                   query:`/${data.title.trim().replace(' ', '-')}`
 
               }}
@@ -98,7 +98,7 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
         </div>
         <div className="data">
           <div className='data-time'>
-            <img src='/assets/img/time-estat.svg' width={8.63} height={8.63} />4 {addAdsOb.hour}</div>
+            <img src='/assets/img/time-estat.svg' width={8.63} height={8.63} />{data.time}</div>
           <div className='data-views'>
             <img src='/assets/img/view2-01 (2).svg' width={12.47} height={7.95} />
 

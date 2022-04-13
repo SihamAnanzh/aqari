@@ -135,7 +135,6 @@ let newestٍervice=t('home:newestٍervice')
           whatsApp: adds.whatsapp,
           views: adds.view_count,
           time: adds.issue_date_string.slice(0,5),
-
           user_id: adds.user_id,
           regionsString: adds.regions_string,
           serviceTypeString: adds.service_type.title,

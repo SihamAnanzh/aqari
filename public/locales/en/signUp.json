@@ -5,5 +5,8 @@
   "reg-4": "Password",
   "reg-5": "Confirm password",
   "reg-6": "Sign-up",
-  "reg-7": "Or you can sign-up through "
+  "reg-7": "Or you can sign-up through ",
+  "reg-8":"Agree to the",
+  "reg-9":"terms, rules",
+  "reg-10":" and privacy policy"
 }

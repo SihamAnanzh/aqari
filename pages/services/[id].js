@@ -19,6 +19,7 @@ const SingleServices = ({ data }) => {
 
 
   useEffect(() => {
+  console.log(data);
     data.images ?
       setWithImg(true) : setWithImg(false)
 

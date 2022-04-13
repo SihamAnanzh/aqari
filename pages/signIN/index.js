@@ -41,15 +41,9 @@ const SignIN = ({ csrfToken, providers }) => {
   session.data !== null && route.push('/')
 }
   
-  , [session])
+  , [])
 
-  useEffect(() => {
-      console.log(session);
-    session.data !== null && route.push('/')
-  }
-    
-    , [session])
-  
+
 
   
   // translations
