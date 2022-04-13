@@ -65,7 +65,7 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
 
                         </li>
                         {
-                            session.data == null &&
+                             session.data == null&&
                             (
                                 <Link href="/signIN" className='main-nav-item'>
 
@@ -152,9 +152,17 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
 
                             >
 
-                                <li  ><Link href={route.asPath} locale='en'><a
-                                    style={{ textDecoration: "none", color: "#fff" }}>English</a></Link></li>
-                                <li ><Link href={route.asPath} locale='ar'><a style={{ textDecoration: "none", color: "#fff" }}>عربي</a></Link></li>
+                                <li >
+                                    <Link href={route.asPath} locale='en'>
+                                    <a hrefLang='en'
+                                        style={{ textDecoration: "none", color: "#fff" }}>English</a>
+                                </Link>
+                        </li>
+                                <li>
+                                    <Link href={route.asPath} locale='ar'>
+                                    <a hrefLang='ar' style={{ textDecoration: "none", color: "#fff" }}>عربي</a>
+                                </Link>
+                                </li>
                             </ul>
                         </li>
                         <li>

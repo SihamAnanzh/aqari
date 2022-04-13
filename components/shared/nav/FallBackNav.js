@@ -12,6 +12,7 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
     const [switchlang, setSwitchLang] = useState(false)
     const [login, setLogin] = useState(false)
     const session = useSession()
+
     const authCtx = useContext(AuthContext)
 
 
