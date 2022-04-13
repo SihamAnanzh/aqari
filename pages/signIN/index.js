@@ -16,14 +16,9 @@ export async function getServerSideProps(context) {
   const providers = await getProviders();
   const { locale } = context
 
-    
-  if (session && res && session.accessToken) {
-    res.writeHead(302, {
-      Location: callbackUrl,
-    });
-    res.end();
-    return;
-  }
+
+
+  
   return {
     props: {
       csrfToken: await getCsrfToken(context),
@@ -40,16 +35,25 @@ export async function getServerSideProps(context) {
 
 const SignIN = ({ csrfToken, providers }) => {
   let { t } = useTranslation();
-  const session = useSession();
+  const session  = useSession();
   const route = useRouter()
 
 
-//   useEffect(() => {
-//     console.log(session);
-//   session.data !== null && route.push('/')
-// }
+
+
+  useEffect(() => {
+    console.log(session);
+    if (session.status =='loading') {
+      if (session) {
+        route.push('/')
+      } else {
+        // maybe go to login page
+        // route.push('/profile')
+      }
+    }
+  }
   
-//   , [])
+  , [])
 
 
 
@@ -106,7 +110,7 @@ const SignIN = ({ csrfToken, providers }) => {
   return (
     <div>
       {
-        session.data == null &&
+        // session.data == null &&
         <>
         <Head>
         <title>{route.locale == 'ar'?"تسجيل دخول":"sign in"}</title>
