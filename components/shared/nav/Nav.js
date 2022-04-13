@@ -154,11 +154,12 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
 
                                 <li onClick={() => {
 
-                                    i18n.changeLanguage('en')
-                                }}  ><Link href={route.asPath} locale='en'><a style={{ textDecoration: "none", color: "#fff" }}>English</a></Link></li>
+                            
+                                }}  ><Link href={route.asPath} locale='en'><a
+                                    style={{ textDecoration: "none", color: "#fff" }}>English</a></Link></li>
                                 <li onClick={() => {
 
-                                    i18n.changeLanguage('en')
+                                   
                                 }}><Link href={route.asPath} locale='ar'><a style={{ textDecoration: "none", color: "#fff" }}>عربي</a></Link></li>
                             </ul>
                         </li>
