@@ -101,7 +101,7 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
 
                                 ))
                             } */}
-                        <Link Link style={{ textDecoration: "none", cursor:'pointer' }} href={route.asPath}
+                        <Link  style={{ textDecoration: "none", cursor:'pointer' }} href={route.asPath}
                             locale='en'>
                             <a className='fall-lang' style={{
                                 textDecoration: "none",
@@ -116,7 +116,7 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
                             </a>
                         </Link>
 
-                        <Link Link style={{ textDecoration: "none" }} href={route.asPath}
+                        <Link  style={{ textDecoration: "none" }} href={route.asPath}
                             locale='ar'>
                             <a className='fall-nav' style={{
                                 textDecoration: "none",
