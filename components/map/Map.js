@@ -15,6 +15,7 @@ const SimpleMap = ({getLat, getLng , currLat, currLng}) => {
     <GoogleMapReact
       bootstrapURLKeys={{ key:'AIzaSyCcY5aS5-7z5NW5226234uPiKhswMx6LqY' }}
       center={{lat:lat,lng:lng}}
+
       defaultZoom={10}
       onGoogleApiLoaded={
         ev => {

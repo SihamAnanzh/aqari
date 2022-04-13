@@ -4,11 +4,11 @@ import Footer from '../components/shared/footer/Footer'
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head';
-import TermsComponents from '../components/TermsComponents';
 import { useRouter } from 'next/router';
-const Terms = () => {
+const Terms = (pageProps) => {
 const route = useRouter()
 let { t } = useTranslation();
+const { content } = pageProps;
 
     // translations
 
@@ -64,7 +64,8 @@ let { t } = useTranslation();
                 <meta name="description" content="" />
             </Head>
             <Nav navOb={navOb} />
-            <TermsComponents/>
+            <div className="privcay" dangerouslySetInnerHTML={{ __html: content }}>
+            </div>
             <Footer fo1={fo1} />
         </div>
     )
@@ -73,9 +74,17 @@ let { t } = useTranslation();
 export default Terms
 
 
+export async function getServerSideProps(context) {
+  
+    const { locale, req } = context;
+
+    const protocol = req.headers['x-forwarded-proto'] || 'http'
+    const baseUrl = req ? `${protocol}://${req.headers.host}` : ''
+    const content = await fetch(baseUrl + "/privacy_policy.html")
+        .then((response) => response.text())
+        .then(text => text);
+    
 
 
-export async function getServerSideProps({ locale }) {
-    return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp', 'contactus'])) } }
+return { props: { content,...(await serverSideTranslations(locale, ['home', 'signUp', 'contactus'])) } }
 }
-

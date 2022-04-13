@@ -17,7 +17,7 @@ const PremuimAdd = (props) => {
                 }}
                 >
                     <div className="img-prem">
-                        <img src={props.img == 'undefined'?"/assets/img/home.jpg":props.singleEstate.images[0] && props.singleEstate.images[0].logo_url} alt={props.title} />
+                        <img src={props.singleEstate.images.length == 0?"/assets/img/home.jpg":props.singleEstate.images[0] && props.singleEstate.images[0].logo_url} alt={props.title} />
                     </div>
                 </Link>
                 <Link href={{

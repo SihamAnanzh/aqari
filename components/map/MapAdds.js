@@ -18,7 +18,9 @@ const SimpleMap = ({getLat, getLng , currLat, currLng}) => {
 <div style={{ height: '202px', width: '911px'}}>
     <GoogleMapReact
       bootstrapURLKeys={{ key:'AIzaSyCcY5aS5-7z5NW5226234uPiKhswMx6LqY' }}
-      center={{lat:lat,lng:lng}}
+      // center={{lat:lat,lng:lng}}
+      center={{lat:'5.666',lng:'2.3333'}}
+
       defaultZoom={10}
       onClick={ev => {
         setLat(ev.lat)

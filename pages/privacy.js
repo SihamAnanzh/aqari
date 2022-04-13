@@ -4,11 +4,11 @@ import Footer from '../components/shared/footer/Footer'
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head';
-import PrivacyComponents from '../components/PrivacyComponents';
 import { useRouter } from 'next/router';
-const privacy = () => {
+const privacy = (pageProps) => {
     const route = useRouter()
     let { t } = useTranslation();
+    const { content } = pageProps;
 
     // translations
 
@@ -57,17 +57,22 @@ const privacy = () => {
     let sginUpOb = {
         su1, su2, su3, su4, su5, su6, su7
     }
+  
+
     return (
-        <div>
+        <>
             <Head>
-                <title>{route.locale == 'ar' ? "سياسة الخصوصية" : "Privacy&policy"}</title>
+                <title>{ route.locale=='en'?"Privcy & policy":"سياسة الخصوصية"} </title>
                 <meta name="description" content="" />
             </Head>
             <Nav navOb={navOb} />
-            <PrivacyComponents/>
+            <div className="privcay" dangerouslySetInnerHTML={{ __html: content }}>
+            </div>
             <Footer fo1={fo1} />
-        </div>
-    )
+         
+            </>
+        );
+
 }
 
 export default privacy
@@ -75,6 +80,18 @@ export default privacy
 
 
 
-export async function getServerSideProps({ locale }) {
-    return { props: { ...(await serverSideTranslations(locale, ['home', 'signUp', 'contactus'])) } }
+export async function getServerSideProps(context) {
+  
+        const { locale, req } = context;
+    
+console.log(req);
+        const protocol = req.headers['x-forwarded-proto'] || 'http'
+        const baseUrl = req ? `${protocol}://${req.headers.host}` : ''
+        const content = await fetch(baseUrl + "/privacy_policy.html")
+            .then((response) => response.text())
+            .then(text => text);
+        
+  
+    
+    return { props: { content,...(await serverSideTranslations(locale, ['home', 'signUp', 'contactus'])) } }
 }

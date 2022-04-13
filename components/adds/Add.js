@@ -11,7 +11,7 @@ const Add = (props) => {
     
       <div className="prem-contanier ad-contanier ad-main">
         <div className="img-prem">
-          <img src={props.singleEstate.images[0] && props.singleEstate.images[0].logo_url} alt={props.title} />
+          <img src={props.singleEstate.images.length == 0 ?"/assets/img/home.jpg":props.singleEstate.images[0] && props.singleEstate.images[0].logo_url} alt={props.title} />
         </div>
         <div className="first-prem">
           <div className="info-prem">

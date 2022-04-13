@@ -18,14 +18,6 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const [lat, setLat] = useState('')
   const [lng, setLng] = useState('')
 
-  useEffect(() => {
-    console.log(data);
-  
-  
-    setLat('23.333')
-    setLng('23.666')
-
-  }, [data])
 
   let session = useSession()
 
@@ -92,7 +84,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
               <h3 className="estat-name">{data.title}</h3>
               <h5 className="estate-address" >
                 <img src="/assets/img/location.svg" alt="" />
-                {data.address.charAt(0).toUpperCase() + data.address.slice(1)}
+                 {data.address}
               </h5>
             </div>
             {!userAdd ?

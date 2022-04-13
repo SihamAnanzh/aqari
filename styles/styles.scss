@@ -1,4 +1,5 @@
 
+@import './error.scss';
 @import 'utils/variables';
 @import './slider.scss';
 @import './shared/nav.scss';
@@ -17,7 +18,6 @@
 @import './addAdda.scss';
 @import './profile.scss';
 @import './forgetPassword.scss';
-
 @font-face {
     font-family:otfPlain;
     src: url(../public/assets/Fonts/TheSansArabic-Bold.otf);
@@ -77,6 +77,10 @@ body{
     .swal-button.swal-button--confirm:hover{
       background-color: #fff;
       color: $main-color;
+    }
+
+    .privcay{
+      padding: 40px;
     }
 }
 

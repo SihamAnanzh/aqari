@@ -1,8 +1,9 @@
 import React from 'react'
+import Error500 from '../components/Error/Error500 '
 
 const _error = () => {
   return (
-    <div>_error</div>
+     <Error500/>
   )
 }
 
