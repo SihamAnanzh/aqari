@@ -332,7 +332,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           </div>
         </div>
         <div className="estat-map map-copy">
-          <div id="map" style={{ height: "202px", width: "911px" }}>
+          <div style={{ height: "168px", width: "89vw" }}>
             <GoogleMapReact
               draggable
               bootstrapURLKeys={{

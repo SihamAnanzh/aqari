@@ -52,11 +52,10 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
 
       if (res.url) {
         console.log(document.referrer);
-        document.referrer == "http://localhost:3000/signIN" ||
-        document.referrer == "https://akarii-demo.herokuapp.com/signIN" ||
-        document.referrer == "http://localhost:3000/"
-          ? route.push("/profile", "/profile", { locale: route.locale })
-          : route.push(document.referrer);
+        document.referrer == "http://localhost:3000/packages" ||
+        document.referrer == "https://akarii-demo.herokuapp.com/packages"
+          ? route.push(document.referrer)
+          : route.push("/profile", "/profile", { locale: route.locale });
       }
     }
   };

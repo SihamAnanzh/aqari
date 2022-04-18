@@ -19,7 +19,7 @@ const SimpleMap = ({ getLat, getLng, currLat, currLng }) => {
     lng: 47.4818,
   };
   return (
-    <div style={{ height: "168px", width: "90vw" }}>
+    <div style={{ height: "168px", width: "89vw" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyDtymLZiNzrzJMemAUS6ZQyfcgmjgJ1GNc" }}
         center={center}

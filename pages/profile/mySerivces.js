@@ -19,15 +19,25 @@ const ProfileService = () => {
   const route = useRouter();
   let { t } = useTranslation();
   const session = useSession();
+
   useEffect(() => {
     console.log(session);
-    // if (session.status == "loading" || session.status == "authenticated") {
-    if (session.data == null) {
-      route.push(`/signIN`, `/signIN`, { locale: route.locale });
-    } else {
-      // maybe go to login page
+    if (session.status == "loading") {
+      if (!session) {
+        route.push("/");
+      } else {
+        // maybe go to login page
+        // route.push('/profile')
+      }
     }
   }, []);
+
+  // const { data: session } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     route.push(`/signIN`, `/signIN`, { locale: route.locale });
+  //   },
+  // });
 
   // translations
 

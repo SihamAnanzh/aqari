@@ -39,13 +39,8 @@ const SignIN = ({ csrfToken, providers }) => {
   const route = useRouter();
 
   useEffect(() => {
-    if (session.status == "loading") {
-      if (session) {
-        route.push("/", "/", { locale: route.locale });
-      } else {
-        // maybe go to login page
-        // route.push('/profile')
-      }
+    if (session && session.data !== null) {
+      route.push("/", "/", { locale: route.locale });
     }
   }, []);
 
@@ -104,9 +99,8 @@ const SignIN = ({ csrfToken, providers }) => {
 
   return (
     <div>
-      {
-        // session.data == null &&
-        <>
+      {session.data == null && (
+        <div>
           <Head>
             <title>{route.locale == "ar" ? "تسجيل دخول" : "sign in"}</title>
             <meta name="description" content="" />
@@ -118,8 +112,8 @@ const SignIN = ({ csrfToken, providers }) => {
             sginOb={sginOb}
           />
           <Footer fo1={fo1} />
-        </>
-      }
+        </div>
+      )}
     </div>
   );
 };
