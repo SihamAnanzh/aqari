@@ -14,11 +14,8 @@ const Adds = () => {
   const session = useSession();
   useEffect(() => {
     console.log(session);
-    // if (session.status == "loading" || session.status == "authenticated") {
-    if (session.data == null) {
+    if (!session || session.data == null) {
       route.push(`/signIN`, `/signIN`, { locale: route.locale });
-    } else {
-      // maybe go to login page
     }
   }, []);
 

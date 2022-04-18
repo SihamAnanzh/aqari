@@ -22,22 +22,10 @@ const ProfileService = () => {
 
   useEffect(() => {
     console.log(session);
-    if (session.status == "loading") {
-      if (!session) {
-        route.push("/");
-      } else {
-        // maybe go to login page
-        // route.push('/profile')
-      }
+    if (!session || session.data == null) {
+      route.push(`/signIN`, `/signIN`, { locale: route.locale });
     }
   }, []);
-
-  // const { data: session } = useSession({
-  //   required: true,
-  //   onUnauthenticated() {
-  //     route.push(`/signIN`, `/signIN`, { locale: route.locale });
-  //   },
-  // });
 
   // translations
 
@@ -113,65 +101,6 @@ const ProfileService = () => {
     pro8,
   };
 
-  useEffect(() => {
-    axios
-      .get("https://stagingapi.aqarifinder.com/api/user/services/list", {
-        headers: {
-          lang: route.locale,
-          Authorization: session && session.data != null && session.data.id,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        setService(res.data.results);
-      });
-  }, []);
-  useEffect(() => {
-    services &&
-      services.map((adds) => {
-        let data = {
-          id: adds.id,
-          user_id: adds.user_id,
-          address: adds.regions_string,
-          images:
-            adds.images.length > 0
-              ? adds.images.logo_url
-              : "/assets/img/home.jpg",
-          title: adds.title,
-          price: adds.price,
-          time: adds.issue_date_string.slice(0, 5),
-
-          views: adds.view_count,
-          whatsApp: adds.whatsapp,
-          phone: adds.phone,
-          disc: adds.description,
-          regionsString: adds.regions_string,
-          serviceTypeString: adds.service_type.title,
-          serviceTypeId: adds.service_type.id,
-          regionsId: adds.region_ids,
-          singleEstatData: {
-            id: adds.id,
-            images: adds.images,
-            discriptions: adds.description,
-            price: adds.price,
-            phone: adds.phone,
-            whatsApp: adds.whatsapp,
-            views: adds.view_count,
-            time: adds.issue_date_string.slice(0, 5),
-            user_id: adds.user_id,
-            regionsString: adds.regions_string,
-            serviceTypeString: adds.service_type.title,
-            serviceTypeId: adds.service_type.id,
-            regionsId: adds.region_ids,
-            title: adds.title,
-            address: adds.regions_string,
-          },
-        };
-
-        setServicseData((pre) => [...pre, data]);
-      });
-  }, [services]);
-
   return (
     <>
       {session && session.data != null && (
@@ -183,7 +112,7 @@ const ProfileService = () => {
           <div className="profile-container">
             <h1 className="profile-heading">{pro1}</h1>
             <SubNav proOb={proOb} />
-            <MyService serviceData={serviceData} adsOb={adsOb} />
+            <MyService adsOb={adsOb} />
           </div>
           <Footer fo1={fo1} />
         </>

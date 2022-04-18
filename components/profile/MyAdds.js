@@ -5,6 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../../stores/auth-context";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+
 const MyAdds = ({ adsOb }) => {
   console.log("my add");
   const [latest, setLatest] = useState([]);
@@ -15,17 +16,17 @@ const MyAdds = ({ adsOb }) => {
   const session = useSession();
 
   useEffect(() => {
-    axios({
-      method: "get",
-      url: "https://stagingapi.aqarifinder.com/api/user/ads/list",
-      headers: {
-        Authorization: session.data.id,
-        lang: route.locale,
-      },
-    }).then((res) => {
-      console.log(res);
-      setUserData(res.data.results);
-    });
+    axios
+      .get("https://stagingapi.aqarifinder.com/api/user/ads/list", {
+        headers: {
+          Authorization: session.data.id,
+          lang: route.locale,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setUserData(res.data.results);
+      });
   }, []);
 
   useEffect(() => {

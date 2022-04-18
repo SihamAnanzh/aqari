@@ -4,7 +4,6 @@ import Footer from "../../components/shared/footer/Footer";
 import SubNav from "../../components/profile/SubNav";
 import MyAdds from "../../components/profile/MyAdds";
 import { AuthContext } from "../../stores/auth-context";
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -22,10 +21,7 @@ const ProfileAdd = () => {
     console.log(session);
     if (session.status == "loading") {
       if (!session.data) {
-        route.push("/signIN");
-      } else {
-        // maybe go to login page
-        // route.push('/profile')
+        route.push(`/signIN`, `/signIN`, { locale: route.locale });
       }
     }
   }, []);
