@@ -6,6 +6,7 @@ import { AuthContext } from "../../stores/auth-context";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 const MyAdds = ({ adsOb }) => {
+  console.log("my add");
   const [latest, setLatest] = useState([]);
   const [userData, setUserData] = useState([]);
   const authCtx = useContext(AuthContext);
@@ -18,8 +19,8 @@ const MyAdds = ({ adsOb }) => {
       method: "get",
       url: "https://stagingapi.aqarifinder.com/api/user/ads/list",
       headers: {
+        Authorization: session.data.id,
         lang: route.locale,
-        Authorization: session.data !== null && session.data.id,
       },
     }).then((res) => {
       console.log(res);

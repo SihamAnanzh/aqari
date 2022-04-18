@@ -21,8 +21,8 @@ const ProfileAdd = () => {
   useEffect(() => {
     console.log(session);
     if (session.status == "loading") {
-      if (!session) {
-        route.push("/");
+      if (!session.data) {
+        route.push("/signIN");
       } else {
         // maybe go to login page
         // route.push('/profile')
@@ -103,7 +103,7 @@ const ProfileAdd = () => {
 
   return (
     <>
-      {session.data != null && (
+      {session && session.data != null && (
         <>
           <Head>
             <title>{route.locale == "ar" ? "إعلاناتي" : "My Ads"}</title>

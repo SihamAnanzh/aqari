@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { ArrowBack } from "@mui/icons-material";
 import GoogleMapReact from "google-map-react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import MapAdds from "../map/MapAdds";
 
 const Marker = ({ children }) => {
   return <div className="">{children}</div>;
@@ -309,7 +310,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
           </div>
         </div>
 
-        <div className="estat-map map-origin">
+        <div className="estat-map map-origin" id="map">
           <div style={{ height: "298px", width: "888px" }}>
             <GoogleMapReact
               draggable

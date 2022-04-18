@@ -122,6 +122,7 @@ const ProfileService = () => {
         },
       })
       .then((res) => {
+        console.log(res);
         setService(res.data.results);
       });
   }, []);

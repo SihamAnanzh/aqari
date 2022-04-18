@@ -39,9 +39,10 @@ const SignIN = ({ csrfToken, providers }) => {
   const route = useRouter();
 
   useEffect(() => {
-    if (session && session.data !== null) {
-      route.push("/", "/", { locale: route.locale });
-    }
+    console.log(session.data);
+    session.data != null ||
+      (session.data != undefined &&
+        route.push("/", "/", { locale: route.locale }));
   }, []);
 
   // translations
@@ -99,21 +100,20 @@ const SignIN = ({ csrfToken, providers }) => {
 
   return (
     <div>
-      {session.data == null && (
-        <div>
-          <Head>
-            <title>{route.locale == "ar" ? "تسجيل دخول" : "sign in"}</title>
-            <meta name="description" content="" />
-          </Head>
-          <Nav navOb={navOb} />
-          <SignInComponent
-            csrfToken={csrfToken}
-            providers={providers}
-            sginOb={sginOb}
-          />
-          <Footer fo1={fo1} />
-        </div>
-      )}
+      {/* {session.data == null && ( */}
+      <div>
+        <Head>
+          <title>{route.locale == "ar" ? "تسجيل دخول" : "sign in"}</title>
+          <meta name="description" content="" />
+        </Head>
+        <Nav navOb={navOb} />
+        <SignInComponent
+          csrfToken={csrfToken}
+          providers={providers}
+          sginOb={sginOb}
+        />
+        <Footer fo1={fo1} />
+      </div>
     </div>
   );
 };

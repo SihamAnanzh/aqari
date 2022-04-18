@@ -19,6 +19,7 @@
     "axios": "^0.26.1",
     "file-base64": "^1.0.0",
     "google-map-react": "^2.1.10",
+    "google-maps-react": "^2.0.6",
     "image-to-base64": "^2.2.0",
     "material-icons": "^1.10.8",
     "next": "12.1.0",

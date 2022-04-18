@@ -67,8 +67,14 @@ const AddAdds = ({ addAdsOb }) => {
   let formData;
 
   const handelSubmit = (e) => {
-    setFiles([imageOne, imageTwo, setImageThree, imageFour]);
-    // setFiles([imageOneB6, imageTwoB6, setImageThreeB6, imageFourB6]);
+    // setFiles([imageOne, imageTwo, setImageThree, imageFour]);
+    setFiles([
+      imageOneB6 != undefined && setImageOneB6(sliceBase64(imageOneB6)),
+      imageTwoB6 != undefined && setImageTwoB6(sliceBase64(imageTwoB6)),
+      setImageThreeB6 != undefined &&
+        setImageThreeB6(sliceBase64(setImageThreeB6)),
+      imageFourB6 != undefined && setImageFourB6(sliceBase64(imageFourB6)),
+    ]);
 
     !disable &&
       (addTitle == "" ||
@@ -88,7 +94,7 @@ const AddAdds = ({ addAdsOb }) => {
           ? swal("", "رقم الهاتف خاطئ", "info")
           : swal("", "invalid phone number", "info")
         : ((formData = new FormData()),
-          setFiles([imageOne, imageTwo, imageThree, imageFour]),
+          setFiles([imageOneB6, imageTwoB6, setImageThreeB6, imageFourB6]),
           formData.append("title", addTitle),
           formData.append("desc", desc),
           formData.append("area", space),
@@ -139,103 +145,128 @@ const AddAdds = ({ addAdsOb }) => {
         console.log(res);
       });
   }, []);
-  // useEffect(() => {
-  //   console.log(route.query.paymentId + "rtoue.query");
+  useEffect(() => {
+    let formData;
+    formData.append("package_id", props.packgeId);
+    formData.append(
+      "callbackurl",
+      "https://akarii-demo.herokuapp.com/profile/addAdds"
+    );
+    console.log(route.query.paymentId + "  rtoue.query");
 
-  //   route.query.paymentId &&
-  //     session.status == "authenticated" &&
-  //     axios({
-  //       method: "post",
-  //       url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //         Authorization: session.data != null && session.data.id,
-  //       },
-  //       // data: formDataTow
-  //     }).then((res) => {
-  //       console.log(
-  //         `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
-  //       );
-  //       console.log(res);
-  //       swal(res.data.status.message);
-  //       console.log(session);
-  //     });
-  // }, [route, session.status]);
+    route.query.paymentId &&
+      session.status == "authenticated" &&
+      axios({
+        method: "post",
+        url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: session.data != null && session.data.id,
+        },
+        data: formData,
+      }).then((res) => {
+        console.log(
+          `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
+        );
+        console.log(res);
+        swal(res.data.status.message);
+        console.log(session);
+      });
 
-  // const handleClickPremium = () => {
-  //   let formData;
+    //get the id from cokies
+    // cookies.id
+    let id = 1;
+    //clear the cookies
+    axios
+      .get(`https://stagingapi.aqarifinder.com/api/temp/ad/${id}`)
+      .then((res) => {
+        console.log(res);
+        /// take the res data and then fill in the filed with
+      });
+  }, [route, session.status]);
 
-  //   setImageOneB6(
-  //     imageOneB6.substring(imageOneB6.indexOf(",") + 1, imageOneB6.length())
-  //   );
-  //   console.log(imageOneB6);
-  //   PAl <= 0 &&
-  //     (addTitle == "" ||
-  //     desc == "" ||
-  //     space == "" ||
-  //     price == "" ||
-  //     autoNum == "" ||
-  //     lat == "" ||
-  //     lng == "" ||
-  //     phoneNumber == " "
-  //       ? (route.locale == "ar" &&
-  //           swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
-  //         route.locale == "en" &&
-  //           swal("warning", "Fill all the field please", "info"))
-  //       : phoneNumber.length < 8
-  //       ? route.locale == "ar"
-  //         ? swal("", "رقم الهاتف خاطئ", "info")
-  //         : swal("", "invalid phone number", "info")
-  //       : ((formData = new FormData()),
-  //         setFiles([imageOneB6, imageTwoB6, setImageThreeB6, imageFourB6]),
-  //         formData.append("title", addTitle),
-  //         formData.append("desc", desc),
-  //         formData.append("area", space),
-  //         formData.append("front", front),
-  //         formData.append("price", price),
-  //         formData.append("currency_id", "1"),
-  //         formData.append("category_id", category_id),
-  //         formData.append("ad_type_id", type_id),
-  //         formData.append("region_id", region_id),
-  //         formData.append("lat", lat),
-  //         formData.append("lng", lng),
-  //         formData.append("phone", phoneNumber),
-  //         formData.append("whatsapp", phoneNumber),
-  //         formData.append("is_premium", isPremium),
-  //         files.map((file) => {
-  //           formData.append("image_files", file);
-  //         }),
-  //         formData.append("auto_number", autoNum),
-  //         axios({
-  //           method: "post",
-  //           url: "https://stagingapi.aqarifinder.com/api/temp/ad/add",
-  //           headers: {
-  //             "Content-Type": "multipart/form-data",
-  //             Authorization: session.data.id,
-  //           },
-  //           data: formData,
-  //         }).then((response) => {
-  //           console.log(response);
-  //         })));
+  const sliceBase64 = (img) => {
+    return img.substring(img.indexOf(",") + 1, img.length);
+  };
 
-  //   // PAl <= 0
-  //   //   ? ((formData = new FormData()),
-  //   //     formData.append("package_id", props.packgeId),
-  //   //     axios({
-  //   //       method: "post",
-  //   //       url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
-  //   //       headers: {
-  //   //         "Content-Type": "multipart/form-data",
-  //   //         Authorization: session.data != null && session.data.id,
-  //   //       },
-  //   //       data: formData,
-  //   //     }).then((res) => {
-  //   //       res.data.status.code == 200 &&
-  //   //         route.replace(res.data.results.data.paymentURL);
-  //   //       console.log(res.data.results.data.paymentURL);
-  //   //     }))
-  //   //   : (setCheckedAdd(!checkedAdd), setShowDialogiBox(!showDialogBox));
-  // };
+  const handleClickPremium = () => {
+    let formData;
+
+    PAl <= 0 &&
+      (addTitle == "" ||
+      desc == "" ||
+      space == "" ||
+      price == "" ||
+      autoNum == "" ||
+      lat == "" ||
+      lng == "" ||
+      phoneNumber == " "
+        ? (route.locale == "ar" &&
+            swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
+          route.locale == "en" &&
+            swal("warning", "Fill all the field please", "info"))
+        : phoneNumber.length < 8
+        ? route.locale == "ar"
+          ? swal("", "رقم الهاتف خاطئ", "info")
+          : swal("", "invalid phone number", "info")
+        : ((formData = new FormData()),
+          setFiles([
+            sliceBase64(imageOneB6),
+            sliceBase64(imageTwoB6),
+            sliceBase64(setImageThreeB6),
+            sliceBase64(imageFourB6),
+          ]),
+          formData.append("title", addTitle),
+          formData.append("desc", desc),
+          formData.append("area", space),
+          formData.append("front", front),
+          formData.append("price", price),
+          formData.append("currency_id", "1"),
+          formData.append("category_id", category_id),
+          formData.append("ad_type_id", type_id),
+          formData.append("region_id", region_id),
+          formData.append("lat", lat),
+          formData.append("lng", lng),
+          formData.append("phone", phoneNumber),
+          formData.append("whatsapp", phoneNumber),
+          formData.append("is_premium", isPremium),
+          files.map((file) => {
+            formData.append("image_files", file);
+          }),
+          formData.append("auto_number", autoNum),
+          axios({
+            method: "post",
+            url: "https://stagingapi.aqarifinder.com/api/temp/ad/add",
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: session.data.id,
+            },
+            data: formData,
+          }).then((response) => {
+            let id = res.id;
+            ///get id store in cookies
+            setCookie("id", id, { path: "/" });
+            console.log("response" + response);
+          })));
+
+    PAl <= 0
+      ? ((formData = new FormData()),
+        formData.append("package_id", props.packgeId),
+        axios({
+          method: "post",
+          url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: session.data != null && session.data.id,
+          },
+          data: formData,
+        }).then((res) => {
+          res.data.status.code == 200 &&
+            route.replace(res.data.results.data.paymentURL);
+          console.log(res.data.results.data.paymentURL);
+        }))
+      : (setCheckedAdd(!checkedAdd), setShowDialogiBox(!showDialogBox));
+  };
 
   const handleAddPremAds = () => {
     setIspremium(!isPremium);
@@ -289,7 +320,7 @@ const AddAdds = ({ addAdsOb }) => {
           <div className="sign-input  addAdds-phone ">
             <h3>{addAdsOb.add1}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add1}
@@ -302,7 +333,7 @@ const AddAdds = ({ addAdsOb }) => {
           <div className="sign-input  addAdds-phone ">
             <h3>{addAdsOb.add2}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               maxLength={12}
               className="sign-mail"
@@ -319,7 +350,7 @@ const AddAdds = ({ addAdsOb }) => {
           >
             <h3>{addAdsOb.add3}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add3}
@@ -393,7 +424,7 @@ const AddAdds = ({ addAdsOb }) => {
           >
             <h3>{addAdsOb.add4}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add4}
@@ -463,7 +494,7 @@ const AddAdds = ({ addAdsOb }) => {
           >
             <h3>{addAdsOb.add5}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add5}
@@ -516,7 +547,7 @@ const AddAdds = ({ addAdsOb }) => {
           <div className="sign-input  addAdds-space">
             <h3>{addAdsOb.add6}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add6}
@@ -528,7 +559,7 @@ const AddAdds = ({ addAdsOb }) => {
           <div className="sign-input  addAdds-price">
             <h3>{addAdsOb.add7}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add7}
@@ -540,7 +571,7 @@ const AddAdds = ({ addAdsOb }) => {
           <div className="sign-input  addAdds-interface">
             <h3>{addAdsOb.add8}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add8}
@@ -552,7 +583,7 @@ const AddAdds = ({ addAdsOb }) => {
           <div className="sign-input  addAdds-auto-num">
             <h3>{addAdsOb.add9}</h3>
             <input
-              autoComplete="false"
+              autoComplete="off"
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add9}
@@ -591,7 +622,7 @@ const AddAdds = ({ addAdsOb }) => {
                   }}
                 >
                   <input
-                    autoComplete="false"
+                    autoComplete="off"
                     type="file"
                     id="select-file"
                     tabIndex={3}
@@ -636,7 +667,7 @@ const AddAdds = ({ addAdsOb }) => {
                   }}
                 >
                   <input
-                    autoComplete="false"
+                    autoComplete="off"
                     type="file"
                     id="select-file-2"
                     tabIndex={3}
@@ -680,7 +711,7 @@ const AddAdds = ({ addAdsOb }) => {
                   }}
                 >
                   <input
-                    autoComplete="false"
+                    autoComplete="off"
                     type="file"
                     id="select-file-3"
                     tabIndex={3}
@@ -724,7 +755,7 @@ const AddAdds = ({ addAdsOb }) => {
                   }}
                 >
                   <input
-                    autoComplete="false"
+                    autoComplete="off"
                     type="file"
                     id="select-file-4"
                     tabIndex={3}

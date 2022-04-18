@@ -51,11 +51,12 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
       setShowWrongPassword(true);
 
       if (res.url) {
-        console.log(document.referrer);
-        document.referrer == "http://localhost:3000/packages" ||
-        document.referrer == "https://akarii-demo.herokuapp.com/packages"
-          ? route.push(document.referrer)
-          : route.push("/profile", "/profile", { locale: route.locale });
+        route.push(res.url);
+        // console.log(document.referrer);
+        // document.referrer == "http://localhost:3000/siginIN" ||
+        // document.referrer == "https://akarii-demo.herokuapp.com/siginIN"
+        //   ? route.push("/profile", "/profile", { locale: route.locale })
+        //   : route.push(document.referrer);
       }
     }
   };
