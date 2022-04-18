@@ -158,7 +158,7 @@ export async function getServerSideProps(context) {
   // }
   const { id } = context.params;
   if (id) {
-    await axios.get(`https://stagingapi.aqarifinder.com/api/ads/${id}`, { headers: { 'lang': locale } }).then((res) => {
+    await axios.get(`https://stagingapi.aqarifinder.com/api/ads/${id}`, { headers: {Authorization:session.data.id,'lang': locale } }).then((res) => {
 
       updateData = {
         adType: res.data.results.ad_type.title,

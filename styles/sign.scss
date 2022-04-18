@@ -17,7 +17,7 @@
         h2{
             font-size: 28px;
             color: $second-color;
-         
+  
             font-family: otfPlain;
             
         }
@@ -25,14 +25,14 @@
     }
 
 
-   
-   
+  
     .inputs-group{
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         flex-direction: column;
     }
+
 
     .sign-input input{
     width: 540px;

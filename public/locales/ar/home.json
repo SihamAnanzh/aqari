@@ -35,7 +35,9 @@
     "day":"يوم",
     "edit":"تعديل",
     "premium":"مميز",
-    "priceCode":"د.ك"
+    "priceCode":"د.ك",
+   "statusSwal":"تنبيه",
+   "messageSwal":"يرجى تعبئة جميع الحقول"
 
 
 

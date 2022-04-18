@@ -35,5 +35,7 @@
   "hour": "Hour",
   "edit": "Edit",
   "premium": "Premium",
-  "priceCode": "K.D"
+  "priceCode": "K.D",
+  "statusSwal":"warning",
+  "messageSwal":"Fill all field please"
 }

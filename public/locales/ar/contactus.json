@@ -5,6 +5,12 @@
     "phone":"رقم الهاتف",
     "message":"الرسالة",
     "send":"ارسال",
-    "name":"الاسم"
+    "name":"الاسم",
+    "statusW":"تنبيه",
+    "messageEmpty":"يرجى تعبئة جميع الحقول",
+    "messageEmail":"بريد إلكتروني خاطئ",
+    "messagePhone":"رقم الهاتف خاطئ",
+    "sendStatus":"شكرا للتواصل",
+    "messageContact":"تم ارسال الرسالة بنجاح"
 
 }

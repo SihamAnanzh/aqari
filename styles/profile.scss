@@ -134,7 +134,11 @@ background-color: $second-color;
     cursor: pointer;  
 }
 
-
+.addAdds-tab-container .addAdds-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .addAdds-tab-container .addAdds-group input{
     position: relative;
 }

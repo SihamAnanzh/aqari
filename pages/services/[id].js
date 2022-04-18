@@ -9,6 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from 'next/head'
 import BackBtn from '../../components/BackBtn'
 import { useRouter } from 'next/router'
+import { getSession } from 'next-auth/react'
 
 
 const SingleServices = ({ data }) => {
@@ -148,8 +149,13 @@ export async function getServerSideProps(context) {
   let data;
   const { locale } = context
   const { id } = context.params;
+  const session=getSession(context)
   if (id) {
-    await axios.get(`https://stagingapi.aqarifinder.com/api/services/${id}`, { headers: { 'lang': locale } }).then((res) => {
+    await axios.get(`https://stagingapi.aqarifinder.com/api/services/${id}`, {
+      headers: {
+        Authorization:session.data!= null &&session.data !=undefined?session.data.id:null ,
+        lang: locale,
+      }, }).then((res) => {
       data = {
         address: res.data.results.regions_string,
         description: res.data.results.description,

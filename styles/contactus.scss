@@ -22,13 +22,7 @@
     }
 
     input,textarea{
-    // width: 757px;
-    // height: 72px;
-    // border: 2px solid $main-color; 
-    // border-radius: 10px;
-    // outline: none;
-    // background-color: $background-color;
-    // font-family: otfPlain;
+
     
     width: 757px;
     height: 72px;
@@ -38,8 +32,8 @@
     background-color: $background-color ;
     /* padding: 7px; */
     font-family: otfPlain;
-    font-size: 20px;
-    padding: 13px;
+    font-size: 24px;
+    padding: 22px;
     color: #00416B;
     }
     input:focus{
@@ -53,7 +47,7 @@
 
     input::placeholder,
     textarea::placeholder{
-        font-size: 14px;
+        font-size: 20px;
         color: #9F9F9F;
         padding: 10px 15px;
         font-family: otfPlain;

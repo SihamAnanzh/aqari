@@ -103,7 +103,7 @@ cursor: pointer;
 }
 
 .estat-deatils{
-    width: 228px;
+    width: 251px;
 
     height: 47px;
     background-color:#E6ECEF ;
@@ -156,9 +156,9 @@ cursor: pointer;
     }
 }
 .automated-number{
-width: 362px;
+width: 529px;
 height: 47px;
-margin: 5px auto;
+margin: 29px ;
 justify-content: space-evenly;
 text-align: center;
 margin-top: 0;
@@ -168,7 +168,8 @@ margin-top: 0;
 
 }
 .ltr .automated-number{
-    width:439px ;
+    width:529px ;
+    margin: 0;
 }
 
 
@@ -193,10 +194,12 @@ border-radius: 20px;
    background-color: #f2f5f7;
     color: #fff;
     display: flex;
-    justify-content:space-around;
+    justify-content:center;
     align-items: center;
     width: 50%;
- 
+      div{
+          margin: 5px;
+      }
     .whatsApp {
         width: 190px;
         height: 41px;

@@ -29,7 +29,23 @@
         margin-left: unset;
         margin-right: 20px;
 
+   
+
         }
+
+         .time{
+            width: 62px;
+            margin-right: 3px;
+        }
+
+        .price{
+       
+            width: 59px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
         .time,.views{
            
             img{
@@ -114,6 +130,7 @@
     }
     .price{
         color: #00416B;
+    
     }
 
 
@@ -328,6 +345,18 @@ margin-right: 10px;
     
 }
 
+.ad-contanier .detials .time{
+    width: 62px;
+    margin-right: 3px;
+}
+
+.ad-contanier .detials .price{
+
+    width: 59px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
 // .ltr .contact-prem .whatsApp .whatsApp-icon img{
 //     margin-right: 10px;
 // }
@@ -455,7 +484,7 @@ margin-right: 10px;
 
     }
     .ad-contanier{
-        height: 122px;
+        height: fit-content;
     }
 
     .ad-contanier .info-prem {
@@ -547,7 +576,7 @@ width: 187px;
 
   .ad-contanier{
     width: 461px;
-    height: 104px;
+    height: fit-content;
     .img-prem img,.img-prem{
         width: 60px;
         height:60px
@@ -762,8 +791,7 @@ width: 187px;
             margin-left: 1px;
   
          }
-
-        
+     
 
 
 
@@ -793,13 +821,14 @@ width: 187px;
             margin-left: unset;
             margin-right: unset;
         }
-
+        
+    
 
         .ad-second .detials{
             width: 110px;
         }
         .ad-contanier{
-            height: 124px;
+            height: fit-content;
         }
         .ad-contanier .img-prem img, .ad-contanier .img-prem {
             width: 67px;
@@ -924,7 +953,7 @@ width: 187px;
 }
 
 .prem-contanier.ad-contanier.ad-second{
-    height: 135px;
+    height: fit-content;
 
   
 }

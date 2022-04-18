@@ -5,5 +5,11 @@
   "email": "E-mail Address",
   "message": "Message",
   "send": "Send",
-  "name": "Name"
+  "name": "Name",
+  "statusW":"warning",
+  "messageEmpty":"Fill all field please",
+  "messageEmail":"invalid email",
+  "messagePhone":"invalid phone number",
+  "sendStatus":"Thanks for contacting",
+  "messageContact":"message sent successfully"
 }
