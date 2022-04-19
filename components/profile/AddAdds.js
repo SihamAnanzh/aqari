@@ -68,14 +68,7 @@ const AddAdds = ({ addAdsOb }) => {
 
   const handelSubmit = (e) => {
     // setFiles([imageOne, imageTwo, setImageThree, imageFour]);
-    setFiles([
-      imageOneB6 != undefined && setImageOneB6(sliceBase64(imageOneB6)),
-      imageTwoB6 != undefined && setImageTwoB6(sliceBase64(imageTwoB6)),
-      setImageThreeB6 != undefined &&
-        setImageThreeB6(sliceBase64(setImageThreeB6)),
-      imageFourB6 != undefined && setImageFourB6(sliceBase64(imageFourB6)),
-    ]);
-
+    console.log(imageOneB6);
     !disable &&
       (addTitle == "" ||
       desc == "" ||
@@ -117,16 +110,15 @@ const AddAdds = ({ addAdsOb }) => {
             method: "post",
             url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
             headers: {
-              "Content-Type": "multipart/form-data",
+              "Content-Type": "application/json",
               Authorization: session.data.id,
             },
             data: formData,
           }).then((response) => {
-            console.log(response);
             response.data.status.code == 200 &&
               (route.locale == "ar"
                 ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
-                : ("'well done", "Ad Added Successfully", "success"),
+                : swal("'well done", "Ad Added Successfully", "success"),
               setTimeout(() => {
                 route.push("/profile/myAdds");
               }, 1000));
@@ -145,45 +137,45 @@ const AddAdds = ({ addAdsOb }) => {
         console.log(res);
       });
   }, []);
-  useEffect(() => {
-    let formData;
-    formData.append("package_id", props.packgeId);
-    formData.append(
-      "callbackurl",
-      "https://akarii-demo.herokuapp.com/profile/addAdds"
-    );
-    console.log(route.query.paymentId + "  rtoue.query");
+  // useEffect(() => {
+  //   let formData;
+  //   formData.append("package_id", 1);
+  //   formData.append(
+  //     "callbackurl",
+  //     "https://akarii-demo.herokuapp.com/profile/addAdds"
+  //   );
+  //   console.log(route.query.paymentId + "  rtoue.query");
 
-    route.query.paymentId &&
-      session.status == "authenticated" &&
-      axios({
-        method: "post",
-        url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: session.data != null && session.data.id,
-        },
-        data: formData,
-      }).then((res) => {
-        console.log(
-          `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
-        );
-        console.log(res);
-        swal(res.data.status.message);
-        console.log(session);
-      });
+  //   route.query.paymentId &&
+  //     session.status == "authenticated" &&
+  //     axios({
+  //       method: "post",
+  //       url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         Authorization: session.data != null && session.data.id,
+  //       },
+  //       data: formData,
+  //     }).then((res) => {
+  //       console.log(
+  //         `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
+  //       );
+  //       console.log(res);
+  //       swal(res.data.status.message);
+  //       console.log(session);
+  //     });
 
-    //get the id from cokies
-    // cookies.id
-    let id = 1;
-    //clear the cookies
-    axios
-      .get(`https://stagingapi.aqarifinder.com/api/temp/ad/${id}`)
-      .then((res) => {
-        console.log(res);
-        /// take the res data and then fill in the filed with
-      });
-  }, [route, session.status]);
+  //   //get the id from cokies
+  //   // cookies.id
+  //   let id = 1;
+  //   //clear the cookies
+  //   axios
+  //     .get(`https://stagingapi.aqarifinder.com/api/temp/ad/${id}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       /// take the res data and then fill in the filed with
+  //     });
+  // }, [route, session.status]);
 
   const sliceBase64 = (img) => {
     return img.substring(img.indexOf(",") + 1, img.length);
@@ -192,7 +184,7 @@ const AddAdds = ({ addAdsOb }) => {
   const handleClickPremium = () => {
     let formData;
 
-    PAl <= 0 &&
+    PAl >= 0 &&
       (addTitle == "" ||
       desc == "" ||
       space == "" ||
@@ -210,12 +202,7 @@ const AddAdds = ({ addAdsOb }) => {
           ? swal("", "رقم الهاتف خاطئ", "info")
           : swal("", "invalid phone number", "info")
         : ((formData = new FormData()),
-          setFiles([
-            sliceBase64(imageOneB6),
-            sliceBase64(imageTwoB6),
-            sliceBase64(setImageThreeB6),
-            sliceBase64(imageFourB6),
-          ]),
+          setFiles([imageOneB6, imageTwoB6, setImageThreeB6, imageFourB6]),
           formData.append("title", addTitle),
           formData.append("desc", desc),
           formData.append("area", space),
@@ -238,15 +225,17 @@ const AddAdds = ({ addAdsOb }) => {
             method: "post",
             url: "https://stagingapi.aqarifinder.com/api/temp/ad/add",
             headers: {
-              "Content-Type": "multipart/form-data",
+              "Content-Type": "application/json",
               Authorization: session.data.id,
             },
             data: formData,
           }).then((response) => {
-            let id = res.id;
+            console.log(response);
+
+            // let id = response.data.results.id;
             ///get id store in cookies
-            setCookie("id", id, { path: "/" });
-            console.log("response" + response);
+            // setCookie("id", id, { path: "/" });
+            console.log("response" + response.data);
           })));
 
     PAl <= 0
@@ -631,9 +620,10 @@ const AddAdds = ({ addAdsOb }) => {
                     }}
                     onChange={(e) => {
                       setImageOne(e.target.files[0]);
-                      toBase64(e.target.files[0]).then((res) =>
-                        setImageOneB6(res)
-                      );
+                      toBase64(e.target.files[0]).then(async (res) => {
+                        let img = await sliceBase64(res);
+                        setImageOneB6(img);
+                      });
                       console.log(imageOneB6);
                     }}
                   />
@@ -676,9 +666,10 @@ const AddAdds = ({ addAdsOb }) => {
                     }}
                     onChange={(e) => {
                       setImageTwo(e.target.files[0]);
-                      toBase64(e.target.files[0]).then((res) =>
-                        setImageTwoB6(res)
-                      );
+                      toBase64(e.target.files[0]).then(async (res) => {
+                        let img = await sliceBase64(res);
+                        setImageTwoB6(img);
+                      });
                     }}
                   />
 
@@ -720,9 +711,10 @@ const AddAdds = ({ addAdsOb }) => {
                     }}
                     onChange={(e) => {
                       setImageThree(e.target.files[0]);
-                      toBase64(e.target.files[0]).then((res) =>
-                        setImageThreeB6(res)
-                      );
+                      toBase64(e.target.files[0]).then(async (res) => {
+                        let img = await sliceBase64(res);
+                        setImageThreeB6(img);
+                      });
                     }}
                   />
 
@@ -764,9 +756,10 @@ const AddAdds = ({ addAdsOb }) => {
                     }}
                     onChange={(e) => {
                       setImageFour(e.target.files[0]);
-                      toBase64(e.target.files[0]).then((res) =>
-                        setImageFourB6(res)
-                      );
+                      toBase64(e.target.files[0]).then(async (res) => {
+                        let img = await sliceBase64(res);
+                        setImageFourB6(img);
+                      });
                     }}
                   />
 

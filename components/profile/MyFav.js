@@ -14,16 +14,17 @@ const MyFav = ({ adsOb }) => {
   const session = useSession();
 
   useEffect(() => {
-
-    axios.get('https://stagingapi.aqarifinder.com/api/user/ad/fav/list', {
-      headers: {
-        Authorization:session.data.id ,
-        lang: route.locale,
-      },
-    }).then((res) => {
-      console.log(res);
-      setUserData(res.data.results);
-    });
+    axios
+      .get("https://stagingapi.aqarifinder.com/api/user/ad/fav/list", {
+        headers: {
+          Authorization: session.data.id,
+          lang: route.locale,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setUserData(res.data.results);
+      });
   }, []);
 
   useEffect(() => {

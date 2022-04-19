@@ -22,11 +22,10 @@ const Index = ({ prem, latest, services, Request, name }) => {
   // const { locale } = route;
   let { t, i18n } = useTranslation();
 
-  // useEffect(() => {
-  //   convertUrl(
-  //     "https://stagingapi.aqarifinder.com/assets/category/1/logo_1.png?v=b70bf2fb-865c-4165-a1b3-185fd717f96f"
-  //   );
-  // }, []);
+  console.log(latest);
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   //nav
   let nav1 = t("home:nav-1");

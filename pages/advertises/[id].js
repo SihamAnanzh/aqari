@@ -161,6 +161,7 @@ const SingleEstate = ({ data }) => {
   };
 
   useEffect(() => {
+    console.log(data.images);
     data.images ? setWithImg(true) : setWithImg(false);
   }, []);
   const route = useRouter();

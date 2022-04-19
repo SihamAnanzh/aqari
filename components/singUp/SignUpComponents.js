@@ -30,74 +30,55 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
   };
 
   const handleSubmit = async (e) => {
-    let nameIn = document.getElementById("name");
-    let emailIn = document.getElementById("email");
-    let phoneIn = document.getElementById("phone");
-    let passwrodIn = document.getElementById("name");
-    let passwrodConfrimIn = document.getElementById("name");
+    e.preventDefault();
 
     name == "" &&
     email == "" &&
     password == "" &&
     confirmPassword == "" &&
     phone == ""
-      ? (nameIn.classList.add("error-input"),
-        emailIn.classList.add("error-input"),
-        phoneIn.classList.add("error-input"),
-        passwrodIn.classList.add("error-input"),
-        passwrodConfrimIn.classList.add("error-input"))
-      : (name == "" && nameIn.classList.add("error-input"),
-        email == "" && emailIn.classList.add("error-input"),
-        password == "" && passwrodIn.classList.add("error-input"),
-        confirmPassword == "" && passwrodConfrimIn.classList.add("error-input"),
-        phone == "" && phoneIn.classList.add("error-input"));
-
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      route.locale == "ar" && swal("تنبيه", "كلمة السر غير متطابقة", "info");
-      route.locale == "en" &&
-        swal("warning", "password does not match", "info");
-      passwrodConfrimIn.classList.add("error-input"),
-        passwrodIn.classList.add("error-input");
-      console.log(passwrodIn);
-
-      return;
-    }
-    if (!checkedConditions) {
-      route.locale == "ar" &&
-        swal("", "الرجاء الموافقة على الشروط والاحكام", "info");
-      route.locale == "en" &&
-        swal("", "Please agree to the terms and conditions", "info");
-      return;
-    }
-    if (phone.length < 8 || phone.length < 12) {
-      route.locale == "ar"
+      ? route.locale == "ar"
+        ? swal("تنبيه", "يرجى تعبئة جميع الحقول", "info")
+        : swal("warning", "Fill all the field please", "info")
+      : password !== confirmPassword
+      ? route.locale == "ar"
+        ? swal("تنبيه", "كلمة السر غير متطابقة", "info")
+        : swal("warning", "password does not match", "info")
+      : !checkedConditions
+      ? route.locale == "ar"
+        ? swal("", "الرجاء الموافقة على الشروط والاحكام", "info")
+        : swal("", "Please agree to the terms and conditions", "info")
+      : phone.length < 8 || phone.length > 12
+      ? route.locale == "ar"
         ? swal("", "رقم الهاتف خاطئ", "info")
-        : swal("", "invalid phone number", "info");
-      phoneIn.classList.add("error-input");
-    }
-    const response = await axios.post(
-      "https://stagingapi.aqarifinder.com/api/user/register",
-      { email, name, password, phone }
-    );
-    if (response && response.data.status.code === 200) {
-      const res = await signIn("aqari-login-auth", {
-        redirect: false,
-        username: email,
-        password: password,
-        callbackUrl: `/`,
-      });
-      if (res?.error) {
-        console.log(response);
-        swal(response.data.status.message);
-      } else {
-        console.log(response);
+        : swal("", "invalid phone number", "info")
+      : await axios
+          .post("https://stagingapi.aqarifinder.com/api/user/register", {
+            email,
+            name,
+            password,
+            phone,
+          })
+          .then(async (response) => {
+            if (response && response.data.status.code === 200) {
+              const res = await signIn("aqari-login-auth", {
+                redirect: false,
+                username: email,
+                password: password,
+                callbackUrl: `/`,
+              });
+              if (res?.error) {
+                console.log(response);
+                swal(response.data.status.message);
+              } else {
+                console.log(response);
 
-        if (res.url) route.push(res.url);
-      }
-    } else {
-      swal(response.data.status.message);
-    }
+                if (res.url) route.push(res.url);
+              }
+            } else {
+              swal(response.data.status.message);
+            }
+          });
   };
 
   return (

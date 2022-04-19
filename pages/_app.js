@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps, name }) {
           <AuthContextProvider>
             <TranslateProvider>
               <div className={router.locale == "ar" ? "" : "ltr"}>
-                <NextNProgress options={{ showSpinner: false }} />
+                <NextNProgress options={{ showSpinner: false }} height={5} />
                 <Component {...pageProps} />
               </div>
             </TranslateProvider>
