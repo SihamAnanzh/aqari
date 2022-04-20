@@ -19,7 +19,7 @@ const PremuimService = (props) => {
           }}
         >
           <div className="img-prem">
-            <Image
+            <img
               src={
                 props.singleEstate.images[0] &&
                 props.singleEstate.images[0].logo_url
