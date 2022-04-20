@@ -353,7 +353,7 @@ const AddAdds = ({ addAdsOb }) => {
                 setShowListNames(false);
               }}
             />
-            <Image
+            <img
               src="/assets/img/Stroke 1.svg"
               alt=""
               className="catergory-add-arrow"
@@ -628,7 +628,7 @@ const AddAdds = ({ addAdsOb }) => {
                     }}
                   />
 
-                  <Image src="/assets/img/img.svg" alt="" />
+                  <img src="/assets/img/img.svg" alt="" />
                   <p>{addAdsOb.pic} 1</p>
                 </div>
               ) : (
