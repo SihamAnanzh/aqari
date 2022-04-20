@@ -66,6 +66,9 @@ const MainSection = ({ searchOb }) => {
               filterCtx.setAddsSResutls(res.data.results);
               filterCtx.setSerivceId("");
               filterCtx.setRentValue(true);
+              // filterCtx.setAddsSResutls(res.data.results);
+              // filterCtx.setSerivceId("");
+              // filterCtx.setRentValue(true);
               route.replace("/SearchResult");
             })
         : showSearchSelling &&

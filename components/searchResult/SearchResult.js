@@ -19,7 +19,6 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
   const [areas, setAreas] = useState([filterCtx.areaName]);
   const [visible, setVisible] = useState(5);
   const route = useRouter();
-  console.log(areas);
   const loadMoreHandler = () => {
     setVisible((pre) => pre + 5);
   };
@@ -28,17 +27,17 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
     console.log(filterCtx.addsResults.premium_ads);
     if (typeof window !== "undefined") {
       if (filterCtx.addsResults.premium_ads != undefined) {
-        localStorage.setItem(
-          "premData",
-          JSON.stringify(
-            filterCtx.addsResults.premium_ads &&
-              filterCtx.addsResults.premium_ads
-          )
-        );
-        localStorage.setItem(
-          "data",
-          JSON.stringify(filterCtx.addsResults.ads && filterCtx.addsResults.ads)
-        );
+        // localStorage.setItem(
+        //   "premData",
+        //   JSON.stringify(
+        //     filterCtx.addsResults.premium_ads &&
+        //       filterCtx.addsResults.premium_ads
+        //   )
+        // );
+        // localStorage.setItem(
+        //   "data",
+        //   JSON.stringify(filterCtx.addsResults.ads && filterCtx.addsResults.ads)
+        // );
         localStorage.setItem("type", JSON.stringify(filterCtx.typeName));
 
         localStorage.setItem("rent", JSON.stringify(filterCtx.rent));
@@ -47,10 +46,10 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
 
         // latestLocal(JSON.parse(localStorage.getItem("latestLocal")));
       }
-      let prem = localStorage.getItem("premData");
-      setLocalPremuimAdds(JSON.parse(prem));
-      let ads = localStorage.getItem("data");
-      setLeastestLocal(JSON.parse(ads));
+      // let prem = localStorage.getItem("premData");
+      // setLocalPremuimAdds(JSON.parse(prem));
+      // let ads = localStorage.getItem("data");
+      // setLeastestLocal(JSON.parse(ads));
       let type = localStorage.getItem("type");
       let rent = localStorage.getItem("rent");
       let area = localStorage.getItem("areaNames");
@@ -59,13 +58,101 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
       setType(JSON.parse(type));
       setRent(JSON.parse(rent));
       setAreas(JSON.parse(area));
-      console.log(areas);
+      console.log(area);
     }
   }, []);
 
+  // useEffect(() => {
+  //   localPremuimAdds &&
+  //     localPremuimAdds.map((adds) => {
+  //       let data = {
+  //         add_id: adds.id,
+  //         user_id: adds.user_id,
+  //         images: adds.images,
+  //         title: adds.title,
+  //         address: adds.region.country.title + " " + adds.region.title,
+  //         price: adds.price,
+  //         time: adds.issue_date_string.slice(0, 5),
+
+  //         views: adds.view_count,
+  //         whatsApp: adds.whatsapp,
+  //         phone: adds.phone,
+  //         disc: adds.desc,
+  //         lat: adds.lat,
+  //         lng: adds.lng,
+  //         singleEstatData: {
+  //           id: adds.id,
+  //           images: adds.images,
+  //           title: adds.title,
+  //           address: adds.region.country.title + " " + adds.region.title,
+  //           discriptions: adds.desc,
+  //           city: adds.region.title,
+  //           space: adds.area,
+  //           interface: adds.front,
+  //           price: adds.price,
+  //           autoNumber: adds.auto_number,
+  //           phone: adds.phone,
+  //           whatsApp: adds.whatsapp,
+  //           lat: adds.lat,
+  //           lng: adds.lng,
+  //           views: adds.view_count,
+  //           time: adds.issue_date_string.slice(0, 5),
+
+  //           user_id: adds.user_id,
+  //         },
+  //       };
+  //       setPremuimAdds((pre) => [...pre, data]);
+  //     });
+  // }, [localPremuimAdds]);
+
+  // useEffect(() => {
+  //   latestLocal &&
+  //     latestLocal.map((adds) => {
+  //       let data = {
+  //         add_id: adds.id,
+  //         user_id: adds.user_id,
+  //         images: adds.images,
+  //         title: adds.title,
+  //         address: adds.region.country.title + " " + adds.region.title,
+  //         price: adds.price,
+  //         time: adds.issue_date_string.slice(0, 5),
+
+  //         views: adds.view_count,
+  //         whatsApp: adds.whatsapp,
+  //         phone: adds.phone,
+  //         disc: adds.desc,
+  //         lat: adds.lat,
+  //         lng: adds.lng,
+  //         singleEstatData: {
+  //           id: adds.id,
+  //           images: adds.images,
+  //           title: adds.title,
+  //           address: adds.region.country.title + " " + adds.region.title,
+  //           discriptions: adds.desc,
+  //           city: adds.region.title,
+  //           space: adds.area,
+  //           interface: adds.front,
+  //           price: adds.price,
+  //           autoNumber: adds.auto_number,
+  //           phone: adds.phone,
+  //           whatsApp: adds.whatsapp,
+  //           lat: adds.lat,
+  //           lng: adds.lng,
+  //           views: adds.view_count,
+  //           time: adds.issue_date_string.slice(0, 5),
+
+  //           user_id: adds.user_id,
+  //         },
+  //       };
+  //       setLeastestAdd((pre) => [...pre, data]);
+  //       console.log(latestData);
+  //     });
+  // }, [latestLocal]);
   useEffect(() => {
-    localPremuimAdds &&
-      localPremuimAdds.map((adds) => {
+    // filterCtx.addsResults.premium_ads != undefined
+    //   ? filterCtx.addsResults.premium_ads
+    filterCtx.addsResults.premium_ads &&
+      filterCtx.addsResults.premium_ads.map((adds) => {
         let data = {
           add_id: adds.id,
           user_id: adds.user_id,
@@ -98,17 +185,21 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
             lng: adds.lng,
             views: adds.view_count,
             time: adds.issue_date_string.slice(0, 5),
-
+            category: adds.category.title,
+            adType: adds.ad_type.title,
             user_id: adds.user_id,
           },
         };
         setPremuimAdds((pre) => [...pre, data]);
       });
-  }, [localPremuimAdds]);
+  }, []);
 
   useEffect(() => {
-    latestLocal &&
-      latestLocal.map((adds) => {
+    // filterCtx.addsResults.ads != undefined
+    //   ? filterCtx.addsResults.ads
+    //   :
+    filterCtx.addsResults.ads &&
+      filterCtx.addsResults.ads.map((adds) => {
         let data = {
           add_id: adds.id,
           user_id: adds.user_id,
@@ -141,105 +232,16 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
             lng: adds.lng,
             views: adds.view_count,
             time: adds.issue_date_string.slice(0, 5),
-
+            category: adds.category.title,
+            adType: adds.ad_type.title,
             user_id: adds.user_id,
           },
         };
         setLeastestAdd((pre) => [...pre, data]);
         console.log(latestData);
       });
-  }, [latestLocal]);
-  useEffect(() => {
-    filterCtx.addsResults.premium_ads != undefined
-      ? filterCtx.addsResults.premium_ads
-      : localPremuimAdds &&
-        localPremuimAdds.map((adds) => {
-          let data = {
-            add_id: adds.id,
-            user_id: adds.user_id,
-            images: adds.images,
-            title: adds.title,
-            address: adds.region.country.title + " " + adds.region.title,
-            price: adds.price,
-            time: adds.issue_date_string.slice(0, 5),
-
-            views: adds.view_count,
-            whatsApp: adds.whatsapp,
-            phone: adds.phone,
-            disc: adds.desc,
-            lat: adds.lat,
-            lng: adds.lng,
-            singleEstatData: {
-              id: adds.id,
-              images: adds.images,
-              title: adds.title,
-              address: adds.region.country.title + " " + adds.region.title,
-              discriptions: adds.desc,
-              city: adds.region.title,
-              space: adds.area,
-              interface: adds.front,
-              price: adds.price,
-              autoNumber: adds.auto_number,
-              phone: adds.phone,
-              whatsApp: adds.whatsapp,
-              lat: adds.lat,
-              lng: adds.lng,
-              views: adds.view_count,
-              time: adds.issue_date_string.slice(0, 5),
-
-              user_id: adds.user_id,
-            },
-          };
-          setPremuimAdds((pre) => [...pre, data]);
-        });
   }, []);
-
-  useEffect(() => {
-    filterCtx.addsResults.ads != undefined
-      ? filterCtx.addsResults.ads
-      : latestLocal &&
-        latestLocal.map((adds) => {
-          let data = {
-            add_id: adds.id,
-            user_id: adds.user_id,
-            images: adds.images,
-            title: adds.title,
-            address: adds.region.country.title + " " + adds.region.title,
-            price: adds.price,
-            time: adds.issue_date_string.slice(0, 5),
-
-            views: adds.view_count,
-            whatsApp: adds.whatsapp,
-            phone: adds.phone,
-            disc: adds.desc,
-            lat: adds.lat,
-            lng: adds.lng,
-            singleEstatData: {
-              id: adds.id,
-              images: adds.images,
-              title: adds.title,
-              address: adds.region.country.title + " " + adds.region.title,
-              discriptions: adds.desc,
-              city: adds.region.title,
-              space: adds.area,
-              interface: adds.front,
-              price: adds.price,
-              autoNumber: adds.auto_number,
-              phone: adds.phone,
-              whatsApp: adds.whatsapp,
-              lat: adds.lat,
-              lng: adds.lng,
-              views: adds.view_count,
-              time: adds.issue_date_string.slice(0, 5),
-
-              user_id: adds.user_id,
-            },
-          };
-          setLeastestAdd((pre) => [...pre, data]);
-          console.log(latestData);
-        });
-  }, []);
-
+  console.log(latestData);
   return (
     <div className="results-container">
       <Nav navOb={navOb} />

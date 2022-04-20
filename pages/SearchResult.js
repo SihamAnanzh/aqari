@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchResultComponents from "../components/searchResult/SearchResult";
 import NoResults from "../components/searchResult/NoResults";
 import { FilterContext } from "../stores/filter";
@@ -7,10 +7,14 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import BackBtn from "../components/BackBtn";
+import axios from "axios";
 
 const SearchResult = (props) => {
   const filterCtx = useContext(FilterContext);
   const route = useRouter();
+  const [name, setName] = useState();
+  const [id, setIds] = useState();
+  const [rent, setRent] = useState();
   let { t } = useTranslation();
 
   // translations
@@ -110,6 +114,76 @@ const SearchResult = (props) => {
     hour,
     priceCode,
   };
+
+  let regions = filterCtx.regions_id == undefined ? name : filterCtx.regions_id;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (filterCtx.RentValue != undefined) {
+        localStorage.setItem("regions", JSON.stringify(filterCtx.regions_id));
+        localStorage.setItem("type_id", JSON.stringify(filterCtx.type_id));
+        localStorage.setItem(
+          "setRentValue",
+          JSON.stringify(filterCtx.RentValue)
+        );
+      }
+
+      let regions = localStorage.getItem("regions");
+      setName(JSON.parse(regions));
+      let id = localStorage.getItem("type_id");
+      setIds(JSON.parse(id));
+      let rentValue = localStorage.getItem("setRentValue");
+      setRent(JSON.parse(rentValue));
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(filterCtx);
+    filterCtx.rent == undefined
+      ? rent
+      : filterCtx.rent
+      ? axios
+          .post(
+            "https://stagingapi.aqarifinder.com/api/ads/filter",
+            {
+              category_id:
+                filterCtx.type_id == undefined ? id : filterCtx.type_id,
+              regions: regions,
+              ad_type_id: 1,
+            },
+            {
+              headers: {
+                lang: route.locale,
+              },
+            }
+          )
+          .then((res) => {
+            filterCtx.setAddsSResutls(res.data.results);
+
+            // route.replace("/SearchResult");
+          })
+      : axios
+          .post(
+            "https://stagingapi.aqarifinder.com/api/ads/filter",
+            {
+              category_id:
+                filterCtx.type_id == undefined ? id : filterCtx.type_id,
+              regions: regions,
+              ad_type_id: 2,
+            },
+            {
+              headers: {
+                lang: route.locale,
+              },
+            }
+          )
+          .then((res) => {
+            filterCtx.setAddsSResutls(res.data.results);
+            filterCtx.setSerivceId("");
+            filterCtx.setRentValue(false);
+            // route.replace("/SearchResult");
+          });
+  }, []);
 
   return (
     <>

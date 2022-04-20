@@ -22,7 +22,6 @@ const Index = ({ prem, latest, services, Request, name }) => {
   // const { locale } = route;
   let { t, i18n } = useTranslation();
 
-  console.log(latest);
   useEffect(() => {
     localStorage.clear();
   }, []);
@@ -175,8 +174,6 @@ const Index = ({ prem, latest, services, Request, name }) => {
           whatsApp: adds.whatsapp,
           phone: adds.phone,
           disc: adds.desc,
-          // lat: adds.lat ==undefined ||adds.lat == " "?"2.2333": adds.lat,
-          // lng: adds.lng==undefined ||  adds.lat == " "?"2.2333":adds.lng,
           lat: "2.333",
           lng: "2.333",
           regionId: adds.region_id,
@@ -194,8 +191,6 @@ const Index = ({ prem, latest, services, Request, name }) => {
             autoNumber: adds.auto_number,
             phone: adds.phone,
             whatsApp: adds.whatsapp,
-            //  lat: adds.lat ==undefined|| adds.lat == " "?"2.2333": adds.lat,
-            // lng: adds.lng==undefined|| adds.lat == " "?"2.2333":adds.lng,
             lat: "2.333",
             lng: "2.333",
             views: adds.view_count,

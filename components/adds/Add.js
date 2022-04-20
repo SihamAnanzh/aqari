@@ -2,8 +2,6 @@ import Link from "next/link";
 import React from "react";
 
 const Add = (props) => {
-  console.log(props);
-
   return (
     <>
       <Link

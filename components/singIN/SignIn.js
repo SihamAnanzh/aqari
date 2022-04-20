@@ -34,6 +34,8 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
   useEffect(() => {
     setEmail(cookies.Name);
     setPassowrd(cookies.Password);
+    console.log(window.origin);
+    console.log(document.referrer);
   }, []);
 
   const handleLogin = async (e) => {
@@ -51,12 +53,14 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
       setShowWrongPassword(true);
 
       if (res.url) {
-        route.push(res.url);
-        // console.log(document.referrer);
-        // document.referrer == "http://localhost:3000/siginIN" ||
-        // document.referrer == "https://akarii-demo.herokuapp.com/siginIN"
-        //   ? route.push("/profile", "/profile", { locale: route.locale })
-        //   : route.push(document.referrer);
+        // route.push(res.url);
+        console.log(document.referrer);
+        document.referrer == "http://localhost:3000/signIN" ||
+        document.referrer == "https://akarii-demo.herokuapp.com/signIN" ||
+        "http://localhost:3000" ||
+        "https://akarii-demo.herokuapp.com"
+          ? route.push(res.url)
+          : route.push(document.referrer);
       }
     }
   };

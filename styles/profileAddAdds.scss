@@ -110,6 +110,7 @@
        justify-content: center;
        align-items: center;
        flex-wrap: wrap;
+       width: 70vw;
       div{
            margin: 5px;
            margin-right: 15px;
@@ -167,18 +168,18 @@
     }
    }
 
-   .wrrap-images{
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       flex-wrap: wrap;
-         width: 70vw;
-         margin-right: 0;
+//    .wrrap-images{
+//        display: flex;
+//        justify-content: center;
+//        align-items: center;
+//        flex-wrap: wrap;
+//          width: 70vw;
+//          margin-right: 0;
        
-       div{
-           margin: 2px;
-       }
-   }
+//        div{
+//            margin: 2px;
+//        }
+//    }
 
    .addAdds-tab-container {
     width: fit-content;
@@ -189,15 +190,15 @@
 }
 
 
-.ltr .wrrap-images{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 272px;
-    margin-left: 28px;
-    margin-right: 0;
-}
+// .ltr .wrrap-images{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-wrap: wrap;
+//     width: 272px;
+//     margin-left: 28px;
+//     margin-right: 0;
+// }
 
 .ltr .add-service-stroke-city, .ltr .add-service-stroke-category {
     left: 88%;

@@ -34,7 +34,6 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
     session.data != null && session.data.xyz.sub == data.user_id
       ? setUserAdd(true)
       : setUserAdd(false);
-
     axios
       .get(`https://stagingapi.aqarifinder.com/api/ads/${data.add_id}`, {
         headers: {
@@ -44,7 +43,6 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
       })
       .then((res) => {
         setAddtoFav(res.data.results.is_fav);
-        console.log(res);
       });
   }, []);
 

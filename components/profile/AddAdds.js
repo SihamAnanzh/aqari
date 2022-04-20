@@ -108,7 +108,7 @@ const AddAdds = ({ addAdsOb }) => {
           formData.append("auto_number", autoNum),
           axios({
             method: "post",
-            url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+            url: "https://stagingapi.aqarifinder.com/api/user/user/ad/add/base_64",
             headers: {
               "Content-Type": "application/json",
               Authorization: session.data.id,
@@ -184,7 +184,7 @@ const AddAdds = ({ addAdsOb }) => {
   const handleClickPremium = () => {
     let formData;
 
-    PAl >= 0 &&
+    PAl <= 0 &&
       (addTitle == "" ||
       desc == "" ||
       space == "" ||
@@ -598,7 +598,7 @@ const AddAdds = ({ addAdsOb }) => {
             }`}
             style={{
               display: imageUpLoaded ? "none" : "block",
-              width: "65vw",
+              width: "70vw",
             }}
           >
             <h3 className="img-heading">{addAdsOb.add11}</h3>
