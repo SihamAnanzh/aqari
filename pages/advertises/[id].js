@@ -226,8 +226,8 @@ export async function getServerSideProps(context) {
           desc: res.data.results.desc,
           isFav: res.data.results.is_fav,
           is_premium: res.data.results.is_premium,
-          lat: res.data.results.lat,
-          lng: res.data.results.lng,
+          lat: res.data.results.lat == "''" ? 36.333 : res.data.results.lat,
+          lng: res.data.results.lng == "''" ? 49.333 : res.data.results.lng,
           phone: res.data.results.phone,
           price: res.data.results.price,
           interface: res.data.results.front,
@@ -248,7 +248,7 @@ export async function getServerSideProps(context) {
           user_id: res.data.results.user_id,
         };
 
-        console.log(res);
+        console.log("lat" + res.data.results.lat);
       });
   }
 

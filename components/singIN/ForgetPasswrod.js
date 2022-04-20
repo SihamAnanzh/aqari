@@ -82,6 +82,7 @@ const ForgetPasswrod = ({ sginOb }) => {
           <div className="box-btns">
             <div className="box-btn signUp-btn">
               <div
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   route.push("/", "/", { locale: route.locale });
                 }}
@@ -91,6 +92,7 @@ const ForgetPasswrod = ({ sginOb }) => {
             </div>
             <div className="box-btn">
               <div
+                style={{ cursor: "pointer" }}
                 onClick={() =>
                   axios
                     .post(

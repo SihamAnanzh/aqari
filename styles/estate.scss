@@ -25,7 +25,7 @@
 
 .info-estate{
 display: flex;
-align-items: center;
+align-items: flex-start;
 width: 880px;
 justify-content: space-between;
 margin-bottom: 15px;
@@ -475,6 +475,15 @@ display: none;
     .contact-estate{
         width: 100%;
     }
+   .estat-deatils.auto{
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: center;
+       span{
+           padding: 2px;
+       }
+       height: fit-content;
+   }
 
 }
 

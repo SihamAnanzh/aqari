@@ -93,6 +93,7 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
           <div className="sign-input name">
             <h3>{sginUpOb.su1}</h3>
             <input
+              autoComplete="off"
               type="text"
               id="name"
               className="sign-name"
@@ -109,6 +110,7 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
           <div className="sign-input mail">
             <h3>{sginUpOb.su2}</h3>
             <input
+              autoComplete="off"
               type="email"
               id="email"
               required
@@ -126,6 +128,7 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
           <div className="sign-input phone-singup">
             <h3>{sginUpOb.su3}</h3>
             <input
+              autoComplete="off"
               type="text"
               id="phone"
               required
@@ -144,6 +147,7 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
           <div className="sign-input password">
             <h3>{sginUpOb.su4}</h3>
             <input
+              autoComplete="off"
               type="password"
               id="password"
               required
@@ -160,6 +164,7 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
           <div className="sign-input password">
             <h3>{sginUpOb.su5}</h3>
             <input
+              autoComplete="off"
               type="password"
               id="password"
               className="sign-password error-input"

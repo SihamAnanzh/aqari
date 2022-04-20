@@ -68,7 +68,6 @@ const AddAdds = ({ addAdsOb }) => {
 
   const handelSubmit = (e) => {
     // setFiles([imageOne, imageTwo, setImageThree, imageFour]);
-    console.log(imageOneB6);
     !disable &&
       (addTitle == "" ||
       desc == "" ||
@@ -108,13 +107,15 @@ const AddAdds = ({ addAdsOb }) => {
           formData.append("auto_number", autoNum),
           axios({
             method: "post",
-            url: "https://stagingapi.aqarifinder.com/api/user/user/ad/add/base_64",
+            url: "https://stagingapi.aqarifinder.com/api/user/ad/add/base_64",
             headers: {
-              "Content-Type": "application/json",
               Authorization: session.data.id,
+
+              "Content-Type": "application/json",
             },
             data: formData,
           }).then((response) => {
+            console.log(response);
             response.data.status.code == 200 &&
               (route.locale == "ar"
                 ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")

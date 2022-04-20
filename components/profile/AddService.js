@@ -132,15 +132,18 @@ const AddService = ({ serviceOb }) => {
                     ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
                     : ("'well done", "Serivce Added Successfully", "success"),
                   route.replace("/profile/mySerivces"))
-                : swal(response.data.results);
-              console.log(response);
+                : response.data.status.code == 400 && route.locale == "ar"
+                ? swal("", "مطلوب صورة واحدة على الأقل", "info")
+                : swal("", "At least 1 image required", "info");
             })
             .catch((response) => {
               route.locale == "ar"
-                ? ("لا يمكنك إضافة في الوقت الحالي",
-                  "الرجاء المحاولة في وقت لاحق",
-                  "error")
-                : swal("try later", "You can not add at the moment", "error");
+                ? swal(
+                    "لا يمكنك إضافة في الوقت الحالي",
+                    "الرجاء المحاولة في وقت لاحق",
+                    "error"
+                  )
+                : swal("try later", "At least 1 image required", "error");
             })));
   };
 

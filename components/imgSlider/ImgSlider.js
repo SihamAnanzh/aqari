@@ -68,7 +68,6 @@ const Slideshow = ({ imgs, setOverlay }) => {
       setIndex(index - 1);
     }
   };
-  console.log(img[0]);
 
   return (
     <>
