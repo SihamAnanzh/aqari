@@ -14,7 +14,8 @@ const Adds = () => {
   const session = useSession();
   useEffect(() => {
     console.log(session);
-    if (!session || session.data == null) {
+    if (session.data == null) {
+      // route.push("/signIN");
       route.push(`/signIN`, `/signIN`, { locale: route.locale });
     }
   }, []);
