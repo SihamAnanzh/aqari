@@ -38,7 +38,7 @@ const ConfirmPasswrod = ({ sginOb }) => {
             {sginOb.newPasswrod}
           </h3>
           <input
-            type="passwrod"
+            type="password"
             className="sign-mail"
             placeholder={sginOb.newPasswrod}
             onChange={(e) => setNewPassword(e.target.value)}
