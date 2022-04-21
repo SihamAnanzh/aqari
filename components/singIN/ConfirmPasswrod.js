@@ -19,8 +19,10 @@ const ConfirmPasswrod = ({ sginOb }) => {
       })
       .then((res) => {
         console.log(res);
-        swal(res.data.status.message);
-        // route.push("/signIN");
+        route.locale == "ar"
+          ? swal("", "تم تعديل بنجاح", "success")
+          : swal("", "Updated successfully", "success");
+        route.push("/signIN");
       });
   };
   return (

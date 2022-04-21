@@ -8,6 +8,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import BackBtn from "../components/BackBtn";
 import axios from "axios";
+import * as cookie from "cookie";
 
 const SearchResult = (props) => {
   const filterCtx = useContext(FilterContext);
@@ -209,10 +210,21 @@ const SearchResult = (props) => {
 
 export default SearchResult;
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps(context) {
+  let { locale } = context;
+  // const cookies = context.req.headers.cookie;
+
+  // const parsedCookies = cookie.parse(context.req.headers.cookie);
+  // console.log(
+  //   "cookies",
+  //   context.req ? { cookie: ctx.req.headers.cookie } : undefined
+  // );
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ["home", "signUp", "add-ads"])),
     },
   };
+
+  // make the call her depne on the three value thats is comming from the cookies
 }

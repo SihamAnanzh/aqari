@@ -57,7 +57,7 @@ const AddAdds = ({ addAdsOb }) => {
   const [paymentId, setPaymentId] = useState();
 
   const session = useSession();
-  const [server, setServer] = useState();
+  const [tempData, setTempData] = useState();
 
   //ids for api
   const [type_id, setType_id] = useState("");
@@ -110,7 +110,6 @@ const AddAdds = ({ addAdsOb }) => {
             url: "https://stagingapi.aqarifinder.com/api/user/ad/add/base_64",
             headers: {
               Authorization: session.data.id,
-
               "Content-Type": "application/json",
             },
             data: formData,
@@ -138,45 +137,104 @@ const AddAdds = ({ addAdsOb }) => {
         console.log(res);
       });
   }, []);
-  // useEffect(() => {
-  //   let formData;
-  //   formData.append("package_id", 1);
-  //   formData.append(
-  //     "callbackurl",
-  //     "https://akarii-demo.herokuapp.com/profile/addAdds"
-  //   );
-  //   console.log(route.query.paymentId + "  rtoue.query");
+  useEffect(() => {
+    let data;
+    let formData = new FormData();
+    formData.append("package_id", 1);
+    formData.append(
+      "callbackurl",
+      "https://aqari-demo.herokuapp.com/profile/addAdds"
+    );
+    console.log(route.query.paymentId + "  rtoue.query");
+    let id;
+    route.query.paymentId &&
+      (session.status == "authenticated" &&
+        axios({
+          method: "post",
+          url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: session.data != null && session.data.id,
+          },
+          data: formData,
+        }).then((res) => {
+          console.log(
+            `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
+          );
+          console.log(res);
+          swal(res.data.status.message);
+          res.data.status.ok ? setCheckedAdd(true) : setCheckedAdd(false);
+          console.log(session);
+        }),
+      //get the id from cokies
+      console.log(cookies.id),
+      // cookies.id
+      (id = cookies.id !== null && cookies.id),
+      //clear the cookies
+      axios
+        .get(`https://stagingapi.aqarifinder.com/api/temp/ads/70`, {
+          headers: {
+            Authorization: session && session.data.id,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setCookie("id", null, { path: "/" });
+          data = {
+            adType: res.data.results.ad_type.title,
+            address:
+              res.data.results.region.country.title +
+              " " +
+              res.data.results.region.title,
+            autoNum: res.data.results.auto_number,
+            category: res.data.results.category.title,
+            city: res.data.results.region.title,
+            desc: res.data.results.desc,
+            isFav: res.data.results.is_fav,
+            is_premium: res.data.results.is_premium,
+            lat: res.data.results.lat,
+            lng: res.data.results.lng,
+            phone: res.data.results.phone,
+            price: res.data.results.price,
+            front: res.data.results.front,
+            region_id: res.data.results.region.id,
+            regionsString: res.data.results.region.title,
+            area: res.data.results.area,
+            time: "4",
+            title: res.data.results.title,
+            user_id: res.data.results.user_id,
+            views: res.data.results.view_count,
+            whatsApp: res.data.results.whatsapp,
+            images:
+              res.data.results.images.length > 0
+                ? res.data.results.images
+                : false,
+            id: res.data.results.id,
+            allData: res.data.results,
+            user_id: res.data.results.user_id,
+            adTypeId: res.data.results.ad_type_id,
+            categoryId: res.data.results.category_id,
+          };
+          setTempData(data);
+          setAddTitle(tempData.title);
+          setPhoneNumber(tempData.phone);
+          setCategory(tempData.adType);
+          setTypeEstat(tempData.category);
+          setCategory_id(tempData.categoryId);
+          setType_id(tempData.adTypeId);
+          setSpace(tempData.area);
+          setPrice(tempData.price);
+          setFront(tempData.front);
+          setAutoNum(tempData.autoNum);
+          setDesc(tempData.desc);
+          setIspremium(tempData.is_premium);
+          setRegion_id(tempData.region_id);
+          setCity(tempData.regionsString);
+          console.log(tempData);
 
-  //   route.query.paymentId &&
-  //     session.status == "authenticated" &&
-  //     axios({
-  //       method: "post",
-  //       url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //         Authorization: session.data != null && session.data.id,
-  //       },
-  //       data: formData,
-  //     }).then((res) => {
-  //       console.log(
-  //         `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
-  //       );
-  //       console.log(res);
-  //       swal(res.data.status.message);
-  //       console.log(session);
-  //     });
-
-  //   //get the id from cokies
-  //   // cookies.id
-  //   let id = 1;
-  //   //clear the cookies
-  //   axios
-  //     .get(`https://stagingapi.aqarifinder.com/api/temp/ad/${id}`)
-  //     .then((res) => {
-  //       console.log(res);
-  //       /// take the res data and then fill in the filed with
-  //     });
-  // }, [route, session.status]);
+          /// take the res data and then fill in the filed with
+        }));
+  }, [route, session.status]);
 
   const sliceBase64 = (img) => {
     return img.substring(img.indexOf(",") + 1, img.length);
@@ -185,7 +243,7 @@ const AddAdds = ({ addAdsOb }) => {
   const handleClickPremium = () => {
     let formData;
 
-    PAl <= 0 &&
+    PAl >= 0 &&
       (addTitle == "" ||
       desc == "" ||
       space == "" ||
@@ -233,15 +291,15 @@ const AddAdds = ({ addAdsOb }) => {
           }).then((response) => {
             console.log(response);
 
-            // let id = response.data.results.id;
-            ///get id store in cookies
-            // setCookie("id", id, { path: "/" });
-            console.log("response" + response.data);
+            let id = response.data.results;
+            console.log(response.data.results);
+            // /get id store in cookies
+            setCookie("id", id, { path: "/" });
           })));
 
     PAl <= 0
       ? ((formData = new FormData()),
-        formData.append("package_id", props.packgeId),
+        formData.append("package_id", 1),
         axios({
           method: "post",
           url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",

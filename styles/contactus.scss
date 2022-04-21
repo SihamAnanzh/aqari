@@ -112,12 +112,13 @@
         padding-bottom: 60px;
     }
     .ltr .contact-container .contact-header{
-        width:70vw ;
+        width:49vw ;
         margin-right: unset;
         }
 
         .contact-container .contact-header{
-            width:70vw ;
+            width:49vw ;
+            margin-right: unset;
         
             }
 
@@ -125,7 +126,7 @@
 
 }
 
-@media (max-width:700px) {
+@media (max-width:790px) {
     .contact-container .messega {
         font-size: 15px;
         color: #737373;
@@ -149,6 +150,16 @@
     .contact-container .contact-header{
         margin-right: 5px;
     }
+    .ltr .contact-container .contact-header{
+        width:70vw ;
+        margin-right: unset;
+        }
+
+        .contact-container .contact-header{
+            width:70vw ;
+        
+            }
+
 }
 
 @media (max-width:428px) {
@@ -162,5 +173,7 @@
         height: 62px;
     }
 
+
+  
   
 }

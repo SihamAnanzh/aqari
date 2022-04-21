@@ -67,8 +67,8 @@ const UpdateAdd = ({ updateData, addAdsOb }) => {
             price: Number(price),
             currency_id: 1,
             auto_number: autoNum,
-            lat: lat,
-            lng: lng,
+            lat: lat.toString(),
+            lng: lng.toString(),
             phone: phoneNumber,
             whatsapp: phoneNumber,
             is_premium: showDialogBox,
@@ -85,18 +85,12 @@ const UpdateAdd = ({ updateData, addAdsOb }) => {
             data: { ...data },
           })
             .then((response) => {
+              console.log(response);
               response.data.status.code == 200 &&
                 (route.locale == "ar"
                   ? swal("تهانينا", "تمت تعديل الإعلان بنجاح", "success")
                   : swal("well done", "Ad updated Successfully", "success"),
                 route.replace("/profile/myAdds"));
-              response.data.status.code == 500 && route.locale == "ar"
-                ? swal(
-                    "لا يمكنك التعديل في الوقت الحالي",
-                    "الرجاء المحاولة في وقت لاحق",
-                    "error"
-                  )
-                : swal("You can not edit at the moment", "try later", "error");
             })
             .catch((response) => {
               route.locale == "ar"
