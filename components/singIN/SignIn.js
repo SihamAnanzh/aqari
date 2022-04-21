@@ -56,9 +56,9 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
         // route.push(res.url);
         console.log(document.referrer);
         document.referrer == "http://localhost:3000/signIN" ||
-        document.referrer == "https://akarii-demo.herokuapp.com/signIN" ||
+        document.referrer == "https://aqari-demo.herokuapp.com/signIN" ||
         "http://localhost:3000" ||
-        "https://akarii-demo.herokuapp.com"
+        "https://aqari-demo.herokuapp.com/"
           ? route.push(res.url)
           : route.push(document.referrer);
       }

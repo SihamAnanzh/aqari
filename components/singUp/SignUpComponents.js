@@ -213,7 +213,7 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
                   textDecoration: "underline",
                   fontFamily: "otfPlain",
                 }}
-                href={`https://akarii-demo.herokuapp.com/${route.locale}/terms`}
+                href={`https://aqari-demo.herokuapp.com/${route.locale}/terms`}
               >
                 {sginUpOb.su9}
               </a>
@@ -224,7 +224,7 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
                   textDecoration: "underline",
                   fontFamily: "otfPlain",
                 }}
-                href={`https://akarii-demo.herokuapp.com/${route.locale}/privacy`}
+                href={`https://aqari-demo.herokuapp.com/${route.locale}/privacy`}
               >
                 {" "}
                 {sginUpOb.su10}

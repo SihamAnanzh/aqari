@@ -16,7 +16,7 @@ const ForgetPasswrod = ({ sginOb }) => {
       ? axios
           .post("https://stagingapi.aqarifinder.com/api/user/password/forget", {
             email,
-            reset_url: `https://akarii-demo.herokuapp.com/signIN/forget/reset`,
+            reset_url: `https://aqari-demo.herokuapp.com/signIN/forget/reset`,
           })
           .then((res) => {
             res.data.status.code == 200 && setMessage(res.data.results);
