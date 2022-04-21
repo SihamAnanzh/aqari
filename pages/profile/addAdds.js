@@ -12,9 +12,10 @@ import Head from "next/head";
 import BackBtn from "../../components/BackBtn";
 const Adds = () => {
   const session = useSession();
+
   useEffect(() => {
     console.log(session);
-    if (!session && session.data == null) {
+    if (!session || session.data == null) {
       route.push(`/signIN`, `/signIN`, { locale: route.locale });
     }
   }, []);
