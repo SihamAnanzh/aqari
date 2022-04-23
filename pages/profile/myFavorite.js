@@ -120,12 +120,16 @@ export default MyFavorite;
 
 export async function getServerSideProps(context) {
   const { locale } = context;
-  const session = getSession(context);
-  // if (session.data == null) {
-  //   context.res.writeHead(303, { Location: "/signIN" });
-  //   context.res.redirect("/signIN", 303);
-  //   context.res.end();
-  // }
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signIN",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       ...(await serverSideTranslations(locale, ["home", "signin", "profile"])),

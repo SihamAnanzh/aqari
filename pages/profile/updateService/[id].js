@@ -143,38 +143,44 @@ export async function getServerSideProps(context) {
   let updateData;
   const { locale } = context;
   const { id } = context.params;
+  const session = await getSession(context);
 
-  const session = getSession(context);
-
-  if (id) {
-    await axios({
-      method: "get",
-      url: `https://stagingapi.aqarifinder.com/api/ads/${id}`,
-      headers: {
-        lang: locale,
-        Authorization: session.data != null && session.data.id,
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signIN",
+        permanent: false,
       },
-    });
-    then((res) => {
-      updateData = {
-        address: res.data.results.regions_string,
-        description: res.data.results.description,
-        phone: res.data.results.phone,
-        price: res.data.results.price,
-        time: "4",
-        title: res.data.results.title,
-        user_id: res.data.results.user_id,
-        views: res.data.results.view_count,
-        whatsApp: res.data.results.whatsapp,
-        images:
-          res.data.results.images.length > 0 ? res.data.results.images : false,
-        id: res.data.results.id,
-        regionsString: res.data.results.regions_string,
-        regionId: res.data.results.region_ids,
-        serviceType: res.data.results.service_type.title,
-        serviceTypeId: res.data.results.service_type.id,
-      };
-    });
+    };
+  }
+  if (id) {
+    await axios
+      .get(`https://stagingapi.aqarifinder.com/api/services/${id}`, {
+        headers: { lang: locale },
+      })
+      .then((res) => {
+        console.log(res);
+        updateData = {
+          address: res.data.results.regions_string,
+          description: res.data.results.description,
+          phone: res.data.results.phone,
+          price: res.data.results.price,
+          time: "4",
+          title: res.data.results.title,
+          user_id: res.data.results.user_id,
+          views: res.data.results.view_count,
+          whatsApp: res.data.results.whatsapp,
+          images:
+            res.data.results.images.length > 0
+              ? res.data.results.images
+              : false,
+          id: res.data.results.id,
+          regionsString: res.data.results.regions_string,
+          regionId: res.data.results.region_ids,
+          serviceType: res.data.results.service_type.title,
+          serviceTypeId: res.data.results.service_type.id,
+        };
+      });
   }
 
   return {

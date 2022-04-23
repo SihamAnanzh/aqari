@@ -32,7 +32,12 @@ const PremuimAdd = (props) => {
           }}
         >
           <div className="info-prem">
-            <div className="title">{props.title}</div>
+            <div className="title">
+              {/* {props.title} */}
+              {props.title.length > 20
+                ? props.title.substr(0, 20 - 1) + "..."
+                : props.title}
+            </div>
             <div className="address">
               <img src="/assets/img/location-gray.svg" />
               {props.address}

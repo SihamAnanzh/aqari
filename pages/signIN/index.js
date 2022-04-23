@@ -22,8 +22,16 @@ import BackBtn from "../../components/BackBtn";
 export async function getServerSideProps(context) {
   const session = await getSession(context);
   const providers = await getProviders();
-  const { locale } = context;
 
+  const { locale } = context;
+  if (session) {
+    return {
+      redirect: {
+        destination: "/profile",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       csrfToken: await getCsrfToken(context),
@@ -38,12 +46,12 @@ const SignIN = ({ csrfToken, providers }) => {
   const session = useSession();
   const route = useRouter();
 
-  useEffect(() => {
-    console.log(session.data);
-    session.data != null ||
-      (session.data != undefined &&
-        route.push("/", "/", { locale: route.locale }));
-  }, []);
+  // useEffect(() => {
+  //   console.log(session.data);
+  //   session.data != null ||
+  //     (session.data != undefined &&
+  //       route.push("/", "/", { locale: route.locale }));
+  // }, []);
 
   // translations
   //nav

@@ -30,68 +30,29 @@ const MainSection = ({ searchOb }) => {
   let regions = filterCtx.regions_id;
 
   const handelClick = () => {
+    localStorage.setItem("city", filterCtx.regions_id);
     filterCtx.serivce_id && regions
       ? showSearchServics &&
-        axios
-          .post(
-            "https://stagingapi.aqarifinder.com/api/services/filter",
-            { service_type_id: filterCtx.serivce_id, regions: regions },
-            {
-              headers: {
-                lang: route.locale,
-              },
-            }
-          )
-          .then((res) => {
-            filterCtx.setSerivceResutls(res.data.results);
-            route.push("/searchResultsService");
-          })
+        (localStorage.setItem("service", JSON.stringify(filterCtx.serivce_id)),
+        route.push({
+          pathname: "/searchResultsService",
+          query: { service: filterCtx.serviceString },
+        }))
       : filterCtx.type_id && regions
       ? showSearchRent
-        ? axios
-            .post(
-              "https://stagingapi.aqarifinder.com/api/ads/filter",
-              {
-                category_id: filterCtx.type_id,
-                regions: regions,
-                ad_type_id: 1,
-              },
-              {
-                headers: {
-                  lang: route.locale,
-                },
-              }
-            )
-            .then((res) => {
-              filterCtx.setAddsSResutls(res.data.results);
-              filterCtx.setSerivceId("");
-              filterCtx.setRentValue(true);
-              // filterCtx.setAddsSResutls(res.data.results);
-              // filterCtx.setSerivceId("");
-              // filterCtx.setRentValue(true);
-              route.replace("/SearchResult");
-            })
+        ? (localStorage.setItem("ads", JSON.stringify(filterCtx.type_id)),
+          localStorage.setItem("rent", JSON.stringify(true)),
+          route.push({
+            pathname: "/SearchResult",
+            query: { category: filterCtx.typeName, city: filterCtx.areaName },
+          }))
         : showSearchSelling &&
-          axios
-            .post(
-              "https://stagingapi.aqarifinder.com/api/ads/filter",
-              {
-                category_id: filterCtx.type_id,
-                regions: regions,
-                ad_type_id: 2,
-              },
-              {
-                headers: {
-                  lang: route.locale,
-                },
-              }
-            )
-            .then((res) => {
-              filterCtx.setAddsSResutls(res.data.results);
-              filterCtx.setSerivceId("");
-              filterCtx.setRentValue(false);
-              route.replace("/SearchResult");
-            })
+          (localStorage.setItem("ads", filterCtx.type_id),
+          localStorage.setItem("rent", JSON.stringify(false)),
+          route.push({
+            pathname: "/SearchResult",
+            query: { category: filterCtx.typeName, city: filterCtx.areaName },
+          }))
       : swal(searchOb.statusSwal, searchOb.messageSwal, "info");
   };
 

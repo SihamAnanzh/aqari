@@ -152,23 +152,23 @@ export default Update;
 export async function getServerSideProps(context) {
   let updateData;
   const { locale } = context;
-  const session = getSession(context);
-  // if (session.data == null) {
-  //   context.res.writeHead(303, { Location: "/signIN" });
-  //   context.res.redirect("/signIN", 303);
-  //   context.res.end();
-  // }
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signIN",
+        permanent: false,
+      },
+    };
+  }
   const { id } = context.params;
   if (id) {
-    // await axios.get(`https://stagingapi.aqarifinder.com/api/ads/${id}`,
-    // { headers: {Authorization:session.data.id,'lang': locale } })
-
     await axios({
       method: "get",
       url: `https://stagingapi.aqarifinder.com/api/ads/${id}`,
       headers: {
         lang: locale,
-        Authorization: session.data != null && session.data.id,
       },
       // data: formDataTow
     }).then((res) => {

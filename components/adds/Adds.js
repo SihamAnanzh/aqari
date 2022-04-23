@@ -7,6 +7,7 @@ const Adds = ({ premuimAdds, latestData, ads, premium, adsOb }) => {
   const [visible, setVisible] = useState(5);
   const loadMoreHandler = () => {
     setVisible((pre) => pre + 5);
+    console.log(latestData);
   };
   return (
     <div className="adds-container">

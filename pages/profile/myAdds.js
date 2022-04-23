@@ -17,14 +17,14 @@ const ProfileAdd = () => {
   let { t } = useTranslation();
   const session = useSession();
 
-  useEffect(() => {
-    console.log(session);
-    if (session.status == "loading") {
-      if (!session.data) {
-        route.push(`/signIN`, `/signIN`, { locale: route.locale });
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log(session);
+  //   if (session.status == "loading") {
+  //     if (!session.data) {
+  //       route.push(`/signIN`, `/signIN`, { locale: route.locale });
+  //     }
+  //   }
+  // }, []);
 
   // translations
 
@@ -121,11 +121,20 @@ export default ProfileAdd;
 
 export async function getServerSideProps(context) {
   const { locale } = context;
-  const session = getSession(context);
+  const session = await getSession(context);
   // if (session.data == null) {
   //   context.res.writeHead(303, { Location: "/signIN" });
   //   context.res.redirect("/signIN", 303);
   //   context.res.end();
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signIN",
+        permanent: false,
+      },
+    };
+  }
   // }
   return {
     props: {

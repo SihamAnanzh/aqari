@@ -104,13 +104,16 @@
    }
 
 
+   .img-heading{
+       width: 70vw;
+   }
 
    .wrrap-images{
        display: flex;
        justify-content: center;
        align-items: center;
        flex-wrap: wrap;
-       width: 70vw;
+       width: 60vw;
       div{
            margin: 5px;
            margin-right: 15px;

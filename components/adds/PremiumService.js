@@ -147,7 +147,7 @@ const PremuimService = (props) => {
           </div>
         </div>
       </div>
-      <span className="prem-word">{props.adsOb.premium}</span>
+      {/* <span className="prem-word">{props.adsOb.premium}</span> */}
     </div>
     // </Link>
   );

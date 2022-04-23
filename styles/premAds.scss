@@ -366,7 +366,9 @@ margin-right: 10px;
 // .ad-contanier .detials{
 //     width: 163px;
 // }
-
+.profile-tab .checksbox{
+    width: 60vw;
+}
 
 @media (max-width:970px) {
     .adds-container{
@@ -619,6 +621,11 @@ width: 187px;
 //     width: 330px;
 //     justify-content: space-between;
 // }
+
+
+.info-prem .detials span.number{
+    padding-top: 0;
+}
 
 }
 
@@ -896,9 +903,9 @@ width: 187px;
 
 
 @media(max-width:380px){
-    .adds-btn{
-    width:69px
-    }
+    // .adds-btn{
+    // width:69px
+    // }
 
     .prem-contanier {
         width: 316px;

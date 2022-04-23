@@ -271,7 +271,7 @@ const AddService = ({ serviceOb }) => {
                 type="text"
                 className="sign-mail"
                 placeholder={serviceOb.city}
-                tabIndex={3}
+                tabIndex={5}
                 id="city-list"
                 value={[...selection]}
                 onChange={(e) => setCity(e.target.value)}
@@ -345,7 +345,7 @@ const AddService = ({ serviceOb }) => {
                 type="text"
                 className="sign-mail"
                 placeholder={serviceOb.price}
-                tabIndex={3}
+                tabIndex={6}
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
@@ -361,7 +361,7 @@ const AddService = ({ serviceOb }) => {
                 type="text"
                 className="sign-mail"
                 placeholder={serviceOb.serivceDetails}
-                tabIndex={5}
+                tabIndex={7}
                 onChange={(e) => setDesc(e.target.value)}
               />
             </div>
@@ -388,7 +388,7 @@ const AddService = ({ serviceOb }) => {
                       autoComplete="off"
                       type="file"
                       id="select-file"
-                      tabIndex={3}
+                      tabIndex={8}
                       style={{
                         display: "none",
                       }}
@@ -429,7 +429,7 @@ const AddService = ({ serviceOb }) => {
                       autoComplete="off"
                       type="file"
                       id="select-file-2"
-                      tabIndex={3}
+                      tabIndex={9}
                       style={{
                         display: "none",
                       }}
@@ -470,7 +470,7 @@ const AddService = ({ serviceOb }) => {
                       autoComplete="off"
                       type="file"
                       id="select-file-3"
-                      tabIndex={3}
+                      tabIndex={10}
                       style={{
                         display: "none",
                       }}
@@ -511,7 +511,7 @@ const AddService = ({ serviceOb }) => {
                       autoComplete="off"
                       type="file"
                       id="select-file-4"
-                      tabIndex={3}
+                      tabIndex={11}
                       style={{
                         display: "none",
                       }}

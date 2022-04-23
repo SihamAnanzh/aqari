@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { FilterContext } from "../stores/filter";
 import ServiveResults from "../components/searchResult/ServiveResults";
 import NoResults from "../components/searchResult/NoResults";
@@ -8,11 +8,16 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import BackBtn from "../components/BackBtn";
+import axios from "axios";
 
 const SearchResultsService = () => {
   const filterCtx = useContext(FilterContext);
   const route = useRouter();
+  const [areas, setAreas] = useState([]);
+  const [areaIds, setAreasIds] = useState([]);
+  const [id, setIds] = useState();
 
+  const [service, setService] = useState();
   let { t } = useTranslation();
 
   // translations
@@ -67,7 +72,51 @@ const SearchResultsService = () => {
     priceCode,
     noResults,
   };
+  useEffect(async () => {
+    let regions_id = localStorage.getItem("city");
+    console.log(regions_id);
+    areaIds.push(Number(regions_id));
+    let id = localStorage.getItem("ads");
+    setIds(JSON.parse(id));
 
+    await axios
+      .post(
+        "https://stagingapi.aqarifinder.com/api/services/filter",
+        {
+          service_type_id: Number(id),
+          regions: areaIds,
+        },
+        {
+          headers: {
+            lang: route.locale,
+          },
+        }
+      )
+      .then((res) => {
+        filterCtx.setSerivceResutls(res.data.results);
+      })
+      .then(
+        () => console.log(areaIds),
+        areaIds.map((name) => {
+          axios
+            .get(`https://stagingapi.aqarifinder.com/api/region/${name}`, {
+              headers: { lang: route.locale },
+            })
+            .then((res) => {
+              console.log(res.data.results.title);
+              setAreas((pre) => [...pre, res.data.results.title]);
+            });
+        }),
+
+        axios
+          .get(`https://stagingapi.aqarifinder.com/api/service_type/${id}`, {
+            headers: { lang: route.locale },
+          })
+          .then((res) => {
+            setService(res.data.results.title);
+          })
+      );
+  }, []);
   return (
     <>
       <Head>
@@ -77,7 +126,13 @@ const SearchResultsService = () => {
       {!filterCtx.serviceResults ? (
         <NoResults navOb={navOb} fo1={fo1} adsOb={adsOb} />
       ) : (
-        <ServiveResults navOb={navOb} fo1={fo1} adsOb={adsOb} />
+        <ServiveResults
+          service={service}
+          areas={areas}
+          navOb={navOb}
+          fo1={fo1}
+          adsOb={adsOb}
+        />
       )}
     </>
   );

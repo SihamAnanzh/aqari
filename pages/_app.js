@@ -1,5 +1,5 @@
 import "../styles/styles.scss";
-import { SessionProvider } from "next-auth/react";
+import { getSession, SessionProvider, useSession } from "next-auth/react";
 import { AuthContext, AuthContextProvider } from "../stores/auth-context";
 import { useContext, useEffect, useState } from "react";
 import Loader from "../components/loader/Loader";
@@ -14,7 +14,7 @@ import {
 } from "../stores/translate-context";
 import { route } from "next/dist/server/router";
 
-function MyApp({ Component, pageProps, name }) {
+function MyApp({ Component, pageProps, name, session }) {
   const router = useRouter();
   const { i18n } = useTranslation();
 
@@ -63,6 +63,13 @@ function MyApp({ Component, pageProps, name }) {
 
 export default appWithTranslation(MyApp);
 
-// export async function getServerSideProps({locale}) {
-//   return { props: {...(await serverSideTranslations(locale, ['home','signUp']))} }
-// }
+export async function getServerSideProps(context) {
+  const session = await getSession();
+
+  return {
+    props: {
+      session,
+      ...(await serverSideTranslations(locale, ["home", "signUp"])),
+    },
+  };
+}

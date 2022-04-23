@@ -300,6 +300,12 @@ const AddAdds = ({ addAdsOb }) => {
     PAl <= 0
       ? ((formData = new FormData()),
         formData.append("package_id", 1),
+        formData.append(
+          "callbackurl",
+          route.locale == "ar"
+            ? "https://aqari-demo.herokuapp.com/profile/addAdds"
+            : "https://aqari-demo.herokuapp.com/en/profile/addAdds"
+        ),
         axios({
           method: "post",
           url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
@@ -476,7 +482,7 @@ const AddAdds = ({ addAdsOb }) => {
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add4}
-              tabIndex={3}
+              tabIndex={4}
               id="type-list"
               value={typeEstat}
               onChange={(e) => setTypeEstat(e.target.value)}
@@ -547,7 +553,7 @@ const AddAdds = ({ addAdsOb }) => {
               className="sign-mail"
               placeholder={addAdsOb.add5}
               value={city}
-              tabIndex={3}
+              tabIndex={5}
               id="city-list"
               onChange={(e) => setCity(e.target.value)}
               onClick={() => {
@@ -600,7 +606,7 @@ const AddAdds = ({ addAdsOb }) => {
               className="sign-mail"
               placeholder={addAdsOb.add6}
               value={space}
-              tabIndex={3}
+              tabIndex={6}
               onChange={(e) => setSpace(e.target.value)}
             />
           </div>
@@ -611,7 +617,7 @@ const AddAdds = ({ addAdsOb }) => {
               type="text"
               className="sign-mail"
               placeholder={addAdsOb.add7}
-              tabIndex={3}
+              tabIndex={7}
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
@@ -624,7 +630,7 @@ const AddAdds = ({ addAdsOb }) => {
               className="sign-mail"
               placeholder={addAdsOb.add8}
               value={front}
-              tabIndex={3}
+              tabIndex={8}
               onChange={(e) => setFront(e.target.value)}
             />
           </div>
@@ -636,7 +642,7 @@ const AddAdds = ({ addAdsOb }) => {
               className="sign-mail"
               placeholder={addAdsOb.add9}
               value={autoNum}
-              tabIndex={3}
+              tabIndex={9}
               onChange={(e) => setAutoNum(e.target.value)}
             />
           </div>
@@ -645,7 +651,7 @@ const AddAdds = ({ addAdsOb }) => {
             <textarea
               className="sign-mail"
               placeholder={addAdsOb.add10}
-              tabIndex={3}
+              tabIndex={10}
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
             />
@@ -657,7 +663,7 @@ const AddAdds = ({ addAdsOb }) => {
             }`}
             style={{
               display: imageUpLoaded ? "none" : "block",
-              width: "70vw",
+              width: "60vw",
             }}
           >
             <h3 className="img-heading">{addAdsOb.add11}</h3>
@@ -673,7 +679,7 @@ const AddAdds = ({ addAdsOb }) => {
                     autoComplete="off"
                     type="file"
                     id="select-file"
-                    tabIndex={3}
+                    tabIndex={11}
                     style={{
                       display: "none",
                     }}
@@ -719,7 +725,7 @@ const AddAdds = ({ addAdsOb }) => {
                     autoComplete="off"
                     type="file"
                     id="select-file-2"
-                    tabIndex={3}
+                    tabIndex={12}
                     style={{
                       display: "none",
                     }}
@@ -764,7 +770,7 @@ const AddAdds = ({ addAdsOb }) => {
                     autoComplete="off"
                     type="file"
                     id="select-file-3"
-                    tabIndex={3}
+                    tabIndex={13}
                     style={{
                       display: "none",
                     }}
@@ -809,7 +815,7 @@ const AddAdds = ({ addAdsOb }) => {
                     autoComplete="off"
                     type="file"
                     id="select-file-4"
-                    tabIndex={3}
+                    tabIndex={14}
                     style={{
                       display: "none",
                     }}

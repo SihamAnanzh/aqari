@@ -13,12 +13,12 @@ import BackBtn from "../../components/BackBtn";
 const Adds = () => {
   const session = useSession();
 
-  useEffect(() => {
-    console.log(session);
-    if (!session || session.data == null) {
-      route.push(`/signIN`, `/signIN`, { locale: route.locale });
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log(session);
+  //   if (!session || session.data == null) {
+  //     route.push(`/signIN`, `/signIN`, { locale: route.locale });
+  //   }
+  // }, []);
 
   const authCtx = useContext(AuthContext);
   const route = useRouter();
@@ -156,12 +156,22 @@ export default Adds;
 
 export async function getServerSideProps(context) {
   const { locale } = context;
-  const session = getSession(context);
+  const session = await getSession(context);
   // if (session.data == null) {
   //   context.res.writeHead(303, { Location: "/signIN" });
   //   context.res.redirect("/signIN", 303);
   //   context.res.end();
   // }
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signIN",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [

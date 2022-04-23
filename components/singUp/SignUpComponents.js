@@ -52,6 +52,14 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
       ? route.locale == "ar"
         ? swal("", "رقم الهاتف خاطئ", "info")
         : swal("", "invalid phone number", "info")
+      : password.length < 8
+      ? route.locale == "ar"
+        ? swal("", " كلمة المرور قصيرة جدًا ، ويجب ألا تقل عن 8 أحرف ", "info")
+        : swal(
+            "",
+            "The password is too short, should not be less than 8 characters",
+            "info"
+          )
       : await axios
           .post("https://stagingapi.aqarifinder.com/api/user/register", {
             email,

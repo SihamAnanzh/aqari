@@ -7,64 +7,24 @@ import { FilterContext } from "../../stores/filter";
 import { TranslateContext } from "../../stores/translate-context";
 import BackBtn from "../BackBtn";
 import { useRouter } from "next/router";
+import axios from "axios";
 
-const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
+const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
   const [premuimAdds, setPremuimAdds] = useState([]);
   const [latestData, setLeastestAdd] = useState([]);
   const [localPremuimAdds, setLocalPremuimAdds] = useState([]);
   const [latestLocal, setLeastestLocal] = useState([]);
   const filterCtx = useContext(FilterContext);
-  const [type, setType] = useState(filterCtx.typeName);
   const [rent, setRent] = useState(filterCtx.rent);
-  const [areas, setAreas] = useState([filterCtx.areaName]);
   const [visible, setVisible] = useState(5);
   const route = useRouter();
-  console.log(areas);
   const loadMoreHandler = () => {
     setVisible((pre) => pre + 5);
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (filterCtx.addsResults.premium_ads != undefined) {
-        localStorage.setItem(
-          "premData",
-          JSON.stringify(
-            filterCtx.addsResults.premium_ads &&
-              filterCtx.addsResults.premium_ads
-          )
-        );
-        localStorage.setItem(
-          "data",
-          JSON.stringify(filterCtx.addsResults.ads && filterCtx.addsResults.ads)
-        );
-        localStorage.setItem("type", JSON.stringify(filterCtx.typeName));
-
-        localStorage.setItem("rent", JSON.stringify(filterCtx.rent));
-
-        localStorage.setItem("areaNames", JSON.stringify(filterCtx.areaName));
-
-        // latestLocal(JSON.parse(localStorage.getItem("latestLocal")));
-      }
-      let prem = localStorage.getItem("premData");
-      setLocalPremuimAdds(JSON.parse(prem));
-      let ads = localStorage.getItem("data");
-      setLeastestLocal(JSON.parse(ads));
-      let type = localStorage.getItem("type");
-      let rent = localStorage.getItem("rent");
-      let area = localStorage.getItem("areaNames");
-
-      console.log(area);
-      setType(JSON.parse(type));
-      setRent(JSON.parse(rent));
-      setAreas(JSON.parse(area));
-      console.log(areas);
-    }
-  }, []);
-
-  useEffect(() => {
-    localPremuimAdds &&
-      localPremuimAdds.map((adds) => {
+    filterCtx.addsResults.premium_ads &&
+      filterCtx.addsResults.premium_ads.map((adds) => {
         let data = {
           add_id: adds.id,
           user_id: adds.user_id,
@@ -103,55 +63,11 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
         };
         setPremuimAdds((pre) => [...pre, data]);
       });
-  }, [localPremuimAdds]);
+  }, [filterCtx.addsResults.premium_ads]);
 
   useEffect(() => {
-    filterCtx.addsResults.premium_ads != undefined
-      ? filterCtx.addsResults.premium_ads
-      : localPremuimAdds &&
-        localPremuimAdds.map((adds) => {
-          let data = {
-            add_id: adds.id,
-            user_id: adds.user_id,
-            images: adds.images,
-            title: adds.title,
-            address: adds.region.country.title + " " + adds.region.title,
-            price: adds.price,
-            time: adds.issue_date_string.slice(0, 5),
-
-            views: adds.view_count,
-            whatsApp: adds.whatsapp,
-            phone: adds.phone,
-            disc: adds.desc,
-            lat: adds.lat,
-            lng: adds.lng,
-            singleEstatData: {
-              id: adds.id,
-              images: adds.images,
-              title: adds.title,
-              address: adds.region.country.title + " " + adds.region.title,
-              discriptions: adds.desc,
-              city: adds.region.title,
-              space: adds.area,
-              interface: adds.front,
-              price: adds.price,
-              autoNumber: adds.auto_number,
-              phone: adds.phone,
-              whatsApp: adds.whatsapp,
-              lat: adds.lat,
-              lng: adds.lng,
-              views: adds.view_count,
-              time: adds.issue_date_string.slice(0, 5),
-
-              user_id: adds.user_id,
-            },
-          };
-          setPremuimAdds((pre) => [...pre, data]);
-        });
-  }, []);
-  useEffect(() => {
-    latestLocal &&
-      latestLocal.map((adds) => {
+    filterCtx.addsResults.ads &&
+      filterCtx.addsResults.ads.map((adds) => {
         let data = {
           add_id: adds.id,
           user_id: adds.user_id,
@@ -189,61 +105,15 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
           },
         };
         setLeastestAdd((pre) => [...pre, data]);
-        console.log(latestData);
       });
-  }, [latestLocal]);
-  useEffect(() => {
-    filterCtx.addsResults.ads != undefined
-      ? filterCtx.addsResults.ads
-      : latestLocal &&
-        latestLocal.map((adds) => {
-          let data = {
-            add_id: adds.id,
-            user_id: adds.user_id,
-            images: adds.images,
-            title: adds.title,
-            address: adds.region.country.title + " " + adds.region.title,
-            price: adds.price,
-            time: adds.issue_date_string.slice(0, 5),
-
-            views: adds.view_count,
-            whatsApp: adds.whatsapp,
-            phone: adds.phone,
-            disc: adds.desc,
-            lat: adds.lat,
-            lng: adds.lng,
-            singleEstatData: {
-              id: adds.id,
-              images: adds.images,
-              title: adds.title,
-              address: adds.region.country.title + " " + adds.region.title,
-              discriptions: adds.desc,
-              city: adds.region.title,
-              space: adds.area,
-              interface: adds.front,
-              price: adds.price,
-              autoNumber: adds.auto_number,
-              phone: adds.phone,
-              whatsApp: adds.whatsapp,
-              lat: adds.lat,
-              lng: adds.lng,
-              views: adds.view_count,
-              time: adds.issue_date_string.slice(0, 5),
-
-              user_id: adds.user_id,
-            },
-          };
-          setLeastestAdd((pre) => [...pre, data]);
-          console.log(latestData);
-        });
-  }, []);
+  }, [filterCtx.addsResults.ads]);
 
   return (
     <div className="results-container">
       <Nav navOb={navOb} />
       <div className="results">
         <h2 className="results-heading">
-          {`${type}
+          {`${tpyeName}
            ${
              rent
                ? route.locale == "ar"
@@ -283,26 +153,23 @@ const SearchResultComponents = ({ navOb, fo1, adsOb }) => {
         <div className="adds-results">
           <h1 className="premium-title">{adsOb.ad2}</h1>
 
-          {
-            (console.log(latestData),
-            latestData &&
-              latestData
-                .slice(0, visible)
-                .map((addsData) => (
-                  <Add
-                    adsOb={adsOb}
-                    singleEstate={addsData.singleEstatData}
-                    add_id={addsData.add_id}
-                    key={addsData.add_id}
-                    disc={addsData.disc}
-                    time={addsData.time}
-                    price={addsData.price}
-                    address={addsData.address}
-                    title={addsData.title}
-                    img={addsData.img}
-                  />
-                )))
-          }
+          {latestData &&
+            latestData
+              .slice(0, visible)
+              .map((addsData) => (
+                <Add
+                  adsOb={adsOb}
+                  singleEstate={addsData.singleEstatData}
+                  add_id={addsData.add_id}
+                  key={addsData.add_id}
+                  disc={addsData.disc}
+                  time={addsData.time}
+                  price={addsData.price}
+                  address={addsData.address}
+                  title={addsData.title}
+                  img={addsData.img}
+                />
+              ))}
         </div>
 
         <span className="end-results">{adsOb.ad4}</span>

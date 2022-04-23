@@ -6,16 +6,17 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import BackBtn from "../components/BackBtn";
 import axios from "axios";
-import * as cookie from "cookie";
 
 const SearchResult = (props) => {
   const filterCtx = useContext(FilterContext);
   const route = useRouter();
-  const [name, setName] = useState();
+  const [areaIds, setAreasIds] = useState([]);
   const [id, setIds] = useState();
   const [rent, setRent] = useState();
+  const [type, setType] = useState();
+  const [areas, setAreas] = useState([]);
+
   let { t } = useTranslation();
 
   // translations
@@ -116,76 +117,61 @@ const SearchResult = (props) => {
     priceCode,
   };
 
-  // let regions = filterCtx.regions_id == undefined ? name : filterCtx.regions_id;
+  useEffect(async () => {
+    let regions_id = localStorage.getItem("city");
+    console.log(regions_id);
+    areaIds.push(Number(regions_id));
+    let id = localStorage.getItem("ads");
+    setIds(JSON.parse(id));
+    let rentValue = localStorage.getItem("rent");
+    setRent(JSON.parse(rentValue));
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     if (filterCtx.RentValue != undefined) {
-  //       localStorage.setItem("regions", JSON.stringify(filterCtx.regions_id));
-  //       localStorage.setItem("type_id", JSON.stringify(filterCtx.type_id));
-  //       localStorage.setItem(
-  //         "setRentValue",
-  //         JSON.stringify(filterCtx.RentValue)
-  //       );
-  //     }
+    await axios
+      .post(
+        "https://stagingapi.aqarifinder.com/api/ads/filter",
+        {
+          category_id: Number(id),
+          regions: areaIds,
+          ad_type_id: rent ? 1 : 2,
+        },
+        {
+          headers: {
+            lang: route.locale,
+          },
+        }
+      )
+      .then((res) => {
+        filterCtx.setAddsSResutls(res.data.results);
+        filterCtx.setSerivceId("");
+      })
+      .then(
+        () => console.log(areaIds),
+        areaIds.map((name) => {
+          axios
+            .get(`https://stagingapi.aqarifinder.com/api/region/${name}`, {
+              headers: { lang: route.locale },
+            })
+            .then((res) => {
+              console.log(res.data.results.title);
+              setAreas((pre) => [...pre, res.data.results.title]);
+            });
+        }),
 
-  //     let regions = localStorage.getItem("regions");
-  //     setName(JSON.parse(regions));
-  //     let id = localStorage.getItem("type_id");
-  //     setIds(JSON.parse(id));
-  //     let rentValue = localStorage.getItem("setRentValue");
-  //     setRent(JSON.parse(rentValue));
-  //   }
-  // }, []);
+        axios
+          .get(`https://stagingapi.aqarifinder.com/api/category/${id}`, {
+            headers: { lang: route.locale },
+          })
+          .then((res) => {
+            setType(res.data.results.title);
+          })
+      );
 
-  // useEffect(() => {
-  //   console.log(filterCtx);
-  //   filterCtx.rent == undefined
-  //     ? rent
-  //     : filterCtx.rent
-  //     ? axios
-  //         .post(
-  //           "https://stagingapi.aqarifinder.com/api/ads/filter",
-  //           {
-  //             category_id:
-  //               filterCtx.type_id == undefined ? id : filterCtx.type_id,
-  //             regions: regions,
-  //             ad_type_id: 1,
-  //           },
-  //           {
-  //             headers: {
-  //               lang: route.locale,
-  //             },
-  //           }
-  //         )
-  //         .then((res) => {
-  //           filterCtx.setAddsSResutls(res.data.results);
-
-  //           // route.replace("/SearchResult");
-  //         })
-  //     : axios
-  //         .post(
-  //           "https://stagingapi.aqarifinder.com/api/ads/filter",
-  //           {
-  //             category_id:
-  //               filterCtx.type_id == undefined ? id : filterCtx.type_id,
-  //             regions: regions,
-  //             ad_type_id: 2,
-  //           },
-  //           {
-  //             headers: {
-  //               lang: route.locale,
-  //             },
-  //           }
-  //         )
-  //         .then((res) => {
-  //           filterCtx.setAddsSResutls(res.data.results);
-  //           filterCtx.setSerivceId("");
-  //           filterCtx.setRentValue(false);
-  //           // route.replace("/SearchResult");
-  //         });
-  // }, []);
-
+    return () => {
+      filterCtx.setAddsSResutls("");
+      setAreas("");
+      setType("");
+    };
+  }, []);
   return (
     <>
       <Head>
@@ -198,6 +184,8 @@ const SearchResult = (props) => {
         <NoResults navOb={navOb} fo1={fo1} adsOb={adsOb} />
       ) : (
         <SearchResultComponents
+          tpyeName={type}
+          areas={areas}
           navOb={navOb}
           addAdsOb={addAdsOb}
           fo1={fo1}
@@ -212,13 +200,6 @@ export default SearchResult;
 
 export async function getServerSideProps(context) {
   let { locale } = context;
-  // const cookies = context.req.headers.cookie;
-
-  // const parsedCookies = cookie.parse(context.req.headers.cookie);
-  // console.log(
-  //   "cookies",
-  //   context.req ? { cookie: ctx.req.headers.cookie } : undefined
-  // );
 
   return {
     props: {

@@ -74,7 +74,7 @@ const MyFav = ({ adsOb }) => {
   return (
     <div className="adds-container" style={{ marginTop: "40px" }}>
       {latest.length == 0 && (
-        <h5 className=" premium-title" style={{ fontSize: "15px" }}>
+        <h5 className="premium-title" style={{ fontSize: "15px" }}>
           {route.locale == "ar"
             ? "لايوجد لديك اعلانات في الوقت الحالي"
             : "You have no ads at the moment"}

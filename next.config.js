@@ -5,7 +5,6 @@
 
 // }
 
-// process.env.NEXTAUTH_URL = "https://akarii-demo.herokuapp.com/";
 process.env.NEXTAUTH_URL = "https://aqari-demo.herokuapp.com/";
 // process.env.NEXTAUTH_URL = "http://localhost:3000/";
 
@@ -13,7 +12,7 @@ module.exports = {
   reactStrictMode: false,
 
   i18n: {
-    defaultLocale: "en",
+    defaultLocale: "ar",
     locales: ["en", "ar"],
   },
   env: {

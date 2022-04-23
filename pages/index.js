@@ -22,10 +22,6 @@ const Index = ({ prem, latest, services, Request, name }) => {
   // const { locale } = route;
   let { t, i18n } = useTranslation();
 
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
-
   //nav
   let nav1 = t("home:nav-1");
   let nav2 = t("home:nav-2");

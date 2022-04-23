@@ -118,7 +118,7 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
 
       <div className="content-estat estat-origin">
         <div className="second-line">
-          <div className="price estat-deatils" style={{ width: "173px" }}>
+          <div className="price estat-deatils" style={{ width: "203px" }}>
             <span className="att">{priceWrod}</span>
             <span className="">
               <img
@@ -144,7 +144,7 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
 
       <div className="content-estat  estat-fallback">
         <div className="second-line">
-          <div className="price estat-deatils" style={{ width: "173px" }}>
+          <div className="price estat-deatils" style={{ width: "203px" }}>
             <span className="att">{priceWrod}</span>
             <span className="">
               <img

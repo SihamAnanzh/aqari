@@ -53,14 +53,16 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
       setShowWrongPassword(true);
 
       if (res.url) {
-        // route.push(res.url);
         console.log(document.referrer);
-        document.referrer == "http://localhost:3000/signIN" ||
-        document.referrer == "https://aqari-demo.herokuapp.com/signIN" ||
-        "http://localhost:3000" ||
-        "https://aqari-demo.herokuapp.com/"
-          ? route.push(res.url)
-          : route.push(document.referrer);
+        console.log(res.url);
+        document.referrer == "http://localhost:3000/packages" ||
+        document.referrer == "http://localhost:3000/en/packages" ||
+        document.referrer == "https://aqari-demo.herokuapp.com/en/packages" ||
+        document.referrer == "https://aqari-demo.herokuapp.com/packages"
+          ? route.push(document.referrer, document.referrer, {
+              locale: route.locale,
+            })
+          : route.push("/profile", "/profile", { locale: route.locale });
       }
     }
   };

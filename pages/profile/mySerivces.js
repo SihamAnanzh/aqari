@@ -8,7 +8,7 @@ import MyService from "../../components/profile/MyService";
 import axios from "axios";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { signIn, useSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import BackBtn from "../../components/BackBtn";
 
@@ -125,12 +125,21 @@ export default ProfileService;
 
 export async function getServerSideProps(context) {
   const { locale } = context;
-  // const session = getSession(context)
+  const session = await getSession(context);
   // if (session.data == null) {
   //   context.res.writeHead(303, { Location: "/signIN" });
   //   context.res.redirect("/signIN", 303);
   //   context.res.end();
   // }
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signIN",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ["home", "signin", "profile"])),

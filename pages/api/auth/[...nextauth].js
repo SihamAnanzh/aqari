@@ -6,7 +6,6 @@ import AppleProvider from "next-auth/providers/apple";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { redirect } from "next/dist/server/api-utils";
-import { route } from "next/dist/server/router";
 
 export default NextAuth({
   providers: [
