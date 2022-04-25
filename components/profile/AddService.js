@@ -5,9 +5,11 @@ import { FilterContext } from "../../stores/filter";
 import axios from "axios";
 import swal from "sweetalert";
 import { useSession } from "next-auth/react";
+import { useCookies } from "react-cookie";
 
-const AddService = ({ serviceOb }) => {
+const AddService = ({ serviceOb, addAdsOb }) => {
   const authCtx = useContext(AuthContext);
+  const [cookies, setCookie, removeCookie] = useCookies(["images"]);
 
   const [checkedConditions, setCheckedConditions] = useState(false);
   const [imageUpLoaded, setImageUpLoaded] = useState(false);
@@ -32,11 +34,26 @@ const AddService = ({ serviceOb }) => {
   const [desc, setDesc] = useState("");
   const [phoneNumber, setPhone] = useState("");
   const [whatsPhone, setWhatsPhone] = useState("");
+  const [showDialogBox, setShowDialogiBox] = useState(false);
+  const [checkedAdd, setCheckedAdd] = useState(false);
+  const [PAl, setPAL] = useState();
+  const [isPremium, setIspremium] = useState(false);
 
   const [files, setFiles] = useState([]);
   const [selectServId, setSelectServiId] = useState("");
   const [selectCategoryId, setSelectCategoryId] = useState([]);
   const route = useRouter();
+
+  const [makPremAd, setMakePremAd] = useState(false);
+  const [makeNormalAd, setMakeNormalAd] = useState(false);
+  const [makeAdCancel, setMakeAd] = useState(false);
+  const [token, setoken] = useState(null);
+
+  useEffect(() => {
+    setoken(cookies.token);
+    console.log(cookies.token);
+  }, [cookies.token]);
+
   useEffect(() => {
     selectItem
       ? selectItem.map((item) => {
@@ -50,12 +67,23 @@ const AddService = ({ serviceOb }) => {
   }, [regionsId]);
 
   const session = useSession();
-  let userData = session.data.xyz;
 
   const toggleAcitveElement = (id) => {
     let item = document.getElementById(id);
     item !== null ? item.classList.add("selected") : "";
   };
+
+  useEffect(() => {
+    axios
+      .get("https://stagingapi.aqarifinder.com/api/user/profile", {
+        headers: {
+          Authorization: cookies.token,
+        },
+      })
+      .then((res) => {
+        setPAL(res.data.results.premium_ads_left);
+      });
+  }, []);
 
   useEffect(() => {
     let services = document.querySelectorAll(".profile-list-service");
@@ -95,56 +123,205 @@ const AddService = ({ serviceOb }) => {
       });
   }, []);
 
-  const handelSubmit = (e) => {
-    setFiles([imageOne, imageTwo, imageThree, imageFour]);
-    let formData;
-    !disable &&
-      (title == "" || desc == "" || price == "" || phoneNumber == " "
-        ? (route.locale == "ar" &&
-            swal("تحذير", "يرجى تعبئة جميع الحقول", "info"),
-          route.locale == "en" &&
-            swal("تنبيه", "Fill all field please", "info"))
-        : ((formData = new FormData()),
-          formData.append("title", title),
-          formData.append("description", desc),
-          selectCategoryId.map((categ) => {
-            formData.append("region_ids", categ);
-          }),
-          formData.append("price", price),
-          formData.append("service_type_id", selectServId),
-          formData.append("phone", phoneNumber),
-          formData.append("whatsapp", phoneNumber),
-          files.map((file) => {
-            formData.append("image_files", file);
-          }),
-          axios({
-            method: "post",
-            url: "https://stagingapi.aqarifinder.com/api/user/services/add",
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization: userData.id,
-            },
-            data: formData,
-          })
-            .then((response) => {
-              response.data.status.code == 200
-                ? (route.locale == "ar"
-                    ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
-                    : ("'well done", "Serivce Added Successfully", "success"),
-                  route.replace("/profile/mySerivces"))
-                : response.data.status.code == 400 && route.locale == "ar"
-                ? swal("", "مطلوب صورة واحدة على الأقل", "info")
-                : swal("", "At least 1 image required", "info");
-            })
-            .catch((response) => {
-              route.locale == "ar"
-                ? swal(
-                    "لا يمكنك إضافة في الوقت الحالي",
-                    "الرجاء المحاولة في وقت لاحق",
-                    "error"
-                  )
-                : swal("try later", "At least 1 image required", "error");
+  const handleclickPrem = () => {
+    if (makeNormalAd) {
+      setFiles([imageOne, imageTwo, setImageThree, imageFour]);
+      !disable &&
+        (title == "" || desc == "" || price == "" || phoneNumber == " "
+          ? (route.locale == "ar" &&
+              swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
+            route.locale == "en" &&
+              swal("warning", "Fill all the field please", "info"))
+          : phoneNumber.length < 8
+          ? route.locale == "ar"
+            ? swal("", "رقم الهاتف خاطئ", "info")
+            : swal("", "invalid phone number", "info")
+          : ((formData = new FormData()),
+            setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+            formData.append("title", title),
+            formData.append("description", desc),
+            selectCategoryId.map((categ) => {
+              formData.append("region_ids", categ);
+            }),
+            formData.append("price", price),
+            formData.append("service_type_id", selectServId),
+            formData.append("phone", phoneNumber),
+            formData.append("whatsapp", phoneNumber),
+            formData.append("is_premium", false),
+            files.map((file) => {
+              formData.append("image_files", file);
+            }),
+            axios({
+              method: "post",
+              url: "https://stagingapi.aqarifinder.com/api/user/services/add",
+              headers: {
+                Authorization: session.data.id,
+                "Content-Type": "multipart/form-data",
+              },
+              data: formData,
+            }).then((response) => {
+              console.log(response);
+              response.data.status.code == 200 &&
+                (route.locale == "ar"
+                  ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
+                  : swal("'well done", "Service Added Successfully", "success"),
+                setTimeout(() => {
+                  route.push("/profile/mySerivces");
+                }, 1000));
             })));
+      return;
+    } else if (makPremAd) {
+      return (
+        setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+        !disable &&
+        (title == "" || desc == "" || price == "" || phoneNumber == " ")
+          ? (route.locale == "ar" &&
+              swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
+            route.locale == "en" &&
+              swal("warning", "Fill all the field please", "info"))
+          : phoneNumber.length < 8
+          ? route.locale == "ar"
+            ? swal("", "رقم الهاتف خاطئ", "info")
+            : swal("", "invalid phone number", "info")
+          : ((formData = new FormData()),
+            setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+            formData.append("title", addTitle),
+            formData.append("desc", desc),
+            formData.append("area", space),
+            formData.append("front", front),
+            formData.append("price", price),
+            formData.append("currency_id", "1"),
+            formData.append("category_id", category_id),
+            formData.append("ad_type_id", type_id),
+            formData.append("region_id", region_id),
+            formData.append("lat", lat),
+            formData.append("lng", lng),
+            formData.append("phone", phoneNumber),
+            formData.append("whatsapp", phoneNumber),
+            formData.append("is_premium", false),
+            files.map((file) => {
+              formData.append("image_files", file);
+            }),
+            formData.append("auto_number", autoNum),
+            axios({
+              method: "post",
+              url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+              headers: {
+                Authorization: token,
+                "Content-Type": "multipart/form-data",
+              },
+              data: formData,
+            }).then((response) => {
+              setCookie("service_id", response.data.results, { path: "/" });
+              console.log(response);
+              response.data.status.code == 200
+                ? ((formData = new FormData()),
+                  formData.append("package_id", 1),
+                  formData.append(
+                    "callbackurl",
+                    route.locale == "ar"
+                      ? "https://aqari-demo.herokuapp.com/profile/mySerivces"
+                      : "https://aqari-demo.herokuapp.com/en/profile/mySerivces"
+                  ),
+                  axios({
+                    method: "post",
+                    url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
+                    headers: {
+                      "Content-Type": "multipart/form-data",
+                      Authorization: token,
+                    },
+                    data: formData,
+                  }).then((res) => {
+                    res.data.status.code == 200 &&
+                      route.push(res.data.results.data.paymentURL);
+                    console.log(res.data.results.data.paymentURL);
+                  }))
+                : swal("", "something wrong", "info");
+            }))
+      );
+    } else if (makeAdCancel) {
+      return;
+    }
+  };
+
+  useEffect(async () => {
+    console.log(route.query.paymentId + "rtoue.query");
+    console.log(session);
+    route.query.paymentId &&
+      session.status == "authenticated" &&
+      (await axios({
+        method: "post",
+        url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+        headers: {
+          Authorization: cookies.token,
+        },
+      }).then(async (res) => {
+        console.log(res);
+        //if the resposent from the payment is success then you need to call the set as premium add and sec back the id of the add
+
+        axios({
+          method: "post",
+          url: `https://stagingapi.aqarifinder.com/api/user/services/set_premium/${cookies.service_id}/2`,
+          headers: {
+            Authorization: cookies.token,
+          },
+        }).then((res) => {
+          console.log(res);
+          response.data.status.code == 200 &&
+            (route.locale == "ar"
+              ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
+              : swal("'well done", "Add service Successfully", "success"));
+
+          swal("", res.data.results, "info");
+        });
+      }));
+  }, [route, session.status]);
+
+  const handelSubmit = (e) => {
+    let formData;
+    !disable && (title == "" || desc == "" || price == "" || phoneNumber == " ")
+      ? (route.locale == "ar" &&
+          swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
+        route.locale == "en" &&
+          swal("warning", "Fill all the field please", "info"))
+      : phoneNumber.length < 8
+      ? route.locale == "ar"
+        ? swal("", "رقم الهاتف خاطئ", "info")
+        : swal("", "invalid phone number", "info")
+      : PAl > 0
+      ? ((formData = new FormData()),
+        formData.append("title", title),
+        formData.append("description", desc),
+        selectCategoryId.map((categ) => {
+          formData.append("region_ids", categ);
+        }),
+        formData.append("price", price),
+        formData.append("service_type_id", selectServId),
+        formData.append("phone", phoneNumber),
+        formData.append("whatsapp", phoneNumber),
+        formData.append("is_premium", true),
+        files.map((file) => {
+          formData.append("image_files", file);
+        }),
+        axios({
+          method: "post",
+          url: "https://stagingapi.aqarifinder.com/api/user/services/add",
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: session.data.id,
+          },
+          data: formData,
+        }).then((response) => {
+          response.data.status.code == 200
+            ? (route.locale == "ar"
+                ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
+                : ("'well done", "Serivce Added Successfully", "success"),
+              route.replace("/profile/mySerivces"))
+            : response.data.status.code == 400 && route.locale == "ar"
+            ? swal("", "مطلوب صورة واحدة على الأقل", "info")
+            : swal("", "At least 1 image required", "info");
+        }))
+      : setShowDialogiBox(true);
   };
 
   return (
@@ -371,8 +548,7 @@ const AddService = ({ serviceOb }) => {
                 imageUpLoaded ? "office-logo" : ""
               }`}
               style={{
-                display: imageUpLoaded ? "none" : "block",
-                width: "66vw",
+                marginBottom: "20px",
               }}
             >
               <h3>{serviceOb.pic}</h3>
@@ -393,6 +569,21 @@ const AddService = ({ serviceOb }) => {
                         display: "none",
                       }}
                       onChange={(e) => {
+                        let file = e.target.files[0].size;
+                        if (file > 10e6) {
+                          route.locale == "ar"
+                            ? swal(
+                                "",
+                                "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
+                                "info"
+                              )
+                            : swal(
+                                "",
+                                "Please upload a file smaller than 10 MB",
+                                "info"
+                              );
+                          return false;
+                        }
                         setImageOne(e.target.files[0]);
                       }}
                     />
@@ -412,8 +603,23 @@ const AddService = ({ serviceOb }) => {
                       src="/assets/img/removeImg.svg"
                       alt=""
                       className="remove-img-serivce"
-                      onClick={(e) => {
-                        setImageOne("");
+                      onChange={(e) => {
+                        let file = e.target.files[0].size;
+                        if (file > 10e6) {
+                          route.locale == "ar"
+                            ? swal(
+                                "",
+                                "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
+                                "info"
+                              )
+                            : swal(
+                                "",
+                                "Please upload a file smaller than 10 MB",
+                                "info"
+                              );
+                          return false;
+                        }
+                        setImageTwo(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -494,8 +700,23 @@ const AddService = ({ serviceOb }) => {
                       src="/assets/img/removeImg.svg"
                       alt=""
                       className="remove-img-serivce"
-                      onClick={(e) => {
-                        setImageThree("");
+                      onChange={(e) => {
+                        let file = e.target.files[0].size;
+                        if (file > 10e6) {
+                          route.locale == "ar"
+                            ? swal(
+                                "",
+                                "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
+                                "info"
+                              )
+                            : swal(
+                                "",
+                                "Please upload a file smaller than 10 MB",
+                                "info"
+                              );
+                          return false;
+                        }
+                        setImageThree(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -536,8 +757,23 @@ const AddService = ({ serviceOb }) => {
                       alt=""
                       className="remove-img-serivce"
                       id="select-file-4"
-                      onClick={(e) => {
-                        setImageFour("");
+                      onChange={(e) => {
+                        let file = e.target.files[0].size;
+                        if (file > 10e6) {
+                          route.locale == "ar"
+                            ? swal(
+                                "",
+                                "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
+                                "info"
+                              )
+                            : swal(
+                                "",
+                                "Please upload a file smaller than 10 MB",
+                                "info"
+                              );
+                          return false;
+                        }
+                        setImageFour(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -551,7 +787,84 @@ const AddService = ({ serviceOb }) => {
               }}
             ></div>
 
-            <div className="checksbox">
+            <div className="checksbox" style={{ cursor: "pointer" }}>
+              <div
+                className="premium-add chack-groub"
+                onClick={() => {
+                  setCheckedAdd(true);
+                }}
+              >
+                {showDialogBox && (
+                  <div
+                    className="box"
+                    style={{
+                      top: "82%",
+                    }}
+                  >
+                    <div className="icon-box">
+                      <img
+                        src="/assets/img/packgeBox.svg"
+                        alt=""
+                        style={{
+                          marginTop: "-32px",
+                        }}
+                      />
+                    </div>
+                    <div className="content-box">
+                      <p>
+                        {route.locale == "ar"
+                          ? `لا يوجد لديك اعلانات مميزة`
+                          : ` You don't have any  premium add?`}
+                      </p>
+                    </div>
+                    <div className="box-btns">
+                      <div
+                        className="box-btn "
+                        onClick={() => {
+                          setMakeNormalAd(true);
+                          handleclickPrem();
+                          setShowDialogiBox(!showDialogBox);
+                        }}
+                      >
+                        {/* <Link href='/'>استمرار</Link> */}
+                        {route.locale == "ar" ? "إعلان عادي" : "Normal Ad"}
+                      </div>
+                      <div
+                        className="box-btn signUp-btn"
+                        onClick={() => {
+                          setMakePremAd(true);
+                          handleclickPrem();
+
+                          setShowDialogiBox(!showDialogBox);
+                        }}
+                      >
+                        <div>
+                          {route.locale == "ar" ? "إعلان مميز" : "premium Ad"}
+                        </div>
+                      </div>
+                      <div
+                        className="box-btn"
+                        onClick={() => {
+                          setMakeAd(true);
+                          setShowDialogiBox(!showDialogBox);
+                          handleclickPrem();
+                        }}
+                      >
+                        <div>{route.locale == "ar" ? "إلغاء" : "Cancel"}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <img
+                  src={`/assets/img/${
+                    !checkedAdd ? "emptyCheck" : "fullCheck"
+                  }.svg`}
+                  alt=""
+                />
+                <span>{addAdsOb.adSh1}</span>
+              </div>
+
               <div
                 className="conditions chack-groub"
                 style={{ cursor: "pointer" }}
@@ -568,7 +881,7 @@ const AddService = ({ serviceOb }) => {
                   }.svg`}
                   alt=""
                 />
-                <span>{serviceOb.tearmAndCondition}</span>
+                <span>{addAdsOb.adSh3}</span>
               </div>
             </div>
           </div>

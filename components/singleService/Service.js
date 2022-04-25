@@ -5,22 +5,24 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
   const [addToFav, setAddtoFav] = useState(data.isFav);
   const [userAdd, setUserAdd] = useState(false);
   const [allInfo, setAllInfo] = useState({});
   const route = useRouter();
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const session = useSession();
 
   useEffect(() => {
-    session.data != null && session.data.xyz.sub == data.user_id
+    cookies.token != null && cookies.userId == data.user_id
       ? setUserAdd(true)
       : setUserAdd(false);
   }, []);
   const toggleFavAdds = () => {
-    session.data != null
+    cookies.token !== "null"
       ? !addToFav
         ? axios
             .post(
@@ -28,7 +30,7 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
               null,
               {
                 headers: {
-                  Authorization: session.data != null ? session.data.id : null,
+                  Authorization: cookies.token,
                 },
               }
             )
@@ -41,14 +43,16 @@ const Service = ({ withImg, setOverlay, data, priceWrod, addAdsOb }) => {
               null,
               {
                 headers: {
-                  Authorization: session.data != null ? session.data.id : null,
+                  Authorization: cookies.token,
                 },
               }
             )
             .then((res) => {
               setAddtoFav(false);
             })
-      : route.replace("/signIN");
+      : route.push(
+          `/signIN?callbackurl=/services/${data.add_id}?title=${data.title}`
+        );
   };
 
   return (

@@ -2,14 +2,15 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState, useContext } from "react";
+import { useCookies } from "react-cookie";
 import swal from "sweetalert";
 import { AuthContext } from "../../stores/auth-context";
-
 const MyPorfile = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const authCtx = useContext(AuthContext);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const route = useRouter();
   const session = useSession();
   useEffect(() => {
@@ -17,7 +18,7 @@ const MyPorfile = (props) => {
       .get("https://stagingapi.aqarifinder.com/api/user/profile", {
         headers: {
           lang: route.locale,
-          Authorization: session && session.data.id,
+          Authorization: cookies.token,
         },
       })
       .then((res) => {
@@ -40,7 +41,11 @@ const MyPorfile = (props) => {
           .post(
             "https://stagingapi.aqarifinder.com/api/user/update",
             { ...data },
-            { headers: { Authorization: session.data.id } }
+            {
+              headers: {
+                Authorization: cookies.token != null ? cookies.token : null,
+              },
+            }
           )
           .then((res) => {
             res.data.status.code == 200 &&

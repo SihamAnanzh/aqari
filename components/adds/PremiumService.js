@@ -2,6 +2,10 @@ import Link from "next/link";
 import React from "react";
 
 const PremuimService = (props) => {
+  const img_url =
+    props.singleEstate.images && props.singleEstate.images.length > 0
+      ? props.singleEstate.images[0].logo_url
+      : "/assets/img/placeholder.png";
   return (
     // <Link href={{
     //     pathname: `/advertises/${props.add_id}`,
@@ -20,11 +24,12 @@ const PremuimService = (props) => {
         >
           <div className="img-prem">
             <img
-              src={
-                props.singleEstate.images[0] &&
-                props.singleEstate.images[0].logo_url
+              src={img_url}
+              alt={
+                props.title.length > 20
+                  ? props.title.substr(0, 20 - 1) + "..."
+                  : props.title
               }
-              alt={props.title}
             />
           </div>
         </Link>
@@ -38,7 +43,12 @@ const PremuimService = (props) => {
           }}
         >
           <div className="info-prem">
-            <div className="title">{props.title}</div>
+            <div className="title">
+              {" "}
+              {props.title.length > 20
+                ? props.title.substr(0, 20 - 1) + "..."
+                : props.title}
+            </div>
             <div className="address">
               <img src="/assets/img/location-gray.svg" />
               {props.address}

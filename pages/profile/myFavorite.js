@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Nav from "../../components/shared/nav/Nav";
 import Footer from "../../components/shared/footer/Footer";
 import SubNav from "../../components/profile/SubNav";
@@ -10,18 +10,27 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { signIn, useSession, getSession } from "next-auth/react";
 import Head from "next/head";
 import BackBtn from "../../components/BackBtn";
+import { useCookies } from "react-cookie";
 const MyFavorite = () => {
   const authCtx = useContext(AuthContext);
   const route = useRouter();
   let { t } = useTranslation();
   const session = useSession();
+  const [token, setoken] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   useEffect(() => {
-    console.log(session);
-    // if (session.status == "loading" || session.status == "authenticated") {
-    if (session.data == null) {
-      route.push(`/signIN`, `/signIN`, { locale: route.locale });
-    } else {
-      // maybe go to login page
+    setoken(cookies.token);
+    console.log(cookies.token);
+  }, [cookies.token]);
+
+  useEffect(() => {
+    if (cookies.token == "null") {
+      route.push(
+        `/signIN?callbackurl=/profile/myFavorite"`,
+        `/signIN?callbackurl=/profile/myFavorite"`,
+        { locale: route.locale }
+      );
     }
   }, []);
 
@@ -98,14 +107,24 @@ const MyFavorite = () => {
 
   return (
     <>
-      {session && session.data != null && (
+      {cookies.token !== "null" && (
         <>
           <Head>
             <title>{route.locale == "ar" ? "المفضلة" : "My favourite"}</title>
           </Head>
           <Nav navOb={navOb} />
           <div className="profile-container">
-            <h1 className="profile-heading">{pro1}</h1>
+            <div
+              className="profiel-heading-continer"
+              style={{
+                width: "98%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
+              <h1 className="profile-heading">{pro1}</h1>
+            </div>
             <SubNav proOb={proOb} />
             <MyFav adsOb={adsOb} />
           </div>
@@ -122,14 +141,14 @@ export async function getServerSideProps(context) {
   const { locale } = context;
   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/signIN",
-        permanent: false,
-      },
-    };
-  }
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/signIN?callbackurl=/profile/myFavorite",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
   return {
     props: {
       ...(await serverSideTranslations(locale, ["home", "signin", "profile"])),

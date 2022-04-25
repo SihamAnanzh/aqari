@@ -16,12 +16,13 @@ const Packges = ({ data, fo1, navOb, sginOb }) => {
         titleTwo: data.subtitle,
         logo: data.logo_url,
         packgeId: data.packages.length !== 0 && data.packages[0].id,
-        packageTitle: data.packages.title,
+        packageTitle: data.packages.length !== 0 && data.packages[0].title,
         currencyTitle:
           data.packages.length !== 0 && data.packages[0].currency.title,
         currencyCode:
           data.packages.length !== 0 && data.packages[0].currency.title,
         price: data.packages.length !== 0 && data.packages[0].price,
+        duration: data.packages.length !== 0 && data.packages[0].duration,
       };
       setPacakgeData((pre) => [...pre, datapack]);
     });
@@ -46,8 +47,9 @@ const Packges = ({ data, fo1, navOb, sginOb }) => {
                   logo={pack.logo}
                   currencyTitle={pack.currencyTitle}
                   titleOne={pack.titleOne}
-                  titleTwo={pack.titleTwo}
+                  titleTwo={pack.packageTitle}
                   currencyId={pack.currencyId}
+                  duration={pack.duration}
                 />
               )
           )}

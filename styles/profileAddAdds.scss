@@ -171,18 +171,16 @@
     }
    }
 
-//    .wrrap-images{
-//        display: flex;
-//        justify-content: center;
-//        align-items: center;
-//        flex-wrap: wrap;
-//          width: 70vw;
-//          margin-right: 0;
-       
-//        div{
-//            margin: 2px;
-//        }
-//    }
+   .ltr .wrrap-images{
+  
+         width: 90vw;
+  
+      
+   }
+
+   .wrrap-images{
+       width: 70vw;
+   }
 
    .addAdds-tab-container {
     width: fit-content;

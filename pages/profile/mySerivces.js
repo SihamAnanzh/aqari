@@ -11,6 +11,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getSession, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import BackBtn from "../../components/BackBtn";
+import { useCookies } from "react-cookie";
 
 const ProfileService = () => {
   const authCtx = useContext(AuthContext);
@@ -20,10 +21,22 @@ const ProfileService = () => {
   let { t } = useTranslation();
   const session = useSession();
 
+  const [token, setoken] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
+  useEffect(() => {
+    setoken(cookies.token);
+    console.log(cookies.token);
+  }, [cookies.token]);
+
   useEffect(() => {
     console.log(session);
-    if (!session || session.data == null) {
-      route.push(`/signIN`, `/signIN`, { locale: route.locale });
+    if (cookies.token == "null") {
+      route.push(
+        `/signIN?callbackurl=/profile/mySerivces`,
+        `/signIN?callbackurl=/profile/mySerivces`,
+        { locale: route.locale }
+      );
     }
   }, []);
 
@@ -103,14 +116,24 @@ const ProfileService = () => {
 
   return (
     <>
-      {session && session.data != null && (
+      {cookies.token !== "null" && (
         <>
           <Head>
             <title>{route.locale == "ar" ? "خدماتي" : "My services"}</title>
           </Head>
           <Nav navOb={navOb} />
           <div className="profile-container">
-            <h1 className="profile-heading">{pro1}</h1>
+            <div
+              className="profiel-heading-continer"
+              style={{
+                width: "98%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
+              <h1 className="profile-heading">{pro1}</h1>
+            </div>
             <SubNav proOb={proOb} />
             <MyService adsOb={adsOb} />
           </div>
@@ -126,19 +149,6 @@ export default ProfileService;
 export async function getServerSideProps(context) {
   const { locale } = context;
   const session = await getSession(context);
-  // if (session.data == null) {
-  //   context.res.writeHead(303, { Location: "/signIN" });
-  //   context.res.redirect("/signIN", 303);
-  //   context.res.end();
-  // }
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/signIN",
-        permanent: false,
-      },
-    };
-  }
 
   return {
     props: {

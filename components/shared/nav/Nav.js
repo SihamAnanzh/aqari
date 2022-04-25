@@ -9,11 +9,14 @@ import { useSession, signOut } from "next-auth/react";
 import BackBtn from "../../BackBtn";
 import { I18nContext, useTranslation, withTranslation } from "next-i18next";
 import NextNProgress from "nextjs-progressbar";
+import { useCookies } from "react-cookie";
 const Nav = ({ logo, icon, navOb, homePage }) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const [showLang, setShowLang] = useState(false);
   const [showAddMenu, setAddMenu] = useState(false);
   const [showNav, setShowNav] = useState(false);
-  const [loader, setLoader] = useState(false);
+  const [token, setoken] = useState(null);
   const [movearrow, setMvoeArrow] = useState(false);
   const authCtx = useContext(AuthContext);
   const session = useSession();
@@ -21,15 +24,11 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
   const route = useRouter();
   const { t, i18n } = useTranslation();
 
-  // const changeLanguage = (lng) => {
-  //   console.log(session);
-  //   route.locale = lng;
-  //   // i18n.changeLanguage(lng);
+  useEffect(() => {
+    setoken(cookies.token);
+    console.log(cookies.token);
+  }, [cookies.token]);
 
-  //   route.push(route.asPath, route.asPath, { locale: lng });
-
-  //   console.log(route.locale);
-  // };
   Nav.handleClickOutside = () => {
     setAddMenu(false);
     setShowLang(false);
@@ -80,7 +79,7 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                 </span>
               </Link>
             </li>
-            {session.data == null && (
+            {token == `null` && (
               <Link href="/signIN" className="main-nav-item">
                 <li
                   className={`${route.asPath === "/signIN" ? "activeNav" : ""}`}
@@ -95,31 +94,41 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
             )}
 
             <li className={`${route.asPath === "/signUp" ? "activeNav" : ""}`}>
-              {session.data == null ? (
-                <Link href="/signUp" className="main-nav-item">
-                  <span
-                    className={`${route.asPath === "/signUp" ? "active" : ""}`}
-                  >
-                    {navOb.nav5}
-                  </span>
-                </Link>
-              ) : (
-                <div className="main-nav-item">
-                  <span
-                    style={{ cursor: "pointer" }}
-                    className={`${route.asPath === "/signUp" ? "active" : ""}`}
-                    onClick={() => {
-                      axios.post(
-                        "https://stagingapi.aqarifinder.com/api/user/logout",
-                        { headers: { Authorization: session.data.id } }
-                      );
-                      signOut();
-                    }}
-                  >
-                    {navOb.nav6}
-                  </span>
-                </div>
-              )}
+              {
+                (console.log(token == `null`),
+                token == `null` ? (
+                  <Link href="/signUp" className="main-nav-item">
+                    <span
+                      className={`${
+                        route.asPath === "/signUp" ? "active" : ""
+                      }`}
+                    >
+                      {navOb.nav5}
+                    </span>
+                  </Link>
+                ) : (
+                  <div className="main-nav-item">
+                    <span
+                      style={{ cursor: "pointer" }}
+                      className={`${
+                        route.asPath === "/signUp" ? "active" : ""
+                      }`}
+                      onClick={() => {
+                        axios.post(
+                          "https://stagingapi.aqarifinder.com/api/user/logout",
+                          { headers: { Authorization: token } }
+                        );
+                        setCookie("token", null, { path: "/" });
+                        setCookie("userId", null, { path: "/" });
+
+                        signOut();
+                      }}
+                    >
+                      {navOb.nav6}
+                    </span>
+                  </div>
+                ))
+              }
             </li>
           </ul>
         </div>
@@ -200,15 +209,11 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                 <li
                   style={{ textDecoration: "none", color: "#fff" }}
                   onClick={() => {
-                    setLoader(true);
-
-                    console.log(route.basePath);
+                    // i18n.changeLanguage("en");
+                    // route.locale = "en";
                     // setTimeout(() => {
-
                     //   location.reload();
-                    //   console.log("click");
-                    //   setLoader(false);
-                    // }, 2000);
+                    // }, 3000);
                   }}
                 >
                   <Link href={route.asPath} locale="en">
@@ -220,13 +225,10 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                 <li
                   style={{ textDecoration: "none", color: "#fff" }}
                   onClick={() => {
-                    setLoader(true);
-                    console.log(route.basePath);
-
                     // i18n.changeLanguage("ar");
+                    // route.locale = "ar";
                     // setTimeout(() => {
                     //   location.reload();
-                    //   setLoader(false);
                     // }, 2000);
                   }}
                 >
@@ -238,13 +240,13 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                 </li>
 
                 {/* <li onClick={() => changeLanguage("en")}>English</li>
-              <li onClick={() => changeLanguage("ar")}>عربي</li> */}
+                <li onClick={() => changeLanguage("ar")}>عربي</li> */}
                 {/* <Link href={route.asPath} locale="en">
-                En
-              </Link>
-              <Link href={route.asPath} locale="ar">
-                ar
-              </Link> */}
+                  En
+                </Link>
+                <Link href={route.asPath} locale="ar">
+                  ar
+                </Link> */}
               </ul>
             </li>
             <li>

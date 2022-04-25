@@ -6,6 +6,7 @@ import swal from "sweetalert";
 const ConfirmPasswrod = ({ sginOb }) => {
   const [newPassword, setNewPassword] = useState("");
   const route = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handelClick = () => {
     console.log(route.query.pid);
@@ -18,7 +19,8 @@ const ConfirmPasswrod = ({ sginOb }) => {
         email: route.query.m,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+
         route.locale == "ar"
           ? swal("", "تم تعديل بنجاح", "success")
           : swal("", "Updated successfully", "success");
@@ -30,7 +32,7 @@ const ConfirmPasswrod = ({ sginOb }) => {
       <div className="forget-heading">
         <h2>{sginOb.reset}</h2>
       </div>
-      <div className="forget-input">
+      <div className="forget-input" style={{ position: "relative" }}>
         <div className="forget-input-contanier">
           <h3
             style={{
@@ -40,13 +42,30 @@ const ConfirmPasswrod = ({ sginOb }) => {
             {sginOb.newPasswrod}
           </h3>
           <input
-            type="password"
+            style={{ position: "relative" }}
+            autoFocus
+            tabIndex={1}
+            type={showPassword ? "text" : "password"}
             className="sign-mail"
             placeholder={sginOb.newPasswrod}
             onChange={(e) => setNewPassword(e.target.value)}
           />
+          <span
+            className="passwrod-icon"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            <img
+              src={`/assets/img/${
+                showPassword ? "showPassword" : "hidePassword"
+              }.svg`}
+              alt=""
+              style={{
+                cursor: "pointer",
+              }}
+            />
+          </span>
         </div>
-        <div className="forget-btn" onClick={handelClick}>
+        <div className="forget-btn" onClick={handelClick} tabIndex={2}>
           {sginOb.continueWrod}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Nav from "../../components/shared/nav/Nav";
 import Footer from "../../components/shared/footer/Footer";
 import SubNav from "../../components/profile/SubNav";
@@ -10,20 +10,29 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getSession, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import BackBtn from "../../components/BackBtn";
+import { useCookies } from "react-cookie";
 const Service = () => {
   const authCtx = useContext(AuthContext);
   const route = useRouter();
   let { t } = useTranslation();
   const session = useSession();
 
-  // useEffect(() => {
-  //   console.log(session);
-  //   if (!session || session.data == null) {
-  //     route.push(`/signIN`, `/signIN`, { locale: route.locale });
-  //   }
-  // }, []);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [token, setoken] = useState(null);
 
-  // translations
+  useEffect(() => {
+    setoken(cookies.token);
+  }, [cookies.token]);
+
+  useEffect(() => {
+    if (token == "null") {
+      route.push(
+        `/signIN?callbackurl=/profile/addService`,
+        `/signIN?callbackurl=/profile/addService`,
+        { locale: route.locale }
+      );
+    }
+  }, [token]);
 
   //nav
   let nav1 = t("home:nav-1");
@@ -89,6 +98,16 @@ const Service = () => {
     pro8,
   };
 
+  let adSh1 = t("add-ads:ad-sh-1");
+  let adSh2 = t("add-ads:ad-sh-2");
+  let adSh3 = t("add-ads:ad-sh-3");
+
+  let addAdsOb = {
+    adSh1,
+    adSh2,
+    adSh3,
+  };
+
   let serviceOb = {
     pro8,
     title: t("add-service:service-title"),
@@ -105,16 +124,26 @@ const Service = () => {
 
   return (
     <>
-      {session && session.data != null && (
+      {cookies.token != "null" && (
         <>
           <Head>
             <title>{route.locale == "ar" ? "اضف خدمة" : "Add services"}</title>
           </Head>
           <Nav navOb={navOb} />
           <div className="profile-container">
-            <h1 className="profile-heading">{pro1}</h1>
+            <div
+              className="profiel-heading-continer"
+              style={{
+                width: "98%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
+              <h1 className="profile-heading">{pro1}</h1>
+            </div>
             <SubNav proOb={proOb} />
-            <AddService serviceOb={serviceOb} />
+            <AddService addAdsOb={addAdsOb} serviceOb={serviceOb} />
           </div>
           <Footer />
         </>
@@ -129,14 +158,14 @@ export async function getServerSideProps(context) {
   const { locale } = context;
   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/signIN",
-        permanent: false,
-      },
-    };
-  }
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/signIN?callbackurl=/profile/addService",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -144,6 +173,7 @@ export async function getServerSideProps(context) {
         "signin",
         "profile",
         "add-service",
+        "add-ads",
       ])),
     },
   };

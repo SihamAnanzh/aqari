@@ -12,14 +12,104 @@ import axios from "axios";
 const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
   const [premuimAdds, setPremuimAdds] = useState([]);
   const [latestData, setLeastestAdd] = useState([]);
-  const [localPremuimAdds, setLocalPremuimAdds] = useState([]);
-  const [latestLocal, setLeastestLocal] = useState([]);
+  const [areaIds, setAreasIds] = useState([]);
+  const [rent, setRent] = useState();
+  const [areasData, setAreasData] = useState(areas);
+  const [hasMore, setHasMore] = useState(true);
+  const [id, setIds] = useState();
+  const [type, setType] = useState();
+  const [areas, setAreas] = useState([]);
+
   const filterCtx = useContext(FilterContext);
-  const [rent, setRent] = useState(filterCtx.rent);
-  const [visible, setVisible] = useState(5);
   const route = useRouter();
-  const loadMoreHandler = () => {
-    setVisible((pre) => pre + 5);
+
+  const loadMoreHandler = async () => {
+    let regions_id = localStorage.getItem("city");
+    console.log(regions_id);
+    areaIds.push(Number(regions_id));
+    let id = localStorage.getItem("ads");
+    setIds(JSON.parse(id));
+    let rentValue = localStorage.getItem("rent");
+    setRent(JSON.parse(rentValue));
+
+    await axios
+      .post(
+        "https://stagingapi.aqarifinder.com/api/ads/filter",
+        {
+          category_id: Number(id),
+          regions: areaIds,
+          ad_type_id: rent ? 1 : 2,
+        },
+        {
+          headers: {
+            lang: route.locale,
+            limit: 11,
+            offset: filterCtx.addsResults.ads.length,
+          },
+        }
+      )
+      .then((res) => {
+        res.data.results.ads.map((adds) => {
+          let data = {
+            add_id: adds.id,
+            user_id: adds.user_id,
+            images:
+              adds.images.length == 0 ? "/assets/img/home.jpg" : adds.images,
+            title: adds.title,
+            address: adds.region.country.title + " " + adds.region.title,
+            price: adds.price,
+            time: adds.issue_date_string.slice(0, 5),
+            views: adds.view_count,
+            whatsApp: adds.whatsapp,
+            phone: adds.phone,
+            disc: adds.desc,
+            lat: adds.lat,
+            lng: adds.lng,
+            singleEstatData: {
+              id: adds.id,
+              images: adds.images,
+              title: adds.title,
+              address: adds.region.country.title + " " + adds.region.title,
+              discriptions: adds.desc,
+              city: adds.region.title,
+              space: adds.area,
+              interface: adds.front,
+              price: adds.price,
+              autoNumber: adds.auto_number,
+              phone: adds.phone,
+              whatsApp: adds.whatsapp,
+              lat: adds.lat,
+              lng: adds.lng,
+              views: adds.view_count,
+              time: adds.issue_date_string.slice(0, 5),
+
+              user_id: adds.user_id,
+            },
+          };
+          setLeastestAdd((pre) => [...pre, data]);
+        });
+      })
+      .then(
+        () => console.log(areaIds),
+        areaIds.map((name) => {
+          axios
+            .get(`https://stagingapi.aqarifinder.com/api/region/${name}`, {
+              headers: { lang: route.locale },
+            })
+            .then((res) => {
+              console.log(res.data.results.title);
+              setAreasData((pre) => [...pre, res.data.results.title]);
+            });
+        }),
+
+        axios
+          .get(`https://stagingapi.aqarifinder.com/api/category/${id}`, {
+            headers: { lang: route.locale },
+          })
+          .then((res) => {
+            setType(res.data.results.title);
+          })
+      );
   };
 
   useEffect(() => {
@@ -57,7 +147,6 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
             lng: adds.lng,
             views: adds.view_count,
             time: adds.issue_date_string.slice(0, 5),
-
             user_id: adds.user_id,
           },
         };
@@ -71,12 +160,12 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
         let data = {
           add_id: adds.id,
           user_id: adds.user_id,
-          images: adds.images,
+          images:
+            adds.images.length == 0 ? "/assets/img/home.jpg" : adds.images,
           title: adds.title,
           address: adds.region.country.title + " " + adds.region.title,
           price: adds.price,
           time: adds.issue_date_string.slice(0, 5),
-
           views: adds.view_count,
           whatsApp: adds.whatsapp,
           phone: adds.phone,
@@ -113,7 +202,7 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
       <Nav navOb={navOb} />
       <div className="results">
         <h2 className="results-heading">
-          {`${tpyeName}
+          {`${tpyeName == undefined ? "" : tpyeName}
            ${
              rent
                ? route.locale == "ar"
@@ -124,7 +213,7 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
                : "Selling"
            }
             ${route.locale == "ar" ? "في" : "in"}
-             ${[...areas]}`}
+             ${[...areasData]}`}
         </h2>
         {premuimAdds.length !== 0 && (
           <div className="premium-adds-results">
@@ -154,24 +243,44 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
           <h1 className="premium-title">{adsOb.ad2}</h1>
 
           {latestData &&
-            latestData
-              .slice(0, visible)
-              .map((addsData) => (
-                <Add
-                  adsOb={adsOb}
-                  singleEstate={addsData.singleEstatData}
-                  add_id={addsData.add_id}
-                  key={addsData.add_id}
-                  disc={addsData.disc}
-                  time={addsData.time}
-                  price={addsData.price}
-                  address={addsData.address}
-                  title={addsData.title}
-                  img={addsData.img}
-                />
-              ))}
+            latestData.map((addsData) => (
+              <Add
+                adsOb={adsOb}
+                singleEstate={addsData.singleEstatData}
+                add_id={addsData.add_id}
+                key={addsData.add_id}
+                disc={addsData.disc}
+                time={addsData.time}
+                price={addsData.price}
+                address={addsData.address}
+                title={addsData.title}
+                img={addsData.img}
+              />
+            ))}
         </div>
-
+        {hasMore && (
+          <div
+            className="adds-btn"
+            onClick={loadMoreHandler}
+            style={{
+              cursor: "pointer",
+            }}
+          >
+            {adsOb.ad3}
+            <span className="btn-icon">
+              <img
+                src="/assets/img/+btn.svg"
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  marginRight: "12px",
+                  marginTop: "8px",
+                  cursor: "pointer",
+                }}
+              />
+            </span>
+          </div>
+        )}
         <span className="end-results">{adsOb.ad4}</span>
       </div>
       <Footer fo1={fo1} />

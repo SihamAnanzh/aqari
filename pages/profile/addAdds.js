@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Nav from "../../components/shared/nav/Nav";
 import Footer from "../../components/shared/footer/Footer";
 import SubNav from "../../components/profile/SubNav";
@@ -10,17 +10,28 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getSession, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import BackBtn from "../../components/BackBtn";
+import { useCookies } from "react-cookie";
+
 const Adds = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [token, setoken] = useState(null);
+
+  useEffect(() => {
+    setoken(cookies.token);
+  }, [cookies.token]);
+
   const session = useSession();
 
-  // useEffect(() => {
-  //   console.log(session);
-  //   if (!session || session.data == null) {
-  //     route.push(`/signIN`, `/signIN`, { locale: route.locale });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (token == "null") {
+      route.push(
+        `/signIN?callbackurl=/profile/addAdds`,
+        `/signIN?callbackurl=/profile/addAdds`,
+        { locale: route.locale }
+      );
+    }
+  }, [token]);
 
-  const authCtx = useContext(AuthContext);
   const route = useRouter();
   let { t } = useTranslation();
 
@@ -134,14 +145,24 @@ const Adds = () => {
 
   return (
     <>
-      {session && session.data != null && (
+      {token != "null" && (
         <>
           <Head>
             <title>{route.locale == "ar" ? "اضف إعلان" : "Add Ads"}</title>
           </Head>
           <Nav navOb={navOb} />
           <div className="profile-container">
-            <h1 className="profile-heading">{pro1}</h1>
+            <div
+              className="profiel-heading-continer"
+              style={{
+                width: "98%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
+              <h1 className="profile-heading">{pro1}</h1>
+            </div>
             <SubNav proOb={proOb} />
             <AddAdds addAdsOb={addAdsOb} />
           </div>
@@ -163,14 +184,14 @@ export async function getServerSideProps(context) {
   //   context.res.end();
   // }
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/signIN",
-        permanent: false,
-      },
-    };
-  }
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/signIN?callbackurl=/profile/addAdds",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
   return {
     props: {

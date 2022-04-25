@@ -11,12 +11,15 @@ import axios from "axios";
 const SearchResult = (props) => {
   const filterCtx = useContext(FilterContext);
   const route = useRouter();
+
+  const [premuimAdds, setPremuimAdds] = useState([]);
+  const [latestData, setLeastestAdd] = useState([]);
   const [areaIds, setAreasIds] = useState([]);
-  const [id, setIds] = useState();
   const [rent, setRent] = useState();
+  const [hasMore, setHasMore] = useState(true);
+  const [id, setIds] = useState();
   const [type, setType] = useState();
   const [areas, setAreas] = useState([]);
-
   let { t } = useTranslation();
 
   // translations

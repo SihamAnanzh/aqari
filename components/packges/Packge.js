@@ -11,7 +11,7 @@ const Packge = (props) => {
   const route = useRouter();
   let formData = new FormData();
   formData.append("package_id", props.packgeId);
-  formData.append("callbackurl", "https://aqari-demo.herokuapp.com/packages");
+  formData.append("callbackUrl", "https://aqari-demo.herokuapp.com/packages");
   let formDataTow = new FormData();
   formDataTow.append("package_id", props.packgeId);
 
@@ -46,8 +46,7 @@ const Packge = (props) => {
           url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization:
-              session.data != null ? session.data.id : route.replace("/signIN"),
+            Authorization: session.data != null ? session.data.id : "",
           },
           data: formData,
         }).then((res) => {
@@ -55,7 +54,7 @@ const Packge = (props) => {
             route.replace(res.data.results.data.paymentURL);
           console.log(res.data.results.data.paymentURL);
         })
-      : route.replace("/signIN");
+      : route.push("/signIN?callbackurl=/packages");
   };
 
   return (
@@ -76,7 +75,7 @@ const Packge = (props) => {
         <div className="add-type show">
           <span className="add-type-first">
             <span className="number-adds">{props.currencyId}</span>
-            {props.titleTwo}
+            {props.duration} {route.locale == "ar" ? "يوم" : "day"}
             <span className="price-adds">{props.price}</span>
             {props.currencyTitle}
           </span>
@@ -84,7 +83,7 @@ const Packge = (props) => {
         <div className="add-type hide" onClick={handleClick}>
           <span className="add-type-first">
             <span className="number-adds">{props.currencyId}</span>
-            {props.titleTwo}
+            {props.duration} {route.locale == "ar" ? "يوم" : "day"}
             <span className="price-adds">{props.price}</span>
             {props.currencyTitle}
           </span>

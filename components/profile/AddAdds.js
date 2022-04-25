@@ -2,20 +2,14 @@ import { style } from "@mui/system";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../stores/auth-context";
-import PackgeBox from "../dialogBox/PackgeBox";
-import SimpleMap from "../map/MapAdds";
 import swal from "sweetalert";
 import { useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/react";
 import { useCookies } from "react-cookie";
-import GoogleMapReact from "google-map-react";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { toBase64 } from "../../convertUrl";
-
+import Image from "next/image";
 const AddAdds = ({ addAdsOb }) => {
   const route = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(["images"]);
-
   const authCtx = useContext(AuthContext);
   const [showListCategory, setShwoListCategory] = useState(false);
   const [showListType, setShwoListType] = useState(false);
@@ -38,17 +32,11 @@ const AddAdds = ({ addAdsOb }) => {
   const [autoNum, setAutoNum] = useState("");
   const [desc, setDesc] = useState("");
   const [files, setFiles] = useState([]);
-  const [adsDataLocal, setAdsDataLoale] = useState();
-  const [lat, setLat] = useState(29.3117);
-  const [lng, setLng] = useState(47.4818);
   const [imageOne, setImageOne] = useState();
   const [imageTwo, setImageTwo] = useState();
   const [imageThree, setImageThree] = useState();
   const [imageFour, setImageFour] = useState();
-  const [imageOneB6, setImageOneB6] = useState();
-  const [imageTwoB6, setImageTwoB6] = useState();
-  const [imageThreeB6, setImageThreeB6] = useState();
-  const [imageFourB6, setImageFourB6] = useState();
+
   const [regions, setRegions] = useState([]);
   const [items, setItem] = useState([]);
   const [imgList, setImgList] = useState([{}]);
@@ -64,267 +52,251 @@ const AddAdds = ({ addAdsOb }) => {
   const [category_id, setCategory_id] = useState("");
   const [region_id, setRegion_id] = useState("");
 
+  const [token, setoken] = useState(null);
+
+  const [makPremAd, setMakePremAd] = useState(false);
+  const [makeNormalAd, setMakeNormalAd] = useState(false);
+  const [makeAdCancel, setMakeAd] = useState(false);
+
+  useEffect(() => {
+    setoken(cookies.token);
+    console.log(cookies.token);
+  }, [cookies.token]);
+
   let formData;
 
   const handelSubmit = (e) => {
-    // setFiles([imageOne, imageTwo, setImageThree, imageFour]);
     !disable &&
-      (addTitle == "" ||
+    (addTitle == "" ||
       desc == "" ||
       space == "" ||
       price == "" ||
       autoNum == "" ||
-      lat == "" ||
-      lng == "" ||
-      phoneNumber == " "
-        ? (route.locale == "ar" &&
-            swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
-          route.locale == "en" &&
-            swal("warning", "Fill all the field please", "info"))
-        : phoneNumber.length < 8
-        ? route.locale == "ar"
-          ? swal("", "رقم الهاتف خاطئ", "info")
-          : swal("", "invalid phone number", "info")
-        : ((formData = new FormData()),
-          setFiles([imageOneB6, imageTwoB6, setImageThreeB6, imageFourB6]),
-          formData.append("title", addTitle),
-          formData.append("desc", desc),
-          formData.append("area", space),
-          formData.append("front", front),
-          formData.append("price", price),
-          formData.append("currency_id", "1"),
-          formData.append("category_id", category_id),
-          formData.append("ad_type_id", type_id),
-          formData.append("region_id", region_id),
-          formData.append("lat", lat),
-          formData.append("lng", lng),
-          formData.append("phone", phoneNumber),
-          formData.append("whatsapp", phoneNumber),
-          formData.append("is_premium", isPremium),
-          files.map((file) => {
-            formData.append("image_files", file);
-          }),
-          formData.append("auto_number", autoNum),
-          axios({
-            method: "post",
-            url: "https://stagingapi.aqarifinder.com/api/user/ad/add/base_64",
-            headers: {
-              Authorization: session.data.id,
-              "Content-Type": "application/json",
-            },
-            data: formData,
-          }).then((response) => {
-            console.log(response);
-            response.data.status.code == 200 &&
-              (route.locale == "ar"
-                ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
-                : swal("'well done", "Ad Added Successfully", "success"),
-              setTimeout(() => {
-                route.push("/profile/myAdds");
-              }, 1000));
-          })));
+      phoneNumber == " ")
+      ? (route.locale == "ar" &&
+          swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
+        route.locale == "en" &&
+          swal("warning", "Fill all the field please", "info"))
+      : phoneNumber.length < 8
+      ? route.locale == "ar"
+        ? swal("", "رقم الهاتف خاطئ", "info")
+        : swal("", "invalid phone number", "info")
+      : PAl > 0
+      ? ((formData = new FormData()),
+        setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+        formData.append("title", addTitle),
+        formData.append("desc", desc),
+        formData.append("area", space),
+        formData.append("front", front),
+        formData.append("price", price),
+        formData.append("currency_id", "1"),
+        formData.append("category_id", category_id),
+        formData.append("ad_type_id", type_id),
+        formData.append("region_id", region_id),
+        formData.append("phone", phoneNumber),
+        formData.append("whatsapp", phoneNumber),
+        formData.append("is_premium", true),
+        files.map((file) => {
+          formData.append("image_files", file);
+        }),
+        formData.append("auto_number", autoNum),
+        axios({
+          method: "post",
+          url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+          headers: {
+            Authorization: token,
+            "Content-Type": "multipart/form-data",
+          },
+          data: formData,
+        }).then((response) => {
+          console.log(response);
+          response.data.status.code == 200 &&
+            (route.locale == "ar"
+              ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
+              : swal("'well done", "Ad Added Successfully", "success"),
+            setTimeout(() => {
+              route.push("/profile/myAdds");
+            }, 1000));
+        }))
+      : setShowDialogiBox(true);
   };
 
   useEffect(() => {
     axios
       .get("https://stagingapi.aqarifinder.com/api/user/profile", {
         headers: {
-          Authorization: session && session.data.id,
+          Authorization: token,
         },
       })
       .then((res) => {
         setPAL(res.data.results.premium_ads_left);
-        console.log(res);
       });
   }, []);
-  useEffect(() => {
-    let data;
-    let formData = new FormData();
-    formData.append("package_id", 1);
-    formData.append(
-      "callbackurl",
-      "https://aqari-demo.herokuapp.com/profile/addAdds"
-    );
-    console.log(route.query.paymentId + "  rtoue.query");
-    let id;
+
+  const handleclickPrem = () => {
+    if (makeNormalAd) {
+      setFiles([imageOne, imageTwo, setImageThree, imageFour]);
+      !disable &&
+        (addTitle == "" ||
+        desc == "" ||
+        space == "" ||
+        price == "" ||
+        autoNum == "" ||
+        phoneNumber == " "
+          ? (route.locale == "ar" &&
+              swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
+            route.locale == "en" &&
+              swal("warning", "Fill all the field please", "info"))
+          : phoneNumber.length < 8
+          ? route.locale == "ar"
+            ? swal("", "رقم الهاتف خاطئ", "info")
+            : swal("", "invalid phone number", "info")
+          : ((formData = new FormData()),
+            setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+            formData.append("title", addTitle),
+            formData.append("desc", desc),
+            formData.append("area", space),
+            formData.append("front", front),
+            formData.append("price", price),
+            formData.append("currency_id", "1"),
+            formData.append("category_id", category_id),
+            formData.append("ad_type_id", type_id),
+            formData.append("region_id", region_id),
+            formData.append("phone", phoneNumber),
+            formData.append("whatsapp", phoneNumber),
+            formData.append("is_premium", false),
+            files.map((file) => {
+              formData.append("image_files", file);
+            }),
+            formData.append("auto_number", autoNum),
+            axios({
+              method: "post",
+              url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+              headers: {
+                Authorization: token,
+                "Content-Type": "multipart/form-data",
+              },
+              data: formData,
+            }).then((response) => {
+              console.log(response);
+              response.data.status.code == 200 &&
+                (route.locale == "ar"
+                  ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
+                  : swal("'well done", "Ad Added Successfully", "success"),
+                setTimeout(() => {
+                  route.push("/profile/myAdds");
+                }, 1000));
+            })));
+      return;
+    } else if (makPremAd) {
+      return (
+        setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+        addTitle == "" ||
+        desc == "" ||
+        space == "" ||
+        price == "" ||
+        autoNum == "" ||
+        phoneNumber == " "
+          ? (route.locale == "ar" &&
+              swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
+            route.locale == "en" &&
+              swal("warning", "Fill all the field please", "info"))
+          : phoneNumber.length < 8
+          ? route.locale == "ar"
+            ? swal("", "رقم الهاتف خاطئ", "info")
+            : swal("", "invalid phone number", "info")
+          : ((formData = new FormData()),
+            setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+            formData.append("title", addTitle),
+            formData.append("desc", desc),
+            formData.append("area", space),
+            formData.append("front", front),
+            formData.append("price", price),
+            formData.append("currency_id", "1"),
+            formData.append("category_id", category_id),
+            formData.append("ad_type_id", type_id),
+            formData.append("region_id", region_id),
+            formData.append("phone", phoneNumber),
+            formData.append("whatsapp", phoneNumber),
+            formData.append("is_premium", false),
+            files.map((file) => {
+              formData.append("image_files", file);
+            }),
+            formData.append("auto_number", autoNum),
+            axios({
+              method: "post",
+              url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+              headers: {
+                Authorization: token,
+                "Content-Type": "multipart/form-data",
+              },
+              data: formData,
+            }).then((response) => {
+              setCookie("add_id", response.data.results, { path: "/" });
+              console.log(response);
+              response.data.status.code == 200
+                ? ((formData = new FormData()),
+                  formData.append("package_id", 1),
+                  formData.append(
+                    "callbackurl",
+                    route.locale == "ar"
+                      ? "https://aqari-demo.herokuapp.com/profile/myAdds"
+                      : "https://aqari-demo.herokuapp.com/en/profile/myAdds"
+                  ),
+                  axios({
+                    method: "post",
+                    url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
+                    headers: {
+                      "Content-Type": "multipart/form-data",
+                      Authorization: token,
+                    },
+                    data: formData,
+                  }).then((res) => {
+                    res.data.status.code == 200 &&
+                      route.push(res.data.results.data.paymentURL);
+                    console.log(res.data.results.data.paymentURL);
+                  }))
+                : swal("", "something wrong", "info");
+            }))
+      );
+    } else if (makeAdCancel) {
+      return;
+    }
+  };
+
+  useEffect(async () => {
+    console.log(route.query.paymentId + "rtoue.query");
+    console.log(session);
     route.query.paymentId &&
-      (session.status == "authenticated" &&
+      session.status == "authenticated" &&
+      (await axios({
+        method: "post",
+        url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+        headers: {
+          Authorization: token,
+        },
+      }).then(async (res) => {
+        console.log(res);
+
+        //if the resposent from the payment is success then you need to call the set as premium add and sec back the id of the add
+
         axios({
           method: "post",
-          url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+          url: `https://stagingapi.aqarifinder.com/api/user/ads/set_premium/${cookies.add_id}`,
           headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: session.data != null && session.data.id,
+            Authorization: token,
           },
-          data: formData,
         }).then((res) => {
-          console.log(
-            `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
-          );
           console.log(res);
-          swal(res.data.status.message);
-          res.data.status.ok ? setCheckedAdd(true) : setCheckedAdd(false);
-          console.log(session);
-        }),
-      //get the id from cokies
-      console.log(cookies.id),
-      // cookies.id
-      (id = cookies.id !== null && cookies.id),
-      //clear the cookies
-      axios
-        .get(`https://stagingapi.aqarifinder.com/api/temp/ads/70`, {
-          headers: {
-            Authorization: session && session.data.id,
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          setCookie("id", null, { path: "/" });
-          data = {
-            adType: res.data.results.ad_type.title,
-            address:
-              res.data.results.region.country.title +
-              " " +
-              res.data.results.region.title,
-            autoNum: res.data.results.auto_number,
-            category: res.data.results.category.title,
-            city: res.data.results.region.title,
-            desc: res.data.results.desc,
-            isFav: res.data.results.is_fav,
-            is_premium: res.data.results.is_premium,
-            lat: res.data.results.lat,
-            lng: res.data.results.lng,
-            phone: res.data.results.phone,
-            price: res.data.results.price,
-            front: res.data.results.front,
-            region_id: res.data.results.region.id,
-            regionsString: res.data.results.region.title,
-            area: res.data.results.area,
-            time: "4",
-            title: res.data.results.title,
-            user_id: res.data.results.user_id,
-            views: res.data.results.view_count,
-            whatsApp: res.data.results.whatsapp,
-            images:
-              res.data.results.images.length > 0
-                ? res.data.results.images
-                : false,
-            id: res.data.results.id,
-            allData: res.data.results,
-            user_id: res.data.results.user_id,
-            adTypeId: res.data.results.ad_type_id,
-            categoryId: res.data.results.category_id,
-          };
-          setTempData(data);
-          setAddTitle(tempData.title);
-          setPhoneNumber(tempData.phone);
-          setCategory(tempData.adType);
-          setTypeEstat(tempData.category);
-          setCategory_id(tempData.categoryId);
-          setType_id(tempData.adTypeId);
-          setSpace(tempData.area);
-          setPrice(tempData.price);
-          setFront(tempData.front);
-          setAutoNum(tempData.autoNum);
-          setDesc(tempData.desc);
-          setIspremium(tempData.is_premium);
-          setRegion_id(tempData.region_id);
-          setCity(tempData.regionsString);
-          console.log(tempData);
+          response.data.status.code == 200 &&
+            (route.locale == "ar"
+              ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
+              : swal("'well done", "Ad Added Successfully", "success"));
 
-          /// take the res data and then fill in the filed with
-        }));
+          swal("", res.data.results, "info");
+        });
+      }));
   }, [route, session.status]);
-
-  const sliceBase64 = (img) => {
-    return img.substring(img.indexOf(",") + 1, img.length);
-  };
-
-  const handleClickPremium = () => {
-    let formData;
-
-    PAl >= 0 &&
-      (addTitle == "" ||
-      desc == "" ||
-      space == "" ||
-      price == "" ||
-      autoNum == "" ||
-      lat == "" ||
-      lng == "" ||
-      phoneNumber == " "
-        ? (route.locale == "ar" &&
-            swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
-          route.locale == "en" &&
-            swal("warning", "Fill all the field please", "info"))
-        : phoneNumber.length < 8
-        ? route.locale == "ar"
-          ? swal("", "رقم الهاتف خاطئ", "info")
-          : swal("", "invalid phone number", "info")
-        : ((formData = new FormData()),
-          setFiles([imageOneB6, imageTwoB6, setImageThreeB6, imageFourB6]),
-          formData.append("title", addTitle),
-          formData.append("desc", desc),
-          formData.append("area", space),
-          formData.append("front", front),
-          formData.append("price", price),
-          formData.append("currency_id", "1"),
-          formData.append("category_id", category_id),
-          formData.append("ad_type_id", type_id),
-          formData.append("region_id", region_id),
-          formData.append("lat", lat),
-          formData.append("lng", lng),
-          formData.append("phone", phoneNumber),
-          formData.append("whatsapp", phoneNumber),
-          formData.append("is_premium", isPremium),
-          files.map((file) => {
-            formData.append("image_files", file);
-          }),
-          formData.append("auto_number", autoNum),
-          axios({
-            method: "post",
-            url: "https://stagingapi.aqarifinder.com/api/temp/ad/add",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: session.data.id,
-            },
-            data: formData,
-          }).then((response) => {
-            console.log(response);
-
-            let id = response.data.results;
-            console.log(response.data.results);
-            // /get id store in cookies
-            setCookie("id", id, { path: "/" });
-          })));
-
-    PAl <= 0
-      ? ((formData = new FormData()),
-        formData.append("package_id", 1),
-        formData.append(
-          "callbackurl",
-          route.locale == "ar"
-            ? "https://aqari-demo.herokuapp.com/profile/addAdds"
-            : "https://aqari-demo.herokuapp.com/en/profile/addAdds"
-        ),
-        axios({
-          method: "post",
-          url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: session.data != null && session.data.id,
-          },
-          data: formData,
-        }).then((res) => {
-          res.data.status.code == 200 &&
-            route.replace(res.data.results.data.paymentURL);
-          console.log(res.data.results.data.paymentURL);
-        }))
-      : (setCheckedAdd(!checkedAdd), setShowDialogiBox(!showDialogBox));
-  };
-
-  const handleAddPremAds = () => {
-    setIspremium(!isPremium);
-  };
 
   useEffect(() => {
     const region = axios
@@ -663,7 +635,7 @@ const AddAdds = ({ addAdsOb }) => {
             }`}
             style={{
               display: imageUpLoaded ? "none" : "block",
-              width: "60vw",
+              marginBottom: "30px",
             }}
           >
             <h3 className="img-heading">{addAdsOb.add11}</h3>
@@ -684,12 +656,22 @@ const AddAdds = ({ addAdsOb }) => {
                       display: "none",
                     }}
                     onChange={(e) => {
+                      let file = e.target.files[0].size;
+                      if (file > 10e6) {
+                        route.locale == "ar"
+                          ? swal(
+                              "",
+                              "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
+                              "info"
+                            )
+                          : swal(
+                              "",
+                              "Please upload a file smaller than 10 MB",
+                              "info"
+                            );
+                        return false;
+                      }
                       setImageOne(e.target.files[0]);
-                      toBase64(e.target.files[0]).then(async (res) => {
-                        let img = await sliceBase64(res);
-                        setImageOneB6(img);
-                      });
-                      console.log(imageOneB6);
                     }}
                   />
 
@@ -704,6 +686,7 @@ const AddAdds = ({ addAdsOb }) => {
                     className="uploadedImage"
                     style={{ objectFit: "cover" }}
                   />
+
                   <img
                     src="/assets/img/removeImg.svg"
                     alt=""
@@ -731,10 +714,6 @@ const AddAdds = ({ addAdsOb }) => {
                     }}
                     onChange={(e) => {
                       setImageTwo(e.target.files[0]);
-                      toBase64(e.target.files[0]).then(async (res) => {
-                        let img = await sliceBase64(res);
-                        setImageTwoB6(img);
-                      });
                     }}
                   />
 
@@ -753,8 +732,23 @@ const AddAdds = ({ addAdsOb }) => {
                     src="/assets/img/removeImg.svg"
                     alt=""
                     className="remove-img"
-                    onClick={(e) => {
-                      setImageTwo("");
+                    onChange={(e) => {
+                      let file = e.target.files[0].size;
+                      if (file > 10e6) {
+                        route.locale == "ar"
+                          ? swal(
+                              "",
+                              "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
+                              "info"
+                            )
+                          : swal(
+                              "",
+                              "Please upload a file smaller than 10 MB",
+                              "info"
+                            );
+                        return false;
+                      }
+                      setImageTwo(e.target.files[0]);
                     }}
                   />
                 </div>
@@ -776,10 +770,6 @@ const AddAdds = ({ addAdsOb }) => {
                     }}
                     onChange={(e) => {
                       setImageThree(e.target.files[0]);
-                      toBase64(e.target.files[0]).then(async (res) => {
-                        let img = await sliceBase64(res);
-                        setImageThreeB6(img);
-                      });
                     }}
                   />
 
@@ -798,8 +788,23 @@ const AddAdds = ({ addAdsOb }) => {
                     src="/assets/img/removeImg.svg"
                     alt=""
                     className="remove-img"
-                    onClick={(e) => {
-                      setImageThree("");
+                    onChange={(e) => {
+                      let file = e.target.files[0].size;
+                      if (file > 10e6) {
+                        route.locale == "ar"
+                          ? swal(
+                              "",
+                              "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
+                              "info"
+                            )
+                          : swal(
+                              "",
+                              "Please upload a file smaller than 10 MB",
+                              "info"
+                            );
+                        return false;
+                      }
+                      setImageThree(e.target.files[0]);
                     }}
                   />
                 </div>
@@ -820,11 +825,22 @@ const AddAdds = ({ addAdsOb }) => {
                       display: "none",
                     }}
                     onChange={(e) => {
+                      let file = e.target.files[0].size;
+                      if (file > 10e6) {
+                        route.locale == "ar"
+                          ? swal(
+                              "",
+                              "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
+                              "info"
+                            )
+                          : swal(
+                              "",
+                              "Please upload a file smaller than 10 MB",
+                              "info"
+                            );
+                        return false;
+                      }
                       setImageFour(e.target.files[0]);
-                      toBase64(e.target.files[0]).then(async (res) => {
-                        let img = await sliceBase64(res);
-                        setImageFourB6(img);
-                      });
                     }}
                   />
 
@@ -852,25 +868,21 @@ const AddAdds = ({ addAdsOb }) => {
               )}
             </div>
           </div>
-          <div
+          {/* <div
             className={`${imageUpLoaded ? "shoUploadedImages" : ""}`}
             style={{
               display: !imageUpLoaded ? "none" : "block",
             }}
-          ></div>
+          >
 
-          <div className="sign-input  addAdds-auto-num">
-            <h3>{addAdsOb.add12}</h3>
-            <div className="map-adds">
-              <SimpleMap getLat={setLat} getLng={setLng} />
-            </div>
-          </div>
+
+          </div> */}
 
           <div className="checksbox" style={{ cursor: "pointer" }}>
             <div
               className="premium-add chack-groub"
               onClick={() => {
-                handleClickPremium();
+                setCheckedAdd(true);
               }}
             >
               {showDialogBox && (
@@ -892,26 +904,41 @@ const AddAdds = ({ addAdsOb }) => {
                   <div className="content-box">
                     <p>
                       {route.locale == "ar"
-                        ? `تبقى لديك اعلان مميز عدد ${PAl} هل ترغب بالاستمرار ؟`
-                        : `You still have ${PAl} premium ads ? Do you want to continue?`}
+                        ? `لا يوجد لديك اعلانات مميزة`
+                        : ` You don't have any  premium add?`}
                     </p>
                   </div>
                   <div className="box-btns">
                     <div
-                      className="box-btn signUp-btn"
+                      className="box-btn "
                       onClick={() => {
+                        setMakeNormalAd(true);
+                        handleclickPrem();
                         setShowDialogiBox(!showDialogBox);
-                        handleAddPremAds();
                       }}
                     >
                       {/* <Link href='/'>استمرار</Link> */}
-                      {route.locale == "ar" ? "استمرار" : "Continue"}
+                      {route.locale == "ar" ? "إعلان عادي" : "Normal Ad"}
+                    </div>
+                    <div
+                      className="box-btn signUp-btn"
+                      onClick={() => {
+                        setMakePremAd(true);
+                        handleclickPrem();
+
+                        setShowDialogiBox(!showDialogBox);
+                      }}
+                    >
+                      <div>
+                        {route.locale == "ar" ? "إعلان مميز" : "premium Ad"}
+                      </div>
                     </div>
                     <div
                       className="box-btn"
                       onClick={() => {
-                        setCheckedAdd(false);
+                        setMakeAd(true);
                         setShowDialogiBox(!showDialogBox);
+                        handleclickPrem();
                       }}
                     >
                       <div>{route.locale == "ar" ? "إلغاء" : "Cancel"}</div>

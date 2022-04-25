@@ -367,8 +367,14 @@ margin-right: 10px;
 //     width: 163px;
 // }
 .profile-tab .checksbox{
-    width: 60vw;
+    width: 911px;
 }
+
+
+.sign-input.submit-logo{
+    margin-bottom: 30px;
+width: 911px;
+  }
 
 @media (max-width:970px) {
     .adds-container{
@@ -416,6 +422,16 @@ margin-right: 10px;
         left: 93%;
     
     }
+    .sign-input.submit-logo{
+        width: 70vw;}
+
+        .profile-tab .checksbox{
+            width:70vw;
+        }
+        
+
+
+
 }
     
 
@@ -978,3 +994,45 @@ width: 187px;
 }
 
 }
+
+// .profile-tab.add-servie-tab .sign-input.submit-logo {
+//     display: block;
+//     width: 58vw;
+//     margin-bottom: 34px;
+// }
+
+
+// @media (max-width:1250px) {
+//       .sign-input.submit-logo {
+//         display: block;
+//         width: 70vw;
+//         margin-bottom: 34px;
+
+
+//         .wrrap-images {
+
+//     width: 88vw;
+// }
+//     }
+      
+//     .ltr  .checksbox{
+//         width: 80vw;
+//     }
+// }
+
+
+// @media (max-width:1080px) {
+//    .sign-input.submit-logo {
+//         display: block;
+//         width: 88vw;
+//         margin-bottom: 34px;
+
+
+
+//     }
+//     .profile-tab .checksbox,
+//     .ltr.checksbox{
+// width: 70vw;
+//     }
+      
+// }

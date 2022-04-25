@@ -24,6 +24,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
   );
   const [showWrongMessage, setShowWrongPassword] = useState(true);
   const [messateError, setMessageError] = useState("");
+
   const route = useRouter();
   const { callbackurl } = route.query;
 
@@ -34,9 +35,26 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
   useEffect(() => {
     setEmail(cookies.Name);
     setPassowrd(cookies.Password);
-    console.log(window.origin);
-    console.log(document.referrer);
   }, []);
+
+  useEffect(() => {
+    cookies.token == "null"
+      ? setCookie(
+          "token",
+          session.data != null ? session.data.id : null,
+          {
+            path: "/",
+          },
+          setCookie(
+            "userId",
+            session.data != null ? session.data.xyz.sub : null,
+            {
+              path: "/",
+            }
+          )
+        )
+      : console.log(session);
+  }, [session.data]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -53,16 +71,10 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
       setShowWrongPassword(true);
 
       if (res.url) {
-        console.log(document.referrer);
-        console.log(res.url);
-        document.referrer == "http://localhost:3000/packages" ||
-        document.referrer == "http://localhost:3000/en/packages" ||
-        document.referrer == "https://aqari-demo.herokuapp.com/en/packages" ||
-        document.referrer == "https://aqari-demo.herokuapp.com/packages"
-          ? route.push(document.referrer, document.referrer, {
-              locale: route.locale,
-            })
-          : route.push("/profile", "/profile", { locale: route.locale });
+        if (callbackurl)
+          route.push(callbackurl, callbackurl, { locale: route.locale });
+        else route.push("/", { locale: route.locale });
+        console.log(session);
       }
     }
   };
@@ -229,18 +241,7 @@ export const SignInComponent = ({ csrfToken, providers, sginOb }) => {
               </li>
             ))}
         </ul>
-        {/* <ul className="social-icon" onClick={signIn}>
-                <li className="google">
-                    <img src="assets/img/google-icon.svg" alt="" />
-                </li>
-                <li className="face">
-                    <img src="assets/img/facebook-2.svg" alt="" />
-               
-                </li>
-                <li className="apple">
-                    <img src="assets/img/appSgin.svg" alt="" />
-                </li>
-           </ul> */}
+
         <span className="goSignUp">
           <span>{sginOb.sn7}</span>
           <Link href="/signUp">{sginOb.sn8}</Link>

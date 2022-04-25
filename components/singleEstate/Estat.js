@@ -9,6 +9,7 @@ import { ArrowBack } from "@mui/icons-material";
 import GoogleMapReact from "google-map-react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MapAdds from "../map/MapAdds";
+import { useCookies } from "react-cookie";
 
 const Marker = ({ children }) => {
   return <div className="">{children}</div>;
@@ -22,6 +23,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   const [allInfo, setAllInfo] = useState({});
   const [lat, setLat] = useState(data.lat);
   const [lng, setLng] = useState(data.lat);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   let session = useSession();
 
@@ -31,13 +33,14 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   };
 
   useEffect(() => {
-    session.data != null && session.data.xyz.sub == data.user_id
+    console.log(cookies.token);
+    cookies.token != "null" && cookies.userId == data.user_id
       ? setUserAdd(true)
       : setUserAdd(false);
     axios
       .get(`https://stagingapi.aqarifinder.com/api/ads/${data.add_id}`, {
         headers: {
-          Authorization: session.data != null ? session.data.id : null,
+          Authorization: cookies.token != null ? cookies.token : null,
           lang: route.locale,
         },
       })
@@ -47,7 +50,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
   }, []);
 
   const toggleFavAdds = () => {
-    session.data != null
+    cookies.token != "null"
       ? !addToFav
         ? axios
             .post(
@@ -55,7 +58,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
               null,
               {
                 headers: {
-                  Authorization: session.data != null ? session.data.id : null,
+                  Authorization: cookies.token != null ? cookies.token : null,
                 },
               }
             )
@@ -68,14 +71,16 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
               null,
               {
                 headers: {
-                  Authorization: session.data != null ? session.data.id : null,
+                  Authorization: cookies.token != null ? cookies.token : null,
                 },
               }
             )
             .then((res) => {
               setAddtoFav(false);
             })
-      : route.replace("/signIN");
+      : route.push(
+          `/signIN?callbackurl=/advertises/${data.add_id}?title=${data.title}`
+        );
   };
 
   return (
@@ -307,7 +312,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
             <span className="">{data.autoNumber}</span>
           </div>
         </div>
-
+        {/* 
         <div className="estat-map map-origin" id="map">
           <div style={{ height: "298px", width: "888px" }}>
             <GoogleMapReact
@@ -347,7 +352,7 @@ const Estat = ({ withImg, setOverlay, data, addAdsOb }) => {
               </Marker>
             </GoogleMapReact>
           </div>
-        </div>
+        </div> */}
         <div className="contact-estate">
           <div className="whatsApp">
             <span className="whatsApp-icon">

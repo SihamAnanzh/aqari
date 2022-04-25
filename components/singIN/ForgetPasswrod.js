@@ -21,10 +21,11 @@ const ForgetPasswrod = ({ sginOb }) => {
           .then((res) => {
             res.data.status.code == 200 && setMessage(res.data.results);
             console.log(res);
-          })
-          .then((res) => {
-            setShowDialog(true);
-            console.log(res);
+            res.data.status.code == 401
+              ? route.locale == "ar"
+                ? swal("", "المستخدم غير موجود", "info")
+                : swal("", "invalid user", "info")
+              : setShowDialog(true);
           })
       : route.locale == "ar"
       ? swal("", "بريد إلكتروني خاطئ", "info")
@@ -45,6 +46,8 @@ const ForgetPasswrod = ({ sginOb }) => {
             {sginOb.sn2}
           </h3>
           <input
+            autoFocus={true}
+            tabIndex={1}
             type="email"
             className="sign-mail"
             placeholder={sginOb.sn2}
@@ -54,6 +57,7 @@ const ForgetPasswrod = ({ sginOb }) => {
       </div>
 
       <div
+        tabIndex={2}
         className="forget-btn"
         onClick={() => {
           handleClick();
@@ -80,7 +84,7 @@ const ForgetPasswrod = ({ sginOb }) => {
             </p>
           </div>
           <div className="box-btns">
-            <div className="box-btn signUp-btn">
+            <div className="box-btn signUp-btn" style={{ cursor: "pointer" }}>
               <div
                 style={{ cursor: "pointer" }}
                 onClick={() => {
@@ -90,7 +94,7 @@ const ForgetPasswrod = ({ sginOb }) => {
                 {route.locale == "ar" ? "اغلاق" : "close"}
               </div>
             </div>
-            <div className="box-btn">
+            <div className="box-btn" style={{ cursor: "pointer" }}>
               <div
                 style={{ cursor: "pointer" }}
                 onClick={() =>

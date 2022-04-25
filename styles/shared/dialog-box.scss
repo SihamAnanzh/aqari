@@ -1,7 +1,7 @@
 .box{
     
-        width: 366px;
-        height: 290px;
+    width: 462px;
+    height: 314px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -14,6 +14,7 @@
         left: 50%;
         transform: translate(-50%,-50%);
         z-index: 1;
+        flex-wrap: wrap;
 
       
     .content-box p{
@@ -29,12 +30,13 @@
     .box-btns{
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+    width: 100%;
     }
   
     .box-btn{
-        width: 154px;
+        width: 120px;
         height: 57px;
         color: #fff;
         font-size: 20px;
@@ -43,7 +45,7 @@
         align-items: center;
         background-color: $second-color;
         border-radius: 10px;
-        margin-right: 8px;
+
         margin-top: 10px;
     }
 

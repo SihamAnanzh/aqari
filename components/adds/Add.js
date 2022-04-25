@@ -2,6 +2,10 @@ import Link from "next/link";
 import React from "react";
 
 const Add = (props) => {
+  const img_url =
+    props.singleEstate.images && props.singleEstate.images.length > 0
+      ? props.singleEstate.images[0].logo_url
+      : "/assets/img/placeholder.png";
   return (
     <>
       <Link
@@ -14,16 +18,35 @@ const Add = (props) => {
         <div className="prem-contanier ad-contanier ad-main">
           <div className="img-prem">
             <img
-              src={
-                props.singleEstate.images[0] &&
-                props.singleEstate.images[0].logo_url
+              src={img_url}
+              alt={
+                props.title.length > 20
+                  ? props.title.substr(0, 20 - 1) + "..."
+                  : props.title
               }
-              alt={props.title}
             />
+            {/* <Image
+              src={product_image}
+              className="js-img"
+              alt={
+                props.title.length > 20
+                  ? props.title.substr(0, 20 - 1) + "..."
+                  : props.title
+              }
+              blurDataURL={"/assets/img/discount-img.jpg"}
+              placeholder="blur"
+              layout="fill"
+              unoptimized
+            ></Image> */}
           </div>
           <div className="first-prem">
             <div className="info-prem">
-              <div className="title">{props.title}</div>
+              <div className="title">
+                {" "}
+                {props.title.length > 30
+                  ? props.title.substr(0, 30 - 1) + "..."
+                  : props.title}
+              </div>
               <div className="address">
                 <img src="/assets/img/location-gray.svg" />
                 {props.address}
@@ -71,11 +94,20 @@ const Add = (props) => {
                   props.singleEstate.images[0] &&
                   props.singleEstate.images[0].logo_url
                 }
-                alt={props.title}
+                alt={
+                  props.title.length > 20
+                    ? props.title.substr(0, 20 - 1) + "..."
+                    : props.title
+                }
               />
             </div>
             <div className="info-prem">
-              <div className="title">{props.title}</div>
+              <div className="title">
+                {" "}
+                {props.title.length > 20
+                  ? props.title.substr(0, 20 - 1) + "..."
+                  : props.title}
+              </div>
               <div className="address">
                 <img src="/assets/img/location-gray.svg" />
                 {props.address}

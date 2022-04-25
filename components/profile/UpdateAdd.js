@@ -29,8 +29,7 @@ const UpdateAdd = ({ updateData, addAdsOb }) => {
   const [desc, setDesc] = useState(updateData && updateData.desc);
   const [regions, setRegions] = useState([]);
   const [items, setItem] = useState([]);
-  const [lat, setLat] = useState(updateData && updateData.lat);
-  const [lng, setLng] = useState(updateData && updateData.lng);
+
   const authCtx = useContext(AuthContext);
   //ids for api
   const [type_id, setType_id] = useState("");
@@ -44,63 +43,60 @@ const UpdateAdd = ({ updateData, addAdsOb }) => {
   const handelSubmit = (e) => {
     let data;
     addTitle == "" ||
-      desc == "" ||
-      space == "" ||
-      front == "" ||
-      price == "" ||
-      autoNum == "" ||
-      phoneNumber == " ",
-      lat == " ",
-      lng == " "
-        ? swal(
-            route.locale == "ar"
-              ? ("تحذير", "يرجى تعبئة جميع الحقول", "warning")
-              : ("تحذير", "Fill all field please", "warning")
-          )
-        : ((data = {
-            id: Number(updateData.id),
-            title: addTitle,
-            desc: desc,
-            region_id: Number(region_id),
-            area: Number(space),
-            front: front,
-            price: Number(price),
-            currency_id: 1,
-            auto_number: autoNum,
-            lat: lat.toString(),
-            lng: lng.toString(),
-            phone: phoneNumber,
-            whatsapp: phoneNumber,
-            is_premium: showDialogBox,
-            ad_type_id: updateData.adTypeId,
-            category_id: updateData.categoryId,
-          }),
-          axios({
-            method: "post",
-            url: "https://stagingapi.aqarifinder.com/api/user/ad/update",
-            headers: {
-              "content-type": "application/json",
-              Authorization: session.data.id,
-            },
-            data: { ...data },
+    desc == "" ||
+    space == "" ||
+    front == "" ||
+    price == "" ||
+    autoNum == "" ||
+    phoneNumber == " "
+      ? swal(
+          route.locale == "ar"
+            ? ("تحذير", "يرجى تعبئة جميع الحقول", "warning")
+            : ("تحذير", "Fill all field please", "warning")
+        )
+      : ((data = {
+          id: Number(updateData.id),
+          title: addTitle,
+          desc: desc,
+          region_id: Number(region_id),
+          area: Number(space),
+          front: front,
+          price: Number(price),
+          currency_id: 1,
+          auto_number: autoNum,
+
+          phone: phoneNumber,
+          whatsapp: phoneNumber,
+          is_premium: showDialogBox,
+          ad_type_id: updateData.adTypeId,
+          category_id: updateData.categoryId,
+        }),
+        axios({
+          method: "post",
+          url: "https://stagingapi.aqarifinder.com/api/user/ad/update",
+          headers: {
+            "content-type": "application/json",
+            Authorization: session.data.id,
+          },
+          data: { ...data },
+        })
+          .then((response) => {
+            console.log(response);
+            response.data.status.code == 200 &&
+              (route.locale == "ar"
+                ? swal("تهانينا", "تمت تعديل الإعلان بنجاح", "success")
+                : swal("well done", "Ad updated Successfully", "success"),
+              route.replace("/profile/myAdds"));
           })
-            .then((response) => {
-              console.log(response);
-              response.data.status.code == 200 &&
-                (route.locale == "ar"
-                  ? swal("تهانينا", "تمت تعديل الإعلان بنجاح", "success")
-                  : swal("well done", "Ad updated Successfully", "success"),
-                route.replace("/profile/myAdds"));
-            })
-            .catch((response) => {
-              route.locale == "ar"
-                ? swal(
-                    "لا يمكنك التعديل في الوقت الحالي",
-                    "الرجاء المحاولة في وقت لاحق",
-                    "error"
-                  )
-                : swal("You can not edit at the moment", "try later", "error");
-            }));
+          .catch((response) => {
+            route.locale == "ar"
+              ? swal(
+                  "لا يمكنك التعديل في الوقت الحالي",
+                  "الرجاء المحاولة في وقت لاحق",
+                  "error"
+                )
+              : swal("You can not edit at the moment", "try later", "error");
+          }));
   };
 
   useEffect(() => {
@@ -429,48 +425,6 @@ const UpdateAdd = ({ updateData, addAdsOb }) => {
               </div>
             </div>
             <div className="checksbox" style={{ cursor: "pointer" }}>
-              <div
-                className="premium-add chack-groub"
-                onClick={() => {
-                  setCheckedAdd(authCtx.premiumAdd ? true : false);
-                  setShowDialogiBox(!showDialogBox);
-                }}
-              >
-                {authCtx.premiumAdd == 0 ? (
-                  <a
-                    style={{ textDecoration: "none" }}
-                    href="http://localhost:3000/packges"
-                    target="_blank"
-                  >
-                    <img
-                      src={`/assets/img/${
-                        !checkedAdd ? "emptyCheck" : "fullCheck"
-                      }.svg`}
-                      alt=""
-                    />
-                    <span>{addAdsOb.adSh1}</span>
-                  </a>
-                ) : (
-                  ((
-                    <img
-                      src={`/assets/img/${
-                        !checkedAdd ? "emptyCheck" : "fullCheck"
-                      }.svg`}
-                      alt=""
-                    />
-                  ),
-                  (<span>{addAdsOb.adSh1}</span>))
-                )}
-
-                {/* authCtx.premiumAdd >0 && <PackgeBox setShowDialogiBox={setShowDialogiBox} showDialogBox={showDialogBox} count={authCtx.premiumAdd}/> */}
-              </div>
-              {/* <div className="post-add chack-groub" onClick={()=>{
-         setCheckedOffice(!checkedOffice)
-       }}>
-       <img src={`/assets/img/${!checkedOffice?'emptyCheck':'fullCheck'}.svg`} alt="" />
-       <span>نشر الإعلان لدى المكاتب</span>
-
-       </div> */}
               <div
                 className="conditions chack-groub"
                 style={{ cursor: "pointer" }}

@@ -4,6 +4,7 @@ import { AuthContext } from "../../stores/auth-context";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { useCookies } from "react-cookie";
 
 const MyService = ({ adsOb }) => {
   const [latest, setLatest] = useState([]);
@@ -11,12 +12,80 @@ const MyService = ({ adsOb }) => {
   const authCtx = useContext(AuthContext);
   const route = useRouter();
   const session = useSession();
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [token, setoken] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+
+  useEffect(() => {
+    setoken(cookies.token);
+    console.log(cookies.token);
+  }, [cookies.token]);
+
+  const loadMoreHandler = () => {
+    let latestData = axios
+      .get("https://stagingapi.aqarifinder.com/api/user/services/list", {
+        headers: {
+          Authorization: cookies.token,
+          lang: route.locale,
+          limit: 11,
+          offset: latest.length,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.results.length < 11) {
+          setHasMore(false);
+        }
+        res.data.results.slice(0, 10).map((adds) => {
+          let data = {
+            id: adds.id,
+            user_id: adds.user_id,
+            address: adds.regions_string,
+            images:
+              adds.images.length > 0
+                ? adds.images.logo_url
+                : "/assets/img/home.jpg",
+            title: adds.title,
+            price: adds.price,
+            time: adds.issue_date_string.slice(0, 5),
+
+            views: adds.view_count,
+            whatsApp: adds.whatsapp,
+            phone: adds.phone,
+            disc: adds.description,
+            regionsString: adds.regions_string,
+            serviceTypeString: adds.service_type.title,
+            serviceTypeId: adds.service_type.id,
+            regionsId: adds.region_ids,
+            singleEstatData: {
+              id: adds.id,
+              images: adds.images,
+              discriptions: adds.description,
+              price: adds.price,
+              phone: adds.phone,
+              whatsApp: adds.whatsapp,
+              views: adds.view_count,
+              time: adds.issue_date_string.slice(0, 5),
+              user_id: adds.user_id,
+              regionsString: adds.regions_string,
+              serviceTypeString: adds.service_type.title,
+              serviceTypeId: adds.service_type.id,
+              regionsId: adds.region_ids,
+              title: adds.title,
+              address: adds.regions_string,
+            },
+          };
+
+          setUserData((pre) => [...pre, data]);
+        });
+      });
+  };
   useEffect(() => {
     axios
       .get("https://stagingapi.aqarifinder.com/api/user/services/list", {
         headers: {
           lang: route.locale,
-          Authorization: session && session.data != null && session.data.id,
+          Authorization: cookies.token,
         },
       })
       .then((res) => {
@@ -98,6 +167,29 @@ const MyService = ({ adsOb }) => {
             disc={premiumAddsData.disc}
           />
         ))}
+      {hasMore && (
+        <div
+          className="adds-btn"
+          onClick={loadMoreHandler}
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          {adsOb.ad3}
+          <span className="btn-icon">
+            <img
+              src="/assets/img/+btn.svg"
+              style={{
+                width: "20px",
+                height: "20px",
+                marginRight: "12px",
+                marginTop: "8px",
+                cursor: "pointer",
+              }}
+            />
+          </span>
+        </div>
+      )}
     </div>
   );
 };

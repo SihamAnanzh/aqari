@@ -11,27 +11,30 @@ import { useSession, getSession, signIn } from "next-auth/react";
 import Loader from "react-spinners/SyncLoader";
 import Head from "next/head";
 import BackBtn from "../../components/BackBtn";
+import { useCookies } from "react-cookie";
 
 const Index = () => {
   let { t } = useTranslation();
   const route = useRouter();
-  // const session = useSession();
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const session = useSession();
 
-  // useEffect(() => {
-  //   console.log(session);
-  //   if (session.status == "loading") {
-  //     if (!session.data) {
-  //       route.push(`/signIN`, `/signIN`, { locale: route.locale });
-  //     }
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (cookies.token == "null") {
+      route.push(
+        `/signIN?callbackurl=/profile`,
+        `/signIN?callbackurl=/profile`,
+        { locale: route.locale }
+      );
+    }
+  }, [cookies.token]);
 
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      route.push(`/signIN?callbackurl=${route.asPath}`);
-    },
-  });
+  // const { data: session } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     route.push(`/signIN?callbackurl=${route.asPath}`);
+  //   },
+  // });
 
   // translations
 
@@ -134,20 +137,33 @@ const Index = () => {
 
   return (
     <>
-      {/* {session.data != null && */}
-      <>
-        <Head>
-          <title>{route.locale == "ar" ? "الملف الشخصي" : "my profile"}</title>
-        </Head>
-        <Nav navOb={navOb} />
-        <div className="profile-container">
-          <h1 className="profile-heading">{pro1}</h1>
-          <SubNav proOb={proOb} />
-          <MyProfile sginOb={sginOb} />
-        </div>
-        <Footer fo1={fo1} />
-      </>
-      {/* } */}
+      {cookies.token != "null" && (
+        <>
+          <Head>
+            <title>
+              {route.locale == "ar" ? "الملف الشخصي" : "my profile"}
+            </title>
+          </Head>
+          <Nav navOb={navOb} />
+          <div className="profile-container">
+            <div
+              className="profiel-heading-continer"
+              style={{
+                width: "94%",
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
+              <h1 className="profile-heading">{pro1}</h1>
+            </div>
+
+            <SubNav proOb={proOb} />
+            <MyProfile sginOb={sginOb} />
+          </div>
+          <Footer fo1={fo1} />
+        </>
+      )}
     </>
   );
 };

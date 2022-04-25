@@ -139,7 +139,17 @@ const Update = ({ updateData }) => {
       </Head>
       <Nav navOb={navOb} />
       <div className="profile-container">
-        <h1 className="profile-heading">{pro1}</h1>
+        <div
+          className="profiel-heading-continer"
+          style={{
+            width: "98%",
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+          }}
+        >
+          <h1 className="profile-heading">{pro1}</h1>
+        </div>
         <SubNav proOb={proOb} />
         <UpdateAdd updateData={updateData} addAdsOb={addAdsOb} />
       </div>

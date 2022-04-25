@@ -15,8 +15,9 @@ const SearchResultsService = () => {
   const route = useRouter();
   const [areas, setAreas] = useState([]);
   const [areaIds, setAreasIds] = useState([]);
-  const [id, setIds] = useState();
 
+  const [id, setIds] = useState();
+  const [type, setType] = useState();
   const [service, setService] = useState();
   let { t } = useTranslation();
 
@@ -93,6 +94,7 @@ const SearchResultsService = () => {
         }
       )
       .then((res) => {
+        console.log(res);
         filterCtx.setSerivceResutls(res.data.results);
       })
       .then(
@@ -116,14 +118,20 @@ const SearchResultsService = () => {
             setService(res.data.results.title);
           })
       );
+
+    filterCtx.setSerivceResutls("");
+    setAreas("");
+    setType("");
   }, []);
   return (
     <>
       <Head>
         <title>{route.locale == "ar" ? "نتائج البحث" : "Search results"}</title>
       </Head>
-
-      {!filterCtx.serviceResults ? (
+      {filterCtx.serviceResults.premium_ads &&
+      filterCtx.serviceResults.premium_ads.length == 0 &&
+      filterCtx.serviceResults.ads &&
+      filterCtx.serviceResults.ads.length == 0 ? (
         <NoResults navOb={navOb} fo1={fo1} adsOb={adsOb} />
       ) : (
         <ServiveResults

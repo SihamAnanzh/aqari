@@ -13,11 +13,15 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import FACEBOOK_PIXEL_1 from "../components/Pixle/facebook/pixel-1";
 import convertUrl, { getBase64, getDataBlob, toDataURL } from "../convertUrl";
+import { useCookies, getCookies, Cookies } from "react-cookie";
+import { AuthContext } from "../stores/auth-context";
 
 const Index = ({ prem, latest, services, Request, name }) => {
+  const cookies = useCookies();
   const [premuimAdds, setPremuimAdds] = useState([]);
   const [latestData, setLeastestAdd] = useState([]);
   const route = useRouter();
+
   const session = useSession();
   // const { locale } = route;
   let { t, i18n } = useTranslation();
