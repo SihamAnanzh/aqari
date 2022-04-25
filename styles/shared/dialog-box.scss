@@ -1,6 +1,6 @@
 .box{
     
-    width: 462px;
+    width: 408px;
     height: 314px;
         display: flex;
         justify-content: center;
@@ -36,17 +36,17 @@
     }
   
     .box-btn{
-        width: 120px;
-        height: 57px;
+        width: 115px;
+        height: 52px;
         color: #fff;
-        font-size: 20px;
+        font-size: 19px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: $second-color;
+        background-color: #EDAA43;
         border-radius: 10px;
-
         margin-top: 10px;
+    
     }
 
     .signUp-btn{
@@ -58,3 +58,4 @@
     }
 
 }
+

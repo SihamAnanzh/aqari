@@ -6,7 +6,6 @@ import swal from "sweetalert";
 import { useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/react";
 import { useCookies } from "react-cookie";
-import Image from "next/image";
 const AddAdds = ({ addAdsOb }) => {
   const route = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(["images"]);
@@ -66,6 +65,7 @@ const AddAdds = ({ addAdsOb }) => {
   let formData;
 
   const handelSubmit = (e) => {
+    setFiles([imageOne, imageTwo, setImageThree, imageFour]);
     !disable &&
     (addTitle == "" ||
       desc == "" ||
@@ -81,8 +81,46 @@ const AddAdds = ({ addAdsOb }) => {
       ? route.locale == "ar"
         ? swal("", "رقم الهاتف خاطئ", "info")
         : swal("", "invalid phone number", "info")
-      : PAl > 0
-      ? ((formData = new FormData()),
+      : checkedAdd
+      ? PAl < 0
+        ? setShowDialogiBox(true)
+        : ((formData = new FormData()),
+          setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+          formData.append("title", addTitle),
+          formData.append("desc", desc),
+          formData.append("area", space),
+          formData.append("front", front),
+          formData.append("price", price),
+          formData.append("currency_id", "1"),
+          formData.append("category_id", category_id),
+          formData.append("ad_type_id", type_id),
+          formData.append("region_id", region_id),
+          formData.append("phone", phoneNumber),
+          formData.append("whatsapp", phoneNumber),
+          formData.append("is_premium", true),
+          files.map((file) => {
+            formData.append("image_files", file);
+          }),
+          formData.append("auto_number", autoNum),
+          axios({
+            method: "post",
+            url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+            headers: {
+              Authorization: token,
+              "Content-Type": "multipart/form-data",
+            },
+            data: formData,
+          }).then((response) => {
+            console.log(response);
+            response.data.status.code == 200 &&
+              (route.locale == "ar"
+                ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
+                : swal("'well done", "Ad Added Successfully", "success"),
+              setTimeout(() => {
+                route.push("/profile/myAdds");
+              }, 1000));
+          }))
+      : ((formData = new FormData()),
         setFiles([imageOne, imageTwo, setImageThree, imageFour]),
         formData.append("title", addTitle),
         formData.append("desc", desc),
@@ -95,7 +133,7 @@ const AddAdds = ({ addAdsOb }) => {
         formData.append("region_id", region_id),
         formData.append("phone", phoneNumber),
         formData.append("whatsapp", phoneNumber),
-        formData.append("is_premium", true),
+        formData.append("is_premium", false),
         files.map((file) => {
           formData.append("image_files", file);
         }),
@@ -117,8 +155,7 @@ const AddAdds = ({ addAdsOb }) => {
             setTimeout(() => {
               route.push("/profile/myAdds");
             }, 1000));
-        }))
-      : setShowDialogiBox(true);
+        }));
   };
 
   useEffect(() => {
@@ -182,7 +219,7 @@ const AddAdds = ({ addAdsOb }) => {
               response.data.status.code == 200 &&
                 (route.locale == "ar"
                   ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
-                  : swal("'well done", "Ad Added Successfully", "success"),
+                  : swal("well done", "Ad Added Successfully", "success"),
                 setTimeout(() => {
                   route.push("/profile/myAdds");
                 }, 1000));
@@ -259,7 +296,9 @@ const AddAdds = ({ addAdsOb }) => {
                 : swal("", "something wrong", "info");
             }))
       );
-    } else if (makeAdCancel) {
+    }
+
+    if (makeAdCancel) {
       return;
     }
   };
@@ -879,12 +918,7 @@ const AddAdds = ({ addAdsOb }) => {
           </div> */}
 
           <div className="checksbox" style={{ cursor: "pointer" }}>
-            <div
-              className="premium-add chack-groub"
-              onClick={() => {
-                setCheckedAdd(true);
-              }}
-            >
+            <div className="premium-add chack-groub">
               {showDialogBox && (
                 <div
                   className="box"
@@ -925,7 +959,6 @@ const AddAdds = ({ addAdsOb }) => {
                       onClick={() => {
                         setMakePremAd(true);
                         handleclickPrem();
-
                         setShowDialogiBox(!showDialogBox);
                       }}
                     >
@@ -936,9 +969,8 @@ const AddAdds = ({ addAdsOb }) => {
                     <div
                       className="box-btn"
                       onClick={() => {
-                        setMakeAd(true);
                         setShowDialogiBox(!showDialogBox);
-                        handleclickPrem();
+                        // handleclickPrem();
                       }}
                     >
                       <div>{route.locale == "ar" ? "إلغاء" : "Cancel"}</div>
@@ -946,15 +978,8 @@ const AddAdds = ({ addAdsOb }) => {
                   </div>
                 </div>
               )}
-
-              <img
-                src={`/assets/img/${
-                  !checkedAdd ? "emptyCheck" : "fullCheck"
-                }.svg`}
-                alt=""
-              />
-              <span>{addAdsOb.adSh1}</span>
             </div>
+            <div className=""></div>
             {/* <div className="post-add chack-groub" onClick={()=>{
            setCheckedOffice(!checkedOffice)
          }}>
@@ -962,6 +987,22 @@ const AddAdds = ({ addAdsOb }) => {
          <span>{addAdsOb.adSh2}</span>
 
          </div> */}
+            <div
+              className=""
+              onClick={() => {
+                setCheckedAdd(!checkedAdd);
+                console.log(checkedAdd);
+              }}
+            >
+              <img
+                style={{ paddingRight: "5px" }}
+                src={`/assets/img/${
+                  !checkedAdd ? "fullCheck" : "emptyCheck"
+                }.svg`}
+                alt=""
+              />
+              <span>{addAdsOb.adSh1}</span>
+            </div>
             <div
               className="conditions chack-groub"
               style={{ cursor: "pointer" }}
