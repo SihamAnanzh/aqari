@@ -18,7 +18,6 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
   const [hasMore, setHasMore] = useState(true);
   const [id, setIds] = useState();
   const [type, setType] = useState();
-  const [areas, setAreas] = useState([]);
 
   const filterCtx = useContext(FilterContext);
   const route = useRouter();
