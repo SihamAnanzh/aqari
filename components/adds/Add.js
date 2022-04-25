@@ -52,8 +52,8 @@ const Add = (props) => {
                 {props.address}
               </div>
               <div className="desc-prem  ">
-                {props.disc.length > 70
-                  ? props.disc.substr(0, 70 - 1) + "..."
+                {props.disc.length > 90
+                  ? props.disc.substr(0, 90 - 1) + "..."
                   : props.disc}
               </div>
             </div>

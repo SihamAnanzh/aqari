@@ -126,7 +126,7 @@ const ProfileService = () => {
             <div
               className="profiel-heading-continer"
               style={{
-                width: "98%",
+                width: "94%",
                 display: "flex",
                 justifyContent: "flex-start",
                 alignItems: "flex-start",
