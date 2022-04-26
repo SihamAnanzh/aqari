@@ -123,6 +123,7 @@ const MyService = ({ adsOb }) => {
       })
       .then((res) => {
         setLatest(res.data.results);
+        setHasMore(res.data.results.length < 10 ? false : true);
       });
   }, []);
   useEffect(() => {

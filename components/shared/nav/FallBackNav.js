@@ -160,10 +160,10 @@ const FallBackNav = ({ setShowNav, setMvoeArrow, movearrow, navOb }) => {
         {token != "null" ? (
           <li
             onClick={() => {
-              if (token) {
+              if (cookies.token != "null") {
                 axios.post(
                   "https://stagingapi.aqarifinder.com/api/user/logout",
-                  { headers: { Authorization: token } }
+                  { headers: { Authorization: cookies.token } }
                 );
                 setCookie("token", null, { path: "/" });
                 setCookie("userId", null, { path: "/" });

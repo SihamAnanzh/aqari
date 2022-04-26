@@ -23,6 +23,7 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
 
   useEffect(() => {
     setLeastestAdd(latestData);
+    setHasMore(latestData < 10 ? false : true);
   }, [latestData]);
 
   const loadMoreHandler = async () => {

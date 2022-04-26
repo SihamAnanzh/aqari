@@ -12,7 +12,7 @@ const MyAdds = ({ adsOb }) => {
   const [userData, setUserData] = useState([]);
   const authCtx = useContext(AuthContext);
   const route = useRouter();
-  const [hasMore, setHasMore] = useState(latest.length < 0 ? false : true);
+  const [hasMore, setHasMore] = useState(true);
   const session = useSession();
   const [token, setoken] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -123,8 +123,8 @@ const MyAdds = ({ adsOb }) => {
         },
       })
       .then((res) => {
-        console.log(res);
         setUserData(res.data.results);
+        setHasMore(res.data.results.length < 10 ? false : true);
       });
   }, []);
 

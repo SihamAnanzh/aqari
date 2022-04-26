@@ -24,8 +24,39 @@ const ConfirmPasswrod = ({ sginOb }) => {
         route.locale == "ar"
           ? swal("", "تم تعديل بنجاح", "success")
           : swal("", "Updated successfully", "success");
-        route.push("/signIN");
+      })
+      .then(() => {
+        route.push(
+          `/signIN?callbackurl=/profile`,
+          `/signIN?callbackurl=/profile`,
+          { locale: route.locale }
+        );
       });
+  };
+
+  const handleKeyContinue = (e) => {
+    if (e.code == "NumpadEnter") {
+      axios
+        .post("https://stagingapi.aqarifinder.com/api/user/password/reset", {
+          password: newPassword,
+          pin_code: route.query.pid,
+          email: route.query.m,
+        })
+        .then((res) => {
+          console.log(res.data);
+
+          route.locale == "ar"
+            ? swal("", "تم تعديل بنجاح", "success")
+            : swal("", "Updated successfully", "success");
+        })
+        .then(() => {
+          route.push(
+            `/signIN?callbackurl=/profile`,
+            `/signIN?callbackurl=/profile`,
+            { locale: route.locale }
+          );
+        });
+    }
   };
   return (
     <div className="signin-contanier forget-contanier">
@@ -65,7 +96,12 @@ const ConfirmPasswrod = ({ sginOb }) => {
             />
           </span>
         </div>
-        <div className="forget-btn" onClick={handelClick} tabIndex={2}>
+        <div
+          className="forget-btn"
+          onClick={handelClick}
+          onKeyDown={handleKeyContinue}
+          tabIndex={2}
+        >
           {sginOb.continueWrod}
         </div>
       </div>

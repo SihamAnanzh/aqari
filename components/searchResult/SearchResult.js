@@ -107,6 +107,7 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
 
   useEffect(() => {
     setLeastestAdd(latestData);
+    setHasMore(latestData < 10 ? false : true);
   }, [latestData]);
 
   useEffect(() => {

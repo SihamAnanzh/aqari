@@ -31,6 +31,33 @@ const ForgetPasswrod = ({ sginOb }) => {
       : swal("", "invalid email", "info");
   };
 
+  const handleKeyContinue = (e) => {
+    if (e.code == "NumpadEnter") {
+      email.includes("@")
+        ? axios
+            .post(
+              "https://stagingapi.aqarifinder.com/api/user/password/forget",
+              {
+                email,
+                reset_url:
+                  "https://aqari-demo.herokuapp.com/signIN/forget/reset",
+              }
+            )
+            .then((res) => {
+              res.data.status.code == 200 && setMessage(res.data.results);
+              console.log(res);
+              res.data.status.code == 401
+                ? route.locale == "ar"
+                  ? swal("", "المستخدم غير موجود", "info")
+                  : swal("", "invalid user", "info")
+                : setShowDialog(true);
+            })
+        : route.locale == "ar"
+        ? swal("", "بريد إلكتروني خاطئ", "info")
+        : swal("", "invalid email", "info");
+    }
+  };
+
   return (
     <div className="signin-contanier forget-contanier">
       <div className="forget-heading">
@@ -59,6 +86,7 @@ const ForgetPasswrod = ({ sginOb }) => {
       <div
         tabIndex={showDialog ? "" : 2}
         className="forget-btn"
+        onKeyDown={handleKeyContinue}
         onClick={() => {
           handleClick();
         }}
