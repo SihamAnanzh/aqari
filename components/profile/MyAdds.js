@@ -49,6 +49,7 @@ const MyAdds = ({ adsOb }) => {
             (route.locale == "ar"
               ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
               : swal("'well done", "Ad Added Successfully", "success"));
+          setCookie("add_id", "", { path: "/" });
 
           swal("", res.data.results, "info");
         });

@@ -29,12 +29,14 @@ const Packge = (props) => {
         },
         // data: formDataTow
       }).then((res) => {
+        if (res.data.status.code == 200) {
+          swal("", res.data.results, "success");
+        } else {
+          swal("", "something wrong", "info");
+        }
         console.log(
           `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
         );
-        console.log(res);
-        swal(res.data.status.message);
-        console.log(session);
       });
   }, [route, session.status]);
 

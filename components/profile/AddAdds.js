@@ -63,7 +63,18 @@ const AddAdds = ({ addAdsOb }) => {
   }, [cookies.token]);
 
   let formData;
-
+  useEffect(() => {
+    axios
+      .get("https://stagingapi.aqarifinder.com/api/user/profile", {
+        headers: {
+          Authorization: cookies.token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setPAL(res.data.results.premium_ads_left);
+      });
+  }, []);
   const handelSubmit = (e) => {
     setFiles([imageOne, imageTwo, setImageThree, imageFour]);
     !disable &&
@@ -83,18 +94,6 @@ const AddAdds = ({ addAdsOb }) => {
         : swal("", "invalid phone number", "info")
       : checkPremStatus();
   };
-
-  useEffect(() => {
-    axios
-      .get("https://stagingapi.aqarifinder.com/api/user/profile", {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        setPAL(res.data.results.premium_ads_left);
-      });
-  }, []);
 
   const checkPremStatus = () => {
     console.log(checkedAdd);
@@ -124,7 +123,7 @@ const AddAdds = ({ addAdsOb }) => {
             method: "post",
             url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
             headers: {
-              Authorization: token,
+              Authorization: cookies.token,
               "Content-Type": "multipart/form-data",
             },
             data: formData,
@@ -165,7 +164,7 @@ const AddAdds = ({ addAdsOb }) => {
           method: "post",
           url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
           headers: {
-            Authorization: token,
+            Authorization: cookies.token,
             "Content-Type": "multipart/form-data",
           },
           data: formData,
@@ -221,7 +220,7 @@ const AddAdds = ({ addAdsOb }) => {
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
               headers: {
-                Authorization: token,
+                Authorization: cookies.token,
                 "Content-Type": "multipart/form-data",
               },
               data: formData,
@@ -275,7 +274,7 @@ const AddAdds = ({ addAdsOb }) => {
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
               headers: {
-                Authorization: token,
+                Authorization: cookies.token,
                 "Content-Type": "multipart/form-data",
               },
               data: formData,
@@ -296,7 +295,7 @@ const AddAdds = ({ addAdsOb }) => {
                     url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
                     headers: {
                       "Content-Type": "multipart/form-data",
-                      Authorization: token,
+                      Authorization: cookies.token,
                     },
                     data: formData,
                   }).then((res) => {

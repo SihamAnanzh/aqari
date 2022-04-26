@@ -156,7 +156,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/services/add",
               headers: {
-                Authorization: token,
+                Authorization: cookies.token,
                 "Content-Type": "multipart/form-data",
               },
               data: formData,
@@ -202,7 +202,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/services/add",
               headers: {
-                Authorization: token,
+                Authorization: cookies.token,
                 "Content-Type": "multipart/form-data",
               },
               data: formData,
@@ -223,7 +223,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                     url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
                     headers: {
                       "Content-Type": "multipart/form-data",
-                      Authorization: token,
+                      Authorization: cookies.token,
                     },
                     data: formData,
                   }).then((res) => {
@@ -278,7 +278,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             method: "post",
             url: "https://stagingapi.aqarifinder.com/api/user/services/add",
             headers: {
-              Authorization: token,
+              Authorization: cookies.token,
               "Content-Type": "multipart/form-data",
             },
             data: formData,

@@ -42,6 +42,7 @@ const MyService = ({ adsOb }) => {
             (route.locale == "ar"
               ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
               : swal("'well done", "Add service Successfully", "success"));
+          setCookie("service_id", "", { path: "/" });
 
           swal("", res.data.results, "info");
         });
