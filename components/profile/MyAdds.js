@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 const MyAdds = ({ adsOb }) => {
-  console.log("my add");
   const [latest, setLatest] = useState([]);
   const [userData, setUserData] = useState([]);
   const authCtx = useContext(AuthContext);
@@ -20,9 +19,41 @@ const MyAdds = ({ adsOb }) => {
 
   useEffect(() => {
     setoken(cookies.token);
-    console.log(cookies.token);
   }, [cookies.token]);
 
+  useEffect(() => {
+    console.log(route.query.paymentId + "rtoue.query");
+    console.log(session);
+    route.query.paymentId &&
+      session.data != null &&
+      axios({
+        method: "post",
+        url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+        headers: {
+          Authorization: session.data != null && session.data.id,
+        },
+      }).then((res) => {
+        console.log(res);
+
+        //if the resposent from the payment is success then you need to call the set as premium add and sec back the id of the add
+
+        axios({
+          method: "post",
+          url: `https://stagingapi.aqarifinder.com/api/user/ads/set_premium/${cookies.add_id}`,
+          headers: {
+            Authorization: session.data != null && session.data.id,
+          },
+        }).then((res) => {
+          console.log(res);
+          response.data.status.code == 200 &&
+            (route.locale == "ar"
+              ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
+              : swal("'well done", "Ad Added Successfully", "success"));
+
+          swal("", res.data.results, "info");
+        });
+      });
+  }, [route, session.status]);
   const loadMoreHandler = () => {
     let latestData = axios
       .get("https://stagingapi.aqarifinder.com/api/user/ads/list", {
@@ -91,7 +122,6 @@ const MyAdds = ({ adsOb }) => {
         },
       })
       .then((res) => {
-        console.log(res);
         setUserData(res.data.results);
       });
   }, []);

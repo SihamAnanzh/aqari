@@ -239,38 +239,6 @@ const AddService = ({ serviceOb, addAdsOb }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(route.query.paymentId + "rtoue.query");
-    route.query.paymentId &&
-      session.data != null &&
-      axios({
-        method: "post",
-        url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
-        headers: {
-          Authorization: session.data != null && session.data.id,
-        },
-      }).then(async (res) => {
-        console.log(res);
-        //if the resposent from the payment is success then you need to call the set as premium add and sec back the id of the add
-
-        axios({
-          method: "post",
-          url: `https://stagingapi.aqarifinder.com/api/user/services/set_premium/${cookies.service_id}/2`,
-          headers: {
-            Authorization: session.data != null && session.data.id,
-          },
-        }).then((res) => {
-          console.log(res);
-          response.data.status.code == 200 &&
-            (route.locale == "ar"
-              ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
-              : swal("'well done", "Add service Successfully", "success"));
-
-          swal("", res.data.results, "info");
-        });
-      });
-  }, [route, session.status]);
-
   let formData;
   const handelSubmit = (e) => {
     setFiles([imageOne, imageTwo, setImageThree, imageFour]),
