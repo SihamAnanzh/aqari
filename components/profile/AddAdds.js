@@ -100,7 +100,8 @@ const AddAdds = ({ addAdsOb }) => {
     console.log(checkedAdd);
     if (checkedAdd) {
       //if user has packages add with  premium add
-      if (PAl < 0) {
+      console.log(PAl);
+      if (PAl > 0) {
         (formData = new FormData()),
           setFiles([imageOne, imageTwo, setImageThree, imageFour]),
           formData.append("title", addTitle),
@@ -313,18 +314,18 @@ const AddAdds = ({ addAdsOb }) => {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     console.log(route.query.paymentId + "rtoue.query");
     console.log(session);
     route.query.paymentId &&
-      session.status == "authenticated" &&
-      (await axios({
+      session.data != null &&
+      axios({
         method: "post",
         url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
         headers: {
-          Authorization: token,
+          Authorization: session.data != null && session.data.id,
         },
-      }).then(async (res) => {
+      }).then((res) => {
         console.log(res);
 
         //if the resposent from the payment is success then you need to call the set as premium add and sec back the id of the add
@@ -333,7 +334,7 @@ const AddAdds = ({ addAdsOb }) => {
           method: "post",
           url: `https://stagingapi.aqarifinder.com/api/user/ads/set_premium/${cookies.add_id}`,
           headers: {
-            Authorization: token,
+            Authorization: session.data != null && session.data.id,
           },
         }).then((res) => {
           console.log(res);
@@ -344,7 +345,7 @@ const AddAdds = ({ addAdsOb }) => {
 
           swal("", res.data.results, "info");
         });
-      }));
+      });
   }, [route, session.status]);
 
   useEffect(() => {
@@ -977,8 +978,10 @@ const AddAdds = ({ addAdsOb }) => {
                     <div
                       className="box-btn"
                       onClick={() => {
-                        setCheckedAdd(false);
+                        setCheckedAdd(!checkedAdd);
+
                         handleclickPrem(0);
+
                         setShowDialogiBox(!showDialogBox);
                       }}
                     >

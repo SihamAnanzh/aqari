@@ -239,15 +239,15 @@ const AddService = ({ serviceOb, addAdsOb }) => {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     console.log(route.query.paymentId + "rtoue.query");
     route.query.paymentId &&
-      cookies.token != "null" &&
-      (await axios({
+      session.data != null &&
+      axios({
         method: "post",
         url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
         headers: {
-          Authorization: cookies.token,
+          Authorization: session.data != null && session.data.id,
         },
       }).then(async (res) => {
         console.log(res);
@@ -257,7 +257,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
           method: "post",
           url: `https://stagingapi.aqarifinder.com/api/user/services/set_premium/${cookies.service_id}/2`,
           headers: {
-            Authorization: cookies.token,
+            Authorization: session.data != null && session.data.id,
           },
         }).then((res) => {
           console.log(res);
@@ -268,8 +268,8 @@ const AddService = ({ serviceOb, addAdsOb }) => {
 
           swal("", res.data.results, "info");
         });
-      }));
-  }, [route]);
+      });
+  }, [route, session.status]);
 
   let formData;
   const handelSubmit = (e) => {
@@ -852,6 +852,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                       <div
                         className="box-btn"
                         onClick={() => {
+                          setCheckedAdd(false);
                           setShowDialogiBox(!showDialogBox);
                           handleclickPrem(0);
                         }}
