@@ -385,7 +385,13 @@ top:9px;
     }
   }
 
+.descktop-version{
 
+}
+
+.mobile-version{
+  display: none;
+}
 
 
 // media
@@ -536,6 +542,7 @@ top:9px;
     border-top: none;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    right: -2px;
   }
   .add-adds-items li span{
     color: #fff;
@@ -699,7 +706,7 @@ top:9px;
 
 .ltr .second-nav-items span.shortcutNav{
 
-  margin-right: -39px;
+  margin-right: -34px;
 }
 
 .add-adds-menu .add-img-btn{
@@ -711,6 +718,7 @@ top:9px;
   }
   .ltr .second-nav-items div{
     margin-left: 30px;
+    padding-right: 6px;
   }
   
   .hidden{
@@ -1286,6 +1294,17 @@ li.active,
 //   padding-right: 20px;
 //   padding-left: unset;
 // }
+
+.descktop-version{
+  display: none;
+
+}
+
+.mobile-version{
+  display: inline-block;
+
+}
+
 }
 
   .lang-arr{

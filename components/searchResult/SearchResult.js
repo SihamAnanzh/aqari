@@ -22,10 +22,16 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
   const filterCtx = useContext(FilterContext);
   const route = useRouter();
 
+  console.log(adsOb);
   const loadMoreHandler = async () => {
-    let regions_id = localStorage.getItem("city");
+    let regions_id = JSON.parse(localStorage.getItem("city"));
     console.log(regions_id);
-    areaIds.push(Number(regions_id));
+
+    regions_id.map((res) => {
+      console.log(res);
+      areaIds.push(Number(res));
+    });
+
     let id = localStorage.getItem("ads");
     setIds(JSON.parse(id));
     let rentValue = localStorage.getItem("rent");
@@ -43,11 +49,16 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
           headers: {
             lang: route.locale,
             limit: 11,
-            offset: filterCtx.addsResults.ads.length,
+            offset: latestData.length,
           },
         }
       )
       .then((res) => {
+        console.log(res);
+        console.log(res.data.results.ads);
+        if (res.data.results.ads.length < 11) {
+          setHasMore(false);
+        }
         res.data.results.ads.map((adds) => {
           let data = {
             add_id: adds.id,
@@ -87,29 +98,16 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
           };
           setLeastestAdd((pre) => [...pre, data]);
         });
-      })
-      .then(
-        () => console.log(areaIds),
-        areaIds.map((name) => {
-          axios
-            .get(`https://stagingapi.aqarifinder.com/api/region/${name}`, {
-              headers: { lang: route.locale },
-            })
-            .then((res) => {
-              console.log(res.data.results.title);
-              setAreasData((pre) => [...pre, res.data.results.title]);
-            });
-        }),
-
-        axios
-          .get(`https://stagingapi.aqarifinder.com/api/category/${id}`, {
-            headers: { lang: route.locale },
-          })
-          .then((res) => {
-            setType(res.data.results.title);
-          })
-      );
+      });
   };
+
+  useEffect(() => {
+    setAreasData(areas);
+  }, [areas]);
+
+  useEffect(() => {
+    setLeastestAdd(latestData);
+  }, [latestData]);
 
   useEffect(() => {
     filterCtx.addsResults.premium_ads &&
@@ -257,7 +255,7 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
               />
             ))}
         </div>
-        {hasMore && (
+        {hasMore ? (
           <div
             className="adds-btn"
             onClick={loadMoreHandler}
@@ -266,7 +264,12 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
             }}
           >
             {adsOb.ad3}
-            <span className="btn-icon">
+            <span
+              className="btn-icon"
+              style={{
+                marginLeft: "6px",
+              }}
+            >
               <img
                 src="/assets/img/+btn.svg"
                 style={{
@@ -279,8 +282,9 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
               />
             </span>
           </div>
+        ) : (
+          <span className="end-results">{adsOb.ad4}</span>
         )}
-        <span className="end-results">{adsOb.ad4}</span>
       </div>
       <Footer fo1={fo1} />
     </div>

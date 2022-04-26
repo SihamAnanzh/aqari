@@ -155,7 +155,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/services/add",
               headers: {
-                Authorization: session.data.id,
+                Authorization: token,
                 "Content-Type": "multipart/form-data",
               },
               data: formData,
@@ -185,24 +185,19 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             : swal("", "invalid phone number", "info")
           : ((formData = new FormData()),
             setFiles([imageOne, imageTwo, setImageThree, imageFour]),
-            formData.append("title", addTitle),
-            formData.append("desc", desc),
-            formData.append("area", space),
-            formData.append("front", front),
+            formData.append("title", title),
+            formData.append("description", desc),
+            selectCategoryId.map((categ) => {
+              formData.append("region_ids", categ);
+            }),
             formData.append("price", price),
-            formData.append("currency_id", "1"),
-            formData.append("category_id", category_id),
-            formData.append("ad_type_id", type_id),
-            formData.append("region_id", region_id),
-            formData.append("lat", lat),
-            formData.append("lng", lng),
+            formData.append("service_type_id", selectServId),
             formData.append("phone", phoneNumber),
             formData.append("whatsapp", phoneNumber),
-            formData.append("is_premium", false),
+            formData.append("is_premium", true),
             files.map((file) => {
               formData.append("image_files", file);
             }),
-            formData.append("auto_number", autoNum),
             axios({
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
@@ -246,9 +241,8 @@ const AddService = ({ serviceOb, addAdsOb }) => {
 
   useEffect(async () => {
     console.log(route.query.paymentId + "rtoue.query");
-    console.log(session);
     route.query.paymentId &&
-      session.status == "authenticated" &&
+      cookies.token != "null" &&
       (await axios({
         method: "post",
         url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
@@ -275,57 +269,13 @@ const AddService = ({ serviceOb, addAdsOb }) => {
           swal("", res.data.results, "info");
         });
       }));
-  }, [route, session.status]);
+  }, [route]);
 
-  // const handelSubmit = (e) => {
-  //   let formData;
-  //   !disable && (title == "" || desc == "" || price == "" || phoneNumber == " ")
-  //     ? (route.locale == "ar" &&
-  //         swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
-  //       route.locale == "en" &&
-  //         swal("warning", "Fill all the field please", "info"))
-  //     : phoneNumber.length < 8
-  //     ? route.locale == "ar"
-  //       ? swal("", "رقم الهاتف خاطئ", "info")
-  //       : swal("", "invalid phone number", "info")
-  //     : PAl > 0
-  //     ? ((formData = new FormData()),
-  //       formData.append("title", title),
-  //       formData.append("description", desc),
-  //       selectCategoryId.map((categ) => {
-  //         formData.append("region_ids", categ);
-  //       }),
-  //       formData.append("price", price),
-  //       formData.append("service_type_id", selectServId),
-  //       formData.append("phone", phoneNumber),
-  //       formData.append("whatsapp", phoneNumber),
-  //       formData.append("is_premium", true),
-  //       files.map((file) => {
-  //         formData.append("image_files", file);
-  //       }),
-  //       axios({
-  //         method: "post",
-  //         url: "https://stagingapi.aqarifinder.com/api/user/services/add",
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //           Authorization: session.data.id,
-  //         },
-  //         data: formData,
-  //       }).then((response) => {
-  //         response.data.status.code == 200
-  //           ? (route.locale == "ar"
-  //               ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
-  //               : ("'well done", "Serivce Added Successfully", "success"),
-  //             route.replace("/profile/mySerivces"))
-  //           : response.data.status.code == 400 && route.locale == "ar"
-  //           ? swal("", "مطلوب صورة واحدة على الأقل", "info")
-  //           : swal("", "At least 1 image required", "info");
-  //       }))
-  //     : setShowDialogiBox(true);
-  // };
-
+  let formData;
   const handelSubmit = (e) => {
-    setFiles([imageOne, imageTwo, setImageThree, imageFour]);
+    console.log(imageOne);
+    setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+      console.log(files);
     !disable && (title == "" || desc == "" || price == "" || phoneNumber == " ")
       ? (route.locale == "ar" &&
           swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
@@ -365,30 +315,28 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             console.log(response);
             response.data.status.code == 200 &&
               (route.locale == "ar"
-                ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
-                : swal("'well done", "Ad Added Successfully", "success"),
+                ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
+                : swal("'well done", "Ad Service Successfully", "success"),
               setTimeout(() => {
-                route.push("/profile/myAdds");
+                route.premium_ads_left("/profile/mySerivces");
               }, 1000));
           }))
       : ((formData = new FormData()),
+        console.log("this serv"),
         setFiles([imageOne, imageTwo, setImageThree, imageFour]),
-        formData.append("title", addTitle),
-        formData.append("desc", desc),
-        formData.append("area", space),
-        formData.append("front", front),
+        formData.append("title", title),
+        formData.append("description", desc),
+        selectCategoryId.map((categ) => {
+          formData.append("region_ids", categ);
+        }),
         formData.append("price", price),
-        formData.append("currency_id", "1"),
-        formData.append("category_id", category_id),
-        formData.append("ad_type_id", type_id),
-        formData.append("region_id", region_id),
+        formData.append("service_type_id", selectServId),
         formData.append("phone", phoneNumber),
         formData.append("whatsapp", phoneNumber),
-        formData.append("is_premium", false),
+        formData.append("is_premium", true),
         files.map((file) => {
           formData.append("image_files", file);
         }),
-        formData.append("auto_number", autoNum),
         axios({
           method: "post",
           url: "https://stagingapi.aqarifinder.com/api/user/services/add",
@@ -404,7 +352,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
               ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
               : swal("'well done", "Ad Added Successfully", "success"),
             setTimeout(() => {
-              route.push("/profile/myAdds");
+              route.push("/profile/mySerivces");
             }, 1000));
         }));
   };
@@ -642,33 +590,18 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                   <div
                     className="submit-imgs"
                     onClick={(e) => {
-                      document.getElementById("select-file").click();
+                      document.getElementById("select-file-1").click();
                     }}
                   >
                     <input
                       autoComplete="off"
                       type="file"
-                      id="select-file"
-                      tabIndex={8}
+                      id="select-file-1"
+                      tabIndex={9}
                       style={{
                         display: "none",
                       }}
                       onChange={(e) => {
-                        let file = e.target.files[0].size;
-                        if (file > 10e6) {
-                          route.locale == "ar"
-                            ? swal(
-                                "",
-                                "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
-                                "info"
-                              )
-                            : swal(
-                                "",
-                                "Please upload a file smaller than 10 MB",
-                                "info"
-                              );
-                          return false;
-                        }
                         setImageOne(e.target.files[0]);
                       }}
                     />
@@ -688,23 +621,8 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                       src="/assets/img/removeImg.svg"
                       alt=""
                       className="remove-img-serivce"
-                      onChange={(e) => {
-                        let file = e.target.files[0].size;
-                        if (file > 10e6) {
-                          route.locale == "ar"
-                            ? swal(
-                                "",
-                                "الرجاء تحميل ملف أصغر من 10 ميغا بايت",
-                                "info"
-                              )
-                            : swal(
-                                "",
-                                "Please upload a file smaller than 10 MB",
-                                "info"
-                              );
-                          return false;
-                        }
-                        setImageTwo(e.target.files[0]);
+                      onClick={(e) => {
+                        setImageOne("");
                       }}
                     />
                   </div>
@@ -937,7 +855,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                 )}
               </div>
               <div
-                className=""
+                className="conditions chack-groub"
                 onClick={() => {
                   setCheckedAdd(!checkedAdd);
                   console.log(checkedAdd);
@@ -946,7 +864,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                 <img
                   style={{ paddingRight: "5px" }}
                   src={`/assets/img/${
-                    !checkedAdd ? "fullCheck" : "emptyCheck"
+                    !checkedAdd ? "emptyCheck" : "fullCheck"
                   }.svg`}
                   alt=""
                 />

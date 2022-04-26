@@ -34,6 +34,13 @@
     align-items: center;
     width: 100%;
     }
+    .box-btns.forget{
+
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 70%;
+        }
   
     .box-btn{
         width: 115px;
@@ -56,6 +63,10 @@
            color: #fff;
        }
     }
+    div:focus {
+        outline: 4px solid #EDAA43;
+      }
+      
+    
 
 }
-

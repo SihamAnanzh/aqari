@@ -30,13 +30,13 @@ const MainSection = ({ searchOb }) => {
   let regions = filterCtx.regions_id;
 
   const handelClick = () => {
-    localStorage.setItem("city", filterCtx.regions_id);
+    localStorage.setItem("city", JSON.stringify(filterCtx.regions_id));
     filterCtx.serivce_id && regions
       ? showSearchServics &&
         (localStorage.setItem("service", JSON.stringify(filterCtx.serivce_id)),
         route.push({
           pathname: "/searchResultsService",
-          query: { service: filterCtx.serviceString },
+          query: { service: filterCtx.serviceString, city: filterCtx.areaName },
         }))
       : filterCtx.type_id && regions
       ? showSearchRent

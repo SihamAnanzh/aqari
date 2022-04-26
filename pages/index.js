@@ -15,6 +15,7 @@ import FACEBOOK_PIXEL_1 from "../components/Pixle/facebook/pixel-1";
 import convertUrl, { getBase64, getDataBlob, toDataURL } from "../convertUrl";
 import { useCookies, getCookies, Cookies } from "react-cookie";
 import { AuthContext } from "../stores/auth-context";
+import DialogBox from "../components/dialogBox/DialogBox";
 
 const Index = ({ prem, latest, services, Request, name }) => {
   const cookies = useCookies();
@@ -228,6 +229,7 @@ const Index = ({ prem, latest, services, Request, name }) => {
           })}
         />
       </Head>
+
       <Nav navOb={navOb} homePage={true} />
       <Banner bn={bn} />
       <MainSection searchOb={searchOb} />

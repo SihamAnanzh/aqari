@@ -26,13 +26,11 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
 
   useEffect(() => {
     setoken(cookies.token);
-    console.log(cookies.token);
   }, [cookies.token]);
 
   Nav.handleClickOutside = () => {
     setAddMenu(false);
     setShowLang(false);
-    console.log(session);
   };
 
   return (
@@ -94,41 +92,34 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
             )}
 
             <li className={`${route.asPath === "/signUp" ? "activeNav" : ""}`}>
-              {
-                (console.log(token == `null`),
-                token == `null` ? (
-                  <Link href="/signUp" className="main-nav-item">
-                    <span
-                      className={`${
-                        route.asPath === "/signUp" ? "active" : ""
-                      }`}
-                    >
-                      {navOb.nav5}
-                    </span>
-                  </Link>
-                ) : (
-                  <div className="main-nav-item">
-                    <span
-                      style={{ cursor: "pointer" }}
-                      className={`${
-                        route.asPath === "/signUp" ? "active" : ""
-                      }`}
-                      onClick={() => {
-                        axios.post(
-                          "https://stagingapi.aqarifinder.com/api/user/logout",
-                          { headers: { Authorization: token } }
-                        );
-                        setCookie("token", null, { path: "/" });
-                        setCookie("userId", null, { path: "/" });
+              {token == `null` ? (
+                <Link href="/signUp" className="main-nav-item">
+                  <span
+                    className={`${route.asPath === "/signUp" ? "active" : ""}`}
+                  >
+                    {navOb.nav5}
+                  </span>
+                </Link>
+              ) : (
+                <div className="main-nav-item">
+                  <span
+                    style={{ cursor: "pointer" }}
+                    className={`${route.asPath === "/signUp" ? "active" : ""}`}
+                    onClick={() => {
+                      axios.post(
+                        "https://stagingapi.aqarifinder.com/api/user/logout",
+                        { headers: { Authorization: token } }
+                      );
+                      setCookie("token", null, { path: "/" });
+                      setCookie("userId", null, { path: "/" });
 
-                        signOut();
-                      }}
-                    >
-                      {navOb.nav6}
-                    </span>
-                  </div>
-                ))
-              }
+                      signOut();
+                    }}
+                  >
+                    {navOb.nav6}
+                  </span>
+                </div>
+              )}
             </li>
           </ul>
         </div>
@@ -293,7 +284,7 @@ const Nav = ({ logo, icon, navOb, homePage }) => {
                   <li
                     style={{
                       marginLeft: "0",
-                      paddingRight: route.locale == "en" ? "46px" : "18px",
+                      paddingRight: route.locale == "en" ? "29px" : "18px",
                     }}
                   >
                     <Link href="/profile/addService" className="add-adds-item">

@@ -26,8 +26,10 @@
     background-color: $background-color;
     padding:15px 15px;
     margin-top: 10px;
-    font-size: 28px;
+    font-size: 24px;
     border: 2px solid $main-color;
+    font-family: otfPlain;
+    font-weight: 400px;
     color: $main-color;
     outline: none;
     padding-right: 30px;
@@ -78,10 +80,10 @@
 
 .remove-img-serivce{
     position: absolute;
-    left: 6px;
+    left: 4px;
     width: 15px;
     z-index: 10;
-    top: 4px;
+    top: -6px;
 }
 .uploadedImage{
     margin: 0 10px;

@@ -22,6 +22,7 @@ const MyFav = ({ adsOb }) => {
 
   const session = useSession();
 
+  console.log(hasMore);
   useEffect(() => {
     setoken(cookies.token);
     console.log(cookies.token);
@@ -37,8 +38,9 @@ const MyFav = ({ adsOb }) => {
         },
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.length);
         if (res.data.results.length < 11) {
+          console.log(hasMore);
           setHasMore(false);
         }
         res.data.results.slice(0, 10).map((adds) => {
@@ -166,7 +168,7 @@ const MyFav = ({ adsOb }) => {
             img={addsData.images}
           />
         ))}
-      {hasMore && (
+      {!hasMore && (
         <div
           className="adds-btn"
           onClick={loadMoreHandler}

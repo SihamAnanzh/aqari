@@ -41,10 +41,11 @@ const Add = (props) => {
           </div>
           <div className="first-prem">
             <div className="info-prem">
-              <div className="title">
+              <div className="title descktop-version ">{props.title}</div>
+              <div className="title mobile-version">
                 {" "}
-                {props.title.length > 30
-                  ? props.title.substr(0, 30 - 1) + "..."
+                {props.title.length > 20
+                  ? props.title.substr(0, 20 - 1) + "..."
                   : props.title}
               </div>
               <div className="address">
@@ -102,7 +103,8 @@ const Add = (props) => {
               />
             </div>
             <div className="info-prem">
-              <div className="title">
+              <div className="title descktop-version ">{props.title}</div>
+              <div className="title mobile-version">
                 {" "}
                 {props.title.length > 20
                   ? props.title.substr(0, 20 - 1) + "..."

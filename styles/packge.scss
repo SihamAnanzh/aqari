@@ -359,18 +359,26 @@ width: 109px;}
 
 }
 
-
+@media (max-width:1531px) {
+    .ltr{
+        .packge-heading{
+     align-items: flex-end;
+     margin-left: 7%;
+         
+        }
+    }
+}
 @media (max-width:1300px) {
     .ltr{
         .packge-heading{
      align-items: flex-end;
-     margin-left:0
+     margin-left:4%
          
         }
     }
     .packge-heading{
         align-items: flex-start;
-        margin-right:0
+        margin-right:4%
             
            }
     

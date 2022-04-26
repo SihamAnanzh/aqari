@@ -987,9 +987,12 @@ const AddAdds = ({ addAdsOb }) => {
          <span>{addAdsOb.adSh2}</span>
 
          </div> */}
+            {console.log(checkedAdd)}
             <div
-              className=""
+              className="conditions chack-groub"
               onClick={() => {
+                console.log(checkedAdd);
+
                 setCheckedAdd(!checkedAdd);
                 console.log(checkedAdd);
               }}
@@ -997,7 +1000,7 @@ const AddAdds = ({ addAdsOb }) => {
               <img
                 style={{ paddingRight: "5px" }}
                 src={`/assets/img/${
-                  !checkedAdd ? "fullCheck" : "emptyCheck"
+                  !checkedAdd ? "emptyCheck" : "fullCheck"
                 }.svg`}
                 alt=""
               />

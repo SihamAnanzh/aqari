@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 const PremuimService = (props) => {
+  console.log(props);
   const img_url =
     props.singleEstate.images && props.singleEstate.images.length > 0
       ? props.singleEstate.images[0].logo_url

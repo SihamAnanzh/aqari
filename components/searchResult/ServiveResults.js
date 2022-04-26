@@ -7,13 +7,11 @@ import { FilterContext } from "../../stores/filter";
 import axios from "axios";
 
 import { useRouter } from "next/router";
-import PremuimAdd from "../adds/PremuimAdd";
 
 const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
   const [premuimAdds, setPremuimAdds] = useState([]);
   const [latestData, setLeastestAdd] = useState([]);
   const filterCtx = useContext(FilterContext);
-  console.log(filterCtx.serviceResults);
   const [hasMore, setHasMore] = useState(true);
   const route = useRouter();
   const [areaIds, setAreasIds] = useState([]);
@@ -23,11 +21,20 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
   const [rent, setRent] = useState();
   const [type, setType] = useState();
 
+  useEffect(() => {
+    setLeastestAdd(latestData);
+  }, [latestData]);
+
   const loadMoreHandler = async () => {
-    let regions_id = localStorage.getItem("city");
+    let regions_id = JSON.parse(localStorage.getItem("city"));
     console.log(regions_id);
-    areaIds.push(Number(regions_id));
-    let id = localStorage.getItem("ads");
+
+    regions_id.map((res) => {
+      console.log(res);
+      areaIds.push(Number(res));
+    });
+
+    let id = localStorage.getItem("service");
     setIds(JSON.parse(id));
     let rentValue = localStorage.getItem("rent");
     setRent(JSON.parse(rentValue));
@@ -43,12 +50,14 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
           headers: {
             lang: route.locale,
             limit: 11,
-            offset: filterCtx.serviceResults.length,
+            offset: latestData.length,
           },
         }
       )
       .then((res) => {
-        console.log(res);
+        if (res.data.results.length < 11) {
+          setHasMore(false);
+        }
         res.data.results.map((adds) => {
           let data = {
             id: adds.id,
@@ -84,35 +93,14 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
 
           setLeastestAdd((pre) => [...pre, data]);
         });
-      })
-      .then(
-        () => console.log(areaIds),
-        areaIds.map((name) => {
-          axios
-            .get(`https://stagingapi.aqarifinder.com/api/region/${name}`, {
-              headers: { lang: route.locale },
-            })
-            .then((res) => {
-              console.log(res.data.results.title);
-              setAreasData((pre) => [...pre, res.data.results.title]);
-            });
-        }),
-
-        axios
-          .get(`https://stagingapi.aqarifinder.com/api/category/${id}`, {
-            headers: { lang: route.locale },
-          })
-          .then((res) => {
-            setType(res.data.results.title);
-          })
-      );
+      });
   };
   useEffect(() => {
     filterCtx.serviceResults &&
       filterCtx.serviceResults.map((adds) => {
         let data = {
           id: adds.id,
-          serviceId: adds.service_type_id.id,
+          serviceId: adds.service_type.id,
           user_id: adds.user_id,
           images:
             adds.images.length > 0
@@ -185,6 +173,10 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
       });
     console.log(premuimAdds);
   }, [filterCtx.serviceResults.premium_ads]);
+  useEffect(() => {
+    console.log(areas);
+    setAreasData(areas);
+  }, [areas]);
 
   return (
     <div className="results-container">
@@ -192,9 +184,9 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
       <div className="results">
         <h2 className="results-heading premium-title">
           {adsOb.ad6}
-          {`${service} 
+          {`${service == undefined ? "" : service} 
             ${route.locale == "ar" ? "في" : "in"}
-             ${[...areas]}`}
+             ${[...areasData]}`}
         </h2>
         {/* {
           <div className="premium-adds-results">
@@ -227,12 +219,12 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
           <h1 className="premium-title">{adsOb.ad2}</h1>
 
           {latestData &&
-            latestData.map((addsData) => (
+            latestData.map((addsData, index) => (
               <Add
                 adsOb={adsOb}
                 singleEstate={addsData.singleEstatData}
                 add_id={addsData.add_id}
-                key={addsData.add_id}
+                key={index}
                 disc={addsData.disc}
                 time={addsData.time}
                 price={addsData.price}
@@ -242,7 +234,7 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
               />
             ))}
         </div>
-        {hasMore && (
+        {hasMore ? (
           <div
             className="adds-btn"
             onClick={loadMoreHandler}
@@ -251,7 +243,12 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
             }}
           >
             {adsOb.ad3}
-            <span className="btn-icon">
+            <span
+              className="btn-icon"
+              style={{
+                marginLeft: "6px",
+              }}
+            >
               <img
                 src="/assets/img/+btn.svg"
                 style={{
@@ -264,8 +261,9 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
               />
             </span>
           </div>
+        ) : (
+          <span className="end-results">{adsOb.ad4}</span>
         )}
-        <span className="end-results">{adsOb.ad4}</span>
       </div>
       <Footer fo1={fo1} />
     </div>

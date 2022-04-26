@@ -87,10 +87,12 @@ const SearchResult = (props) => {
   let hour = t("home:hour");
   let priceCode = t("home:priceCode");
   let noResults = t("home:ads-5");
+  let ad4 = t("home:ads-4");
   let adsOb = {
     ad1,
     ad2,
     ad3,
+    ad4,
     premium,
     hour,
     priceCode,
@@ -120,16 +122,21 @@ const SearchResult = (props) => {
     priceCode,
   };
 
-  useEffect(async () => {
-    let regions_id = localStorage.getItem("city");
+  useEffect(() => {
+    let regions_id = JSON.parse(localStorage.getItem("city"));
     console.log(regions_id);
-    areaIds.push(Number(regions_id));
+
+    regions_id.map((res) => {
+      console.log(res);
+      areaIds.push(Number(res));
+    });
+
     let id = localStorage.getItem("ads");
     setIds(JSON.parse(id));
     let rentValue = localStorage.getItem("rent");
     setRent(JSON.parse(rentValue));
 
-    await axios
+    axios
       .post(
         "https://stagingapi.aqarifinder.com/api/ads/filter",
         {
@@ -144,21 +151,22 @@ const SearchResult = (props) => {
         }
       )
       .then((res) => {
+        console.log(res);
         filterCtx.setAddsSResutls(res.data.results);
         filterCtx.setSerivceId("");
       })
       .then(
-        () => console.log(areaIds),
-        areaIds.map((name) => {
-          axios
-            .get(`https://stagingapi.aqarifinder.com/api/region/${name}`, {
-              headers: { lang: route.locale },
-            })
-            .then((res) => {
-              console.log(res.data.results.title);
-              setAreas((pre) => [...pre, res.data.results.title]);
-            });
-        }),
+        () =>
+          areaIds.map((name) => {
+            axios
+              .get(`https://stagingapi.aqarifinder.com/api/region/${name}`, {
+                headers: { lang: route.locale },
+              })
+              .then((res) => {
+                console.log(res);
+                setAreas((pre) => [...pre, res.data.results.title]);
+              });
+          }),
 
         axios
           .get(`https://stagingapi.aqarifinder.com/api/category/${id}`, {
@@ -175,6 +183,11 @@ const SearchResult = (props) => {
       setType("");
     };
   }, []);
+
+  useEffect(() => {
+    setAreasIds(areaIds);
+  }, [areaIds]);
+  console.log(areas);
   return (
     <>
       <Head>

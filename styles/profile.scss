@@ -149,7 +149,7 @@ background-color: $second-color;
 }
 
 .profile-container .profile-heading {
-    padding-right:15% ;
+    padding-right:14% ;
 }
 
 .ltr{
@@ -255,6 +255,16 @@ background-color: $second-color;
 }
 
 
+@media (max-width:1300px) {
+    .ltr .profile-container .profile-heading{
+        padding-left: 4%;
+    }
+
+    
+    .profile-container .profile-heading{
+        padding-right: 4%;
+    }
+}
 
 @media (max-width:1120px) {
     .subNav-items{
@@ -312,7 +322,7 @@ background-color: $second-color;
          
      } 
 
-
+    
 }
 
 
