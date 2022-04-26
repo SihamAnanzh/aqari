@@ -3,8 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import swal from "sweetalert";
+import { useCookies } from "react-cookie";
 
 const Packge = (props) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const [showPackgeDetail, setShwoPackgeDetail] = useState(false);
   const [paymentId, setPaymentId] = useState("");
   const session = useSession();
@@ -41,17 +44,18 @@ const Packge = (props) => {
   }, [route, session.status]);
 
   const handleClick = () => {
-    console.log(session.data);
-    session.data != null
+    console.log(cookies.token);
+    cookies.token != "null"
       ? axios({
           method: "post",
           url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: session.data != null ? session.data.id : "",
+            Authorization: cookies.token,
           },
           data: formData,
         }).then((res) => {
+          console.log(res);
           res.data.status.code == 200 &&
             route.replace(res.data.results.data.paymentURL);
           console.log(res.data.results.data.paymentURL);

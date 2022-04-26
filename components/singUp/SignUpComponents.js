@@ -12,6 +12,7 @@ import {
   signOut,
 } from "next-auth/react";
 import swal from "sweetalert";
+import { useCookies } from "react-cookie";
 
 const SignUpComponents = ({ sginUpOb, providers }) => {
   const [email, setEmail] = useState("");
@@ -22,13 +23,33 @@ const SignUpComponents = ({ sginUpOb, providers }) => {
   const [phone, setPhone] = useState("");
   const authCtx = useContext(AuthContext);
   const [checkedConditions, setCheckedConditions] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const [wrongEmail, setwrongEmail] = useState(false);
   const route = useRouter();
   const handleChnage = (e) => {
     return e.target.value;
   };
+  const session = useSession();
 
+  useEffect(() => {
+    cookies.token == "null"
+      ? setCookie(
+          "token",
+          session.data != null ? session.data.id : null,
+          {
+            path: "/",
+          },
+          setCookie(
+            "userId",
+            session.data != null ? session.data.xyz.sub : null,
+            {
+              path: "/",
+            }
+          )
+        )
+      : console.log(session);
+  }, [session.data]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 

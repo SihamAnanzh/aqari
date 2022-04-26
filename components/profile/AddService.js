@@ -287,7 +287,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             response.data.status.code == 200 &&
               (route.locale == "ar"
                 ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
-                : swal("'well done", "Ad Added Successfully", "success"),
+                : swal("well done", "Ad Added Successfully", "success"),
               setTimeout(() => {
                 route.push("/profile/mySerivces");
               }, 1000));

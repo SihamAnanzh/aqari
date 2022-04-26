@@ -4,7 +4,7 @@ import Footer from "../shared/footer/Footer";
 import axios from "axios";
 import swal from "sweetalert";
 import { useRouter } from "next/router";
-import BackBtn from "../BackBtn";
+
 export const ContactUs = ({ navOb, fo1, contactOB }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
