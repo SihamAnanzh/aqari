@@ -11,6 +11,7 @@ import { signIn, useSession, getSession } from "next-auth/react";
 import Head from "next/head";
 import BackBtn from "../../components/BackBtn";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 const MyFavorite = () => {
   const authCtx = useContext(AuthContext);
   const route = useRouter();
@@ -27,8 +28,8 @@ const MyFavorite = () => {
   useEffect(() => {
     if (cookies.token == "null") {
       route.push(
-        `/signIN?callbackurl=/profile/myFavorite"`,
-        `/signIN?callbackurl=/profile/myFavorite"`,
+        `/signIN?callbackurl=/profile/myFavorite`,
+        `/signIN?callbackurl=/profile/myFavorite`,
         { locale: route.locale }
       );
     }
@@ -141,14 +142,6 @@ export async function getServerSideProps(context) {
   const { locale } = context;
   const session = await getSession(context);
 
-  // if (!session) {
-  //   return {
-  //     redirect: {
-  //       destination: "/signIN?callbackurl=/profile/myFavorite",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
   return {
     props: {
       ...(await serverSideTranslations(locale, ["home", "signin", "profile"])),

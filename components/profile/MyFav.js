@@ -8,12 +8,12 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 const MyFav = ({ adsOb }) => {
   const [latest, setLatest] = useState([]);
-  const [useData, setUserData] = useState([]);
+  const [useData, setUserData] = useState();
   const authCtx = useContext(AuthContext);
   const route = useRouter();
   const [token, setoken] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(latest.length < 0 ? false : true);
 
   useEffect(() => {
     setoken(cookies.token);

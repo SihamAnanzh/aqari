@@ -126,6 +126,9 @@ const Update = ({ updateData }) => {
     edit,
   };
 
+  useEffect(() => {
+    console.log(updateData);
+  }, []);
   return (
     <>
       <Head>

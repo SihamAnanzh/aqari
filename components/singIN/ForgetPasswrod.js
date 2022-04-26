@@ -1,7 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import swal from "sweetalert";
 import DialogBox from "../dialogBox/DialogBox";
 const ForgetPasswrod = ({ sginOb }) => {
@@ -11,7 +11,6 @@ const ForgetPasswrod = ({ sginOb }) => {
   const route = useRouter();
 
   const handleClick = () => {
-    console.log();
     email.includes("@")
       ? axios
           .post("https://stagingapi.aqarifinder.com/api/user/password/forget", {
@@ -31,6 +30,7 @@ const ForgetPasswrod = ({ sginOb }) => {
       ? swal("", "بريد إلكتروني خاطئ", "info")
       : swal("", "invalid email", "info");
   };
+
   return (
     <div className="signin-contanier forget-contanier">
       <div className="forget-heading">
@@ -47,7 +47,7 @@ const ForgetPasswrod = ({ sginOb }) => {
           </h3>
           <input
             autoFocus={true}
-            tabIndex={1}
+            tabIndex={showDialog ? "" : 1}
             type="email"
             className="sign-mail"
             placeholder={sginOb.sn2}
@@ -57,7 +57,7 @@ const ForgetPasswrod = ({ sginOb }) => {
       </div>
 
       <div
-        tabIndex={2}
+        tabIndex={showDialog ? "" : 2}
         className="forget-btn"
         onClick={() => {
           handleClick();
@@ -66,7 +66,13 @@ const ForgetPasswrod = ({ sginOb }) => {
         {sginOb.continueWrod}
       </div>
       {showDialog && (
-        <div className="box">
+        <div
+          tabIndex={showDialog ? 1 : ""}
+          className="box"
+          style={{
+            zIndex: "1000",
+          }}
+        >
           <div className="icon-box">
             <img
               src="/assets/img/dialog-icon.svg"
@@ -83,20 +89,56 @@ const ForgetPasswrod = ({ sginOb }) => {
                 : "Please check your email to reset your password"}
             </p>
           </div>
-          <div className="box-btns">
-            <div className="box-btn signUp-btn" style={{ cursor: "pointer" }}>
+          <div
+            className="box-btns forget"
+            style={{
+              width: "70%",
+              justifyContent: "space-around",
+            }}
+          >
+            <div
+              className="box-btn signUp-btn"
+              tabIndex={showDialog ? 2 : ""}
+              id="close"
+              onKeyDown={(e) => {
+                e.code == "NumpadEnter" &&
+                  route.push("/signIN/", "/signIN/", {
+                    locale: route.locale,
+                  });
+              }}
+            >
               <div
-                style={{ cursor: "pointer" }}
                 onClick={() => {
-                  route.push("/", "/", { locale: route.locale });
+                  route.push(
+                    "/signIN/forgetPasswrod/confirmPassword",
+                    "/signIN/forgetPasswrod/confirmPassword",
+                    { locale: route.locale }
+                  );
                 }}
               >
                 {route.locale == "ar" ? "اغلاق" : "close"}
               </div>
             </div>
-            <div className="box-btn" style={{ cursor: "pointer" }}>
+            <div
+              className="box-btn"
+              tabIndex={showDialog ? 3 : ""}
+              id="resend"
+              style={{
+                cursor: "pointer",
+              }}
+              onKeyDown={(e) => {
+                e.code == "NumpadEnter" &&
+                  axios
+                    .post(
+                      "https://stagingapi.aqarifinder.com/api/user/password/forget",
+                      {
+                        email,
+                      }
+                    )
+                    .then((res) => console.log(res));
+              }}
+            >
               <div
-                style={{ cursor: "pointer" }}
                 onClick={() =>
                   axios
                     .post(
@@ -104,12 +146,9 @@ const ForgetPasswrod = ({ sginOb }) => {
                       { email }
                     )
                     .then((res) => {
-                      res.data.status.code == 200 &&
-                        setMessage(res.data.results);
                       console.log(res);
                     })
                     .then((res) => {
-                      setShowDialog(true);
                       console.log(res);
                     })
                 }

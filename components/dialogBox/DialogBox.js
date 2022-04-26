@@ -38,6 +38,9 @@ const DialogBox = ({ message }) => {
         </div>
         <div className="box-btn" tabIndex="2">
           <div
+            style={{
+              cursor: "pointer",
+            }}
             onClick={() =>
               axios
                 .post(

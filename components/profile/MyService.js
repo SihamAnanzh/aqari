@@ -54,16 +54,18 @@ const MyService = ({ adsOb }) => {
   }, [cookies.token]);
 
   const loadMoreHandler = () => {
+    console.log(latest.length);
     let latestData = axios
       .get("https://stagingapi.aqarifinder.com/api/user/services/list", {
         headers: {
           Authorization: cookies.token,
           lang: route.locale,
           limit: 11,
-          offset: latest.length,
+          offset: userData.length,
         },
       })
       .then((res) => {
+        console.log(res.data);
         if (res.data.results.length < 11) {
           setHasMore(false);
         }

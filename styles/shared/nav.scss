@@ -1316,3 +1316,39 @@ li.active,
   }
 
 
+  @media (max-width:1170px) {
+    .second-nav-items{
+      margin-left:-34px
+    }
+
+    .main-nav-items {
+      margin-right:-38px
+    }
+
+
+
+  }
+
+
+  @media (max-width:1188px) {
+    .second-nav-items span.shortcutNav{
+      margin-left: 0;
+      margin-right: -45px;
+  }
+  .second-nav-items{
+    margin-left:-52px
+  }
+
+  .main-nav-items {
+    margin-right:-38px
+  }
+    
+
+  .ltr .main-nav-items {
+    margin-right: -53px;
+}
+  }
+
+
+  
+

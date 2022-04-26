@@ -418,12 +418,12 @@ const UpdateAdd = ({ updateData, addAdsOb }) => {
               />
             </div>
 
-            <div className="sign-input  addAdds-auto-num">
+            {/* <div className="sign-input  addAdds-auto-num">
               <h3>{addAdsOb.add12}</h3>
               <div className="map-adds">
                 <SimpleMap getLat={setLat} getLng={setLng} />
               </div>
-            </div>
+            </div> */}
             <div className="checksbox" style={{ cursor: "pointer" }}>
               <div
                 className="conditions chack-groub"

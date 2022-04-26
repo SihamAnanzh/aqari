@@ -10,6 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getSession, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const ProfileAdd = () => {
   const authCtx = useContext(AuthContext);
@@ -107,8 +108,6 @@ const ProfileAdd = () => {
     pro8,
   };
 
-  console.log(token);
-
   return (
     <>
       {token !== "null" && (
@@ -144,20 +143,7 @@ export default ProfileAdd;
 export async function getServerSideProps(context) {
   const { locale } = context;
   const session = await getSession(context);
-  // if (session.data == null) {
-  //   context.res.writeHead(303, { Location: "/signIN" });
-  //   context.res.redirect("/signIN", 303);
-  //   context.res.end();
 
-  // if (!session) {
-  //   return {
-  //     redirect: {
-  //       destination: "/signIN?callbackurl=/profile/myAdds",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
-  // }
   return {
     props: {
       ...(await serverSideTranslations(locale, ["home", "signin", "profile"])),

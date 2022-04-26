@@ -12,7 +12,6 @@ const Adds = ({ premuimAdds, latestData, ads, premium, adsOb }) => {
   const [premiumArray, setPremium] = useState(premium);
   const [hasMore, setHasMore] = useState(true);
   const route = useRouter();
-  console.log(latestData);
 
   useEffect(() => {
     setLatestData(latestData);
