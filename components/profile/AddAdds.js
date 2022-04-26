@@ -81,10 +81,27 @@ const AddAdds = ({ addAdsOb }) => {
       ? route.locale == "ar"
         ? swal("", "رقم الهاتف خاطئ", "info")
         : swal("", "invalid phone number", "info")
-      : checkedAdd
-      ? PAl < 0
-        ? setShowDialogiBox(true)
-        : ((formData = new FormData()),
+      : checkPremStatus();
+  };
+
+  useEffect(() => {
+    axios
+      .get("https://stagingapi.aqarifinder.com/api/user/profile", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        setPAL(res.data.results.premium_ads_left);
+      });
+  }, []);
+
+  const checkPremStatus = () => {
+    console.log(checkedAdd);
+    if (checkedAdd) {
+      //if user has packages add with  premium add
+      if (PAl < 0) {
+        (formData = new FormData()),
           setFiles([imageOne, imageTwo, setImageThree, imageFour]),
           formData.append("title", addTitle),
           formData.append("desc", desc),
@@ -111,7 +128,7 @@ const AddAdds = ({ addAdsOb }) => {
             },
             data: formData,
           }).then((response) => {
-            console.log(response);
+            console.log(response + "add  premium add");
             response.data.status.code == 200 &&
               (route.locale == "ar"
                 ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
@@ -119,8 +136,13 @@ const AddAdds = ({ addAdsOb }) => {
               setTimeout(() => {
                 route.push("/profile/myAdds");
               }, 1000));
-          }))
-      : ((formData = new FormData()),
+          });
+      } else {
+        setShowDialogiBox(true);
+      }
+    } else {
+      //add the add without premium status
+      (formData = new FormData()),
         setFiles([imageOne, imageTwo, setImageThree, imageFour]),
         formData.append("title", addTitle),
         formData.append("desc", desc),
@@ -147,7 +169,7 @@ const AddAdds = ({ addAdsOb }) => {
           },
           data: formData,
         }).then((response) => {
-          console.log(response);
+          console.log(response + "add  premium add");
           response.data.status.code == 200 &&
             (route.locale == "ar"
               ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
@@ -155,23 +177,11 @@ const AddAdds = ({ addAdsOb }) => {
             setTimeout(() => {
               route.push("/profile/myAdds");
             }, 1000));
-        }));
+        });
+    }
   };
-
-  useEffect(() => {
-    axios
-      .get("https://stagingapi.aqarifinder.com/api/user/profile", {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        setPAL(res.data.results.premium_ads_left);
-      });
-  }, []);
-
-  const handleclickPrem = () => {
-    if (makeNormalAd) {
+  const handleclickPrem = (status) => {
+    if (status == 1) {
       setFiles([imageOne, imageTwo, setImageThree, imageFour]);
       !disable &&
         (addTitle == "" ||
@@ -225,7 +235,7 @@ const AddAdds = ({ addAdsOb }) => {
                 }, 1000));
             })));
       return;
-    } else if (makPremAd) {
+    } else if (status == 2) {
       return (
         setFiles([imageOne, imageTwo, setImageThree, imageFour]),
         addTitle == "" ||
@@ -298,7 +308,7 @@ const AddAdds = ({ addAdsOb }) => {
       );
     }
 
-    if (makeAdCancel) {
+    if (status == 0) {
       return;
     }
   };
@@ -946,8 +956,7 @@ const AddAdds = ({ addAdsOb }) => {
                     <div
                       className="box-btn "
                       onClick={() => {
-                        setMakeNormalAd(true);
-                        handleclickPrem();
+                        handleclickPrem(1);
                         setShowDialogiBox(!showDialogBox);
                       }}
                     >
@@ -957,8 +966,7 @@ const AddAdds = ({ addAdsOb }) => {
                     <div
                       className="box-btn signUp-btn"
                       onClick={() => {
-                        setMakePremAd(true);
-                        handleclickPrem();
+                        handleclickPrem(2);
                         setShowDialogiBox(!showDialogBox);
                       }}
                     >
@@ -969,8 +977,9 @@ const AddAdds = ({ addAdsOb }) => {
                     <div
                       className="box-btn"
                       onClick={() => {
+                        setCheckedAdd(false);
+                        handleclickPrem(0);
                         setShowDialogiBox(!showDialogBox);
-                        // handleclickPrem();
                       }}
                     >
                       <div>{route.locale == "ar" ? "إلغاء" : "Cancel"}</div>
@@ -991,16 +1000,13 @@ const AddAdds = ({ addAdsOb }) => {
             <div
               className="conditions chack-groub"
               onClick={() => {
-                console.log(checkedAdd);
-
                 setCheckedAdd(!checkedAdd);
-                console.log(checkedAdd);
               }}
             >
               <img
                 style={{ paddingRight: "5px" }}
                 src={`/assets/img/${
-                  !checkedAdd ? "emptyCheck" : "fullCheck"
+                  checkedAdd ? "fullCheck" : "emptyCheck"
                 }.svg`}
                 alt=""
               />

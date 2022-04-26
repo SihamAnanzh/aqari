@@ -51,7 +51,6 @@ const AddService = ({ serviceOb, addAdsOb }) => {
 
   useEffect(() => {
     setoken(cookies.token);
-    console.log(cookies.token);
   }, [cookies.token]);
 
   useEffect(() => {
@@ -81,7 +80,8 @@ const AddService = ({ serviceOb, addAdsOb }) => {
         },
       })
       .then((res) => {
-        setPAL(res.data.results.premium_ads_left);
+        setPAL(res.data.results.premium_services_left);
+        console.log("PAL" + " " + PAl);
       });
   }, []);
 
@@ -123,8 +123,9 @@ const AddService = ({ serviceOb, addAdsOb }) => {
       });
   }, []);
 
-  const handleclickPrem = () => {
-    if (makeNormalAd) {
+  const handleclickPrem = (status) => {
+    console.log(status);
+    if (status == 1) {
       setFiles([imageOne, imageTwo, setImageThree, imageFour]);
       !disable &&
         (title == "" || desc == "" || price == "" || phoneNumber == " "
@@ -169,8 +170,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                   route.push("/profile/mySerivces");
                 }, 1000));
             })));
-      return;
-    } else if (makPremAd) {
+    } else if (status == 2) {
       return (
         setFiles([imageOne, imageTwo, setImageThree, imageFour]),
         !disable &&
@@ -200,7 +200,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             }),
             axios({
               method: "post",
-              url: "https://stagingapi.aqarifinder.com/api/user/ad/add",
+              url: "https://stagingapi.aqarifinder.com/api/user/services/add",
               headers: {
                 Authorization: token,
                 "Content-Type": "multipart/form-data",
@@ -234,7 +234,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                 : swal("", "something wrong", "info");
             }))
       );
-    } else if (makeAdCancel) {
+    } else if (status == 0) {
       return;
     }
   };
@@ -273,22 +273,25 @@ const AddService = ({ serviceOb, addAdsOb }) => {
 
   let formData;
   const handelSubmit = (e) => {
-    console.log(imageOne);
     setFiles([imageOne, imageTwo, setImageThree, imageFour]),
-      console.log(files);
-    !disable && (title == "" || desc == "" || price == "" || phoneNumber == " ")
-      ? (route.locale == "ar" &&
-          swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
-        route.locale == "en" &&
-          swal("warning", "Fill all the field please", "info"))
-      : phoneNumber.length < 8
-      ? route.locale == "ar"
-        ? swal("", "رقم الهاتف خاطئ", "info")
-        : swal("", "invalid phone number", "info")
-      : checkedAdd
-      ? PAl < 0
-        ? setShowDialogiBox(true)
-        : ((formData = new FormData()),
+      !disable &&
+      (title == "" || desc == "" || price == "" || phoneNumber == " ")
+        ? (route.locale == "ar" &&
+            swal("تنبيه", "يرجى تعبئة جميع الحقول", "info"),
+          route.locale == "en" &&
+            swal("warning", "Fill all the field please", "info"))
+        : phoneNumber.length < 8
+        ? route.locale == "ar"
+          ? swal("", "رقم الهاتف خاطئ", "info")
+          : swal("", "invalid phone number", "info")
+        : checkPremStatus();
+  };
+
+  const checkPremStatus = () => {
+    if (checkedAdd) {
+      //if user has packages add with  premium add
+      if (PAl > 0) {
+        (formData = new FormData()),
           setFiles([imageOne, imageTwo, setImageThree, imageFour]),
           formData.append("title", title),
           formData.append("description", desc),
@@ -315,14 +318,18 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             console.log(response);
             response.data.status.code == 200 &&
               (route.locale == "ar"
-                ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
-                : swal("'well done", "Ad Service Successfully", "success"),
+                ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
+                : swal("'well done", "Ad Added Successfully", "success"),
               setTimeout(() => {
-                route.premium_ads_left("/profile/mySerivces");
+                route.push("/profile/mySerivces");
               }, 1000));
-          }))
-      : ((formData = new FormData()),
-        console.log("this serv"),
+          });
+      } else {
+        setShowDialogiBox(true);
+      }
+    } else {
+      //add the add without premium status
+      (formData = new FormData()),
         setFiles([imageOne, imageTwo, setImageThree, imageFour]),
         formData.append("title", title),
         formData.append("description", desc),
@@ -333,7 +340,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
         formData.append("service_type_id", selectServId),
         formData.append("phone", phoneNumber),
         formData.append("whatsapp", phoneNumber),
-        formData.append("is_premium", true),
+        formData.append("is_premium", false),
         files.map((file) => {
           formData.append("image_files", file);
         }),
@@ -354,8 +361,13 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             setTimeout(() => {
               route.push("/profile/mySerivces");
             }, 1000));
-        }));
+        });
+    }
   };
+
+  useEffect(() => {
+    console.log(checkedAdd);
+  }, [checkedAdd]);
 
   return (
     <div>
@@ -819,8 +831,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                       <div
                         className="box-btn "
                         onClick={() => {
-                          setMakeNormalAd(true);
-                          handleclickPrem();
+                          handleclickPrem(1);
                           setShowDialogiBox(!showDialogBox);
                         }}
                       >
@@ -830,9 +841,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                       <div
                         className="box-btn signUp-btn"
                         onClick={() => {
-                          setMakePremAd(true);
-                          handleclickPrem();
-
+                          handleclickPrem(2);
                           setShowDialogiBox(!showDialogBox);
                         }}
                       >
@@ -843,9 +852,8 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                       <div
                         className="box-btn"
                         onClick={() => {
-                          setMakeAd(true);
                           setShowDialogiBox(!showDialogBox);
-                          handleclickPrem();
+                          handleclickPrem(0);
                         }}
                       >
                         <div>{route.locale == "ar" ? "إلغاء" : "Cancel"}</div>
@@ -858,13 +866,12 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                 className="conditions chack-groub"
                 onClick={() => {
                   setCheckedAdd(!checkedAdd);
-                  console.log(checkedAdd);
                 }}
               >
                 <img
                   style={{ paddingRight: "5px" }}
                   src={`/assets/img/${
-                    !checkedAdd ? "emptyCheck" : "fullCheck"
+                    checkedAdd ? "fullCheck" : "emptyCheck"
                   }.svg`}
                   alt=""
                 />

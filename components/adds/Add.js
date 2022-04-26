@@ -91,10 +91,7 @@ const Add = (props) => {
           <div className="first-prem">
             <div className="img-prem">
               <img
-                src={
-                  props.singleEstate.images[0] &&
-                  props.singleEstate.images[0].logo_url
-                }
+                src={img_url}
                 alt={
                   props.title.length > 20
                     ? props.title.substr(0, 20 - 1) + "..."
