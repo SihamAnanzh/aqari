@@ -22,9 +22,8 @@ const MyAdds = ({ adsOb }) => {
   }, [cookies.token]);
 
   useEffect(() => {
-    console.log(route.query.paymentId + "rtoue.query");
-    console.log(session);
-    route.query.paymentId &&
+    cookies.add_id &&
+      route.query.paymentId &&
       session.data != null &&
       axios({
         method: "post",
@@ -54,7 +53,7 @@ const MyAdds = ({ adsOb }) => {
           swal("", res.data.results, "info");
         });
       });
-  }, [route, session.status]);
+  }, []);
   const loadMoreHandler = () => {
     let latestData = axios
       .get("https://stagingapi.aqarifinder.com/api/user/ads/list", {

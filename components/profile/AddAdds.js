@@ -914,8 +914,8 @@ const AddAdds = ({ addAdsOb }) => {
                   <div className="content-box">
                     <p>
                       {route.locale == "ar"
-                        ? `لا يوجد لديك اعلانات مميزة`
-                        : ` You don't have any  premium add?`}
+                        ? `لا يوجد لديك  خدمات مميزة`
+                        : ` You don't have any  premium services?`}
                     </p>
                   </div>
                   <div className="box-btns">

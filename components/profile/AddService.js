@@ -6,6 +6,11 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useSession } from "next-auth/react";
 import { useCookies } from "react-cookie";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const AddService = ({ serviceOb, addAdsOb }) => {
   const authCtx = useContext(AuthContext);
@@ -36,18 +41,19 @@ const AddService = ({ serviceOb, addAdsOb }) => {
   const [whatsPhone, setWhatsPhone] = useState("");
   const [showDialogBox, setShowDialogiBox] = useState(false);
   const [checkedAdd, setCheckedAdd] = useState(false);
-  const [PAl, setPAL] = useState();
+  const [packageUser, setPakcgeUser] = useState([{}]);
   const [isPremium, setIspremium] = useState(false);
-
+  const [packgeId, setPackgeId] = useState("");
   const [files, setFiles] = useState([]);
   const [selectServId, setSelectServiId] = useState("");
   const [selectCategoryId, setSelectCategoryId] = useState([]);
   const route = useRouter();
-
+  const [dialogBoxPickSerive, setDialogBoxPickSerive] = useState(false);
   const [makPremAd, setMakePremAd] = useState(false);
   const [makeNormalAd, setMakeNormalAd] = useState(false);
   const [makeAdCancel, setMakeAd] = useState(false);
   const [token, setoken] = useState(null);
+  const [packgesOffer, setPackageOffer] = useState([]);
 
   useEffect(() => {
     setoken(cookies.token);
@@ -74,16 +80,43 @@ const AddService = ({ serviceOb, addAdsOb }) => {
 
   useEffect(() => {
     axios
-      .get("https://stagingapi.aqarifinder.com/api/user/profile", {
-        headers: {
-          Authorization: cookies.token,
-        },
-      })
+      .get(
+        "https://stagingapi.aqarifinder.com/api/user/package/available_services/list",
+        {
+          headers: {
+            Authorization: cookies.token,
+          },
+        }
+      )
       .then((res) => {
-        setPAL(res.data.results.premium_services_left);
-        console.log("PAL" + " " + PAl);
+        res.data.results.length > 0
+          ? setPakcgeUser(res.data.results)
+          : setPakcgeUser(null);
       });
+
+    {
+      axios
+        .get("https://stagingapi.aqarifinder.com/api/package/list", {
+          headers: {
+            lang: route.locale,
+          },
+        })
+        .then((res) => {
+          console.log(res.data.results);
+          res.data.results.map((res) => {
+            res.id == 2 &&
+              res.packages.map((pack) => {
+                console.log(pack);
+                packgesOffer.push(pack);
+              });
+          });
+        });
+    }
   }, []);
+
+  useEffect(() => {
+    console.log(packgeId);
+  }, [packgeId]);
 
   useEffect(() => {
     let services = document.querySelectorAll(".profile-list-service");
@@ -152,6 +185,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             files.map((file) => {
               formData.append("image_files", file);
             }),
+            formData.append("packge_id", null),
             axios({
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/services/add",
@@ -171,8 +205,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                 }, 1000));
             })));
     } else if (status == 2) {
-      return (
-        setFiles([imageOne, imageTwo, setImageThree, imageFour]),
+      setFiles([imageOne, imageTwo, setImageThree, imageFour]),
         !disable &&
         (title == "" || desc == "" || price == "" || phoneNumber == " ")
           ? (route.locale == "ar" &&
@@ -198,6 +231,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
             files.map((file) => {
               formData.append("image_files", file);
             }),
+            formData.append("packge_id", null),
             axios({
               method: "post",
               url: "https://stagingapi.aqarifinder.com/api/user/services/add",
@@ -211,7 +245,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
               console.log(response);
               response.data.status.code == 200
                 ? ((formData = new FormData()),
-                  formData.append("package_id", 1),
+                  formData.append("package_id", 2),
                   formData.append(
                     "callbackurl",
                     route.locale == "ar"
@@ -227,13 +261,13 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                     },
                     data: formData,
                   }).then((res) => {
+                    console.log(res);
                     res.data.status.code == 200 &&
                       route.push(res.data.results.data.paymentURL);
                     console.log(res.data.results.data.paymentURL);
                   }))
                 : swal("", "something wrong", "info");
-            }))
-      );
+            }));
     } else if (status == 0) {
       return;
     }
@@ -258,7 +292,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
   const checkPremStatus = () => {
     if (checkedAdd) {
       //if user has packages add with  premium add
-      if (PAl > 0) {
+      if (packageUser != null) {
         (formData = new FormData()),
           setFiles([imageOne, imageTwo, setImageThree, imageFour]),
           formData.append("title", title),
@@ -274,24 +308,25 @@ const AddService = ({ serviceOb, addAdsOb }) => {
           files.map((file) => {
             formData.append("image_files", file);
           }),
-          axios({
-            method: "post",
-            url: "https://stagingapi.aqarifinder.com/api/user/services/add",
-            headers: {
-              Authorization: cookies.token,
-              "Content-Type": "multipart/form-data",
-            },
-            data: formData,
-          }).then((response) => {
-            console.log(response);
-            response.data.status.code == 200 &&
-              (route.locale == "ar"
-                ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
-                : swal("well done", "Ad Added Successfully", "success"),
-              setTimeout(() => {
-                route.push("/profile/mySerivces");
-              }, 1000));
-          });
+          formData.append("package_id", packgeId);
+        axios({
+          method: "post",
+          url: "https://stagingapi.aqarifinder.com/api/user/services/add",
+          headers: {
+            Authorization: cookies.token,
+            "Content-Type": "multipart/form-data",
+          },
+          data: formData,
+        }).then((response) => {
+          console.log(response);
+          response.data.status.code == 200 &&
+            (route.locale == "ar"
+              ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
+              : swal("well done", "Ad Added Successfully", "success"),
+            setTimeout(() => {
+              route.push("/profile/mySerivces");
+            }, 1000));
+        });
       } else {
         setShowDialogiBox(true);
       }
@@ -797,28 +832,33 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                     </div>
                     <div className="box-btns">
                       <div
-                        className="box-btn "
+                        className="box-btn serivce "
                         onClick={() => {
                           handleclickPrem(1);
                           setShowDialogiBox(!showDialogBox);
                         }}
                       >
                         {/* <Link href='/'>استمرار</Link> */}
-                        {route.locale == "ar" ? "إعلان عادي" : "Normal Ad"}
+
+                        {route.locale == "ar"
+                          ? "خدمة عادية"
+                          : "Normal services"}
                       </div>
                       <div
-                        className="box-btn signUp-btn"
+                        className="box-btn signUp-btn serivce"
                         onClick={() => {
-                          handleclickPrem(2);
                           setShowDialogiBox(!showDialogBox);
+                          setDialogBoxPickSerive(!dialogBoxPickSerive);
                         }}
                       >
                         <div>
-                          {route.locale == "ar" ? "إعلان مميز" : "premium Ad"}
+                          {route.locale == "ar"
+                            ? "خدمة مميزة"
+                            : "premium services"}
                         </div>
                       </div>
                       <div
-                        className="box-btn"
+                        className="box-btn serivce"
                         onClick={() => {
                           setCheckedAdd(false);
                           setShowDialogiBox(!showDialogBox);
@@ -827,6 +867,52 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                       >
                         <div>{route.locale == "ar" ? "إلغاء" : "Cancel"}</div>
                       </div>
+                    </div>
+                  </div>
+                )}
+                {dialogBoxPickSerive && (
+                  <div
+                    className="box"
+                    style={{
+                      top: "82%",
+                    }}
+                  >
+                    <div className="icon-box">
+                      <img
+                        src="/assets/img/packgeBox.svg"
+                        alt=""
+                        style={{
+                          marginTop: "-32px",
+                        }}
+                      />
+                    </div>
+                    <div className="content-box">
+                      <p>
+                        {route.locale == "ar"
+                          ? `يرجى اختيار نوع الخدمة المميزة`
+                          : `Please choose the type of premium service`}
+                      </p>
+                    </div>
+                    <div className="box-btns">
+                      {packgesOffer.map((pack, index) => (
+                        <div
+                          key={index}
+                          className="box-btn serivce"
+                          onClick={() => {
+                            handleclickPrem(2);
+                            setDialogBoxPickSerive(!dialogBoxPickSerive);
+                            setCookie("service_id_package", pack.id, {
+                              path: "/",
+                            });
+                          }}
+                        >
+                          {pack.price +
+                            "   " +
+                            pack.currency.title +
+                            pack.duration +
+                            " day"}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}
@@ -864,6 +950,37 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                 />
                 <span>{addAdsOb.adSh3}</span>
               </div>
+              {checkedAdd && packageUser != null && (
+                <div
+                  className=" "
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">
+                      packages
+                    </FormLabel>
+                    <RadioGroup
+                      aria-labelledby="demo-radio-buttons-group-label"
+                      name="radio-buttons-group"
+                    >
+                      {packageUser.map((packge) => (
+                        <FormControlLabel
+                          onClick={() => {
+                            setPackgeId(packge.id);
+                          }}
+                          value={packge.id}
+                          control={<Radio />}
+                          label={packge.premium_ads}
+                        />
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
+                </div>
+              )}
             </div>
           </div>
 

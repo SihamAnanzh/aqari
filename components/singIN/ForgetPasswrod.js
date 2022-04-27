@@ -122,6 +122,7 @@ const ForgetPasswrod = ({ sginOb }) => {
             style={{
               width: "70%",
               justifyContent: "space-around",
+              cursor: "pointer",
             }}
           >
             <div
@@ -137,11 +138,7 @@ const ForgetPasswrod = ({ sginOb }) => {
             >
               <div
                 onClick={() => {
-                  route.push(
-                    "/signIN/forgetPasswrod/confirmPassword",
-                    "/signIN/forgetPasswrod/confirmPassword",
-                    { locale: route.locale }
-                  );
+                  route.push("/signIN", "/signIN", { locale: route.locale });
                 }}
               >
                 {route.locale == "ar" ? "اغلاق" : "close"}

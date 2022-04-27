@@ -15,14 +15,16 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
   const [areaIds, setAreasIds] = useState([]);
   const [rent, setRent] = useState();
   const [areasData, setAreasData] = useState(areas);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(latestData.length < 10 ? false : true);
   const [id, setIds] = useState();
   const [type, setType] = useState();
 
   const filterCtx = useContext(FilterContext);
   const route = useRouter();
-
-  console.log(adsOb);
+  useEffect(() => {
+    setLeastestAdd(latestData);
+    setHasMore(latestData.length < 10 ? false : true);
+  }, [latestData]);
   const loadMoreHandler = async () => {
     let regions_id = JSON.parse(localStorage.getItem("city"));
     console.log(regions_id);
@@ -104,11 +106,6 @@ const SearchResultComponents = ({ navOb, fo1, adsOb, tpyeName, areas }) => {
   useEffect(() => {
     setAreasData(areas);
   }, [areas]);
-
-  useEffect(() => {
-    setLeastestAdd(latestData);
-    setHasMore(latestData < 10 ? false : true);
-  }, [latestData]);
 
   useEffect(() => {
     filterCtx.addsResults.premium_ads &&

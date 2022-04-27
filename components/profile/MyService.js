@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useCookies } from "react-cookie";
+import swal from "sweetalert";
 
 const MyService = ({ adsOb }) => {
   const [latest, setLatest] = useState([]);
@@ -17,9 +18,10 @@ const MyService = ({ adsOb }) => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    console.log(route.query.paymentId + "rtoue.query");
-    route.query.paymentId &&
-      session.data != null &&
+    console.log(cookies.service_id);
+    cookies.service_id &&
+      route.query.paymentId &&
+      cookies.token != "null" &&
       axios({
         method: "post",
         url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
@@ -32,17 +34,18 @@ const MyService = ({ adsOb }) => {
 
         axios({
           method: "post",
-          url: `https://stagingapi.aqarifinder.com/api/user/services/set_premium/${cookies.service_id}/2`,
+          url: `https://stagingapi.aqarifinder.com/api/user/services/set_premium/${cookies.service_id}/${cookies.service_id_package}`,
           headers: {
             Authorization: session.data != null && session.data.id,
           },
         }).then((res) => {
           console.log(res);
-          response.data.status.code == 200 &&
+          res.data.status.code == 200 &&
             (route.locale == "ar"
               ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
               : swal("'well done", "Add service Successfully", "success"));
           setCookie("service_id", "", { path: "/" });
+          setCookie("service_id_package", "", { path: "/" });
 
           swal("", res.data.results, "info");
         });

@@ -19,29 +19,32 @@ const Packge = (props) => {
   formDataTow.append("package_id", props.packgeId);
 
   useEffect(() => {
-    console.log(route.query.paymentId + "rtoue.query");
-    console.log(session);
+    console.log(cookies.package_id);
     route.query.paymentId &&
-      session.status == "authenticated" &&
-      axios({
-        method: "post",
-        url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: session.data != null && session.data.id,
-        },
-        // data: formDataTow
-      }).then((res) => {
-        if (res.data.status.code == 200) {
-          swal("", res.data.results, "success");
-        } else {
-          swal("", "something wrong", "info");
-        }
-        console.log(
-          `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
-        );
-      });
-  }, [route, session.status]);
+    cookies.package_id != "null" &&
+    cookies.token != "null"
+      ? axios({
+          method: "post",
+          url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: cookies.token,
+          },
+          // data: formDataTow
+        }).then((res) => {
+          console.log(res);
+          if (res.data.status.code == 200) {
+            swal("", res.data.results, "success"),
+              setCookie("package_id", null, { path: "/" });
+          } else {
+            swal("", "something wrong", "info");
+          }
+          console.log(
+            `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`
+          );
+        })
+      : "";
+  }, [route]);
 
   const handleClick = () => {
     console.log(cookies.token);
@@ -57,8 +60,9 @@ const Packge = (props) => {
         }).then((res) => {
           console.log(res);
           res.data.status.code == 200 &&
-            route.replace(res.data.results.data.paymentURL);
-          console.log(res.data.results.data.paymentURL);
+            (setCookie("package_id", props.packgeId, { path: "/" }),
+            route.replace(res.data.results.data.paymentURL),
+            console.log(res.data.results.data.paymentURL));
         })
       : route.push("/signIN?callbackurl=/packages");
   };
