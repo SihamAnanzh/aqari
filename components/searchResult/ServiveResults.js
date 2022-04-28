@@ -97,6 +97,7 @@ const ServiveResults = ({ navOb, adsOb, fo1, areas, service }) => {
       });
   };
   useEffect(() => {
+    console.log(filterCtx.serviceResults);
     filterCtx.serviceResults &&
       filterCtx.serviceResults.map((adds) => {
         let data = {

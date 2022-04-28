@@ -6,6 +6,7 @@ import { AuthContext } from "../../stores/auth-context";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
+import swal from "sweetalert";
 
 const MyAdds = ({ adsOb }) => {
   const [latest, setLatest] = useState([]);
@@ -24,12 +25,12 @@ const MyAdds = ({ adsOb }) => {
   useEffect(() => {
     cookies.add_id &&
       route.query.paymentId &&
-      session.data != null &&
+      cookies.token != "null" &&
       axios({
         method: "post",
         url: `https://stagingapi.aqarifinder.com/api/user/package/purchase/${route.query.paymentId}`,
         headers: {
-          Authorization: session.data != null && session.data.id,
+          Authorization: cookies.token,
         },
       }).then((res) => {
         console.log(res);
@@ -38,13 +39,13 @@ const MyAdds = ({ adsOb }) => {
 
         axios({
           method: "post",
-          url: `https://stagingapi.aqarifinder.com/api/user/ads/set_premium/${cookies.add_id}`,
+          url: `https://stagingapi.aqarifinder.com/api/ads/set_premium/${cookies.add_id}`,
           headers: {
-            Authorization: session.data != null && session.data.id,
+            Authorization: cookies.token,
           },
         }).then((res) => {
           console.log(res);
-          response.data.status.code == 200 &&
+          res.data.status.code == 200 &&
             (route.locale == "ar"
               ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
               : swal("'well done", "Ad Added Successfully", "success"));

@@ -78,6 +78,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
     item !== null ? item.classList.add("selected") : "";
   };
 
+  //get available user services packges
   useEffect(() => {
     axios
       .get(
@@ -89,12 +90,14 @@ const AddService = ({ serviceOb, addAdsOb }) => {
         }
       )
       .then((res) => {
+        console.log("available packges" + " " + res.data.results.length);
         res.data.results.length > 0
           ? setPakcgeUser(res.data.results)
           : setPakcgeUser(null);
       });
 
     {
+      //get the packages list availabel offer we have in the system
       axios
         .get("https://stagingapi.aqarifinder.com/api/package/list", {
           headers: {
@@ -106,12 +109,16 @@ const AddService = ({ serviceOb, addAdsOb }) => {
           res.data.results.map((res) => {
             res.id == 2 &&
               res.packages.map((pack) => {
-                console.log(pack);
                 packgesOffer.push(pack);
               });
           });
         });
     }
+
+    console.log("available service packges in the syestm");
+    packgesOffer.map((res) => {
+      console.log(res);
+    });
   }, []);
 
   useEffect(() => {
@@ -252,6 +259,12 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                       ? "https://aqari-demo.herokuapp.com/profile/mySerivces"
                       : "https://aqari-demo.herokuapp.com/en/profile/mySerivces"
                   ),
+                  // formData.append(
+                  //   "callbackurl",
+                  //   route.locale == "ar"
+                  //     ? "http://127.0.0.1:3000/profile/mySerivces"
+                  //     : "http://127.0.0.1:3000/en/profile/mySerivces"
+                  // ),
                   axios({
                     method: "post",
                     url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",
@@ -293,6 +306,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
     if (checkedAdd) {
       //if user has packages add with  premium add
       if (packageUser != null) {
+        console.log(packgeId);
         (formData = new FormData()),
           setFiles([imageOne, imageTwo, setImageThree, imageFour]),
           formData.append("title", title),
@@ -321,8 +335,8 @@ const AddService = ({ serviceOb, addAdsOb }) => {
           console.log(response);
           response.data.status.code == 200 &&
             (route.locale == "ar"
-              ? swal("تهانينا", "تمت إضافة الإعلان بنجاح", "success")
-              : swal("well done", "Ad Added Successfully", "success"),
+              ? swal("تهانينا", "تمت إضافة الخدمة بنجاح", "success")
+              : swal("well done", "Service Added Successfully", "success"),
             setTimeout(() => {
               route.push("/profile/mySerivces");
             }, 1000));
@@ -969,6 +983,7 @@ const AddService = ({ serviceOb, addAdsOb }) => {
                     >
                       {packageUser.map((packge) => (
                         <FormControlLabel
+                          key={packge.id}
                           onClick={() => {
                             setPackgeId(packge.id);
                           }}

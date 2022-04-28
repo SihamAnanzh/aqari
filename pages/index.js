@@ -18,7 +18,8 @@ import { AuthContext } from "../stores/auth-context";
 import DialogBox from "../components/dialogBox/DialogBox";
 
 const Index = ({ prem, latest, services, Request, name }) => {
-  const cookies = useCookies();
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const [premuimAdds, setPremuimAdds] = useState([]);
   const [latestData, setLeastestAdd] = useState([]);
   const route = useRouter();
@@ -27,6 +28,43 @@ const Index = ({ prem, latest, services, Request, name }) => {
   // const { locale } = route;
   let { t, i18n } = useTranslation();
 
+  useEffect(() => {
+    cookies.token == "null"
+      ? setCookie(
+          "token",
+          session.data != null ? session.data.id : null,
+          {
+            path: "/",
+          },
+          setCookie(
+            "userId",
+            session.data != null ? session.data.xyz.sub : null,
+            {
+              path: "/",
+            }
+          )
+        )
+      : console.log(session);
+  }, [session.data]);
+
+  useEffect(() => {
+    cookies.token == "null"
+      ? setCookie(
+          "token",
+          session.data != null ? session.data.id : null,
+          {
+            path: "/",
+          },
+          setCookie(
+            "userId",
+            session.data != null ? session.data.xyz.sub : null,
+            {
+              path: "/",
+            }
+          )
+        )
+      : console.log(session);
+  }, []);
   //nav
   let nav1 = t("home:nav-1");
   let nav2 = t("home:nav-2");

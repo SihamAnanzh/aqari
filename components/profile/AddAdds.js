@@ -290,6 +290,12 @@ const AddAdds = ({ addAdsOb }) => {
                       ? "https://aqari-demo.herokuapp.com/profile/myAdds"
                       : "https://aqari-demo.herokuapp.com/en/profile/myAdds"
                   ),
+                  // formData.append(
+                  //   "callbackurl",
+                  //   route.locale == "ar"
+                  //     ? "http://127.0.0.1:3000/profile/myAdds"
+                  //     : "http://127.0.0.1:3000/en/profile/myAdds"
+                  // ),
                   axios({
                     method: "post",
                     url: "https://stagingapi.aqarifinder.com/api/user/package/get_link",

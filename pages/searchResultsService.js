@@ -102,6 +102,7 @@ const SearchResultsService = () => {
       )
       .then((res) => {
         console.log(res);
+        console.log("service filter " + res);
         filterCtx.setSerivceResutls(res.data.results);
       })
       .then(

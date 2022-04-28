@@ -73,6 +73,7 @@ const Terms = (pageProps) => {
       <Nav navOb={navOb} />
       <div
         className="privcay"
+        style={{ direction: "ltr" }}
         dangerouslySetInnerHTML={{ __html: content }}
       ></div>
       <Footer fo1={fo1} />
